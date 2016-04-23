@@ -10,9 +10,11 @@
             <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
             <td>{{result.description}}</td>
             <td>
-                <p ng-repeat="action in result.actions">
-                    {{action}}
-                </p>
+                <div ng-repeat="action in result.actions">
+                    <p ng-if="action.type=='action_say'">
+                        {{action.command}}
+                    </p>
+                </div>
             </td>
             </tr>
         </table>

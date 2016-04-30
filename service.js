@@ -4,7 +4,7 @@ service.factory('service', function($http) {
     return {
         list: function(sid, aid, callback) {
             $http.get(
-                'http://localhost:8080/students/'+sid+'/assessments/'+aid+'/results'
+                'http://sage-assess:8081/students/'+sid+'/assessments/'+aid+'/results'
                 ).success(callback);
         }
     };

@@ -1,7 +1,8 @@
 var countryApp = angular.module('countryApp', [
     'ngRoute',
     'controllers',
-    'serviceFactory'
+    'serviceFactory',
+    'ui.bootstrap'
 ]);
 
 countryApp.config(function($routeProvider) {

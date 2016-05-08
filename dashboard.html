@@ -1,9 +1,18 @@
 <div class="container">
 
       <div class="starter-template">
+         <!-- Alert -->
+        <div uib-collapse="isCollapsed">
+            <div class="alert alert-success"><strong>Success! </strong>{{ alertMsg }}</div>
+        </div>
+        
         <h1>Assessment Results</h1>
         <p class="lead">The following rows indicate current assessment evaluation<br> Once all assessments are passed, then you are finished!</p>
         
+        <!-- Progress Bar -->
+        <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
+        
+        <!-- Dashboard -->
         <table class="table table-striped">
             <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
             <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>    

@@ -3,6 +3,7 @@ var controller = angular.module('controllers', []);
 controller.controller('DashboardController', function($scope, $routeParams, $timeout, service){
     var oldResult;
     $scope.isCollapsed = true;
+    $scope.studentName = $routeParams.sid.charAt(0).toUpperCase() + $routeParams.sid.substr(1).toLowerCase();
     
     pollData();
     

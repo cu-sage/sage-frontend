@@ -4,9 +4,6 @@ controller.controller('DashboardController', function($scope, $routeParams, $tim
     var oldResult;
     $scope.isCollapsed = true;
     
-    $scope.type = "info";
-    $scope.barMessage = "Test";
-    
     pollData();
     
     function pollData() {

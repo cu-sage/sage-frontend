@@ -13,11 +13,12 @@ controller.controller('DashboardController', function($scope, $routeParams, $tim
             $routeParams.aid,
             function(results) {
                 $scope.results = results;
+                var jsonResult = JSON.stringify(results);
                 
-                if(oldResult == null || JSON.stringify(oldResult) !== JSON.stringify(results)) {
+                if(oldResult == null || oldResult !== jsonResult) {
                     parseForAlerts(results);
                 }
-                oldResult = results;
+                oldResult = jsonResult;
                 
                 updateProgressBar(results);
                 

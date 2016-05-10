@@ -14,7 +14,7 @@ controller.controller('DashboardController', function($scope, $routeParams, $tim
             function(results) {
                 $scope.results = results;
                 
-                if(oldResult == null || oldResult.toString() !== results.toString()) {
+                if(oldResult == null || JSON.stringify(oldResult) !== JSON.stringify(results)) {
                     parseForAlerts(results);
                 }
                 oldResult = results;

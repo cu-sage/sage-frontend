@@ -14,6 +14,12 @@ app.get('/', function(req, res) {
     });
 });
 
+app.get('/dashboard', function(req, res) {
+    res.sendFile("index2.html", {
+        root: path.join(__dirname, '/public/views')
+    });
+});
+
 app.get("*", function(req, res) {
     res.sendFile("error.html", {
         root: path.join(__dirname, "/public/views")

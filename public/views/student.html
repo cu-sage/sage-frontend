@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+    <title>Student Profile</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/teacher.css" rel="stylesheet">
+</head>
+<body>
+
+    <!--
+    User Profile Sidebar by @keenthemes
+    A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+    Licensed under MIT
+    -->
+
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <img src="../images/empty_avatar.png" class="img-responsive" alt="">
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            Marcus Doe
+                        </div>
+                        <div class="profile-usertitle-job">
+                            Developer
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR BUTTONS -->
+                    <div class="profile-userbuttons">
+                        <button type="button" class="btn btn-success btn-sm">Follow</button>
+                        <button type="button" class="btn btn-danger btn-sm">Message</button>
+                    </div>
+                    <!-- END SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li class="active">
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-home"></i>
+                                    Overview </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    Account Settings </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                    Tasks </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="glyphicon glyphicon-flag"></i>
+                                    Help </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="profile-content">
+                    <div class="starter-template">
+                        <!-- Alert -->
+                        <div uib-collapse="isCollapsed">
+                            <div class="alert alert-success"><strong>Success! </strong>{{ alertMsg }}</div>
+                        </div>
+
+                        <h1>Assessment Results</h1>
+                        <p class="lead">Hey <strong>{{studentName}}</strong>!</p>
+                        <p class="lead">The following rows indicate current assessment evaluation<br> Once all assessments are passed, then you are finished!</p>
+
+                        <!-- Progress Bar -->
+                        <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
+
+                        <!-- Dashboard -->
+                        <table class="table table-striped">
+                            <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
+                                <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                                <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                                <td>{{result.description}}</td>
+                                <td>
+                                    <div ng-repeat="action in result.actions">
+                                        <p ng-if="action.type=='action_say'">
+                                            {{action.command}}
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

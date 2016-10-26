@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
 
 app.use(express.static(__dirname + "/public"));
 
@@ -19,6 +21,21 @@ app.get('/dashboard', function(req, res) {
         root: path.join(__dirname, '/public/views')
     });
 });
+
+// routes for static data
+app.get("/students/:id", function(req, res) {
+    var postId = req.params.id;
+    var data = require('./staticData/'+req.params.id+'-data.json');
+    res.send(JSON.stringify(data));
+});
+
+app.get("/instructors/:id", function(req, res) {
+    var postId = req.params.id;
+    var data = require('./staticData/'+req.params.id+'-data.json');
+    res.send(JSON.stringify(data));
+});
+
+
 
 app.get("*", function(req, res) {
     res.sendFile("error.html", {

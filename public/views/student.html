@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="countryApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +10,17 @@
 
     <title>Student Profile</title>
 
+    <!-- angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="../js/ui-bootstrap-custom-1.3.2.min.js"></script>
+    <script src="../js/ui-bootstrap-custom-tpls-1.3.2.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/controllers/dashboardController.js"></script>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Custom styles for this template -->
-    <link href="css/instructor.css" rel="stylesheet">
+    <link href="../css/instructor.css" rel="stylesheet">
 </head>
 <body>
 
@@ -30,46 +36,46 @@
                 <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="images/empty_avatar.png" class="img-responsive" alt="">
+                        <img src="../images/empty_avatar.png" class="img-responsive" alt="">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
-                    <div class="profile-usertitle">
+                    <div class="profile-usertitle text-center">
                         <div class="profile-usertitle-name">
-                            Marcus Doe
+                            Tianci Zhong
                         </div>
                         <div class="profile-usertitle-job">
-                            Developer
+                            Student
                         </div>
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
-                    <!-- SIDEBAR BUTTONS -->
+                    <!-- SIDEBAR BUTTONS
                     <div class="profile-userbuttons">
                         <button type="button" class="btn btn-success btn-sm">Follow</button>
                         <button type="button" class="btn btn-danger btn-sm">Message</button>
-                    </div>
+                    </div> -->
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
-                    <div class="profile-usermenu">
+                    <div class="profile-usermenu text-center">
                         <ul class="nav">
                             <li class="active">
                                 <a href="#">
-                                    <i class="glyphicon glyphicon-home"></i>
+                                    <i class="glyphicon glyphicon-home pull-left"></i>
                                     Overview </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-user pull-left"></i>
                                     Account Settings </a>
                             </li>
                             <li>
                                 <a href="#" target="_blank">
-                                    <i class="glyphicon glyphicon-ok"></i>
+                                    <i class="glyphicon glyphicon-ok pull-left"></i>
                                     Tasks </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    <i class="glyphicon glyphicon-flag"></i>
+                                    <i class="glyphicon glyphicon-flag pull-left"></i>
                                     Help </a>
                             </li>
                         </ul>
@@ -78,36 +84,34 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="profile-content">
-                    <div class="starter-template">
-                        <!-- Alert -->
-                        <div uib-collapse="isCollapsed">
-                            <div class="alert alert-success"><strong>Success! </strong>{{ alertMsg }}</div>
-                        </div>
-
-                        <h1>Assessment Results</h1>
-                        <p class="lead">Hey <strong>{{studentName}}</strong>!</p>
-                        <p class="lead">The following rows indicate current assessment evaluation<br> Once all assessments are passed, then you are finished!</p>
-
-                        <!-- Progress Bar -->
-                        <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
-
-                        <!-- Dashboard -->
-                        <table class="table table-striped">
-                            <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
-                                <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                                <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                                <td>{{result.description}}</td>
-                                <td>
-                                    <div ng-repeat="action in result.actions">
-                                        <p ng-if="action.type=='action_say'">
-                                            {{action.command}}
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                <div class="starter-template">
+                    <!-- Alert -->
+                    <div uib-collapse="isCollapsed">
+                        <div class="alert alert-success"><strong>Success! </strong>{{ alertMsg }}</div>
                     </div>
+
+                    <h1>Assessment Results</h1>
+                    <p class="lead">Hey <strong>{{studentName}}</strong>!</p>
+                    <p class="lead">The following rows indicate current assessment evaluation<br> Once all assessments are passed, then you are finished!</p>
+
+                    <!-- Progress Bar -->
+                    <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
+
+                    <!-- Dashboard -->
+                    <table class="table table-striped">
+                        <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
+                            <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                            <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+                            <td>{{result.description}}</td>
+                            <td>
+                                <div ng-repeat="action in result.actions">
+                                    <p ng-if="action.type=='action_say'">
+                                        {{action.command}}
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

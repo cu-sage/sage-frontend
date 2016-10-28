@@ -16,29 +16,22 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/instructor', function(req, res) {
+app.get('/public/views/:file',function(req, res) {
+    res.sendFile(req.params.file, {
+        root: path.join(__dirname, '/public/views/')
+    });
+});
+
+app.get('/instructors', function(req, res) {
     res.sendFile("instructor.html", {
         root: path.join(__dirname, '/public/views')
     });
 });
 
-app.get('/student', function(req, res) {
+app.get('/students', function(req, res) {
     res.sendFile("student.html", {
         root: path.join(__dirname, '/public/views')
     });
-});
-
-// routes for static data
-app.get("/students/:id", function(req, res) {
-    var postId = req.params.id;
-    var data = require('./staticData/'+req.params.id+'-data.json');
-    res.send(JSON.stringify(data));
-});
-
-app.get("/instructors/:id", function(req, res) {
-    var postId = req.params.id;
-    var data = require('./staticData/'+req.params.id+'-data.json');
-    res.send(JSON.stringify(data));
 });
 
 app.get("*", function(req, res) {

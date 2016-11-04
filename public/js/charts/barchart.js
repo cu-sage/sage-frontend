@@ -2,10 +2,10 @@ var ctx = document.getElementById("barChart");
 var barChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: ["HW1", "HW2", "HW3", "HW4", "HW5", "HW6"],
         datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Score',
+            data: [90, 85, 94, 100, 0, 70],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -26,6 +26,7 @@ var barChart = new Chart(ctx, {
         }]
     },
     options: {
+        responsive: true,
         scales: {
             yAxes: [{
                 ticks: {

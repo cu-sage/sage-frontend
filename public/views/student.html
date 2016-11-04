@@ -61,22 +61,22 @@
                     <div class="profile-usermenu text-center">
                         <ul class="nav">
                             <li class="active">
-                                <a href="#">
+                                <a href="#/overview">
                                     <i class="glyphicon glyphicon-home pull-left"></i>
                                     Overview </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#/account">
                                     <i class="glyphicon glyphicon-user pull-left"></i>
                                     Account Settings </a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">
+                                <a href="#/tasks" target="_blank">
                                     <i class="glyphicon glyphicon-ok pull-left"></i>
                                     Tasks </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#/help">
                                     <i class="glyphicon glyphicon-flag pull-left"></i>
                                     Help </a>
                             </li>
@@ -115,15 +115,16 @@
                         </tr>
                     </table> -->
                 </div>
-                <div>
-                    <canvas id="radarChart"></canvas>
-                    <script src="../js/charts/radarchart.js"></script>
+                <div class="row">
+                    <div class="col-md-6">
+                        <canvas id="radarChart" width="400" height="400"></canvas>
+                        <script src="../js/charts/radarchart.js"></script>
+                    </div>
+                    <div class="col-md-6">
+                        <canvas id="barChart" width="400" height="400"></canvas>
+                        <script src="../js/charts/barchart.js"></script>
+                    </div>
                 </div>
-                <!--
-                <div>
-                    <canvas id="barChart" width="400" height="400"></canvas>
-                    <script src="../js/charts/barchart.js"></script>
-                </div> -->
             </div>
         </div>
     </div>

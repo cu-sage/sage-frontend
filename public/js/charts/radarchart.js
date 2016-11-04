@@ -11,7 +11,7 @@ var data = {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255, 159, 64, 1)",
-            data: [65, 59, 90, 81, 56, 55]
+            data: [6, 5, 9, 8, 5, 5]
         },
         {
             label: "Second Assessment",
@@ -21,7 +21,7 @@ var data = {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255,99,132,1)",
-            data: [28, 48, 40, 19, 96, 27]
+            data: [2, 4, 4, 1, 9, 2]
         }
     ]
 };

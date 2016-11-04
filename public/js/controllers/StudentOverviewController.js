@@ -8,4 +8,5 @@ app.controller('StudentOverviewController', ['$scope', '$http', function($scope,
         $scope.student = response.data;
         console.log(response.data);
     });
+
 }]);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="countryApp">
+<html lang="en" ng-app="studentApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,15 +12,17 @@
 
     <!-- angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script> -->
     <script src="../js/ui-bootstrap-custom-1.3.2.min.js"></script>
     <script src="../js/ui-bootstrap-custom-tpls-1.3.2.min.js"></script>
     <script src="../js/app.js"></script>
-    <script src="../js/controllers/dashboardController.js"></script>
+    <script src="../js/controllers/StudentOverviewController.js"></script>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="../css/instructor.css" rel="stylesheet">
+    <!-- chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
 </head>
 <body>
 
@@ -84,20 +86,20 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="starter-template">
+                <div class="starter-template" ng-controller="StudentOverviewController">
                     <!-- Alert -->
                     <div uib-collapse="isCollapsed">
-                        <div class="alert alert-success"><strong>Success! </strong>{{ alertMsg }}</div>
+                        <div class="alert alert-success"><strong>Success! </strong>{{ statuscode }}</div>
                     </div>
 
                     <h1>Assessment Results</h1>
-                    <p class="lead">Hey <strong>{{studentName}}</strong>!</p>
+                    <p class="lead">Hey <strong>{{ student.name }}</strong>!</p>
                     <p class="lead">The following rows indicate current assessment evaluation<br> Once all assessments are passed, then you are finished!</p>
 
-                    <!-- Progress Bar -->
+                    <!-- Progress Bar
                     <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
 
-                    <!-- Dashboard -->
+                    <!-- Dashboard
                     <table class="table table-striped">
                         <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
                             <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
@@ -111,8 +113,17 @@
                                 </div>
                             </td>
                         </tr>
-                    </table>
+                    </table> -->
                 </div>
+                <div>
+                    <canvas id="radarChart" width="400" height="400"></canvas>
+                    <script src="../js/charts/radarchart.js"></script>
+                </div>
+                <!--
+                <div>
+                    <canvas id="barChart" width="400" height="400"></canvas>
+                    <script src="../js/charts/barchart.js"></script>
+                </div> -->
             </div>
         </div>
     </div>

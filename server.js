@@ -1,14 +1,17 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
+//var bodyParser = require('body-parser');
+//var jsonParser = bodyParser.json();
+var stats = require("./services/stats");
 
 app.use(express.static(__dirname + "/public"));
 
 app.use("/node_modules",
     express.static(__dirname + "/node_modules")
 );
+
+app.use('/stats', stats);
 
 app.get('/', function(req, res) {
     res.sendFile("index.html", {

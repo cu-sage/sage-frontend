@@ -22,7 +22,7 @@ controller.controller('dashboardController', function($scope, $routeParams, $tim
                 
                 updateProgressBar(results);
                 
-                $timeout(pollData, 1000)
+                $timeout(pollData, 1000);
             }
         );
     }

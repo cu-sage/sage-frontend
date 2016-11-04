@@ -1,9 +1,12 @@
-var countryApp = angular.module('countryApp', [
+/*var countryApp = angular.module('countryApp', [
     'ngRoute',
     'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
 ]);
+
+var studentApp = angular.module("studentApp", []);
+
 
 countryApp.config(function($routeProvider) {
     $routeProvider.
@@ -14,4 +17,4 @@ countryApp.config(function($routeProvider) {
     otherwise({
         templateUrl: "./public/views/error.html"
     });
-});
+});*/

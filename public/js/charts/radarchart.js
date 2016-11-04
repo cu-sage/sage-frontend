@@ -27,6 +27,7 @@ var data = {
 };
 
 var options = {
+    responsive: true,
     scale: {
         reverse: false,
         ticks: {

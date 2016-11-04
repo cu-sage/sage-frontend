@@ -1,7 +1,7 @@
 var ctx = document.getElementById("radarChart");
 
 var data = {
-    labels: ["Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+    labels: ["Readability", "Reusability", "Documentation", "Coding", "Delivery", "Sleep"],
     datasets: [
         {
             label: "First Assessment",

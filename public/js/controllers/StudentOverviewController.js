@@ -21,10 +21,11 @@ angular.module('mainApp')
                         },
                         xAxis: {
                             categories: ['HW1', 'HW2', 'HW3', 'HW4', 'HW5'],
-                            crosshair: true
+                            crosshair: true,
                         },
                         yAxis: {
                             min: 0,
+                            max: 100,
                             title: {
                                 text: 'Score'
                             }
@@ -101,7 +102,8 @@ angular.module('mainApp')
                     yAxis: {
                         gridLineInterpolation: 'polygon',
                         lineWidth: 0,
-                        min: 0
+                        min: 0,
+                        max:10
                     },
 
                     tooltip: {

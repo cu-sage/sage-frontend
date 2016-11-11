@@ -9,8 +9,12 @@ var mainApp = angular.module('mainApp', [
 
 mainApp.config(function($routeProvider) {
     $routeProvider
+        .when('/students/tasks/', {
+            templateUrl: './public/views/student_tasks.html',
+            controller: 'StudentTasksController'
+        })
         .when('/students/:sid', {
-            templateUrl: './public/views/student_v2.html',
+            templateUrl: './public/views/student_overview.html',
             controller: 'StudentOverviewController'
         })
         .when('/instructors', {

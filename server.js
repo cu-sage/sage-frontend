@@ -5,7 +5,7 @@ var path = require('path');
 //var jsonParser = bodyParser.json();
 var stats = require("./services/stats");
 
-app.use(express.static(__dirname + "/public"));
+app.use('/public', express.static(__dirname + "/public"));
 
 app.use("/node_modules",
     express.static(__dirname + "/node_modules")
@@ -18,12 +18,13 @@ app.get('/', function(req, res) {
         root: path.join(__dirname, '/public/views/')
     });
 });
-
+/*
 app.get('/public/views/:file',function(req, res) {
     res.sendFile(req.params.file, {
         root: path.join(__dirname, '/public/views/')
     });
 });
+
 
 app.get('/instructors', function(req, res) {
     res.sendFile("instructor.html", {
@@ -37,12 +38,13 @@ app.get('/students', function(req, res) {
     });
 });
 
+
 app.get("*", function(req, res) {
     res.sendFile("error.html", {
         root: path.join(__dirname, "/public/views")
     });
 });
-
+*/
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });

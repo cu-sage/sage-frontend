@@ -1,20 +1,23 @@
-/*var countryApp = angular.module('countryApp', [
-    'ngRoute',
-    'controllers'
+var mainApp = angular.module('mainApp', [
+    'ngRoute'
+    //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
 ]);
 
-var studentApp = angular.module("studentApp", []);
+//var studentApp = angular.module("studentApp", []);
 
-
-countryApp.config(function($routeProvider) {
-    $routeProvider.
-    when('/students/:sid/assessments/:aid', {
-        templateUrl: './public/views/dashboard.html',
-        controller: 'dashboardController'
-    }).
-    otherwise({
-        templateUrl: "./public/views/error.html"
-    });
-});*/
+mainApp.config(function($routeProvider) {
+    $routeProvider
+        .when('/students', {
+            templateUrl: './public/views/student_v2.html',
+            controller: 'StudentOverviewController'
+        })
+        .when('/instructors', {
+            templateUrl: './public/views/instructors_v2.html',
+            controller: 'InstructorOverviewController'
+        })
+        .when('/', {
+            templateUrl: "./public/views/error.html"
+        });
+});

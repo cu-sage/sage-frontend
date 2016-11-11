@@ -9,11 +9,11 @@ var mainApp = angular.module('mainApp', [
 
 mainApp.config(function($routeProvider) {
     $routeProvider
-        .when('/students/tasks/', {
+        .when('/students/tasks/:sid', {
             templateUrl: './public/views/student_tasks.html',
             controller: 'StudentTasksController'
         })
-        .when('/students/:sid', {
+        .when('/students/overview/:sid', {
             templateUrl: './public/views/student_overview.html',
             controller: 'StudentOverviewController'
         })

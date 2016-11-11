@@ -147,6 +147,7 @@ angular.module('mainApp')
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;
                 $scope.student = response.data;
+                $scope.sid = $routeParams.sid;
                 $scope.barDataLoaded = false;
                 $scope.spiderwebDataLoaded = false;
                 //console.log(response.data);

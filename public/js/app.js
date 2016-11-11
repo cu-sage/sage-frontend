@@ -9,7 +9,7 @@ var mainApp = angular.module('mainApp', [
 
 mainApp.config(function($routeProvider) {
     $routeProvider
-        .when('/students', {
+        .when('/students/:sid', {
             templateUrl: './public/views/student_v2.html',
             controller: 'StudentOverviewController'
         })

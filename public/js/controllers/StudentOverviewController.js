@@ -138,9 +138,9 @@ angular.module('mainApp')
             }
         };
     }])
-    .controller('StudentOverviewController', ['$scope', '$window', '$http', function($scope, $window, $http) {
+    .controller('StudentOverviewController', ['$scope', '$window', '$http', "$routeParams", function($scope, $window, $http, $routeParams) {
         console.log("testing");
-        $http.get("/stats/students/123")
+        $http.get("/stats/students/" + $routeParams.sid)
             .then(function(response) {
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;

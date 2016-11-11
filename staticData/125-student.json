@@ -1,0 +1,36 @@
+{
+  "name": "Sherlock Holmes",
+  "id": 124,
+  "number_of_courses": 1,
+  "courses": [{
+    "name": "Intro to Scratch",
+    "number_of_hw": 5,
+    "individual": [100, 100, 100, 100, 100],
+    "average": [93.6, 68.8, 88.5, 91.4, 74.5],
+    "assessments": [{
+      "number_of_assessments": 2,
+      "data": [{
+          "name": "Assessment 1",
+          "data": [9, 9, 9, 9, 9, 2]
+        }, {
+          "name": "Assessment 2",
+          "data": [10, 10, 10, 10, 10, 2]
+    }]}, {
+      "number_of_assessments": 2,
+      "data": [{
+          "name": "Assessment 1",
+          "data": [5, 3, 7, 4, 2, 1]
+        }, {
+          "name": "Assessment 2",
+          "data": [5, 4, 7, 4, 3, 2]
+    }]},{
+      "number_of_assessments": 0
+    },{
+      "number_of_assessments": 0
+    },{
+      "number_of_assessments": 0
+    }]
+  }],
+  "progress": 0.95,
+  "badges": [1, 2, 5, 7, 10]
+}

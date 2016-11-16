@@ -1,4 +1,4 @@
-angular.module('mainApp')
+angular.module('studentApp')
 // Directive for generic chart, pass in chart options
     .directive('hcBarChart', [ '$window', function ($window) {
         return {
@@ -19,9 +19,10 @@ angular.module('mainApp')
                         title: {
                             text: 'Homework Scores'
                         },
+                        colors: ['rgba(0,204,204,0.5)', 'rgba(102,204,0,0.5)'],
                         xAxis: {
                             categories: ['HW1', 'HW2', 'HW3', 'HW4', 'HW5'],
-                            crosshair: true,
+                            crosshair: true
                         },
                         yAxis: {
                             min: 0,
@@ -83,40 +84,49 @@ angular.module('mainApp')
                         polar: true,
                         type: 'area'
                     },
-
                     title: {
                         text: 'Assessment',
                         x: -80
                     },
-
+                    colors: ['rgba(0,204,204,0.5)', 'rgba(102,204,0,0.5)', 'rgba(102,102,255,0.5)', 'rgba(255,128,0,0.5)', 'rgba(255,255,0,0.5)'],
                     pane: {
                         size: '75%'
                     },
-
                     xAxis: {
                         categories: ["Readability", "Reusability", "Documentation", "Coding", "Delivery", "Sleep"],
                         tickmarkPlacement: 'on',
                         lineWidth: 0
                     },
-
                     yAxis: {
                         gridLineInterpolation: 'polygon',
                         lineWidth: 0,
                         min: 0,
                         max:10
                     },
-
                     tooltip: {
                         shared: true,
                         pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
                     },
-
                     legend: {
                         align: 'right',
                         verticalAlign: 'bottom',
                         // y: 70,
                         layout: 'horizontal'
                     },
+                    plotOptions: {
+                        series: {
+                            fillOpacity: 0.1
+                        }
+                    },
+                    /*
+                    events: {
+                        click: function () {
+                            $('#report').html('click on xAxis label');
+                        },
+                        contextmenu: function () {
+                            $('#report').html('context menu on xAxis label');
+                        }
+                    }*/
 
                     series: scope.data
 
@@ -131,10 +141,6 @@ angular.module('mainApp')
 
                     canvas = angular.element( document.querySelector( '#spiderweb' ) )[0];
                     chart.setSize(canvas.offsetWidth, canvas.offsetHeight);
-                    //chart.redraw();
-                    //chart.reflow();
-
-                    //console.log("detected window resize");
                 });
 
             }
@@ -177,7 +183,6 @@ angular.module('mainApp')
                     //}
                 }
                 $scope.spiderwebDataLoaded = true;
-
 
             });
 

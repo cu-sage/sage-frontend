@@ -1,4 +1,4 @@
-angular.module('mainApp')
+angular.module('studentApp')
     /* .directive('progressChart', [ '$window', function ($window) {
         return {
             restrict: 'E',

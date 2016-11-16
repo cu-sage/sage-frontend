@@ -1,4 +1,4 @@
-var mainApp = angular.module('mainApp', [
+var studentApp = angular.module('studentApp', [
     'ngRoute'
     //'controllers'
     //'serviceFactory',
@@ -7,7 +7,7 @@ var mainApp = angular.module('mainApp', [
 
 //var studentApp = angular.module("studentApp", []);
 
-mainApp.config(function($routeProvider) {
+studentApp.config(function($routeProvider) {
     $routeProvider
         .when('/students/tasks/:sid', {
             templateUrl: './public/views/student_tasks.html',
@@ -17,9 +17,8 @@ mainApp.config(function($routeProvider) {
             templateUrl: './public/views/student_overview.html',
             controller: 'StudentOverviewController'
         })
-        .when('/instructors', {
-            templateUrl: './public/views/instructors_v2.html',
-            controller: 'InstructorOverviewController'
+        .when('/students/', {
+            templateUrl: "./public/views/error.html"
         })
         .when('/', {
             templateUrl: "./public/views/error.html"

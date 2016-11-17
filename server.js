@@ -13,11 +13,11 @@ app.use("/node_modules",
 
 app.use('/stats', stats);
 
-app.get('/', function(req, res) {
+/* app.get('/', function(req, res) {
     res.sendFile("index.html", {
         root: path.join(__dirname, '/public/views/')
     });
-});
+}); */
 /*
 app.get('/public/views/:file',function(req, res) {
     res.sendFile(req.params.file, {
@@ -25,26 +25,30 @@ app.get('/public/views/:file',function(req, res) {
     });
 });
 
-
-app.get('/instructors', function(req, res) {
-    res.sendFile("instructor.html", {
+*/
+app.get('/instructor', function(req, res) {
+    res.sendFile("instructor_index.html", {
         root: path.join(__dirname, '/public/views')
     });
 });
 
+app.get('/student', function(req, res) {
+    res.sendFile("student_index.html", {
+        root: path.join(__dirname, '/public/views')
+    });
+});
+
+/*
 app.get('/students', function(req, res) {
-    res.sendFile("student.html", {
-        root: path.join(__dirname, '/public/views')
-    });
+    res.sendFile('public/views/index.html', {root: __dirname});
 });
-
 
 app.get("*", function(req, res) {
     res.sendFile("error.html", {
         root: path.join(__dirname, "/public/views")
     });
-});
-*/
+}); */
+
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });

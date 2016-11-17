@@ -97,6 +97,18 @@
         </div>
     </div>
 
+    <div ng-if="url !== undefined" class="col-md-offset-3 col-md-6 container">
+        <video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto"
+               width="480" height="268" vjs-video vjs-media="mediaToggle">
+            <!--<source ng-src="{{url | trustUrl}}" type="video/x-flv">-->
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+
+
     <div class="col-md-offset-3 col-md-6 container">
         <div class="panel panel-default">
             <div class="panel-heading">

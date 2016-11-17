@@ -23,6 +23,18 @@ angular.module('studentApp')
                 $scope.student = response.data;
                 $scope.sid = $routeParams.sid;
                 $scope.badges= response.data.badges;
+                $scope.tutorialID= response.data.tutorialID;
+                $scope.url = '/public/videos/' + $scope.tutorialID + '.flv';
+                // $scope.url = 'http://vjs.zencdn.net/v/oceans.mp4';
+                // console.log($scope.url);
+                $scope.mediaToggle = {
+                    sources: [
+                        {
+                            src: $scope.url,
+                            type: 'video/flv'
+                        }
+                    ]
+                };
             });
 
     }]);

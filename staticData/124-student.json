@@ -32,5 +32,6 @@
     }]
   }],
   "progress": 0.95,
-  "badges": ["apple", "star", "triumph", "face"]
+  "badges": ["apple", "star", "triumph", "face"],
+  "tutorialID": "scratch-tutorial-1"
 }

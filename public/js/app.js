@@ -1,5 +1,6 @@
 var studentApp = angular.module('studentApp', [
-    'ngRoute'
+    'ngRoute',
+    'vjs.video'
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'

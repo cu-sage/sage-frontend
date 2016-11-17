@@ -34,5 +34,6 @@
   "progress": 0.95,
   "badges": ["apple", "star", "triumph", "face", "books",
     "flask", "bookshelf", "music", "heartbeats", "conversation",
-    "owl", "medal" ]
+    "owl", "medal" ],
+  "tutorialID": "scratch-tutorial-1"
 }

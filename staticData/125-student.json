@@ -33,5 +33,6 @@
   }],
   "progress": 0.95,
   "badges": [ "bookshelf", "music", "heartbeats", "conversation",
-    "owl", "medal"]
+    "owl", "medal"],
+  "tutorialID": "scratch-tutorial-1"
 }

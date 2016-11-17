@@ -22,7 +22,7 @@ angular.module('studentApp')
                 $scope.statustext = response.statustext;
                 $scope.student = response.data;
                 $scope.sid = $routeParams.sid;
-
+                $scope.badges= response.data.badges;
             });
 
     }]);

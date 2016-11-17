@@ -101,13 +101,13 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>
-                    Badge System
+                    Badges Earned
                 </h4>
             </div>
             <div class="panel-body">
                 <ol class="list-unstyled list-inline">
-                    <li>
-                        <a><img width="50" height="50" src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/small_badge/296/completed-javascript-road-trip-part-1-b297a736f7e23447ad0b9e2c7f083997.png"></a>
+                    <li ng-repeat="badge in badges">
+                        <a><img width="50" height="50" ng-src="/public/images/badges/{{badge}}.png"></a>
                     </li>
                 </ol>
             </div>

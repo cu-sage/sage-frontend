@@ -32,5 +32,5 @@
     }]
   }],
   "progress": 0.95,
-  "badges": [1, 2, 5, 7, 10]
+  "badges": ["apple", "star", "triumph", "face"]
 }

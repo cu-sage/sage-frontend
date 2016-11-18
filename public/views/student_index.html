@@ -29,6 +29,7 @@
         <script src="/node_modules/vjs-video/dist/vjs-video.min.js"></script>
     </head>
     <body ng-app="studentApp">
+        <button>Hide</button>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar" ng-controller="StudentIndexController">
@@ -63,8 +64,16 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     <div ng-view></div>
+                </div>
+                <div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude>
+                    <menu visible="visible" alignment="right">
+                        <menu-item hash="first-page">First Page></menu-item>
+                        <menu-item hash="second-page">Second Page></menu-item>
+                        <menu-item hash="third-page">Third Page></menu-item>
+                    </menu>
                 </div>
             </div>
         </div>

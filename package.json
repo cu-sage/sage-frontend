@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/chickenPopcorn/SAGE-Project#readme",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-pageslide-directive": "^2.1.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "vjs-video": "^0.1.6"

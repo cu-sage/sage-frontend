@@ -12,5 +12,11 @@ First install `npm`. For Mac user with Homebrew, run `brew install npm` to insta
 ```
 
 ## Pages
-`localhost:3000/` Index Page
-`localhost:3000/dashboard` Dashboard Template
+```
+// student dashboard
+loalhost:3000/student/#/overview/:sid
+localhost:3000/student/#/tasks/:sid
+// instructor dashboard
+localhost:3000/instructor/#/overview/:id
+```
+

@@ -1,5 +1,5 @@
-angular.module('studentApp')
-    .controller('StudentIndexController', ['$rootScope', '$scope', '$http', "$location", function($rootScope, $scope, $http, $location) {
+angular.module('instructorApp')
+    .controller('InstructorIndexController', ['$rootScope', '$scope', '$http', "$location", function($rootScope, $scope, $http, $location) {
         console.log("testing_index");
         var path = $location.path().split('/');
         $scope.path = path[1];
@@ -9,7 +9,7 @@ angular.module('studentApp')
             return viewLocation === $location.path().split('/')[1];
         };
 
-        $http.get("/stats/students/" + $scope.sid)
+        $http.get("/stats/instructors/" + $scope.sid)
             .then(function(response) {
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;

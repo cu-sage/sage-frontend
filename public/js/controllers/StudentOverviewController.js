@@ -89,10 +89,10 @@ angular.module('studentApp')
                     },
                     colors: ['rgba(0,204,204,0.5)', 'rgba(102,204,0,0.5)', 'rgba(102,102,255,0.5)', 'rgba(255,128,0,0.5)', 'rgba(255,255,0,0.5)'],
                     pane: {
-                        size: '100%'
+                        size: '90%'
                     },
                     xAxis: {
-                        categories: ["Readability", "Reusability", "Documentation", "Coding", "Delivery", "Sleep"],
+                        categories: [ "Reusability", "Documentation", "Usability", "Delivery", "Sleep"],
                         tickmarkPlacement: 'on',
                         lineWidth: 0
                     },
@@ -117,7 +117,7 @@ angular.module('studentApp')
                             fillOpacity: 0.1
                         }
                     },
-                    /*
+
                     events: {
                         click: function () {
                             $('#report').html('click on xAxis label');
@@ -125,7 +125,7 @@ angular.module('studentApp')
                         contextmenu: function () {
                             $('#report').html('context menu on xAxis label');
                         }
-                    }*/
+                    },
 
                     series: scope.data
 
@@ -159,14 +159,14 @@ angular.module('studentApp')
                 e.stopPropagation();
             };
 
-            $rootScope.$on("documentClicked", _close);
+/*            $rootScope.$on("documentClicked", _close);
             $rootScope.$on("escapePressed", _close);
 
             function _close() {
                 $scope.$apply(function () {
                     $scope.close();
                 });
-            }
+            }*/
 
             $http.get("/stats/students/" + $routeParams.sid)
                 .then(function (response) {

@@ -1,44 +1,35 @@
-
-    <div>
-        <div class="starter-template">
-            <!-- Alert -->
-            <div uib-collapse="isCollapsed">
-                <div class="alert alert-success"><strong>Success! </strong></div>
-            </div>
-
-            <h1>Assessment Results</h1>
-            <p class="lead">Hey <strong>{{ student.name }}</strong>!</p>
-            <p class="lead">The following rows indicate current course evaluation<br> Once all assessments are passed, then you are finished!</p>
-
-            <!-- Progress Bar
-            <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
-
-            <!-- Dashboard
-            <table class="table table-striped">
-                <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
-                    <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-                    <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-                    <td>{{result.description}}</td>
-                    <td>
-                        <div ng-repeat="action in result.actions">
-                            <p ng-if="action.type=='action_say'">
-                                {{action.command}}
-                            </p>
-                        </div>
-                    </td>
-                </tr>
-            </table> -->
-        </div>
-        <div class="row">
-            <div id="bar" class="col-md-6 col-sm-6">
-                <hc-bar-chart data="barData" ng-if="barDataLoaded">Placeholder for generic chart</hc-bar-chart>
-                <!-- <hc-bar-chart options="chartOptions" title="Assignment">Placeholder for generic chart</hc-bar-chart> -->
-            </div>
-            <div id="spiderweb" class="col-md-6 col-sm-6">
-                <hc-spiderweb-chart data="spiderwebData" ng-if="spiderwebDataLoaded">Placeholder for pie chart</hc-spiderweb-chart>
-            </div>
-        </div>
-
+<div class="starter-template ng-scope">
+    <!-- Alert -->
+    <div uib-collapse="isCollapsed">
+        <div class="alert alert-success"><strong>Success! </strong></div>
     </div>
+
+    <h1>Assessment Results</h1>
+    <p class="lead">Hey <strong>{{ student.name }}</strong>!</p>
+    <p class="lead">The following rows indicate current course evaluation<br> Once all assessments are passed, then you are finished!</p>
+
+    <!-- Progress Bar
+    <uib-progressbar class="progress-striped active" value="dynamic" type="{{type}}">{{barMessage}}</uib-progressbar>
+
+    <!-- Dashboard
+    <table class="table table-striped">
+        <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
+            <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+            <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+            <td>{{result.description}}</td>
+            <td>
+                <div ng-repeat="action in result.actions">
+                    <p ng-if="action.type=='action_say'">
+                        {{action.command}}
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table> -->
+</div>
+<div class="row">
+    <hc-bar-chart class="col-md-6 col-sm-6" data="barData" ng-if="barDataLoaded">Placeholder for generic chart</hc-bar-chart>
+    <hc-spiderweb-chart class="col-md-6 col-sm-6" data="spiderwebData" ng-if="spiderwebDataLoaded">Placeholder for pie chart</hc-spiderweb-chart>
+</div>
 
 

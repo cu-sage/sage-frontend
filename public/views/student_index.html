@@ -13,7 +13,9 @@
         <script src="/public/js/controllers/StudentTasksController.js"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Custom styles for this template -->
+        <!-- Animate.CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <!-- Custom styles for index -->
         <link href="/public/css/index.css" rel="stylesheet">
         <!-- chart.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
@@ -44,7 +46,7 @@
                                 <i class="glyphicon glyphicon-home pull-right"></i>
                                 Overview <span class="sr-only">(current)</span></a>
                         </li>
-                        <li ng-class="{ active: isActive('account') }">
+                        <li ng-class="{ active: isActive('account') }" ng-hide="true">
                             <a ng-href="#/account/{{sid}}">
                                 <i class="glyphicon glyphicon-user pull-right"></i>
                                 Account
@@ -56,25 +58,26 @@
                                 Tasks
                             </a>
                         </li>
-                        <li ng-class="{ active: isActive('help') }">
+                        <li ng-class="{ active: isActive('help') }" ng-hide="true">
                             <a ng-href="#/help">
                                 <i class="glyphicon glyphicon-flag pull-right"></i>
                                 Help
                             </a>
                         </li>
+                        <li ng-click="showHide()">
+                            <a>
+                                <i class="glyphicon glyphicon-flag pull-right"></i>
+                                Hide / Show
+                            </a>
+                        </li>
                     </ul>
+
                 </div>
 
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
                     <div ng-view></div>
                 </div>
-                <div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude>
-                    <menu visible="visible" alignment="right">
-                        <menu-item hash="first-page">First Page></menu-item>
-                        <menu-item hash="second-page">Second Page></menu-item>
-                        <menu-item hash="third-page">Third Page></menu-item>
-                    </menu>
-                </div>
+
             </div>
         </div>
     </body>

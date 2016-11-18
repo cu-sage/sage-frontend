@@ -10,60 +10,59 @@ angular.module('studentApp')
             link: function (scope, element) {
                 console.log(scope);
                 console.log(scope.barData);
-                //while (scope.barData === undefined) {
-                    console.log(scope.barData);
-                    var chart = Highcharts.chart(element[0], {
-                        chart: {
-                            type: 'column'
-                        },
+
+                console.log(scope.barData);
+                var chart = Highcharts.chart(element[0], {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Homework Scores'
+                    },
+                    colors: ['rgba(0,204,204,0.5)', 'rgba(102,204,0,0.5)'],
+                    xAxis: {
+                        categories: ['HW1', 'HW2', 'HW3', 'HW4', 'HW5'],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        max: 100,
                         title: {
-                            text: 'Homework Scores'
-                        },
-                        colors: ['rgba(0,204,204,0.5)', 'rgba(102,204,0,0.5)'],
-                        xAxis: {
-                            categories: ['HW1', 'HW2', 'HW3', 'HW4', 'HW5'],
-                            crosshair: true
-                        },
-                        yAxis: {
-                            min: 0,
-                            max: 100,
-                            title: {
-                                text: 'Score'
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-                            footerFormat: '</table>',
-                            shared: true,
-                            useHTML: true
-                        },
-                        plotOptions: {
-                            column: {
-                                pointPadding: 0.2,
-                                borderWidth: 0
-                            }
-                        },
-                        series: scope.data
-                    });
-                    //console.log("chart");
-                    //console.log(chart);
-                    var canvas = angular.element(document.querySelector('#bar'))[0];
+                            text: 'Score'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                        }
+                    },
+                    series: scope.data
+                });
+                //console.log("chart");
+                //console.log(chart);
+/*                    var canvas = angular.element(document.querySelector('#bar'))[0];
+                chart.setSize(canvas.offsetWidth, canvas.offsetHeight);
+                //console.log("Width:" + chartWidth);
+                //console.log("Height:" + chartHeight);
+
+                angular.element($window).bind('resize', function () {
+
+                    canvas = angular.element(document.querySelector('#bar'))[0];
                     chart.setSize(canvas.offsetWidth, canvas.offsetHeight);
-                    //console.log("Width:" + chartWidth);
-                    //console.log("Height:" + chartHeight);
+                    //chart.redraw();
+                    //chart.reflow();
 
-                    angular.element($window).bind('resize', function () {
-
-                        canvas = angular.element(document.querySelector('#bar'))[0];
-                        chart.setSize(canvas.offsetWidth, canvas.offsetHeight);
-                        //chart.redraw();
-                        //chart.reflow();
-
-                        //console.log("detected window resize");
-                    });
-                //}
+                    //console.log("detected window resize");
+                });*/
             }
         };
     }])
@@ -90,7 +89,7 @@ angular.module('studentApp')
                     },
                     colors: ['rgba(0,204,204,0.5)', 'rgba(102,204,0,0.5)', 'rgba(102,102,255,0.5)', 'rgba(255,128,0,0.5)', 'rgba(255,255,0,0.5)'],
                     pane: {
-                        size: '75%'
+                        size: '100%'
                     },
                     xAxis: {
                         categories: ["Readability", "Reusability", "Documentation", "Coding", "Delivery", "Sleep"],
@@ -132,7 +131,7 @@ angular.module('studentApp')
 
                 });
 
-                var canvas = angular.element( document.querySelector( '#spiderweb' ) )[0];
+/*                var canvas = angular.element( document.querySelector( '#spiderweb' ) )[0];
                 chart.setSize(canvas.offsetWidth, canvas.offsetHeight);
                 //console.log("Width:" + chartWidth);
                 //console.log("Height:" + chartHeight);
@@ -141,50 +140,70 @@ angular.module('studentApp')
 
                     canvas = angular.element( document.querySelector( '#spiderweb' ) )[0];
                     chart.setSize(canvas.offsetWidth, canvas.offsetHeight);
-                });
+                });*/
 
             }
         };
     }])
-    .controller('StudentOverviewController', ['$scope', '$window', '$http', "$routeParams", "$location", function($scope, $window, $http, $routeParams, $location) {
-        console.log("testing");
+    .controller('StudentOverviewController', ['$rootScope', '$scope', '$window', '$http', "$routeParams", "$location",
+        function ($rootScope, $scope, $window, $http, $routeParams, $location) {
+            console.log("testing_overview");
+            $scope.rightVisible = false;
 
-        $http.get("/stats/students/" + $routeParams.sid)
-            .then(function(response) {
-                $scope.statuscode = response.status;
-                $scope.statustext = response.statustext;
-                $scope.student = response.data;
-                $scope.sid = $routeParams.sid;
-                $scope.barDataLoaded = false;
-                $scope.spiderwebDataLoaded = false;
-                //console.log(response.data);
-                //console.log($scope);
+            $scope.close = function () {
+                $scope.rightVisible = false;
+            };
 
-                $scope.barData = [];
-                for (i = 0; i < $scope.student.number_of_courses; i++) {
-                    $scope.barData.push({
-                        name: "Individual",
-                        data: $scope.student.courses[i].individual
-                    }, {
-                        name: "Average",
-                        data: $scope.student.courses[i].average
-                    });
-                }
-                $scope.barDataLoaded = true;
+            $scope.showRight = function (e) {
+                $scope.rightVisible = true;
+                e.stopPropagation();
+            };
 
-                $scope.spiderwebData = [];
-                for (i = 0; i < $scope.student.number_of_courses; i++) {
-                    //for (j = 0; j < $scope.student.courses[i].number_of_hw; j++) {
-                        for(k = 0; k < $scope.student.courses[i].assessments[0].number_of_assessments; k++) {
+            $rootScope.$on("documentClicked", _close);
+            $rootScope.$on("escapePressed", _close);
+
+            function _close() {
+                $scope.$apply(function () {
+                    $scope.close();
+                });
+            }
+
+            $http.get("/stats/students/" + $routeParams.sid)
+                .then(function (response) {
+                    $scope.statuscode = response.status;
+                    $scope.statustext = response.statustext;
+                    $scope.student = response.data;
+                    $scope.sid = $routeParams.sid;
+                    $scope.barDataLoaded = false;
+                    $scope.spiderwebDataLoaded = false;
+                    //console.log(response.data);
+                    //console.log($scope);
+
+                    $scope.barData = [];
+                    for (i = 0; i < $scope.student.number_of_courses; i++) {
+                        $scope.barData.push({
+                            name: "Individual",
+                            data: $scope.student.courses[i].individual
+                        }, {
+                            name: "Average",
+                            data: $scope.student.courses[i].average
+                        });
+                    }
+                    $scope.barDataLoaded = true;
+
+                    $scope.spiderwebData = [];
+                    for (i = 0; i < $scope.student.number_of_courses; i++) {
+                        //for (j = 0; j < $scope.student.courses[i].number_of_hw; j++) {
+                        for (k = 0; k < $scope.student.courses[i].assessments[0].number_of_assessments; k++) {
                             $scope.spiderwebData.push({
                                 name: $scope.student.courses[i].assessments[0].data[k].name,
                                 data: $scope.student.courses[i].assessments[0].data[k].data
                             });
                         }
-                    //}
-                }
-                $scope.spiderwebDataLoaded = true;
+                        //}
+                    }
+                    $scope.spiderwebDataLoaded = true;
 
-            });
+                });
 
-    }]);
+        }]);

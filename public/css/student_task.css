@@ -1479,3 +1479,8 @@
 .radial-progress[data-progress="100"] .inset .percentage .numbers {
   width: 5757px;
 }
+
+.vjs-default-skin.vjs-paused .vjs-big-play-button
+{
+  display: none;
+}

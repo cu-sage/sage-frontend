@@ -14,7 +14,7 @@ First install `npm`. For Mac user with Homebrew, run `brew install npm` to insta
 ## Pages
 ```
 // student dashboard
-loalhost:3000/student/#/overview/:sid
+localhost:3000/student/#/overview/:sid
 localhost:3000/student/#/tasks/:sid
 
 // instructor dashboard

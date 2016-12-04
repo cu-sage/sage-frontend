@@ -92,7 +92,8 @@ angular.module('studentApp')
                         size: '90%'
                     },
                     xAxis: {
-                        categories: [ "Reusability", "Documentation", "Usability", "Delivery", "Sleep"],
+                        categories: ['Abstraction', 'Parallelization', 'Logic', 'Synchronization', 'Flow Control',
+                            'User Interactivity', 'Data Representation'],
                         tickmarkPlacement: 'on',
                         lineWidth: 0
                     },
@@ -100,7 +101,7 @@ angular.module('studentApp')
                         gridLineInterpolation: 'polygon',
                         lineWidth: 0,
                         min: 0,
-                        max:10
+                        max:3
                     },
                     tooltip: {
                         shared: true,

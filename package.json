@@ -19,8 +19,11 @@
   "dependencies": {
     "angular": "^1.5.8",
     "animate.css": "^3.5.2",
+    "aws-sdk": "^2.7.10",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "multer": "~1.2.0",
+    "multer-s3": "^2.5.0",
     "vjs-video": "^0.1.6"
   }
 }

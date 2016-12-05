@@ -18,3 +18,6 @@ node_modules
 
 # Web Storm
 .idea*
+
+# AWS config
+aws-config.json

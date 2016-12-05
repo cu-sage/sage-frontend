@@ -14,6 +14,14 @@ instructorApp
                 templateUrl: '/public/views/instructor_overview.html',
                 controller: 'InstructorOverviewController'
             })
+            .when('/overview/:sid/courses/:cid', {
+                templateUrl: '/public/views/instructor_overview.html',
+                controller: 'InstructorOverviewController'
+            })
+            .when('/overview/:sid/courses/:cid/hw/:hid', {
+                templateUrl: '/public/views/instructor_overview.html',
+                controller: 'InstructorOverviewController'
+            })
             .when('/', {
                 templateUrl: "/public/views/error.html"
             })

@@ -6,15 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../favicon.ico"> -->
-    <!-- angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
-    <!--    <script src="/public/js/ui-bootstrap-custom-1.3.2.min.js"></script>
-        <script src="/public/js/ui-bootstrap-custom-tpls-1.3.2.min.js"></script>-->
-    <!-- controller -->
-    <script src="/public/js/instructor_app.js"></script>
-    <script src="/public/js/controllers/InstructorIndexController.js"></script>
-    <script src="/public/js/controllers/InstructorOverviewController.js"></script>
+
     <!-- Animate.CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <title>Dashboard Template for Bootstrap</title>
@@ -22,6 +14,9 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="/public/css/index.css" rel="stylesheet">
@@ -32,6 +27,7 @@
 <div class="row">
     <div class="col-sm-3 col-md-2 sidebar" ng-controller="InstructorIndexController">
         <ul class="nav nav-sidebar">
+            <h4 class="text-center">{{instructor}}</h4>
             <h4 class="text-center">Instructor</h4>
         </ul>
         <ul class="nav nav-sidebar">
@@ -82,5 +78,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<!-- angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+<!--    <script src="/public/js/ui-bootstrap-custom-1.3.2.min.js"></script>
+    <script src="/public/js/ui-bootstrap-custom-tpls-1.3.2.min.js"></script>-->
+<!-- controller -->
+<script src="/public/js/instructor_app.js"></script>
+<script src="/public/js/controllers/InstructorIndexController.js"></script>
+<script src="/public/js/controllers/InstructorOverviewController.js"></script>
+
 </body>
 </html>

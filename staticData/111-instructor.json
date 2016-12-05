@@ -2,17 +2,68 @@
   "name": "Jimmy Xie",
   "id": 111,
   "courses": [
-    { "name": "Intro to Scratch",
+    {
+      "name": "Intro to Scratch",
+      "description": "an introductory course to Scratch for students who have never used Scratch before",
       "id": 1,
-      "students": [{
-      "name": "Tianci Zhong", "id": 123,
-      "progress": 0.95,
-      "badges": [1, 2, 5, 7, 10]
-    }]},
-    {"name": "Intro to Scratch",
+      "hw": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "hw_averages": [
+        83.6,
+        78.8,
+        98.5,
+        93.4,
+        84.5
+      ],
+      "students": [
+        123,
+        124,
+        125
+      ]
+    },
+    {
+      "name": "Intro to Data Structure",
+      "description": "",
       "id": 2,
-      "students": []},
-    {"name": "Intro to Scratch",
+      "hw": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hw_averages": [
+        83.6,
+        78.8,
+        98.5,
+        93.4
+      ],
+      "students": [
+        124,
+        125
+      ]
+    },
+    {
+      "name": "Intro to Algorithm",
+      "description": "",
       "id": 3,
-      "students": []}]
+      "hw": [
+        1,
+        2,
+        3
+      ],
+      "hw_averages": [
+        100,
+        100,
+        100
+      ],
+      "students": [
+        125
+      ]
+    }
+  ]
 }

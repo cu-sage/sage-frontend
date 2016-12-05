@@ -3,7 +3,7 @@ var app = express();
 var path = require('path');
 //var bodyParser = require('body-parser');
 //var jsonParser = bodyParser.json();
-var stats = require("./services/stats");
+var stats = require("./routes/stats");
 
 app.use('/public', express.static(__dirname + "/public"));
 

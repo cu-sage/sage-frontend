@@ -13,7 +13,7 @@ angular.module('instructorApp')
             .then(function(response) {
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;
-                $scope.student = response.data;
+                $scope.instructor = response.data.name;
                 //$scope.sid = sid;
                 //console.log(response.data);
                 //console.log($scope);

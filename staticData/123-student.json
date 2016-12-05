@@ -3,38 +3,110 @@
   "avatar": "Pikachu.jpg",
   "id": 123,
   "number_of_courses": 1,
-  "courses": [{
-    "name": "intro to Scratch",
-    "number_of_hw": 5,
-    "individual": [49.9, 71.5, 96.4, 79.2, 94.0],
-    "average": [83.6, 78.8, 98.5, 93.4, 84.5],
-    "assessments": [{
-      "number_of_assessments": 2,
-      "data": [{
-          "name": "Assessment 1",
-          "data": [0, 1, 2, 0, 1, 1, 0]
-        }, {
-          "name": "Assessment 2",
-          "data": [1, 2, 3, 1, 2, 2, 1]
-    }]}, {
-      "number_of_assessments": 2,
-      "data": [{
-          "name": "Assessment 1",
-          "data": [1, 2, 3, 1, 2, 2, 1]
-        }, {
-          "name": "Assessment 2",
-          "data": [1, 2, 3, 1, 2, 2, 1]
-    }]},{
-      "number_of_assessments": 0
-    },{
-      "number_of_assessments": 0
-    },{
-      "number_of_assessments": 0
-    }]
-  }],
+  "courses": [
+    {
+      "name": "Intro to Scratch",
+      "id": 1,
+      "number_of_hw": 5,
+      "individual": [
+        49.9,
+        71.5,
+        96.4,
+        79.2,
+        94.0
+      ],
+      "average": [
+        83.6,
+        78.8,
+        98.5,
+        93.4,
+        84.5
+      ],
+      "assessments": [
+        {
+          "number_of_assessments": 2,
+          "data": [
+            {
+              "name": "Assessment 1",
+              "data": [
+                0,
+                1,
+                2,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Assessment 2",
+              "data": [
+                1,
+                2,
+                3,
+                1,
+                2,
+                2,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "number_of_assessments": 2,
+          "data": [
+            {
+              "name": "Assessment 1",
+              "data": [
+                1,
+                2,
+                3,
+                1,
+                2,
+                2,
+                1
+              ]
+            },
+            {
+              "name": "Assessment 2",
+              "data": [
+                1,
+                2,
+                3,
+                1,
+                2,
+                2,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "number_of_assessments": 0
+        },
+        {
+          "number_of_assessments": 0
+        },
+        {
+          "number_of_assessments": 0
+        }
+      ]
+    }
+  ],
   "progress": 0.95,
-  "badges": ["apple", "star", "triumph", "face", "books",
-    "flask", "bookshelf", "music", "heartbeats", "conversation",
-    "owl", "medal" ],
+  "badges": [
+    "apple",
+    "star",
+    "triumph",
+    "face",
+    "books",
+    "flask",
+    "bookshelf",
+    "music",
+    "heartbeats",
+    "conversation",
+    "owl",
+    "medal"
+  ],
   "tutorialID": "scratch-tutorial-1"
 }

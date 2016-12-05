@@ -10,6 +10,8 @@ angular.module('studentApp')
             return viewLocation === $location.path().split('/')[1];
         };
 
+        $scope.student_url = "https://s3.amazonaws.com/sage-student-avatar/"+$scope.sid+"-student.jpg";
+
         $http.get("/stats/students/" + $scope.sid)
             .then(function(response) {
                 $scope.statuscode = response.status;

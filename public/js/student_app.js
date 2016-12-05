@@ -1,16 +1,20 @@
 var studentApp = angular.module('studentApp', [
     'ngRoute',
-    'vjs.video'
+    'vjs.video',
+    'ngFileUpload',
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
 ]);
 
-//var studentApp = angular.module("studentApp", []);
 
 studentApp
     .config(function($routeProvider) {
     $routeProvider
+        .when('/account/:sid', {
+            templateUrl: '/public/views/student_account.html',
+            controller: 'StudentAccountController'
+        })
         .when('/tasks/:sid', {
             templateUrl: '/public/views/student_tasks.html',
             controller: 'StudentTasksController'

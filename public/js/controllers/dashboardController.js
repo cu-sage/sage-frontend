@@ -1,6 +1,6 @@
 var controller = angular.module('controllers', []);
 
-controller.controller('DashboardController', function($scope, $routeParams, $timeout, service){
+controller.controller('dashboardController', function($scope, $routeParams, $timeout, service){
     var oldResult;
     $scope.isCollapsed = true;
     $scope.studentName = $routeParams.sid.charAt(0).toUpperCase() + $routeParams.sid.substr(1).toLowerCase();
@@ -22,7 +22,7 @@ controller.controller('DashboardController', function($scope, $routeParams, $tim
                 
                 updateProgressBar(results);
                 
-                $timeout(pollData, 1000)
+                $timeout(pollData, 1000);
             }
         );
     }

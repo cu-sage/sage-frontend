@@ -28,21 +28,21 @@
     <div class="col-sm-3 col-md-2 sidebar" ng-controller="InstructorIndexController">
         <ul class="nav nav-sidebar">
             <h4 class="text-center">{{instructor}}</h4>
-            <h4 class="text-center">Instructor</h4>
+            <h5 class="text-center">Instructor</h5>
         </ul>
         <ul class="nav nav-sidebar">
-            <li ng-class="{ active: isActive('overview') }">
-                <a ng-href="#/overview/{{sid}}">
-                    <i class="glyphicon glyphicon-home pull-right"></i>
-                    Overview <span class="sr-only">(current)</span></a>
-            </li>
-            <li ng-class="{ active: isActive('account') }" ng-hide="true">
+            <li ng-class="{ active: isActive('account') }">
                 <a ng-href="#/account/{{sid}}">
                     <i class="glyphicon glyphicon-user pull-right"></i>
                     Account
                 </a>
             </li>
-            <li ng-class="{ active: isActive('tasks') }">
+            <li ng-class="{ active: isActive('overview') }">
+                <a ng-href="#/overview/{{sid}}">
+                    <i class="glyphicon glyphicon-home pull-right"></i>
+                    Overview <span class="sr-only">(current)</span></a>
+            </li>
+            <li ng-class="{ active: isActive('tasks') }" ng-hide="true">
                 <a ng-href="#/tasks/{{sid}}">
                     <i class="glyphicon glyphicon-ok pull-right"></i>
                     Tasks

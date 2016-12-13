@@ -9,7 +9,7 @@
 
     <!-- Animate.CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <title>Dashboard</title>
+    <title>Login</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -18,56 +18,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles -->
     <link href="/public/css/index.css" rel="stylesheet">
+    <link href="/public/css/student_task.css" rel="stylesheet">
+    <link href="/public/css/lib/angular-toggle-switch.css" rel="stylesheet">
+
 
 </head>
 
-<body ng-app="instructorApp">
+
+
+<body ng-app="mainApp">
 <div class="row">
-    <div class="col-sm-3 col-md-2 sidebar" ng-controller="InstructorIndexController">
-        <ul class="nav nav-sidebar">
-            <h4 class="text-center">{{instructor}}</h4>
-            <h5 class="text-center">Instructor</h5>
-        </ul>
-        <ul class="nav nav-sidebar">
-            <li ng-class="{ active: isActive('account') }">
-                <a ng-href="#/account/{{sid}}">
-                    <i class="glyphicon glyphicon-user pull-right"></i>
-                    Account
-                </a>
-            </li>
-            <li ng-class="{ active: isActive('overview') }">
-                <a ng-href="#/overview/{{sid}}">
-                    <i class="glyphicon glyphicon-home pull-right"></i>
-                    Overview <span class="sr-only">(current)</span></a>
-            </li>
-            <li ng-class="{ active: isActive('tasks') }" ng-hide="true">
-                <a ng-href="#/tasks/{{sid}}">
-                    <i class="glyphicon glyphicon-ok pull-right"></i>
-                    Tasks
-                </a>
-            </li>
-            <li ng-class="{ active: isActive('help') }" ng-hide="true">
-                <a ng-href="#/help">
-                    <i class="glyphicon glyphicon-flag pull-right"></i>
-                    Help
-                </a>
-            </li>
-            <li ng-click="showHide()">
-                <a>
-                    <i class="glyphicon glyphicon-flag pull-right"></i>
-                    Hide / Show
-                </a>
-            </li>
-        </ul>
-
-    </div>
-
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
         <div ng-view></div>
-    </div>
-
 </div>
 
 <!-- Bootstrap core JavaScript
@@ -81,12 +44,36 @@
 <!-- angular -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+<script src="/public/js/lib/satellizer.min.js"></script>
+<script src="/public/js/lib/angular-toggle-switch.min.js"></script>
+
 <!--    <script src="/public/js/ui-bootstrap-custom-1.3.2.min.js"></script>
     <script src="/public/js/ui-bootstrap-custom-tpls-1.3.2.min.js"></script>-->
 <!-- controller -->
-<script src="/public/js/instructor_app.js"></script>
-<script src="/public/js/controllers/InstructorIndexController.js"></script>
-<script src="/public/js/controllers/InstructorOverviewController.js"></script>
+<script src="/public/js/main_app.js"></script>
+<script src="/public/js/controllers/LoginController.js"></script>
+<script src="/public/js/controllers/RegController.js"></script>
+
 
 </body>
 </html>
+
+<!--<div class="container">-->
+
+    <!--<form class="form-signin">-->
+        <!--<h2 class="form-signin-heading">Please sign in</h2>-->
+        <!--<label for="inputEmail" class="sr-only">Email address</label>-->
+        <!--<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">-->
+        <!--<label for="inputPassword" class="sr-only">Password</label>-->
+        <!--<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">-->
+        <!--<div class="checkbox">-->
+            <!--<label>-->
+                <!--<input type="checkbox" value="remember-me"> Remember me-->
+            <!--</label>-->
+        <!--</div>-->
+        <!--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
+    <!--</form>-->
+
+<!--</div> &lt;!&ndash; /container &ndash;&gt;-->

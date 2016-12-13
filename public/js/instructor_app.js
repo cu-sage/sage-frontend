@@ -5,8 +5,6 @@ var instructorApp = angular.module('instructorApp', [
     //'ui.bootstrap'
 ]);
 
-//var studentApp = angular.module("studentApp", []);
-
 instructorApp
     .config(function($routeProvider) {
         $routeProvider

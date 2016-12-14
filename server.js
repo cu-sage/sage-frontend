@@ -68,6 +68,30 @@ app.post('/upload', jsonParser, function(req, res) {
 
 app.use('/auth', authRouter);
 
+var uploadVideo = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'sage-videos-2016',
+        acl: 'public-read',
+        metadata: function (req, file, cb) {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function (req, file, cb) {
+            cb(null, req.body.assignmentId+".flv")
+        }
+    })
+}).single("file");
+
+app.post('/uploadVideo', jsonParser, function(req, res) {
+    uploadVideo(req, res, function(err)  {
+        if(err){
+            res.json({error_code:1, err_desc:err});
+            return;
+        }
+        res.json({error_code:0, err_desc:null});
+    });
+});
+
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');
 });

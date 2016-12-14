@@ -4,12 +4,17 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var stats = require("./routes/stats");
+var authRouter = require('./routes/auth');
 var multer = require('multer');
 var AWS = require('aws-sdk');
 var multerS3 = require('multer-s3');
 AWS.config.loadFromPath("config/aws-config.json");
 var s3 = new AWS.S3();
+var mongoose = require('mongoose');
+// var useragent = require('express-useragent');
 
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://user:user@ds133328.mlab.com:33328/sage-login');
 
 app.use('/public', express.static(__dirname + "/public"));
 
@@ -19,14 +24,20 @@ app.use("/node_modules",
 
 app.use('/stats', stats);
 
-app.get('/instructor', function(req, res) {
+app.get('/instructor/', function(req, res) {
     res.sendFile("instructor_index.html", {
         root: path.join(__dirname, '/public/views')
     });
 });
 
-app.get('/student', function(req, res) {
+app.get('/student/', function(req, res) {
     res.sendFile("student_index.html", {
+        root: path.join(__dirname, '/public/views')
+    });
+});
+
+app.get('/', function(req, res) {
+    res.sendFile("index.html", {
         root: path.join(__dirname, '/public/views')
     });
 });
@@ -54,6 +65,8 @@ app.post('/upload', jsonParser, function(req, res) {
         res.json({error_code:0, err_desc:null});
     });
 });
+
+app.use('/auth', authRouter);
 
 var uploadVideo = multer({
     storage: multerS3({

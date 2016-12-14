@@ -1,15 +1,14 @@
 var instructorApp = angular.module('instructorApp', [
     'ngRoute',
-    'ngFileUpload'
+    'ngFileUpload',
+    'satellizer'
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
 ]);
 
-//var studentApp = angular.module("studentApp", []);
-
 instructorApp
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $authProvider) {
         $routeProvider
             .when('/overview/:sid', {
                 templateUrl: '/public/views/instructor_overview.html',
@@ -29,9 +28,11 @@ instructorApp
             })
             .when('/', {
                 templateUrl: "/public/views/error.html"
-            })
+            });
+        $authProvider.loginUrl = '/auth/login';
+        $authProvider.signupUrl = '/auth/reg';
     })
-    .run(function($rootScope) {
+    .run(function($rootScope, $window, $auth) {
         $rootScope.isHidden = false;
 
         $rootScope.showHide = function () {
@@ -39,4 +40,7 @@ instructorApp
             $rootScope.isHidden = $rootScope.isHidden ? false : true;
             console.log($rootScope.isHidden);
         };
+        if ($auth.isAuthenticated()) {
+            $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+        }
     });

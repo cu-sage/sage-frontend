@@ -1,0 +1,44 @@
+<div class="col-md-offset-3 col-md-6">
+
+    <div class="center-form panel">
+        <div class="panel-body">
+            <h4 class="text-center"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</h4>
+
+            <form ng-submit="signup()" name="signupForm"  novalidate>
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
+                    <input server-message class="form-control input-lg" type="text" id="email" name="email" ng-model="email" placeholder="Email" required autofocus>
+                    <span class="ion-at form-control-feedback"></span>
+                    <div class="help-block" ng-if="signupForm.email.$dirty" ng-messages="signupForm.email.$error">
+                        <div ng-message="required">Please enter your email</div>
+                        <div ng-message="server">{{errorMessage.email}}</div>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
+                    <input class="form-control input-lg" type="password" name="password" ng-model="password" placeholder="Password" required>
+                    <span class="ion-key form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.fullname.$invalid && signupForm.fullname.$dirty }">
+                    <input class="form-control input-lg" type="text" id="fullname" name="fullname" ng-model="fullname" placeholder="Username" required>
+                    <span class="ion-at form-control-feedback"></span>
+                </div>
+
+                <div class="form-group" ng-init="signInAs = true" style="float:left; height: 30px;">
+                    <toggle-switch
+                            ng-model="signInAs"
+                            on-label="Student"
+                            off-label="Instructor"
+                            style="width: 300px;">
+                    </toggle-switch>
+                </div>
+
+                <button type="submit" class="btn btn-block btn-primary" ng-disabled="signupForm.$invalid">Sign up</button>
+                <br/>
+
+                <p class="text-center text-muted"><small>Already have an account? <a href="#/login">Sign in now</a></small></p>
+            </form>
+        </div>
+    </div>
+
+</div>

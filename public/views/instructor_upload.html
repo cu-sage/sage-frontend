@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="container" ng-cloak>
+        <div class="center-form">
+            <form ng-controller="InstructorUploadController as up" name="up.upload_form">
+                <div class="row" ng-show="up.file">
+                    <div>
+                        <video controls ngf-src="file"></video>
+                    </div>
+                </div>
+                <div class="row" ng-hide="up.file">
+                    <i class="fa fa-picture-o fa-6" aria-hidden="true"></i>
+                </div>
+                <span class="btn btn-default btn-file">
+                    Upload Assignment Video
+                    <input type="text" placeholder="Assignment ID" ng-model="assignmentId">
+                    <input
+                            type="file"
+                            ngf-select
+                            ng-model="up.file"
+                            name="file"
+                            ngf-pattern="'video/*'"
+                            accept="video/*"
+                            ngf-max-size="200MB"
+                    />
+
+
+            </span>
+                <button class="btn btn-success" type="submit" ng-click="up.submit()" ng-disabled="!up.file">Upload</button>
+                <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                <i ng-show="up.upload_form.file.$error.maxSize">File too large
+                    {{up.file.size / 1000000|number:1}}MB: max 200M</i>
+                <p>{{up.progress}}</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+

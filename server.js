@@ -31,23 +31,6 @@ app.get('/student', function(req, res) {
     });
 });
 
-
-// var upload = multer({ //multer settings
-//     storage: storage_profile_s3
-// });
-// /** API path that will upload the files */
-// // file upload, ref: https://code.ciphertrick.com/2015/12/07/file-upload-with-angularjs-and-nodejs/
-// var storage_profile = multer.diskStorage({ //multers disk storage settings
-//     destination: function (req, file, cb) {
-//         cb(null, 'public/upload')
-//     },
-//     filename: function (req, file, cb) {
-//         var datetimestamp = Date.now();
-//         console.log(req);
-//         cb(null, req.body.sid+".jpg");
-//     }
-// });
-
 var upload = multer({
     storage: multerS3({
         s3: s3,
@@ -62,10 +45,32 @@ var upload = multer({
     })
 }).single("file");
 
-
-
 app.post('/upload', jsonParser, function(req, res) {
     upload(req, res, function(err)  {
+        if(err){
+            res.json({error_code:1, err_desc:err});
+            return;
+        }
+        res.json({error_code:0, err_desc:null});
+    });
+});
+
+var uploadVideo = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'sage-videos-2016',
+        acl: 'public-read',
+        metadata: function (req, file, cb) {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function (req, file, cb) {
+            cb(null, req.body.assignmentId+".flv")
+        }
+    })
+}).single("file");
+
+app.post('/uploadVideo', jsonParser, function(req, res) {
+    uploadVideo(req, res, function(err)  {
         if(err){
             res.json({error_code:1, err_desc:err});
             return;

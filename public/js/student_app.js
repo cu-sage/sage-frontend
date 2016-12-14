@@ -2,6 +2,7 @@ var studentApp = angular.module('studentApp', [
     'ngRoute',
     'vjs.video',
     'ngFileUpload',
+    'satellizer'
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
@@ -9,7 +10,7 @@ var studentApp = angular.module('studentApp', [
 
 
 studentApp
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $authProvider) {
     $routeProvider
         .when('/account/:sid', {
             templateUrl: '/public/views/student_account.html',
@@ -26,8 +27,10 @@ studentApp
         .when('/', {
             templateUrl: "/public/views/error.html"
         });
+        $authProvider.loginUrl = '/auth/login';
+        $authProvider.signupUrl = '/auth/reg';
     })
-    .run(function($rootScope) {
+    .run(function($rootScope, $window, $auth) {
         $rootScope.isHidden = false;
 
         $rootScope.showHide = function () {
@@ -35,4 +38,7 @@ studentApp
             $rootScope.isHidden = $rootScope.isHidden ? false : true;
             console.log($rootScope.isHidden);
         };
+        if ($auth.isAuthenticated()) {
+            $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
+        }
     });

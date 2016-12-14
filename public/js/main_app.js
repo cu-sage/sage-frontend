@@ -9,6 +9,10 @@ var mainApp = angular.module('mainApp', [
 mainApp.config(function($routeProvider, $authProvider) {
     // special varible $routeProvider
     $routeProvider
+        .when('/', {
+            templateUrl: '/public/views/login.html',
+            controller: 'LoginController'
+        })
         .when('/login', {
             templateUrl: '/public/views/login.html',
             controller: 'LoginController'
@@ -16,9 +20,6 @@ mainApp.config(function($routeProvider, $authProvider) {
         .when('/reg', {
             templateUrl: '/public/views/reg.html',
             controller: 'RegController'
-        })
-        .when('/', {
-            templateUrl: "/public/views/error.html"
         });
 
     $authProvider.loginUrl = '/auth/login';

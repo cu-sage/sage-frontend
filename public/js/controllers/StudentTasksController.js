@@ -13,7 +13,6 @@ angular.module('studentApp')
         };
     }]) */
     .controller('StudentTasksController', ['$scope', '$window', '$http', "$routeParams", function($scope, $window, $http, $routeParams) {
-        console.log("testing");
         console.log($routeParams.sid);
         $scope.progress = 60;
         $http.get("/stats/students/" + $routeParams.sid)

@@ -60,7 +60,7 @@ var getUser = function(req, callback) {
     });
 };
 
-var reg = function(email, password, fullname, callback) {
+var reg = function(email, password, fullname, role, callback) {
     userModel.findOne({email: email}, function(err, existingUser) {
         if (existingUser) {
             callback(
@@ -71,7 +71,8 @@ var reg = function(email, password, fullname, callback) {
         var user = new userModel({
             email: email,
             password: password,
-            fullname: fullname
+            fullname: fullname,
+            role: role
         });
 
         bcrypt.genSalt(10, function(err, salt) {

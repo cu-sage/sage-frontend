@@ -47,6 +47,7 @@ angular.module('studentApp')
                     },
                     series: scope.data
                 });
+
                 //console.log("chart");
                 //console.log(chart);
 /*                    var canvas = angular.element(document.querySelector('#bar'))[0];
@@ -127,9 +128,7 @@ angular.module('studentApp')
                             $('#report').html('context menu on xAxis label');
                         }
                     },
-
                     series: scope.data
-
                 });
 
 /*                var canvas = angular.element( document.querySelector( '#spiderweb' ) )[0];
@@ -159,7 +158,6 @@ angular.module('studentApp')
                 $scope.rightVisible = true;
                 e.stopPropagation();
             };
-
 /*            $rootScope.$on("documentClicked", _close);
             $rootScope.$on("escapePressed", _close);
 
@@ -168,6 +166,39 @@ angular.module('studentApp')
                     $scope.close();
                 });
             }*/
+            $scope.drawCharts = function(id){
+                console.log("clicked on course "+id);
+                $scope.barData = [];
+                for (i = 0; i < $scope.student.number_of_courses; i++) {
+                    if ($scope.student.courses[i].id === id) {
+                        $scope.barData.push({
+                            name: "Individual",
+                            data: $scope.student.courses[i].individual
+                        }, {
+                            name: "Average",
+                            data: $scope.student.courses[i].average
+                        });
+                    }
+                }
+                $scope.barDataLoaded = true;
+
+
+                $scope.spiderwebData = [];
+                for (i = 0; i < $scope.student.number_of_courses; i++) {
+                    for (k = 0; k < $scope.student.courses[i].assessments[0].number_of_assessments; k++) {
+                        if ($scope.student.courses[i].id === id) {
+                            $scope.spiderwebData.push({
+                                name: $scope.student.courses[i].assessments[0].data[k].name,
+                                data: $scope.student.courses[i].assessments[0].data[k].data
+                            });
+                        }
+                    }
+                    //}
+                }
+                $scope.spiderwebDataLoaded = true;
+            };
+
+
 
             $http.get("/stats/students/" + $routeParams.sid)
                 .then(function (response) {
@@ -179,32 +210,6 @@ angular.module('studentApp')
                     $scope.spiderwebDataLoaded = false;
                     //console.log(response.data);
                     //console.log($scope);
-
-                    $scope.barData = [];
-                    for (i = 0; i < $scope.student.number_of_courses; i++) {
-                        $scope.barData.push({
-                            name: "Individual",
-                            data: $scope.student.courses[i].individual
-                        }, {
-                            name: "Average",
-                            data: $scope.student.courses[i].average
-                        });
-                    }
-                    $scope.barDataLoaded = true;
-
-                    $scope.spiderwebData = [];
-                    for (i = 0; i < $scope.student.number_of_courses; i++) {
-                        //for (j = 0; j < $scope.student.courses[i].number_of_hw; j++) {
-                        for (k = 0; k < $scope.student.courses[i].assessments[0].number_of_assessments; k++) {
-                            $scope.spiderwebData.push({
-                                name: $scope.student.courses[i].assessments[0].data[k].name,
-                                data: $scope.student.courses[i].assessments[0].data[k].data
-                            });
-                        }
-                        //}
-                    }
-                    $scope.spiderwebDataLoaded = true;
-
+                    $scope.courses = response.data.courses;
                 });
-
         }]);

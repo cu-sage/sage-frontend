@@ -26,7 +26,6 @@ router.get("/students/:id", function(req, res) {
         } else {
             res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
         }
-
     });
 });
 

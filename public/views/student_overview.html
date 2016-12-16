@@ -1,8 +1,20 @@
 <div class="starter-template ng-scope">
     <p class="lead">Hey <strong>{{ student.name }}</strong>!</p>
     <p class="lead">The following rows indicate current course evaluation<br> Once all assessments are passed, then you are finished!</p>
-
 </div>
+
+<div>
+    <ul class="pagination" >
+        <li ng-repeat="course in courses" >
+            <a href="#/overview/{{sid}}" ng-click="drawCharts(course.id)">{{course.name}}
+                <span class="sr-only"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
 <div class="row">
     <hc-bar-chart class="col-md-6 col-sm-6" data="barData" ng-if="barDataLoaded">Placeholder for generic chart</hc-bar-chart>
     <hc-spiderweb-chart class="col-md-6 col-sm-6" data="spiderwebData" ng-if="spiderwebDataLoaded">Placeholder for pie chart</hc-spiderweb-chart>

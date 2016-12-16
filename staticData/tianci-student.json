@@ -1,7 +1,7 @@
 {
   "name": "Tianci Zhong",
   "id": "tianci",
-  "number_of_courses": 1,
+  "number_of_courses": 2,
   "courses": [
     {
       "name": "Intro to Scratch",
@@ -90,7 +90,95 @@
           "number_of_assessments": 0
         }
       ]
+    },
+    {
+      "name": "Intro to Data Structure",
+      "id": 2,
+      "number_of_hw": 4,
+      "individual": [
+        49.9,
+        71.5,
+        96.4,
+        79.2
+      ],
+      "average": [
+        83.6,
+        78.8,
+        98.5,
+        93.4
+      ],
+      "assessments": [
+        {
+          "number_of_assessments": 2,
+          "data": [
+            {
+              "name": "Assessment 1",
+              ""
+              "data": [
+                1,
+                1,
+                2,
+                1,
+                1,
+                1,
+                1
+              ]
+            },
+            {
+              "name": "Assessment 2",
+              "data": [
+                3,
+                3,
+                3,
+                3,
+                3,
+                3,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "number_of_assessments": 2,
+          "data": [
+            {
+              "name": "Assessment 1",
+              "data": [
+                1,
+                2,
+                3,
+                1,
+                2,
+                2,
+                1
+              ]
+            },
+            {
+              "name": "Assessment 2",
+              "data": [
+                1,
+                2,
+                3,
+                1,
+                2,
+                2,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "number_of_assessments": 0
+        },
+        {
+          "number_of_assessments": 0
+        },
+        {
+          "number_of_assessments": 0
+        }
+      ]
     }
+
   ],
   "progress": 0.95,
   "badges": [

@@ -33,4 +33,5 @@ The instructor upload video page can be access by the path:
 http://localhost:3000/instructor/#/uploadVideo/{id}
 
 ```
-
+## Other
+More detials about this repo can be found in the wiki page. 

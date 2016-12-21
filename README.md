@@ -14,10 +14,23 @@ First install `npm`. For Mac user with Homebrew, run `brew install npm` to insta
 ## Pages
 ```
 // student dashboard
-localhost:3000/student/#/overview/:sid
-localhost:3000/student/#/tasks/:sid
+
+The student overview page can be access by the path:
+http://localhost:3000/student/#/overview/{sid}
+
+The student tasks page can be access by the path:
+http://localhost:3000/student/#/tasks/{sid}
+
+The student account page can be accessed by the path:
+http://localhost:3000/student/#/account/{sid}
+
 
 // instructor dashboard
-localhost:3000/instructor/#/overview/:id
+The instructor overview page can be access by the path:
+http://localhost:3000/instructor/#/overview/{id}
+
+The instructor upload video page can be access by the path:
+http://localhost:3000/instructor/#/uploadVideo/{id}
+
 ```
 

@@ -24,6 +24,21 @@
                         <h5 class="text-center">Student</h5>
                     </ul>
                     <ul class="nav nav-sidebar">
+                        
+                        <li ng-class="{ active: isActive('home') }">
+                            <a ng-href="#/home/{{sid}}">
+                                <i class="glyphicon glyphicon-home pull-right"></i>
+                                Home
+                            </a>
+                        </li>
+
+                        <li ng-class="{ active: isActive('courses') }">
+                            <a ng-href="#/courses/{{sid}}">
+                                <i class="glyphicon glyphicon-book pull-right"></i>
+                                Courses
+                            </a>
+                        </li>
+
                         <li ng-class="{ active: isActive('account') }">
                             <a ng-href="#/account/{{sid}}">
                                 <i class="glyphicon glyphicon-user pull-right"></i>
@@ -71,6 +86,8 @@
     <script src="/public/js/lib/satellizer.min.js"></script>
 
     <script src="/public/js/student_app.js"></script>
+    <script src="/public/js/controllers/student/StudentHomeController.js"></script>
+    <script src="/public/js/controllers/student/StudentCoursesController.js"></script>
     <script src="/public/js/controllers/StudentIndexController.js"></script>
     <script src="/public/js/controllers/StudentOverviewController.js"></script>
     <script src="/public/js/controllers/StudentTasksController.js"></script>
@@ -94,4 +111,6 @@
     <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
     <script src="/node_modules/vjs-video/dist/vjs-video.min.js"></script>
 
+
+    <link href="/public/css/student/student_home.css" rel="stylesheet">
 </html>

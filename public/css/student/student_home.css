@@ -1,0 +1,12 @@
+.course-box {
+
+	float: left;
+	min-width: 200px;
+	border: 1px solid black;
+	margin-right: 20px;
+	height: 150px;
+	text-align: center;
+}
+.clearfix {
+	clear: left;
+}

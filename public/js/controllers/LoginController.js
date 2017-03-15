@@ -13,7 +13,7 @@ angular.module('mainApp').controller('LoginController',
 
                     // $location.path = '/';
                     if (response.data.user.role === 'student') {
-                        $window.location.href = '/student/#/overview/'+ response.data.user.fullname;
+                        $window.location.href = '/student/#/home/'+ response.data.user.fullname;
                     } else {
                         $window.location.href = '/instructor/#/overview/' + response.data.user.fullname;
                     }

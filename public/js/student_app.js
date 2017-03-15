@@ -12,6 +12,14 @@ var studentApp = angular.module('studentApp', [
 studentApp
     .config(function($routeProvider, $authProvider) {
     $routeProvider
+        .when('/home/:sid', {
+            templateUrl: '/public/views/student/student_home.html',
+            controller: 'StudentHomeController'
+        })
+        .when('/courses/:sid', {
+            templateUrl: '/public/views/student/student_courses.html',
+            controller: 'StudentCoursesController'
+        })
         .when('/account/:sid', {
             templateUrl: '/public/views/student_account.html',
             controller: 'StudentAccountController'

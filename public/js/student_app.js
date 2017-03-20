@@ -28,6 +28,10 @@ studentApp
             templateUrl: '/public/views/student/student_assessment.html',
             controller: 'StudentAssessmentController'
         })
+        .when('/learningPath/:lpID/:sid', {
+            templateUrl: '/public/views/student/student_learning_path.html',
+            controller: 'StudentLearningPathController'
+        })
         .when('/account/:sid', {
             templateUrl: '/public/views/student_account.html',
             controller: 'StudentAccountController'

@@ -2,14 +2,18 @@
     <div class="col-md-12">
         <h3> Featured Courses </h3>
         <div ng-repeat="course in featuredCourses" >
-            <div class="course-box"> {{course.courseName}} </div>
+            <div 
+            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+            class="course-box"> {{course.courseName}} </div>
         </div>
         <div class="clearfix"> </div>
 
 
         <h3> Recent Courses </h3>
         <div ng-repeat="course in recentCourses" >
-            <div class="course-box"> {{course.courseName}} </div>
+            <div
+            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+            class="course-box"> {{course.courseName}} </div>
         </div>
         <div class="clearfix"> </div>
         

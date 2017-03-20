@@ -1,7 +1,10 @@
 <div class="starter-template ng-scope">
     <h3> List of Learning Progressions enrolled </h3>
     <ul>
-            <li ng-repeat="lp in learningPathsEnrolled"> {{lp.pathName}} </li>
+        <li
+            ng-repeat="lp in learningPathsEnrolled"
+            ng-click='changeView("/learningPath/"+ lp.pathID +"/"+ sid)'
+            > {{lp.pathName}} </li>
     </ul>
     <h3> List of Courses enrolled </h3>
     <ul>

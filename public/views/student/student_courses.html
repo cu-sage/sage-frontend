@@ -1,5 +1,25 @@
 <div class="starter-template ng-scope">
-    This is where all the courses will be displayed.
+    <h3> List of Learning Progressions enrolled </h3>
+    <ul>
+            <li ng-repeat="lp in learningPathsEnrolled"> {{lp.pathName}} </li>
+    </ul>
+    <h3> List of Courses enrolled </h3>
+    <ul>
+            <li ng-repeat="course in coursesEnrolled"
+            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+            > {{course.courseName}} </li>
+    </ul>
+
+    <div class="search-area col-xs-12">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search..">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Search</button>
+            <button class="btn btn-default" type="button">Reset</button>
+          </span>
+        </div>
+    </div>
+
 </div>
 
 

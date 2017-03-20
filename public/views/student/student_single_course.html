@@ -1,0 +1,33 @@
+<div class="starter-template ng-scope">
+    <h2>{{course.courseName}}</h2>
+    	<div class="sub-heading">
+    		{{course.courseDescription}}
+    	</div>
+
+    <h3> Statistics </h3>
+	    <div class="sub-heading">
+	    	The is where all the statistics for the student for this particular course will come.
+	    </div>
+	<h3>Resources</h3>
+
+	<ul>
+		<li ng-repeat = "resource in course.resources">
+			<a href="{{resource.link}}" target="_blank"> {{resource.resourceName}} </a>
+		</li>
+	
+	</ul>
+	<h3>Assessments</h3>
+	<ul>
+		<li 
+			ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assessment.assessmentID + "/"+sid)'
+		 	ng-repeat = "assessment in course.assessments">
+			{{assessment.assessmentName}}
+		</li>
+	
+	</ul>
+			
+
+
+		
+		
+</div>

@@ -5,7 +5,6 @@ angular.module('studentApp')
         $scope.path = path[1];
         $scope.sid = path[2];
 
-
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path().split('/')[1];
         };

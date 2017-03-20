@@ -20,6 +20,14 @@ studentApp
             templateUrl: '/public/views/student/student_courses.html',
             controller: 'StudentCoursesController'
         })
+        .when('/courses/:courseID/:sid', {
+            templateUrl: '/public/views/student/student_single_course.html',
+            controller: 'StudentSingleCourseController'
+        })
+        .when('/courses/:courseID/assessment/:aid/:sid', {
+            templateUrl: '/public/views/student/student_assessment.html',
+            controller: 'StudentAssessmentController'
+        })
         .when('/account/:sid', {
             templateUrl: '/public/views/student_account.html',
             controller: 'StudentAccountController'
@@ -38,8 +46,12 @@ studentApp
         $authProvider.loginUrl = '/auth/login';
         $authProvider.signupUrl = '/auth/reg';
     })
-    .run(function($rootScope, $window, $auth) {
+    .run(function($rootScope, $window, $auth, $location) {
         $rootScope.isHidden = false;
+
+        $rootScope.changeView = function (path) {
+            $location.path(path);
+        }
 
         $rootScope.showHide = function () {
             //If DIV is hidden it will be visible and vice versa.

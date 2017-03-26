@@ -4,7 +4,6 @@ angular.module('mainApp').controller('LoginController',
         $scope.emailLogin = function() {
             $auth.login({email: $scope.email, password: $scope.password}).
                 then(function(response) {
-                    console.log(response.data.user);
                     $window.localStorage.currentUser =
                         JSON.stringify(response.data.user);
                     $rootScope.currentUser =
@@ -13,7 +12,7 @@ angular.module('mainApp').controller('LoginController',
 
                     // $location.path = '/';
                     if (response.data.user.role === 'student') {
-                        $window.location.href = '/student/#/home/'+ response.data.user.fullname;
+                        $window.location.href = '/student/#/home/'+ response.data.user._id;
                     } else {
                         $window.location.href = '/instructor/#/overview/' + response.data.user.fullname;
                     }

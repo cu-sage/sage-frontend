@@ -4,6 +4,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var stats = require("./routes/stats");
+var studentRoutes = require("./routes/studentRoutes.js");
 var authRouter = require('./routes/auth');
 var multer = require('multer');
 var AWS = require('aws-sdk');
@@ -25,14 +26,10 @@ app.use("/node_modules",
 
 app.use('/stats', stats);
 
+app.use('/student', studentRoutes);
+
 app.get('/instructor/', function(req, res) {
     res.sendFile("instructor_index.html", {
-        root: path.join(__dirname, '/public/views')
-    });
-});
-
-app.get('/student/', function(req, res) {
-    res.sendFile("student_index.html", {
         root: path.join(__dirname, '/public/views')
     });
 });

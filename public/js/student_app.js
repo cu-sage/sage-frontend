@@ -40,10 +40,6 @@ studentApp
             templateUrl: '/public/views/student_tasks.html',
             controller: 'StudentTasksController'
         })
-        .when('/overview/:sid', {
-            templateUrl: '/public/views/student_overview.html',
-            controller: 'StudentOverviewController'
-        })
         .when('/', {
             templateUrl: "/public/views/error.html"
         });

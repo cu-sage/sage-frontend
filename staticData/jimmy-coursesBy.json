@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Logical Thinking",
+    "description": "Developing logical thinking in terms of programming",
+    "id": 1,
+    "count" : 2
+    
+  },
+  {
+    "name": "Abstraction",
+    "description": "Developing logical thinking in terms of programming",
+    "id": 3,
+    "count" : 2
+    
+  },
+  {
+    "name": "Problem Decomposition",
+    "description": "Developing skills for problem decomposition",
+    "id": 2,
+    "count" : 2
+    
+  }
+]

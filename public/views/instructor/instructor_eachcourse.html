@@ -1,0 +1,40 @@
+<h2 class="sub-header">{{course.name}}</h2>
+<div>
+    <h3>{{course.description}}</h3>
+</div>
+
+<h3 class="sub-header">Homework</h3>
+<div class="panel panel-default">
+    <ul class="nav nav-tabs nav-justified">
+        <li ng-repeat="id in hw" ng-class="{ active: isActiveHw( {{id}} ) }">
+            <a href="#/coursePage/{{sid}}/eachcourse/{{cid}}/hw/{{id}}">{{id}}
+                <span class="sr-only"></span>
+            </a>
+        </li>
+    </ul>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="student in data" ng-hide="isHideTable">
+                <tr>
+                    <td>{{student.id}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.score}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <p ng-hide="isHideTable"><strong>Average: {{average}}</strong></p>
+        </div>
+    </div>
+
+</div>
+
+
+

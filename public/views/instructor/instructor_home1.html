@@ -1,0 +1,13 @@
+<h2 class="sub-header">Home</h2>
+<h3>Most recent courses created: </h3>
+<div>
+    <ul>
+        <li ng-repeat="course in courses" >
+            <a href="#/overview/{{sid}}/courses/{{courses.id}}"><h4>{{course.coursename}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+            <p>Description : {{course.description}}</p>
+            <p>Students Enrolled : {{course.studentsenrolled}}</p>
+        </li>
+    </ul>
+</div>

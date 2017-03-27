@@ -62,6 +62,19 @@
                     Upload Video
                 </a>
             </li>
+            <li ng-class="{ active: isActive('home1') }">
+                <a ng-href="#/home1/{{sid}}">
+                    <i class="glyphicon glyphicon-home pull-right"></i>
+                    Home
+                </a>
+            </li>
+
+            <li ng-class="{ active: isActive('coursePage') }">
+                <a ng-href="#/coursePage/{{sid}}">
+                    <i class="glyphicon glyphicon-home pull-right"></i>
+                    Courses/Learning Paths
+                </a>
+            </li>
 
 
 
@@ -100,6 +113,13 @@
 <script src="/public/js/controllers/InstructorIndexController.js"></script>
 <script src="/public/js/controllers/InstructorOverviewController.js"></script>
 <script src="/public/js/controllers/InstructorUploadController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorHome1Controller.js"></script>
+<script src="/public/js/controllers/instructor/InstructorCourseController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorLPController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorEachCourseController.js"></script>
+
+
+
 
 <!--Upload lib-->
 <script src="/public/js/lib/ng-file-upload/ng-file-upload.min.js"></script>

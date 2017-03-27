@@ -1,0 +1,28 @@
+<h2 class="sub-header">Courses Page</h2>
+<h3>Learning Paths Created created: </h3>
+<div>
+    <ul>
+        <li ng-repeat="LP in LPs" >
+            <a href="#/coursePage/{{sid}}/LP/{{LP.LPId}}"><h4>{{LP.LPname}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+            <p>Description : {{LP.description}}</p>
+            
+        </li>
+    </ul>
+    <button type="button">Create New LP</button>
+</div>
+
+<h3>Courses created: </h3>
+<div>
+    <ul>
+        <li ng-repeat="course in coursesBy" >
+            <a href="#/coursePage/{{sid}}/eachcourse/{{course.id}}"><h4>{{course.name}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+            <p>Description : {{course.description}}</p>
+            
+        </li>
+    </ul>
+    <button type="button">Create New Course</button>
+</div>

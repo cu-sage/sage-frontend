@@ -20,11 +20,11 @@ router.get("/students/:id", function(req, res) {
                     var data = require('../staticData/' + req.params.id + '-student.json');
                     res.send(JSON.stringify(data));
                 } else {
-                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized1.'});
                 }
             });
         } else {
-            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized2.'});
         }
     });
 });
@@ -42,6 +42,133 @@ router.get("/instructors/:id", function(req, res) {
                 if (user.fullname == req.params.id) {
                     var postId = req.params.id;
                     var data = require('../staticData/' + req.params.id + '-instructor.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
+router.get("/instructors/courses_home/:id", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-courses.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
+router.get("/instructors/LP/:id", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-LP.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
+
+
+router.get("/instructors/coursesby/:id", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-coursesBy.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
+router.get("/instructors/:id/LP/:LPid", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-LP-' +req.params.LPid + '.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
+router.get("/instructors/:id/courses/:cid", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-courses-' +req.params.cid + '.json');
                     res.send(JSON.stringify(data));
                 } else {
                     res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});

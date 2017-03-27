@@ -26,6 +26,26 @@ instructorApp
                 templateUrl: '/public/views/instructor_overview.html',
                 controller: 'InstructorOverviewController'
             })
+            .when('/home1/:sid', {
+                templateUrl: '/public/views/instructor/instructor_home1.html',
+                controller: 'InstructorHome1Controller'
+            })
+            .when('/coursePage/:sid', {
+                templateUrl: '/public/views/instructor/instructor_coursePage.html',
+                controller: 'InstructorCourseController'
+            })
+            .when('/coursePage/:sid/LP/:LPid', {
+                templateUrl: '/public/views/instructor/instructor_LP.html',
+                controller: 'InstructorLPController'
+            })
+            .when('/coursePage/:sid/eachcourse/:cid', {
+                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
+                controller: 'InstructorEachCourseController'
+            })
+            .when('/coursePage/:sid/eachcourse/:cid/hw/:hid', {
+                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
+                controller: 'InstructorEachCourseController'
+            })
             .when('/', {
                 templateUrl: "/public/views/error.html"
             });

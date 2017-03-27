@@ -1,0 +1,21 @@
+{
+      "name": "Intro to Data Structure",
+      "description": "Data structures and their uses",
+      "id": 2,
+      "hw": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "hw_averages": [
+        80.0,
+        85.8,
+        93.2,
+        98.6
+      ],
+      "students": [
+        "jimmy",
+        "sherlock"
+      ]
+}

@@ -83,6 +83,58 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 });
 
 
+router.get ('/course/:cid/student/:sid', function (req, res) {
+
+    let cid = req.params.cid;
+    let sid = req.params.sid;
+
+    //TODO put the progress of the sid in the object 
+    let course = {};
+    let assignmentsHash = {};
+
+    courseModel.findOne({'_id' : cid}).lean().exec()
+    .then((response, error) => {
+        //res.send(response);
+        course = response;
+        course.courseID = course._id;
+        if (course) {
+            let allAssigmentIDs = [];
+
+
+            allAssigmentIDs = course.assignments.map((singleAssigment) => {
+                assignmentsHash[singleAssigment.assigmentID] = singleAssigment;
+                return singleAssigment.assigmentID;
+            });
+
+            
+            return assignmentModel.find({'_id': {'$in' : allAssigmentIDs}}).lean().exec();
+
+        } else{ 
+
+            //TODO - handle error
+        }
+        
+
+    }).then((response, error) => {
+
+        response.map((singleAssigment) =>{
+
+            assignmentsHash[singleAssigment._id] = Object.assign({}, singleAssigment, {assignmentID : singleAssigment._id});
+
+        });
+        
+        course.assignments = []
+
+        for (key in assignmentsHash) {
+            course.assignments.push(assignmentsHash[key])
+        }
+
+        res.send(course);
+
+    })
+
+});
+
 // router.post ('/mock', function (req, res) {
 
     

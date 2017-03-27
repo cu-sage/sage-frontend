@@ -1,7 +1,7 @@
 <div class="starter-template ng-scope">
     <h2>{{course.courseName}}</h2>
     	<div class="sub-heading">
-    		{{course.courseDescription}}
+    		{{course.desc}}
     	</div>
 
     <h3> Statistics </h3>
@@ -19,9 +19,9 @@
 	<h3>Assessments</h3>
 	<ul>
 		<li 
-			ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assessment.assessmentID + "/"+sid)'
-		 	ng-repeat = "assessment in course.assessments">
-			{{assessment.assessmentName}}
+			ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'
+		 	ng-repeat = "assignment in course.assignments">
+			{{assignment.assignmentName}}
 		</li>
 	
 	</ul>

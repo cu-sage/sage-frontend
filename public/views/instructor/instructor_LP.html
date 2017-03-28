@@ -3,35 +3,14 @@
 <div>
 <p>Courses in the learning path:</p>
     <ul>
-        <li ng-repeat="each_course in LP.courses" >
-            <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.id}}"><h4>{{each_course.order}} : {{each_course.name}}</h4>
+        <li ng-repeat="each_course in LPcourses" >
+            <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.courseID}}"><h4>{{each_course.courseName}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
-            <p>Description : {{each_course.description}}</p>
+            <p>Description : {{each_course.desc}}</p>
             
         </li>
     </ul>
 </div>
-<div>
-<p>Students enrolled in the learning path:</p>
-    <ul>
-        <li ng-repeat="each_student in LP.students_enrolled" >
-            <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.id}}"><h4>{{each_student.name}}</h4>
-                <!-- <span class="sr-only"></span> -->
-            </a>
-            
-            
-        </li>
-    </ul>
-</div>
-<p>Students completed the learning path:</p>
-    <ul>
-        <li ng-repeat="each_student in LP.students_completed" >
-            <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.id}}"><h4>{{each_student.name}}</h4>
-                <!-- <span class="sr-only"></span> -->
-            </a>
-            
-            
-        </li>
-    </ul>
+
 </div>

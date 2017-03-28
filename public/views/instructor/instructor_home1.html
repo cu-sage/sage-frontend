@@ -3,11 +3,11 @@
 <div>
     <ul>
         <li ng-repeat="course in courses" >
-            <a href="#/overview/{{sid}}/courses/{{courses.id}}"><h4>{{course.coursename}}</h4>
+            <a href="#/overview/{{sid}}/courses/{{course.courseID}}"><h4>{{course.courseName}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
-            <p>Description : {{course.description}}</p>
-            <p>Students Enrolled : {{course.studentsenrolled}}</p>
+            <p>Description : {{course.desc}}</p>
+            <!--<p>Students Enrolled : {{course.studentsenrolled}}</p> -->
         </li>
     </ul>
 </div>

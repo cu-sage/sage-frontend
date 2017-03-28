@@ -15,11 +15,20 @@ angular.module('instructorApp')
         if ($routeParams.sid != undefined && $routeParams.LPid != undefined) 
         {
             
+             $http.get("/stats/instructors/" + $routeParams.sid + "/LPinfo/" + $routeParams.LPid )
+                .then(function(response) {
+                    //console.log("testing_eachLP");
+                    //$scope.sid=$routeParams.sid
+                    $scope.LP=response.data
+                            }
+                        
+                );
+
             $http.get("/stats/instructors/" + $routeParams.sid + "/LP/" + $routeParams.LPid )
                 .then(function(response) {
                     console.log("testing_eachLP");
                     $scope.sid=$routeParams.sid
-                    $scope.LP=response.data
+                    $scope.LPcourses=response.data
                             }
                         
                 );

@@ -18,15 +18,16 @@ angular.module('instructorApp')
                 console.log("testing_LP");
                 $scope.sid=$routeParams.sid
                         
-                $scope.LPs=response.data
+                $scope.LPs=response.data;
+                console.log(response.data);
                         }
                     
             );
 
         $http.get("/stats/instructors/coursesby/" + $routeParams.sid)
             .then(function(response) {
-                console.log("testing_LP");
-                $scope.coursesBy=response.data
+                console.log("testing_coursesby");
+                $scope.coursesBy=response.data;
                         }
                     
             );

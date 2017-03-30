@@ -76,6 +76,9 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
         res.status(200).send(returnResponse);
 
+    }).catch((error) => {
+
+        res.status(500).send({error:error});
     });
 
 
@@ -101,15 +104,14 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
             let allAssigmentIDs = [];
 
 
-            allAssigmentIDs = course.assignments.map((singleAssigment) => {
-                assignmentsHash[singleAssigment.assigmentID] = singleAssigment;
-                return singleAssigment.assigmentID;
+            allAssigmentIDs = course.assignments.map((singleAssignment) => {
+                assignmentsHash[singleAssignment.assignmentID] = singleAssignment;
+                return singleAssignment.assignmentID;
             });
-
             
             return assignmentModel.find({'_id': {'$in' : allAssigmentIDs}}).lean().exec();
 
-        } else{ 
+        } else { 
 
             //TODO - handle error
         }
@@ -117,9 +119,9 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
 
     }).then((response, error) => {
 
-        response.map((singleAssigment) =>{
+        response.map((singleAssignment) =>{
 
-            assignmentsHash[singleAssigment._id] = Object.assign({}, singleAssigment, {assignmentID : singleAssigment._id});
+            assignmentsHash[singleAssignment._id] = Object.assign({}, singleAssignment, {assignmentID : singleAssignment._id});
 
         });
         

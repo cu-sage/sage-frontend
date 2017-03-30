@@ -7,6 +7,9 @@ var assignmentModel = require('../models/assignmentModel.js');
 var mongoose = require('mongoose');
 var enrollmentCourseModel = require('../models/enrollmentCourseModel.js');
 var learningPathModel = require('../models/learningPathModel.js');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+var service = require('../services/service');
 
 router.get("/students/:id", function(req, res) {
     authService.getUser(req, function(user) {
@@ -172,26 +175,21 @@ router.get("/instructors/:id/LPinfo/:LPid", function(req, res) {
 });
 
 router.get("/instructors/:id/courses/:cid", function(req, res) {
-    authService.getUser(req, function(user) {
-        var userId = user._id;
-        var fullname = user.fullname;
-        if (userId != -1) {
-            userModel.findById(userId, function (err, user) {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                if (user.fullname == req.params.id) {
-                    var postId = req.params.id;
-                    var data = require('../staticData/' + req.params.id + '-courses-' +req.params.cid + '.json');
-                    res.send(JSON.stringify(data));
-                } else {
-                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
-                }
-            });
-        } else {
-            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
-        }
+    let id = req.params.id;
+    let cid = req.params.cid;
+
+
+    //let allCoursesIDs = [];
+    courseModel.find({_id: { $in: [ cid ] }}).lean().exec()
+    .then(function(response, error) {
+
+        let returnResponse = response.map ((singleCourse) => {
+            singleCourse.courseID = singleCourse._id;
+            return singleCourse;
+        });
+
+        res.status(200).send(returnResponse);
+
     });
 
 });
@@ -246,6 +244,43 @@ router.get("/instructors/:id/courses/:cid/hw/:hid", function(req, res) {
         }
     });
 
+});
+
+router.post("/instructors/createCourse/:id", function(req, res) {
+    console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    service.newcourse(req.body.coursename, req.body.desc, InstrId ,req.body.features , req.body.ctconcepts,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            } 
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+router.post("/instructors/:id/course/:cid/createAssignment", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    var courseid = req.params.cid;
+    service.newassignment(req.body.order, InstrId ,courseid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            } 
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
 });
 
 module.exports = router;

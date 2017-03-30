@@ -1,16 +1,16 @@
 <div class="starter-template ng-scope">
-    <h3> List of Learning Progressions enrolled </h3>
+    <h3> List of Quests  </h3>
     <ul>
         <li
             ng-repeat="lp in learningPathsEnrolled"
             ng-click='changeView("/learningPath/"+ lp.pathID +"/"+ sid)'
-            > {{lp.pathName}} </li>
+            > <span class="bullets-course-page"> {{lp.pathName}} </span>  </li>
     </ul>
-    <h3> List of Courses enrolled </h3>
+    <h3> List of Courses  </h3>
     <ul>
             <li ng-repeat="course in coursesEnrolled"
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-            > {{course.courseName}} </li>
+            > <span class="bullets-course-page"> {{course.courseName}} </span> </li>
     </ul>
 
     <!-- <div class="search-area col-xs-12">

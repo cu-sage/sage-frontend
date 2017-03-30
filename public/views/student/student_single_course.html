@@ -1,4 +1,10 @@
 <div class="starter-template ng-scope">
+	<div class="col-xs-offset-10">
+		<input type="button" 
+		ng-if="enrollButtonToShow" 
+		ng-click = "onClickEnrollButton()"
+		class="btn btn-success" value="Enroll" >
+	</div>
     <h2>{{course.courseName}}</h2>
     	<div class="sub-heading">
     		{{course.desc}}
@@ -16,18 +22,13 @@
 		</li>
 	
 	</ul>
-	<h3>Assessments</h3>
+	<h3>Assignments</h3>
 	<ul>
 		<li 
-			ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'
+			
 		 	ng-repeat = "assignment in course.assignments">
-			{{assignment.assignmentName}}
+			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName}}</span>
 		</li>
 	
 	</ul>
-			
-
-
-		
-		
 </div>

@@ -19,7 +19,7 @@ router.get('/featuredCourses/student/:sid', function(req, res) {
 
     //getting random two courses.
 
-    courseModel.find().lean().limit(2).exec()
+    courseModel.find().lean().limit(3).exec()
     .then(function(response, error) {
         //TODO - handle error.
 
@@ -47,6 +47,23 @@ router.get('/recentCourses/student/:sid', function(req, res) {
         });
 
         res.status(200).send(returnResponse);
+    });
+
+});
+
+
+router.post ('/enroll/:cid/student/:sid', function (req, res) {
+
+    let {cid,sid} = req.params;
+    //TODO fill the assignments array with data before saving.
+    
+    enrollmentCourseModel.create({studentID : sid, courseID : cid, assignments : []})
+    .then((response) => {
+        if (response) {
+            res.send(response);
+        }
+    }).catch((error) => {
+        res.status(500).send({error: error});
     });
 
 });
@@ -91,7 +108,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
     let cid = req.params.cid;
     let sid = req.params.sid;
 
-    //TODO put the progress of the sid in the object 
+    //TODO put the progress of the sid in the object - Enrollement done. Do assignmen progress now.
     let course = {};
     let assignmentsHash = {};
 
@@ -131,8 +148,15 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
             course.assignments.push(assignmentsHash[key])
         }
 
-        res.send(course);
+        return enrollmentCourseModel.findOne({"studentID" : sid , "courseID" : cid}).lean().exec()
 
+    }).then((response, error) => {
+
+        course.isEnrolled = (response) ? true : false;
+        res.send(course);
+    }).catch ((error) => {
+
+        res.status(500).send({error:error});
     })
 
 });

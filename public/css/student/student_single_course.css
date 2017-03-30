@@ -2,3 +2,15 @@
 
 	margin-left: 20px;
 }
+
+.assignment-name-single-course {
+	color: #337ab7;
+
+}
+
+.assignment-name-single-course:hover {
+
+	text-decoration: underline;
+	cursor: pointer;
+	
+}

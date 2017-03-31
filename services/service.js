@@ -5,6 +5,7 @@ var moment = require('moment');
 var config = require('./config');
 var bcrypt = require('bcryptjs');
 var courseModel = require('../models/courseModel');
+var LPModel = require('../models/learningPathModel');
 var mongoose = require('mongoose');
 
 
@@ -47,6 +48,41 @@ var newcourse = function(coursename, desc, instructorid, features,ctConcepts, ca
         
     });
 };
+
+var newLP = function(LPname, desc, instructorid, features,ctConcepts, callback) {
+    LPModel.findOne({LPName: LPname}, function(err, existingLP) {
+        if (existingLP) {
+            callback(
+                {status: 409, message: {courseName: 'LPName is already taken.'}});
+            return;
+        }
+
+        var newLP1 = new LPModel({
+            LPName: LPname,
+            desc: desc,
+            creatorID: instructorid,
+            courses: [],
+            features:features,
+            ctConcepts:ctConcepts
+        });
+            
+     
+        //console.log("In service");
+        //console.log(coursename);
+        newLP1.save(function(err,LP_inserted) {
+            if(!err){
+                console.log(LP_inserted);
+                callback({status: 200, message: LP_inserted});
+            }
+            else 
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+            
+        
+    });
+};
+
 //newassignment
 var newassignment = function(order, instructorid, courseid, callback) {
     courseModel.findOne({_id: { $in: [ courseid ] }}, function(err, existingCourse) {
@@ -83,10 +119,47 @@ var newassignment = function(order, instructorid, courseid, callback) {
     });
 };
 
+var addCoursetoLP = function(order , courseID, LPid, callback) {
+    LPModel.findOne({_id: { $in: [ LPid ] }}, function(err, existingLP) {
+        if (existingLP) {
+
+            //var aid = mongoose.Types.ObjectId();
+            var newCourse = {
+                "CourseOrder":order,
+                "CourseID":courseID
+
+            };
+            
+     
+
+        LPModel.update({_id: { $in: [ LPid ] }},{ $push: { courses: newCourse } },function(err,test_inserted) {
+            if(!err){
+                console.log(test_inserted);
+                callback({status: 200, message: {inserted:test_inserted,testid:courseID}});
+            }
+            else 
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+        return;
+            
+        }
+        callback(
+                {status: 404, message: {error: 'LP doesnt exist.'}});
+            
+
+        
+            
+        
+    });
+};
+
 module.exports = {
     // isAuthenticated: isAuthenticated,
     newcourse: newcourse,
-    newassignment:newassignment
+    newassignment:newassignment,
+    addCoursetoLP:addCoursetoLP,
+    newLP:newLP
     
 };
 

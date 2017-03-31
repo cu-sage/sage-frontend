@@ -1,0 +1,18 @@
+<form novalidate class="simple-form" name="LPform">
+
+   <div class="c1">
+    <div class="head1">
+      <h2>Create LP</h2>
+    </div>
+    <input type="text" name="LPname" ng-model="LP.name"  placeholder="LP Name" ng-required="true"/><br />
+    <input type="text" ng-model="LP.desc"  placeholder="LP Description" /><br />
+    <input type="text" ng-model="LP.age"  placeholder="Age Group (10-12)" /><br />
+    <input type="text" ng-model="LP.subject"  placeholder="Subjects " /><br />
+    <textarea type="text" ng-model="LP.feat"  placeholder="Other features (separated by comma):" /><br />
+    
+    <button ng-click="reset()" value="Reset" >Reset</button>
+    <button ng-click="submitForm()" value="Save" >Save</button>
+    
+  </div>
+  </form>
+  <pre>user = {{LP}}</pre>

@@ -11,8 +11,10 @@ instructorApp
     .config(function($routeProvider, $authProvider) {
         $routeProvider
             .when('/overview/:sid', {
-                templateUrl: '/public/views/instructor_overview.html',
-                controller: 'InstructorOverviewController'
+                templateUrl: '/public/views/instructor/instructor_home1.html',
+                controller: 'InstructorHome1Controller'
+                // templateUrl: '/public/views/instructor_overview.html',
+                // controller: 'InstructorOverviewController'
             })
             .when('/uploadVideo/:sid', {
                 templateUrl: '/public/views/instructor_upload.html',

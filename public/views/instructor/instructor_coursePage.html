@@ -1,5 +1,8 @@
 <h2 class="sub-header">Courses Page</h2>
-<h3>Learning Paths Created : </h3>
+<h3>Learning Paths  : </h3>
+<a href="#/coursePage/{{sid}}/createLP"><h6>&nbsp;Create new LP</h6></a>
+
+<h4>Learning Paths Created: </h4>
 <div>
     <ul>
         <li ng-repeat="LP in LPs" >
@@ -10,10 +13,14 @@
             
         </li>
     </ul>
-    <a href="#/coursePage/{{sid}}/createLP"><h4>Create new LP</h4></a>
+    
 </div>
+<hr>
 
-<h3>Courses created: </h3>
+<h3>Courses : </h3>
+<a href="#/coursePage/{{sid}}/createcourse"><h6>&nbsp;Create new course</h6></a>
+
+<h4>Courses Created :</h4>
 <div>
     <ul>
         <li ng-repeat="course in coursesBy" >
@@ -24,5 +31,5 @@
             
         </li>
     </ul>
-    <a href="#/coursePage/{{sid}}/createcourse"><h4>Create new course</h4>
+    
 </div>

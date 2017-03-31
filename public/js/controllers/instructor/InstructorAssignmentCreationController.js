@@ -37,8 +37,10 @@ angular.module('instructorApp')
 		    url: "/stats/instructors/"+$routeParams.sid+"/course/"+$routeParams.cid+"/createAssignment/",
 		    data: newc,
 		    }).then(function(response) {
-		                //console.log("testing_post");
+                        //console.log(response.status);
+		                //console.log(response.data.message);
 		                $scope.aid=(response.data.message.testid);
+                        console.log($scope.aid);
 
 		                        }
                     

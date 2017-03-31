@@ -1,28 +1,16 @@
-<form novalidate class="simple-form" name="courseform">
-<h2>Course Creation</h2>
-<br /><br />
-<fieldset>
-    <input type="text" name="coursename" ng-model="course.name"  placeholder="Course Name" ng-required="true"/><br /><br />
-    
-    <input type="text" ng-model="course.desc"  placeholder="Course Description" /><br /><br /><br />
-
-    <!-- Computational Thinking Concepts: <br /><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Abstraction" />Abstraction</label>
-    <label><input type="checkbox" ng-model="course.preference" value="Parallelism" />Parallelism</label><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Logical Thinking" />Logical Thinking</label>
-    <label><input type="checkbox" ng-model="course.preference" value="Synchronization" />Synchronization</label><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Flow Control" />Flow Control </label>
-    <label><input type="checkbox" ng-model="course.preference" value="User Interactivity" />User Interactivity</label><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Data Representation" />Data Representation</label><br />
-    <br /><br /><br /><br /> -->
+<form novalidate class="simple-form" name="courseform" id="courseform">
+  <div class="c1">
+    <div class="head1">
+      <h2>Create Course</h2>
+    </div>
+    <input type="text" name="coursename" placeholder="Course Name" ng-model="course.name" ng-required="true" /><br />
+    <input  type="text" name="desc" ng-model="course.desc"  placeholder="Course Description" /><br />
     <input type="text" ng-model="course.age"  placeholder="Age Group (10-12)" /><br />
     <input type="text" ng-model="course.subject"  placeholder="Subjects " /><br />
-    <input type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />
-    </fieldset>
-    <br /><br /><br />
-    <input type="button" ng-click="reset()" value="Reset" />
-    <input type="submit" ng-click="submitForm()" value="Save" />
-  </form>
-  <pre>user = {{course}}</pre>
-  
-
+    <textarea type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />
+    
+    <button ng-click="reset()" value="Reset" >Reset</button>
+    <button ng-click="submitForm()" value="Save" >Save</button>
+    
+  </div>
+</form>

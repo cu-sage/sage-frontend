@@ -1,7 +1,11 @@
 angular.module('instructorApp')
-    .controller('InstructorLPController', ['$scope', '$window', '$http', "$routeParams",
-    function($scope, $window, $http, $routeParams) {
+    .controller('InstructorLPController', ['$scope', '$window', '$http', "$routeParams", "$location" , "$route",
+    function($scope, $window, $http, $routeParams, $location, $route) {
         console.log("testing_LP");
+
+        $scope.instrid=$routeParams.sid;
+        $scope.LPid=$routeParams.LPid;
+
         // console.log($routeParams.sid);
         // $scope.isHideTable = true;
 
@@ -33,8 +37,45 @@ angular.module('instructorApp')
                         
                 );
 
+            $http.get("/stats/instructors/coursesby/" + $routeParams.sid)
+            .then(function(response) {
+                console.log("testing_coursesby");
+                $scope.coursesBy=response.data;
+                        }
+                    
+            );
+
         
         }   
+        
+        $scope.addCourse=function(cid1){
+            var c=0;
+            for (each_existingcourse in $scope.coursesby){
+                c+=1;
+                if (each_existingcourse.courseID==cid1){
+                    console.log("Course already in LP");
+                    return ;
+                }
+            }
+            $http({
+            method: 'POST',
+            url: "/stats/instructors/"+$scope.instrid+"/LP/"+$scope.LPid+"/addCourse/"+cid1,
+            data: {'order':c+1,'courseID':cid1 },
+            }).then(function(response) {
+                        console.log(response.status);
+
+                        console.log(response.data.message.testid);
+                        //var path = "/coursePage/"+$scope.instrid+"/LP/"+$scope.LPid;
+                        //console.log(path);
+                        $route.reload();
+                        ///coursePage/{{sid}}/LP/{{LP.LPID}}
+                                                       
+                     }
+                    
+            );
+         }
+
+
         
 
     }]);

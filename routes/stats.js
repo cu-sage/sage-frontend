@@ -264,12 +264,50 @@ router.post("/instructors/createCourse/:id", function(req, res) {
         });
 });
 
+
+router.post("/instructors/createLP/:id", function(req, res) {
+    console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    service.newLP(req.body.LPname, req.body.desc, InstrId ,req.body.features , req.body.ctconcepts,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            } 
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
 router.post("/instructors/:id/course/:cid/createAssignment", function(req, res) {
     //console.log("In stats routes");
     console.log(req.body);
     var InstrId = req.params.id;
     var courseid = req.params.cid;
     service.newassignment(req.body.order, InstrId ,courseid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            } 
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+router.post("/instructors/:id/LP/:LPid/addCourse/:cid", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    var LPid = req.params.LPid;
+    service.addCoursetoLP(req.body.order, req.params.cid, LPid,
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});

@@ -1,26 +1,19 @@
-<form novalidate class="simple-form" name="assignmentform">
-<h2>Assignment Creation</h2>
-<br /><br />
-<fieldset>
-    <input type="text" name="order" ng-model="assgn.order"  placeholder="Order No" ng-required="true"/><br /><br />
+<form novalidate class="simple-form" name="assignmentform" >
+<div class="c1">
+    <div class="head1">
+      <h2>Assignment Creation</h2>
+    </div>
+    <input type="text" name="order" placeholder="Assignment Order No" ng-model="assgn.order" ng-required="true" /><br />
+   
     
+    <button ng-click="reset()" value="Reset" >Reset</button>
+    <button ng-click="design()" value="Design Assessment" >Design Assessment</button>
+    <button ng-click="submitForm()" value="Save" >Save</button>
     
-    <!-- Computational Thinking Concepts: <br /><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Abstraction" />Abstraction</label>
-    <label><input type="checkbox" ng-model="course.preference" value="Parallelism" />Parallelism</label><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Logical Thinking" />Logical Thinking</label>
-    <label><input type="checkbox" ng-model="course.preference" value="Synchronization" />Synchronization</label><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Flow Control" />Flow Control </label>
-    <label><input type="checkbox" ng-model="course.preference" value="User Interactivity" />User Interactivity</label><br />
-    <label><input type="checkbox" ng-model="course.preference" value="Data Representation" />Data Representation</label><br />
-    <br /><br /><br /><br /> -->
-    
-    </fieldset>
-    <br /><br /><br />
-    <input type="button" ng-click="reset()" value="Reset" />
-    <input type="button" ng-click="design()" value="Design Assignment" />
-    <input type="submit" ng-click="submitForm()" value="Save" />
-  </form>
-  <pre>user = {{assgn}}</pre>
+  </div>
+</form>
+
+
+   
   
 

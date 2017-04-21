@@ -5,6 +5,8 @@ var userModel = require('../models/userModel');
 var courseModel = require('../models/courseModel');
 var assignmentModel = require('../models/assignmentModel.js');
 var enrollmentCourseModel = require('../models/enrollmentCourseModel.js');
+var externalURLs = require ('../config/externalURLs.js');
+var fetch =  require ('node-fetch');
 
 
 
@@ -111,6 +113,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
     //TODO put the progress of the sid in the object - Enrollement done. Do assignmen progress now.
     let course = {};
     let assignmentsHash = {};
+    let allAssigmentIDs = [];
 
     courseModel.findOne({'_id' : cid}).lean().exec()
     .then((response, error) => {
@@ -118,7 +121,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         course = response;
         course.courseID = course._id;
         if (course) {
-            let allAssigmentIDs = [];
+            
 
 
             allAssigmentIDs = course.assignments.map((singleAssignment) => {
@@ -151,29 +154,38 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         return enrollmentCourseModel.findOne({"studentID" : sid , "courseID" : cid}).lean().exec()
 
     }).then((response, error) => {
-
         course.isEnrolled = (response) ? true : false;
-        res.send(course);
-    }).catch ((error) => {
 
+        let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssigmentIDs.join(',');
+        return fetch(callingURL , {
+            headers : {
+                'Content-type' : 'application/json'
+            }
+        });
+        
+        
+    }).then((responseNode) => {
+        return responseNode.json();
+        
+    }).then ((nodeJSON) => {
+        nodeJSONHash = {}
+
+        nodeJSON.map ((singleAssignment) => {
+            nodeJSONHash[singleAssignment.assignmentID] = singleAssignment;
+        });
+
+        course.assignments.map ((singleAssignment) => {
+            singleAssignment.results = {};
+            singleAssignment.results = nodeJSONHash[singleAssignment.assignmentID] &&  nodeJSONHash[singleAssignment.assignmentID].results;
+        });
+        res.send(course);
+    })
+    .catch ((error) => {
+        console.log(error);
         res.status(500).send({error:error});
     })
 
 });
-
-// router.post ('/mock', function (req, res) {
-
-    
-//     let myData = [
-//         {studentID:'585a583aa179408337482a58' , courseID: '58d8476ce9a1b743936bdc2e' },
-//         {studentID:'585a583aa179408337482a58' , courseID: '58d8476ce9a1b743936bdc2f'}
-//     ];
-    
-//     enrollmentCourseModel.create(myData,function(err){
-
-//     });
-
-// });
 
 
 

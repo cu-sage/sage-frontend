@@ -11,7 +11,22 @@
     	</div>
 
     <h3> Statistics </h3>
+		<div ng-if="!enrollButtonToShow">
+			<div  class="progress">
+		        <div 
+		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{66.67}}%;">
+		            66.67%
+		        </div>
+		        
+		    </div>
+		    <highchart id="chart1" config="chartConfig"></highchart>
+			
+		</div>  
+	    
+	    
+	    
 	    <div class="sub-heading">
+
 	    	The is where all the statistics for the student for this particular course will come.
 	    </div>
 	<h3>Resources</h3>

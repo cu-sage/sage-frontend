@@ -6,14 +6,14 @@
             ng-click='changeView("/learningPath/"+ lp.pathID +"/"+ sid)'
             > <span class="bullets-course-page"> {{lp.pathName}} </span>  </li>
     </ul>
-    <h3> List of Courses  </h3>
+    <h3> List of Courses </h3>
     <ul>
             <li ng-repeat="course in coursesEnrolled"
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
             > <span class="bullets-course-page"> {{course.courseName}} </span> </li>
     </ul>
 
-    <!-- <div class="search-area col-xs-12">
+    <div class="search-area col-xs-12">
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search..">
           <span class="input-group-btn">
@@ -21,6 +21,6 @@
             <button class="btn btn-default" type="button">Reset</button>
           </span>
         </div>
-    </div> -->
+    </div>
 
 </div>

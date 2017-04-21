@@ -1,5 +1,5 @@
 angular.module('studentApp')
-    .controller('StudentSingleCourseController', function(Upload, $window, $location, $scope, $http) {
+    .controller('StudentSingleCourseController',['$window', '$location','$scope', '$http', function($window, $location, $scope, $http) {
         
 
         var path = $location.path().split('/');
@@ -17,7 +17,71 @@ angular.module('studentApp')
         };
         $scope.enrollButtonToShow = false;
 
-        //get the results from server.
+        function prepareChartConfig (response) {
+            let categories = ['Abstraction','Parallelization','Logic','Synchronization','FlowControl','UserInteractivity','DataRepresentation'];
+            let seriesArray = [];
+
+            if (response) {
+                response.map ((singleAssignment) => {
+                    if (singleAssignment.results) {
+                        let data = categories.map ((singleCategory) => {
+                            return singleAssignment.results[singleCategory];
+                        });
+
+                        seriesArray.push({
+                            name: singleAssignment.assignmentName,
+                            data: data,
+                            pointPlacement: 'on'
+
+                        });
+                    }
+                });
+            }
+
+            return {
+                chart: {
+                    polar: true,
+                    type: 'line'
+                },
+
+                title: {
+                    text: 'Metrics',
+                    x: -80
+                },
+
+                pane: {
+                    size: '80%'
+                },
+
+                xAxis: {
+                    categories: categories,
+                    tickmarkPlacement: 'on',
+                    lineWidth: 0
+                },
+
+                yAxis: {
+                    gridLineInterpolation: 'polygon',
+                    lineWidth: 0,
+                    min: 0
+                },
+
+                tooltip: {
+                    shared: true,
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
+                },
+
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'top',
+                    y: 70,
+                    layout: 'vertical'
+                },
+
+                series: seriesArray
+            };
+        }
+        $scope.chartConfig = prepareChartConfig ();
+
 
         function putDataInScope (response) {
 
@@ -35,6 +99,8 @@ angular.module('studentApp')
                             {'resourceID': 3, 'resourceName': 'Resource 3', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
                             {'resourceID': 4, 'resourceName': 'Resource 4', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"}
                         ];
+
+                        $scope.chartConfig = prepareChartConfig (response.data.assignments);
                     }
             }
         
@@ -57,10 +123,11 @@ angular.module('studentApp')
         }
 
         
+        
 
 
 
-    });
+    }]);
 
 
 

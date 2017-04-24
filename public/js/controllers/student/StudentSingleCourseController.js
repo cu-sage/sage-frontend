@@ -16,6 +16,7 @@ angular.module('studentApp')
             assignments : []
         };
         $scope.enrollButtonToShow = true;
+        $scope.leaderboard = []
 
         function prepareChartConfig (response) {
             let categories = ['Abstraction','Parallelization','Logic','Synchronization','FlowControl','UserInteractivity','DataRepresentation'];
@@ -106,6 +107,17 @@ angular.module('studentApp')
         
 
         $http.get("course/"+courseID+"/student/"+sid).then(putDataInScope);
+
+        $http.get('course/'+courseID+'/leaderboard')
+        .then(function(response) {
+
+            if (response.status == 200) {
+
+                $scope.leaderboard = response.data;
+
+
+            }
+        });
 
         $scope.onClickEnrollButton  = function () {
             $http.post("enroll/" + courseID + '/student/' + sid)

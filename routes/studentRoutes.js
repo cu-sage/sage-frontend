@@ -105,6 +105,30 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 });
 
 
+router.get ('/course/:cid/leaderboard', function (req, res) {
+    let {cid} = req.params;
+    enrollmentCourseModel.find ({
+        courseID : cid
+    }).then ((enrollments) => {
+        let allStudentIDs = enrollments.map ((singleEnrollment) => {
+            return singleEnrollment.studentID;
+        })
+
+        return allStudentIDs;
+    }).then((allStudentIDs) => {
+
+        return userModel.find ({
+            '_id' : {'$in' : allStudentIDs}
+        }).lean().limit(5).exec();
+    }).then ((allStudents) => {
+        res.send(allStudents);
+    }).catch ((err) => {
+        res.status(500).send({error:error});
+    })
+
+});
+
+
 router.get ('/course/:cid/student/:sid', function (req, res) {
 
     let cid = req.params.cid;

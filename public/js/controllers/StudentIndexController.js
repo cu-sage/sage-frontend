@@ -3,7 +3,7 @@ angular.module('studentApp')
         // console.log("testing_index");
         var path = $location.path().split('/');
         $scope.path = path[1];
-        $scope.sid = path[2];
+        $scope.sid = path[path.length-1];
 
         $scope.isActive = function (viewLocation) {
             return viewLocation === $location.path().split('/')[1];

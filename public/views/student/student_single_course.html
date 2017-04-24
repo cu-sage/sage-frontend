@@ -46,4 +46,23 @@
 		</li>
 	
 	</ul>
+	<h3> Leaderboard </h3>
+	The following students are leading the in course. 
+	<table class="table table-striped">
+		<thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Points</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	    	<tr ng-repeat = "singleStudent in leaderboard">
+	    		<td> {{singleStudent.fullname}} </td>
+	    		<td> [score]  </td>
+	    	
+	    	</tr>
+	    </tbody>
+				
+	</table>
+
 </div>

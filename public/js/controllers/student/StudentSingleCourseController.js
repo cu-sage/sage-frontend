@@ -15,7 +15,7 @@ angular.module('studentApp')
             resources : [],
             assignments : []
         };
-        $scope.enrollButtonToShow = false;
+        $scope.enrollButtonToShow = true;
 
         function prepareChartConfig (response) {
             let categories = ['Abstraction','Parallelization','Logic','Synchronization','FlowControl','UserInteractivity','DataRepresentation'];

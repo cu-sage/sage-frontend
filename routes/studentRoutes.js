@@ -156,28 +156,47 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
     }).then((response, error) => {
         course.isEnrolled = (response) ? true : false;
 
-        let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssigmentIDs.join(',');
-        return fetch(callingURL , {
-            headers : {
-                'Content-type' : 'application/json'
-            }
-        });
+        if (course.isEnrolled) {
+
+            let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssigmentIDs.join(',');
+            console.log(callingURL);
+            return fetch(callingURL , {
+                headers : {
+                    'Content-type' : 'application/json'
+                }
+            });
+
+        }
+        
         
         
     }).then((responseNode) => {
-        return responseNode.json();
+        if (responseNode) {
+
+            return responseNode.json();
+        }
+        
         
     }).then ((nodeJSON) => {
-        nodeJSONHash = {}
+        if (nodeJSON) {
+            nodeJSONHash = {}
+            if (nodeJSON) {
+                
+                nodeJSON.map ((singleAssignment) => {
+                    nodeJSONHash[singleAssignment.assignmentID] = singleAssignment;
+                });
 
-        nodeJSON.map ((singleAssignment) => {
-            nodeJSONHash[singleAssignment.assignmentID] = singleAssignment;
-        });
+            }
+            
 
-        course.assignments.map ((singleAssignment) => {
-            singleAssignment.results = {};
-            singleAssignment.results = nodeJSONHash[singleAssignment.assignmentID] &&  nodeJSONHash[singleAssignment.assignmentID].results;
-        });
+            course.assignments.map ((singleAssignment) => {
+                singleAssignment.results = {};
+                singleAssignment.results = nodeJSONHash[singleAssignment.assignmentID] &&  nodeJSONHash[singleAssignment.assignmentID].results;
+            });
+
+        }
+
+        
         res.send(course);
     })
     .catch ((error) => {

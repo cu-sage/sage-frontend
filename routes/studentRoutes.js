@@ -10,6 +10,33 @@ var fetch =  require ('node-fetch');
 
 
 
+function prepareHashedEnrollments (object) {
+
+    let hashedEnrollments = {};
+    object.map ((singleEnrollment) => {
+        if ( hashedEnrollments.hasOwnProperty(singleEnrollment.studentID) ) {
+            hashedEnrollments[singleEnrollment.studentID][singleEnrollment.courseID] = 5
+        } else {
+            hashedEnrollments[singleEnrollment.studentID] = {}
+            hashedEnrollments[singleEnrollment.studentID][singleEnrollment.courseID] = 5
+        }
+    });
+
+    return hashedEnrollments;
+
+
+}
+
+
+function preparePayloadForRecommenderEngine (hashedEnrollments, studentID) {
+    return  {
+        "httpMethod" : "POST",
+        "StudentID": studentID,
+        "body" : {
+            "enrollments" : hashedEnrollments
+        }
+    };
+}
 
 router.get("/", function(req, res) {
     res.sendFile("student_index.html", {
@@ -17,20 +44,46 @@ router.get("/", function(req, res) {
     });
 });
 
-router.get('/featuredCourses/student/:sid', function(req, res) {
+router.get('/recommendedCourses/student/:sid', function(req, res) {
 
     //getting random two courses.
+    let studentID = req.params.sid;
 
-    courseModel.find().lean().limit(3).exec()
+    enrollmentCourseModel.find().lean().exec()
     .then(function(response, error) {
+        
+        let hashedEnrollments = prepareHashedEnrollments (response);
+        let payloadForRecommenderEngine = preparePayloadForRecommenderEngine (hashedEnrollments,studentID)
+        return fetch (externalURLs.RECOMMENDATION_SERVER + 'Recommend', {
+            method : 'POST',
+            headers : {
+                'Content-type' : 'application/json'
+            },
+            body : JSON.stringify (payloadForRecommenderEngine)
+        })
         //TODO - handle error.
 
-        let returnResponse = response.map ((singleCourse) => {
+        
+    })
+    .then ((responseFromRecommenderEngine) => {
+        return responseFromRecommenderEngine.json();
+    })
+    .then((json) => {
+
+        return courseModel.find({
+            "_id" : {
+                '$in' : json.body
+            }
+        }).lean().exec();
+        
+    })
+    .then((courses) => {
+        let returnResponse = courses.map ((singleCourse) => {
             singleCourse.courseID = singleCourse._id;
             return singleCourse;
         });
 
-        res.status(200).send(returnResponse);
+        res.status(200).send(returnResponse)
     });
 
 });
@@ -39,7 +92,7 @@ router.get('/recentCourses/student/:sid', function(req, res) {
 
     //getting random two courses.
 
-    courseModel.find().lean().limit(2).exec()
+    courseModel.find().lean().exec()
     .then(function(response, error) {
         //TODO - handle error.
 
@@ -134,7 +187,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
     let cid = req.params.cid;
     let sid = req.params.sid;
 
-    //TODO put the progress of the sid in the object - Enrollement done. Do assignmen progress now.
+    //TODO put the progress of the sid in the object - Enrollment done. Do assignment progress now.
     let course = {};
     let assignmentsHash = {};
     let allAssigmentIDs = [];
@@ -145,14 +198,12 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         course = response;
         course.courseID = course._id;
         if (course) {
-            
-
 
             allAssigmentIDs = course.assignments.map((singleAssignment) => {
                 assignmentsHash[singleAssignment.assignmentID] = singleAssignment;
                 return singleAssignment.assignmentID;
             });
-            
+
             return assignmentModel.find({'_id': {'$in' : allAssigmentIDs}}).lean().exec();
 
         } else { 
@@ -162,7 +213,6 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         
 
     }).then((response, error) => {
-
         response.map((singleAssignment) =>{
 
             assignmentsHash[singleAssignment._id] = Object.assign({}, singleAssignment, {assignmentID : singleAssignment._id});

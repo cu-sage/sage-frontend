@@ -6,17 +6,17 @@ angular.module('studentApp')
 
         var sid = path[2];
 
-        $scope.featuredCourses = [];
+        $scope.recommendedCourses = [];
         $scope.recentCourses = [];
 
-        $http.get("featuredCourses/student/" + sid)
+        $http.get("recommendedCourses/student/" + sid)
         .then(function(response) {
 
                 if (response.status == '403') {
                     $window.location.href = '/public/views/error.html';
                 } else {
 
-                    $scope.featuredCourses = response.data;
+                    $scope.recommendedCourses = response.data;
 
 
                 }

@@ -1,7 +1,7 @@
 <div class="starter-template ng-scope">
     <div class="col-md-12">
-        <h3> Featured Courses </h3>
-        <div ng-repeat="course in featuredCourses" >
+        <h3> Recommended Courses </h3>
+        <div ng-repeat="course in recommendedCourses" >
             <div 
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
             class="course-box"> <h3>{{course.courseName}} </h3> </div>

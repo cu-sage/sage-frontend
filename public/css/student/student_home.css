@@ -2,11 +2,20 @@
 
 	float: left;
 	min-width: 200px;
-	border: 1px solid black;
+
 	margin-right: 20px;
 	height: 150px;
 	text-align: center;
-	margin-top: 5px;
+	margin-top: 25px;
+	background: #fff;
+  	border-radius: 2px;
+  	position: relative;
+
+}
+
+.course-box:hover {
+  box-shadow: 14px 14px 14px 14px rgba(0,0,0,0.25), 10px 10px 10px 10px rgba(0,0,0,0.22);
+  cursor: pointer;
 }
 .clearfix {
 	clear: left;

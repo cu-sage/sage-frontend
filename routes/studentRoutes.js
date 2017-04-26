@@ -5,6 +5,8 @@ var userModel = require('../models/userModel');
 var courseModel = require('../models/courseModel');
 var assignmentModel = require('../models/assignmentModel.js');
 var enrollmentCourseModel = require('../models/enrollmentCourseModel.js');
+var externalURLs = require ('../config/externalURLs.js');
+var fetch =  require ('node-fetch');
 
 
 
@@ -19,7 +21,7 @@ router.get('/featuredCourses/student/:sid', function(req, res) {
 
     //getting random two courses.
 
-    courseModel.find().lean().limit(2).exec()
+    courseModel.find().lean().limit(3).exec()
     .then(function(response, error) {
         //TODO - handle error.
 
@@ -52,6 +54,23 @@ router.get('/recentCourses/student/:sid', function(req, res) {
 });
 
 
+router.post ('/enroll/:cid/student/:sid', function (req, res) {
+
+    let {cid,sid} = req.params;
+    //TODO fill the assignments array with data before saving.
+    
+    enrollmentCourseModel.create({studentID : sid, courseID : cid, assignments : []})
+    .then((response) => {
+        if (response) {
+            res.send(response);
+        }
+    }).catch((error) => {
+        res.status(500).send({error: error});
+    });
+
+});
+
+
 router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
     let sid = req.params.sid;
@@ -76,9 +95,36 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
         res.status(200).send(returnResponse);
 
+    }).catch((error) => {
+
+        res.status(500).send({error:error});
     });
 
 
+
+});
+
+
+router.get ('/course/:cid/leaderboard', function (req, res) {
+    let {cid} = req.params;
+    enrollmentCourseModel.find ({
+        courseID : cid
+    }).then ((enrollments) => {
+        let allStudentIDs = enrollments.map ((singleEnrollment) => {
+            return singleEnrollment.studentID;
+        })
+
+        return allStudentIDs;
+    }).then((allStudentIDs) => {
+
+        return userModel.find ({
+            '_id' : {'$in' : allStudentIDs}
+        }).lean().limit(5).exec();
+    }).then ((allStudents) => {
+        res.send(allStudents);
+    }).catch ((err) => {
+        res.status(500).send({error:error});
+    })
 
 });
 
@@ -88,9 +134,10 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
     let cid = req.params.cid;
     let sid = req.params.sid;
 
-    //TODO put the progress of the sid in the object 
+    //TODO put the progress of the sid in the object - Enrollement done. Do assignmen progress now.
     let course = {};
     let assignmentsHash = {};
+    let allAssigmentIDs = [];
 
     courseModel.findOne({'_id' : cid}).lean().exec()
     .then((response, error) => {
@@ -98,18 +145,17 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         course = response;
         course.courseID = course._id;
         if (course) {
-            let allAssigmentIDs = [];
+            
 
 
-            allAssigmentIDs = course.assignments.map((singleAssigment) => {
-                assignmentsHash[singleAssigment.assigmentID] = singleAssigment;
-                return singleAssigment.assigmentID;
+            allAssigmentIDs = course.assignments.map((singleAssignment) => {
+                assignmentsHash[singleAssignment.assignmentID] = singleAssignment;
+                return singleAssignment.assignmentID;
             });
-
             
             return assignmentModel.find({'_id': {'$in' : allAssigmentIDs}}).lean().exec();
 
-        } else{ 
+        } else { 
 
             //TODO - handle error
         }
@@ -117,9 +163,9 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
 
     }).then((response, error) => {
 
-        response.map((singleAssigment) =>{
+        response.map((singleAssignment) =>{
 
-            assignmentsHash[singleAssigment._id] = Object.assign({}, singleAssigment, {assignmentID : singleAssigment._id});
+            assignmentsHash[singleAssignment._id] = Object.assign({}, singleAssignment, {assignmentID : singleAssignment._id});
 
         });
         
@@ -129,25 +175,60 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
             course.assignments.push(assignmentsHash[key])
         }
 
-        res.send(course);
+        return enrollmentCourseModel.findOne({"studentID" : sid , "courseID" : cid}).lean().exec()
 
+    }).then((response, error) => {
+        course.isEnrolled = (response) ? true : false;
+
+        if (course.isEnrolled) {
+
+            let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssigmentIDs.join(',');
+            console.log(callingURL);
+            return fetch(callingURL , {
+                headers : {
+                    'Content-type' : 'application/json'
+                }
+            });
+
+        }
+        
+        
+        
+    }).then((responseNode) => {
+        if (responseNode) {
+
+            return responseNode.json();
+        }
+        
+        
+    }).then ((nodeJSON) => {
+        if (nodeJSON) {
+            nodeJSONHash = {}
+            if (nodeJSON) {
+                
+                nodeJSON.map ((singleAssignment) => {
+                    nodeJSONHash[singleAssignment.assignmentID] = singleAssignment;
+                });
+
+            }
+            
+
+            course.assignments.map ((singleAssignment) => {
+                singleAssignment.results = {};
+                singleAssignment.results = nodeJSONHash[singleAssignment.assignmentID] &&  nodeJSONHash[singleAssignment.assignmentID].results;
+            });
+
+        }
+
+        
+        res.send(course);
+    })
+    .catch ((error) => {
+        console.log(error);
+        res.status(500).send({error:error});
     })
 
 });
-
-// router.post ('/mock', function (req, res) {
-
-    
-//     let myData = [
-//         {studentID:'585a583aa179408337482a58' , courseID: '58d8476ce9a1b743936bdc2e' },
-//         {studentID:'585a583aa179408337482a58' , courseID: '58d8476ce9a1b743936bdc2f'}
-//     ];
-    
-//     enrollmentCourseModel.create(myData,function(err){
-
-//     });
-
-// });
 
 
 

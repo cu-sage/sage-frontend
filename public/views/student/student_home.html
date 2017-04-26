@@ -4,7 +4,7 @@
         <div ng-repeat="course in featuredCourses" >
             <div 
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-            class="course-box"> {{course.courseName}} </div>
+            class="course-box"> <h3>{{course.courseName}} </h3> </div>
         </div>
         <div class="clearfix"> </div>
 
@@ -13,12 +13,14 @@
         <div ng-repeat="course in recentCourses" >
             <div
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-            class="course-box"> {{course.courseName}} </div>
+            class="course-box"> <h3> {{course.courseName}} </h3> </div>
         </div>
         <div class="clearfix"> </div>
         
         <h3> Metrics Overview </h3>
         <div>Some metrics will be displayed here.</div>
+        
+       
 
         <h3> Badges Earned </h3>
         <div>Badges earned will be displayed here.</div>

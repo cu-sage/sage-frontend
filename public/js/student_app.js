@@ -2,7 +2,8 @@ var studentApp = angular.module('studentApp', [
     'ngRoute',
     'vjs.video',
     'ngFileUpload',
-    'satellizer'
+    'satellizer',
+    'highcharts-ng'
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'

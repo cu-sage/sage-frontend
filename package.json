@@ -18,17 +18,21 @@
   "homepage": "https://github.com/chickenPopcorn/SAGE-Project#readme",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-chart.js": "^1.1.1",
     "animate.css": "^3.5.2",
     "aws-sdk": "^2.7.10",
     "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
+    "chart.js": "^2.5.0",
     "express": "^4.14.0",
+    "highcharts-ng": "^1.1.0",
     "jwt-simple": "^0.5.1",
     "moment": "^2.17.1",
     "mongoose": "^4.7.2",
     "multer": "~1.2.0",
     "multer-s3": "^2.5.0",
     "ng-error": "^1.0.2",
+    "node-fetch": "^1.6.3",
     "vjs-video": "^0.1.6"
   }
 }

@@ -1,5 +1,26 @@
 <div class="starter-template ng-scope">
-This is where the flash object will be integrated.
+<div class="col-xs-9">
+	This is where the flash object will be integrated.	
+</div>
+<div class="col-xs-3">
+
+	<table class="table table-striped">
+        <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
+            <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+            <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
+            <td>{{result.description}}</td>
+            <td>
+                <div ng-repeat="action in result.actions">
+                    <p ng-if="action.type=='action_say'">
+                        {{action.command}}
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </table>
+	
+</div>
+
 </div>
 
 

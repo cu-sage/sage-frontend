@@ -160,24 +160,88 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
 router.get ('/course/:cid/leaderboard', function (req, res) {
     let {cid} = req.params;
-    enrollmentCourseModel.find ({
-        courseID : cid
-    }).then ((enrollments) => {
-        let allStudentIDs = enrollments.map ((singleEnrollment) => {
-            return singleEnrollment.studentID;
-        })
+    let studentScoreHash = {};
 
-        return allStudentIDs;
-    }).then((allStudentIDs) => {
+    Promise.all ([getCourseObject(cid), getAllEnrollments(cid)])
+    .then ((allData) => {
+        let courseObject = allData[0];
+        let enrollments = allData[1];
+        let allStudentIDs = getAllStudentIDsFromEnrollment (enrollments);
+        let allAssigmentIDs = getAllAssignmentIdsFromCourseObject (courseObject);
+        
+        return {allAssigmentIDs, allStudentIDs};
 
-        return userModel.find ({
-            '_id' : {'$in' : allStudentIDs}
-        }).lean().limit(5).exec();
-    }).then ((allStudents) => {
-        res.send(allStudents);
-    }).catch ((err) => {
-        res.status(500).send({error:error});
+
     })
+    .then ((response) => {
+        let {allStudentIDs, allAssigmentIDs} = response;
+
+        let fetches = allAssigmentIDs.map ((singleAssignmentID) => {
+
+            return fetchProgressObjectsForParticularAssignmentID(singleAssignmentID, allStudentIDs);
+        });
+
+
+
+        return Promise.all(fetches);
+
+    })
+    .then((responses) => {
+
+        let allJsons = responses.map ((singleResponse) => {
+            return singleResponse.json();
+        });
+        return Promise.all(allJsons)
+    })
+    .then((allJSONS)=> {
+        let allProgresses = []
+        allJSONS.map((singleAssignmentProgresses) => {
+            
+            singleAssignmentProgresses.map (singleStudentProgress => {
+
+                allProgresses.push( singleStudentProgress );
+            });
+        });
+
+
+        return allProgresses;
+
+    })
+    .then ((allProgresses) => {
+        let studentHash = {};
+
+        allProgresses.map ((singleProgress) => {
+
+            if ( studentHash.hasOwnProperty( singleProgress.studentID) ) {
+
+                studentHash[singleProgress.studentID] += getScore(singleProgress.results);
+            } else {
+                studentHash[singleProgress.studentID] = getScore(singleProgress.results);
+            }
+
+        });
+
+        return studentHash;
+    })
+    .then ((studentHash) => {
+        var studentIDs = [];
+        studentScoreHash = studentHash;
+        for (var k in studentHash) studentIDs.push(k);
+
+        return userModel.find ({_id : studentIDs}).lean().exec();
+        
+    })
+    .then ((students) => {
+        let responseToBeSent = students.map ((singleStudent) => {
+            singleStudent.points = studentScoreHash[singleStudent._id];
+            return singleStudent;
+        });
+        res.send(responseToBeSent);
+    })
+    .catch ((err) => {
+        console.log(err);
+        res.status (500).send(err);
+    });
 
 });
 
@@ -280,6 +344,38 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
 
 });
 
+let getCourseObject = (cid) => {
+        return courseModel.findOne ({_id : cid});
+};
 
+let getAllEnrollments = (cid) => {
+        return enrollmentCourseModel.find ({courseID : cid});
+};
 
+let getAllStudentIDsFromEnrollment = (enrollments) => {
+    return enrollments.map ((singleEnrollment) => {
+            return singleEnrollment.studentID;
+    });
+
+};
+let getAllAssignmentIdsFromCourseObject = (courseObject) => {
+    let allAssigments = courseObject.assignments; 
+    return allAssigments.map ((singleAssignment) => {
+        return singleAssignment.assignmentID;
+    });
+};
+
+let fetchProgressObjectsForParticularAssignmentID = (assignmentID, studentIDs) => {
+
+    return fetch(externalURLs.NODE_SERVER + 'progress/assignment/' + assignmentID + '?studentIDs=' + studentIDs.join(','));
+
+};
+let getScore = (resultsObject) => {
+    let score = 0;
+    for (key in resultsObject) {
+        score += resultsObject[key]
+    }
+    return score;
+
+};
 module.exports = router;

@@ -93,6 +93,7 @@ angular.module('studentApp')
 
                         $scope.enrollButtonToShow = !response.data.isEnrolled;
 
+                        $scope.numberOfAssignmentsDone = getNumberOfAssignmentsDonePercentage (response.data);
                         //static
                         $scope.course.resources = [
                             {'resourceID': 1, 'resourceName': 'Resource 1', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
@@ -140,6 +141,19 @@ angular.module('studentApp')
 
 
     }]);
+
+
+function getNumberOfAssignmentsDonePercentage (data) {
+    var numberOfAssignmentsDone = 0;
+
+    for (var i = 0; i < data.assignments.length; i ++) {
+        if (data.assignments[i].hasOwnProperty('results')) {
+            numberOfAssignmentsDone ++;
+        }
+    }
+
+    return Math.round(numberOfAssignmentsDone/data.assignments.length*100);
+}
 
 
 

@@ -14,8 +14,8 @@
 		<div ng-if="!enrollButtonToShow">
 			<div  class="progress">
 		        <div 
-		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{66.67}}%;">
-		            66.67%
+		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">
+		            {{numberOfAssignmentsDone}}%
 		        </div>
 		        
 		    </div>
@@ -47,7 +47,7 @@
 	
 	</ul>
 	<h3> Leaderboard </h3>
-	The following students are leading the in course. 
+	The following students are leading in this course. 
 	<table class="table table-striped">
 		<thead>
 	      <tr>

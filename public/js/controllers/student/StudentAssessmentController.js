@@ -2,8 +2,8 @@ angular.module('studentApp')
     .controller('StudentAssessmentController', function(Upload, $window, $location, $scope) {
         var path = $location.path().split('/');
         $scope.path = path[1];
-        $scope.sid = path[2];
-        console.log(path);
+        $scope.sid = path[path.length-1];
+        $scope.assignmentID = path[path.indexOf('assessment')+1];
         var results = [
                     {
                         "description": "Block type sensing should be present",
@@ -52,4 +52,6 @@ angular.module('studentApp')
 
                 ];
         $scope.results = results;
+        $scope.progress = "33";
+        $scope.level = "Basic";
     });

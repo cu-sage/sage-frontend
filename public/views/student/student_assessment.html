@@ -1,9 +1,23 @@
 <div class="starter-template ng-scope">
-<div class="col-xs-9">
-	This is where the flash object will be integrated.	
+<div style="position: relative; height: 100%" class="col-xs-9">
+
+    <object style="position: absolute;" width="100%" height="100%">
+
+        <param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf">
+        <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}">
+
+    </object>
 </div>
 <div class="col-xs-3">
 
+    <div uib-collapse="isCollapsed">
+        <div class="alert alert-success"><strong>Success! </strong></div>
+    </div>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+            {{level}}
+        </div>
+    </div>
 	<table class="table table-striped">
         <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
             <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>

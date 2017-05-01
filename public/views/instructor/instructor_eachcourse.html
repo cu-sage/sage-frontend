@@ -10,7 +10,8 @@
 
         <li ng-repeat="each in assign" >
         	
-            <a href="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html">Assignment {{each.assignmentOrder}}
+            <!--a href="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html"-->
+            <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assignmentID}}/VAE"> Assignment {{each.assignmentOrder}}
                 <span class="sr-only"></span>
             </a>
         </li>

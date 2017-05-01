@@ -64,6 +64,10 @@ instructorApp
                 templateUrl: '/public/views/instructor/instructor_createLP.html',
                 controller: 'InstructorLPCreationController'
             })
+            .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/VAE', {
+                templateUrl: '/public/views/instructor/instructor_VAE.html',
+                controller: 'InstructorVAEController'
+            })
             .when('/', {
                 templateUrl: "/public/views/error.html"
             });

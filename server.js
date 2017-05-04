@@ -12,11 +12,12 @@ var multerS3 = require('multer-s3');
 AWS.config.loadFromPath("config/aws-config.json");
 var s3 = new AWS.S3();
 var mongoose = require('mongoose');
+let dbConfig = require ('./config/dbConfig.js');
 
 var Course = require('./models/courseModel.js');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://user:user@ds133328.mlab.com:33328/sage-login');
+mongoose.connect(dbConfig.DB);
 
 app.use('/public', express.static(__dirname + "/public"));
 

@@ -1,37 +1,18 @@
 # sage-frontend
+This is project is aimed at being the one-stop platform for SAGE.
 
-## Jimmy-Tianci-Branch
-Testing Server:  `Node.js`
-Package Management and Build Tool: `npm`
+#### Setup Instructions
+Install the following
+- Node
+- MongoDB
+- npm
 
-## Run
-First install `npm`. For Mac user with Homebrew, run `brew install npm` to install `npm`.
+Change the database path in `./config/dbConfig.js`. (Ask the Admin for this path)
+Run the following
+```sh
+$ npm install 
+$ nodemon server.js
 ```
- $ npm install
- $ node server.js
-```
+Your is now app is running on `http://localhost:3000/`
 
-## Pages
-```
-// student dashboard
-
-The student overview page can be access by the path:
-http://localhost:3000/student/#/overview/{sid}
-
-The student tasks page can be access by the path:
-http://localhost:3000/student/#/tasks/{sid}
-
-The student account page can be accessed by the path:
-http://localhost:3000/student/#/account/{sid}
-
-
-// instructor dashboard
-The instructor overview page can be access by the path:
-http://localhost:3000/instructor/#/overview/{id}
-
-The instructor upload video page can be access by the path:
-http://localhost:3000/instructor/#/uploadVideo/{id}
-
-```
-## Other
-More detials about this repo can be found in the wiki page. 
+Addtional info about APIs can be found [here](./routesReadme/APIsHome.md).

@@ -90,7 +90,7 @@ router.get('/recommendedCourses/student/:sid', function(req, res) {
 
 router.get('/recentCourses/student/:sid', function(req, res) {
 
-    //getting random two courses.
+    //getting random courses for now - NEEDS TO BE IMPLEMENTED
 
     courseModel.find().lean().exec()
     .then(function(response, error) {

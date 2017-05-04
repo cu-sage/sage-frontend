@@ -8,6 +8,7 @@ Install the following
 - npm
 
 Change the database path in `./config/dbConfig.js`. (Ask the Admin for this path)
+
 Run the following
 ```sh
 $ npm install 

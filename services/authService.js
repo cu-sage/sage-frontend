@@ -96,21 +96,38 @@ var login = function(email, password, callback) {
             return;
         }
 
-        bcrypt.compare(password, user.password, function(err, isMatch) {
-            if (!isMatch) {
-                callback({
+        if (password != user.password) {
+            callback({
                     status: 401,
                     message: {password: 'The password is not correct.'}
-                });
-                return;
-            }
+            });
+            return;
+        } else {
 
             user = user.toObject();
             delete user.password;
 
             var token = createToken(user);
             callback({status: 200, token: token, user: user});
-        });
+
+
+        }
+
+        // bcrypt.compare(password, user.password, function(err, isMatch) {
+        //     if (!isMatch) {
+        //         callback({
+        //             status: 401,
+        //             message: {password: 'The password is not correct.'}
+        //         });
+        //         return;
+        //     }
+
+        //     user = user.toObject();
+        //     delete user.password;
+
+        //     var token = createToken(user);
+        //     callback({status: 200, token: token, user: user});
+        // });
     });
 };
 

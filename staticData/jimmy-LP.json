@@ -1,0 +1,17 @@
+[
+  {
+    "LPname":"Control Flow",
+    "LPId" : "1222",
+    "description":"Series of courses dealing with Loops,conditionals and branching"
+  },
+  {
+    "LPname":"Computional Thinking",
+    "LPId" : "4771",
+    "description":"Series of courses to develop CT concepts"
+  },
+  {
+    "LPname":"Introduction to Databases",
+    "LPId" : "5121",
+    "description":"Series of courses regarding databases "
+  }
+]

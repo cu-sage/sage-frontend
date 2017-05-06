@@ -1,0 +1,35 @@
+<h2 class="sub-header">Courses Page</h2>
+<h3>Learning Paths  : </h3>
+<a href="#/coursePage/{{sid}}/createLP"><h6>&nbsp;Create new LP</h6></a>
+
+<h4>Learning Paths Created: </h4>
+<div>
+    <ul>
+        <li ng-repeat="LP in LPs" >
+            <a href="#/coursePage/{{sid}}/LP/{{LP.LPID}}"><h4>{{LP.LPName}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+            <p>Description : {{LP.desc}}</p>
+            
+        </li>
+    </ul>
+    
+</div>
+<hr>
+
+<h3>Courses : </h3>
+<a href="#/coursePage/{{sid}}/createcourse"><h6>&nbsp;Create new course</h6></a>
+
+<h4>Courses Created :</h4>
+<div>
+    <ul>
+        <li ng-repeat="course in coursesBy" >
+            <a href="#/coursePage/{{sid}}/eachcourse/{{course.courseID}}"><h4>{{course.courseName}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+            <p>Description : {{course.desc}}</p>
+            
+        </li>
+    </ul>
+    
+</div>

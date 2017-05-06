@@ -14,7 +14,7 @@ angular.module('mainApp').controller('LoginController',
                     if (response.data.user.role === 'student') {
                         $window.location.href = '/student/#/home/'+ response.data.user._id;
                     } else {
-                        $window.location.href = '/instructor/#/overview/' + response.data.user.fullname;
+                        $window.location.href = '/instructor/#/overview/' + response.data.user._id;
                     }
                 }).catch(function(response) {
                 $scope.errorMessage = {};

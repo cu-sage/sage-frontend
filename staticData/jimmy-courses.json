@@ -1,0 +1,26 @@
+[
+  {
+    "coursename":"Introduction to Polymorphism",
+    "id":"001",
+    "description":"Fundamentals of polymorphism and applications",
+    "studentsenrolled":"10"
+  },
+  {
+    "coursename":"Basic data Structures",
+    "id":"003",
+    "description":"Introduction to basic data structures,its operations and applications",
+    "studentsenrolled":"18"
+  },
+  {
+    "coursename":"Programming Fundamentals",
+    "id":"007",
+    "description":"Beginners level inderstanding of programming concepts",
+    "studentsenrolled":"50"
+  },
+  {
+    "coursename":"Logic for programming",
+    "id":"017",
+    "description":"Short introduction to understanding data flow and logic",
+    "studentsenrolled":"5"
+  }
+]

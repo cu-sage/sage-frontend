@@ -1,0 +1,60 @@
+{
+  "name": "Computional Thinking",
+  "id": "4771",
+  "description" : "Series of courses to develop CT concepts",
+  "count" : "5",
+  "courses": [
+    {
+      "name": "Logical Thinking",
+      "description": "Developing logical thinking in terms of programming",
+      "id": 1,
+      "order" : 1
+      
+    },
+    {
+      "name": "Abstraction",
+      "description": "Developing logical thinking in terms of programming",
+      "id": 3,
+      "order" : 2
+      
+    },
+    {
+      "name": "Intro to Data Structure",
+      "description": "Data structures and their uses",
+      "id": 2,
+      "order" : 3
+      
+    }
+  ],
+  "students_enrolled": [
+    {
+      "name": "Sirius Black",
+      "id": "001"
+         
+    },
+    {
+      "name": "Remus Lupin",
+      "id": "002"
+         
+    },
+    {
+      "name": "Severus Snape",
+      "id": "003"
+         
+    }
+        
+  ],
+  "students_completed": [
+    {
+      "name": "James Potter",
+      "id": "004"
+         
+    },
+    {
+      "name": "Lily Evans",
+      "id": "005"
+         
+    }
+        
+  ]
+}

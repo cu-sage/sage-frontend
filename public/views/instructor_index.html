@@ -38,7 +38,7 @@
                 </a>
             </li>
 
-            <li ng-class="{ active: isActive('tasks') }" ng-hide="true">
+            <!-- <li ng-class="{ active: isActive('tasks') }" ng-hide="true">
                 <a ng-href="#/tasks/{{sid}}">
                     <i class="glyphicon glyphicon-ok pull-right"></i>
                     Tasks
@@ -49,17 +49,30 @@
                     <i class="glyphicon glyphicon-home pull-right"></i>
                     Overview
                 </a>
-            </li>
+            </li> -->
             <li ng-class="{ active: isActive('help') }" ng-hide="true">
                 <a ng-href="#/help">
                     <i class="glyphicon glyphicon-flag pull-right"></i>
                     Help
                 </a>
             </li>
-            <li ng-class="{ active: isActive('uploadVideo') }">
+            <!-- <li ng-class="{ active: isActive('uploadVideo') }">
                 <a ng-href="#/uploadVideo/{{sid}}" >
                     <i class="glyphicon glyphicon-cloud-upload pull-right"></i>
                     Upload Video
+                </a>
+            </li> -->
+            <li ng-class="{ active: isActive('home1') }">
+                <a ng-href="#/home1/{{sid}}">
+                    <i class="glyphicon glyphicon-home pull-right"></i>
+                    Home
+                </a>
+            </li>
+
+            <li ng-class="{ active: isActive('coursePage') }">
+                <a ng-href="#/coursePage/{{sid}}">
+                    <i class="glyphicon glyphicon-home pull-right"></i>
+                    Courses/Learning Paths
                 </a>
             </li>
 
@@ -100,11 +113,30 @@
 <script src="/public/js/controllers/InstructorIndexController.js"></script>
 <script src="/public/js/controllers/InstructorOverviewController.js"></script>
 <script src="/public/js/controllers/InstructorUploadController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorHome1Controller.js"></script>
+<script src="/public/js/controllers/instructor/InstructorCourseController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorLPController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorEachCourseController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorCourseCreationController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorAssignmentCreationController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorDesignController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorVAEController.js"></script>
+
+
+<script src="/public/js/controllers/instructor/InstructorLPCreationController.js"></script>
+
+
+
+
+
+
 
 <!--Upload lib-->
 <script src="/public/js/lib/ng-file-upload/ng-file-upload.min.js"></script>
 <script src="/public/js/lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
 <script src="/node_modules/ng-error/ng-error.js"></script>
+
+<link href="/public/css/instructor/instructor_createCourse.css" rel="stylesheet">
 
 
 </body>

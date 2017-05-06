@@ -1,0 +1,28 @@
+<h2 class="sub-header">Learning Path : {{LP.name}}</h2>
+<h3>{{LP.description}} </h3>
+<div>
+<p>Courses in the learning path:</p>
+    <ul>
+        <li ng-repeat="each_course in LPcourses" >
+            <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.courseID}}"><h4>{{each_course.courseName}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+            <p>Description : {{each_course.desc}}</p>
+            
+        </li>
+    </ul>
+</div>
+
+<div>
+<p>Add Courses in the learning path:</p>
+    <ul>
+        <li ng-repeat="each_course in coursesBy" >
+            <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+                       
+        </li>
+    </ul>
+</div>
+
+</div>

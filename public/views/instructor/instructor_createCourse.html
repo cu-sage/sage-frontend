@@ -1,0 +1,16 @@
+<form novalidate class="simple-form" name="courseform" id="courseform">
+  <div class="c1">
+    <div class="head1">
+      <h2>Create Course</h2>
+    </div>
+    <input type="text" name="coursename" placeholder="Course Name" ng-model="course.name" ng-required="true" /><br />
+    <input  type="text" name="desc" ng-model="course.desc"  placeholder="Course Description" /><br />
+    <input type="text" ng-model="course.age"  placeholder="Age Group (10-12)" /><br />
+    <input type="text" ng-model="course.subject"  placeholder="Subjects " /><br />
+    <textarea type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />
+    
+    <button ng-click="reset()" value="Reset" >Reset</button>
+    <button ng-click="submitForm()" value="Save" >Save</button>
+    
+  </div>
+</form>

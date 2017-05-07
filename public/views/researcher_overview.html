@@ -1,0 +1,31 @@
+<h2 class="sub-header">Welcome, Researcher {{rid}}!</h2>
+
+<div class="panel panel-default">
+    <form ng-controller="ResearcherClusterController as cl"> 
+        <button id="enable" class="btn btn-success" type="button" ng-click="cl.cluster()">Enable clustering &amp; hint rule mining</button>
+        <button id="disable" class="btn btn-success" type="button" ng-click="cl.stop_cluster()">Disable clustering &amp; hint rule mining</button>
+        <!-- TODO: add "More info" text
+        <button class="btn btn-success" type="submit">More info</button>
+        -->
+    </form>
+</div>
+
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase=""http://macromedia.com/cabs/swflash.cab#version=25,0,0,148"" WIDTH="1000px" HEIGHT="100%" id="scratch" ALIGN="CENTER">
+    <PARAM NAME=movie VALUE="/public/views/scratch.swf">
+    <PARAM NAME=FlashVars VALUE="gspResults=machine_learning%2FRapidMiner-output%2Fgsp-rules-cluster0%2Eres">
+    <embed ng-src="/public/views/scratch.swf" FlashVars="gspResults=machine_learning%2FRapidMiner-output%2Fgsp-rules-cluster0%2Eres" quality="high" bgcolor="#FFFFFF" WIDTH="1000" HEIGHT="100%" NAME="scratch" ALIGN TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer" onerror="this.src='/public/views/scratch.swf';">
+</OBJECT>
+
+<!-- scripts -->
+<script>
+    var enable_button  = document.getElementById("enable");
+    var disable_button = document.getElementById("disable");
+    enable_button.onclick = function() {
+        enable_button.style.display = "none";
+        disable_button.style.display = "inline";
+    };
+    disable_button.onclick = function() {
+        disable_button.style.display = "none";
+        enable_button.style.display = "inline";
+    };
+</script>

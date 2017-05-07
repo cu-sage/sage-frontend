@@ -54,6 +54,31 @@ router.get("/instructors/:id", function(req, res) {
 
 });
 
+router.get("/researchers/:id", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-instructor.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
 router.get("/instructors/:id/courses/:cid/hw/:hid", function(req, res) {
     authService.getUser(req, function(user) {
         var userId = user._id;

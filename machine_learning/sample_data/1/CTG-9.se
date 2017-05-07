@@ -1,0 +1,22 @@
+<<Object Stage>>
+		<<Object Cursor>>
+				whenGreenFlag
+				show
+				timerReset
+				doIf
+						&
+						>
+						mouseX
+						<
+						mouseX
+				doIfElse
+						=
+						readVariable
+						doIf
+						=
+						readVariable
+						doIf
+						<
+						mouseY
+						broadcast:
+						broadcast:

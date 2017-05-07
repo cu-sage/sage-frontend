@@ -1,4 +1,4 @@
-var instructorApp = angular.module('instructorApp', [
+var researcherApp = angular.module('researcherApp', [
     'ngRoute',
     'ngFileUpload',
     'satellizer'
@@ -7,24 +7,12 @@ var instructorApp = angular.module('instructorApp', [
     //'ui.bootstrap'
 ]);
 
-instructorApp
+researcherApp
     .config(function($routeProvider, $authProvider) {
         $routeProvider
-            .when('/overview/:sid', {
-                templateUrl: '/public/views/instructor_overview.html',
-                controller: 'InstructorOverviewController'
-            })
-            .when('/uploadVideo/:sid', {
-                templateUrl: '/public/views/instructor_upload.html',
-                controller: 'InstructorUploadController'
-            })
-            .when('/overview/:sid/courses/:cid', {
-                templateUrl: '/public/views/instructor_overview.html',
-                controller: 'InstructorOverviewController'
-            })
-            .when('/overview/:sid/courses/:cid/hw/:hid', {
-                templateUrl: '/public/views/instructor_overview.html',
-                controller: 'InstructorOverviewController'
+            .when('/overview/:rid', {
+                templateUrl: '/public/views/researcher_overview.html',
+                controller: 'ResearcherOverviewController'
             })
             .when('/', {
                 templateUrl: "/public/views/error.html"

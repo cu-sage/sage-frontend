@@ -1,0 +1,9 @@
+				whenGreenFlag
+				show
+				timerReset
+				doIf
+						&
+						>
+						mouseX
+						<
+						mouseX

@@ -72,7 +72,7 @@ def write_output(data, name, labels=None):
 
 def main():
     if len(sys.argv) != 2:
-        usage = 'Usage: python 1-k-medioids-features.py '
+        usage = 'Usage: python 1-k-medoids-features.py '
         usage += '</path/to/dir/containing/student/dirs/with/se/files/to/cluster>'
         raise IndexError(usage)
         sys.exit(1)

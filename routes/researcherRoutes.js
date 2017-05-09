@@ -148,7 +148,7 @@ var kMedCentroids = function(error, stdout, stderr, input_dirs) {
 var kMedClusterRM = function(error, stdout, stderr, input_dirs) {
     if (!clusteringOn) return;
     if (error) {
-        console.error(`exec error running 1-k-medioids-features.py: ${error}`);
+        console.error(`exec error running 1-k-medoids-features.py: ${error}`);
         return;
     }
 
@@ -179,7 +179,7 @@ var kMedClusterFeatures = function() {
     try {
         // enter relevant file/directory pathnames 
         // dir containing all .se snapshot files to cluster 
-        var data_dir = '/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/sample_data';
+        var data_dir = 'machine_learning/sample_data';
         // dir containing machine learning scripts, relative to current dir
         var rel_ml_dir = 'machine_learning/ml-scripts';
         var rm_script = "\"/Applications/RapidMiner Studio.app/Contents/Resources/RapidMiner-Studio/scripts/rapidminer-batch.sh\"";
@@ -187,8 +187,7 @@ var kMedClusterFeatures = function() {
 
         input_dirs = [data_dir, rel_ml_dir, rm_script, rm_repo_dir];
 
-        var cmd = 'python ' + rel_ml_dir + '/1-k-medioids-features.py ' + data_dir;
-        //var args = [rel_ml_dir + '/1-k-medioids-features.py', data_dir];
+        var cmd = 'python ' + rel_ml_dir + '/1-k-medoids-features.py ' + data_dir;
         console.log('$ ' + cmd);
 
         var stdout = exec(cmd, (error, stdout, stderr) => { 

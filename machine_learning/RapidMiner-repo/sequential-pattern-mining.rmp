@@ -41,24 +41,32 @@
           <parameter key="1" value="show.true.integer.attribute"/>
           <parameter key="2" value="timerReset.true.integer.attribute"/>
           <parameter key="3" value="doIf.true.integer.attribute"/>
-          <parameter key="4" value="mouseX.true.integer.attribute"/>
-          <parameter key="5" value="doIfElse.true.integer.attribute"/>
-          <parameter key="6" value="readVariable.true.integer.attribute"/>
-          <parameter key="7" value="mouseY.true.integer.attribute"/>
-          <parameter key="8" value="broadcast:.true.integer.attribute"/>
-          <parameter key="9" value="lookLike:.true.integer.attribute"/>
-          <parameter key="10" value="setSizeTo:.true.integer.attribute"/>
-          <parameter key="11" value="heading:.true.integer.attribute"/>
-          <parameter key="12" value="turnLeft:.true.integer.attribute"/>
-          <parameter key="13" value="turnRight:.true.integer.attribute"/>
-          <parameter key="14" value="setVar:to:.true.integer.attribute"/>
-          <parameter key="15" value="heading.true.integer.attribute"/>
-          <parameter key="16" value="gotoX:y:.true.integer.attribute"/>
-          <parameter key="17" value="hide.true.integer.attribute"/>
-          <parameter key="18" value="procDef.true.integer.attribute"/>
-          <parameter key="19" value="computeFunction:of:.true.integer.attribute"/>
-          <parameter key="20" value="student.true.integer.id"/>
-          <parameter key="21" value="timestamp.true.integer.label"/>
+          <parameter key="4" value="&amp;.true.integer.attribute"/>
+          <parameter key="5" value="&gt;.true.integer.attribute"/>
+          <parameter key="6" value="mouseX.true.integer.attribute"/>
+          <parameter key="7" value="&lt;.true.integer.attribute"/>
+          <parameter key="8" value="doIfElse.true.integer.attribute"/>
+          <parameter key="9" value="=.true.integer.attribute"/>
+          <parameter key="10" value="readVariable.true.integer.attribute"/>
+          <parameter key="11" value="mouseY.true.integer.attribute"/>
+          <parameter key="12" value="broadcast:.true.integer.attribute"/>
+          <parameter key="13" value="lookLike:.true.integer.attribute"/>
+          <parameter key="14" value="setSizeTo:.true.integer.attribute"/>
+          <parameter key="15" value="*.true.integer.attribute"/>
+          <parameter key="16" value="heading:.true.integer.attribute"/>
+          <parameter key="17" value="turnLeft:.true.integer.attribute"/>
+          <parameter key="18" value="turnRight:.true.integer.attribute"/>
+          <parameter key="19" value="setVar:to:.true.integer.attribute"/>
+          <parameter key="20" value="+.true.integer.attribute"/>
+          <parameter key="21" value="heading.true.integer.attribute"/>
+          <parameter key="22" value="gotoX:y:.true.integer.attribute"/>
+          <parameter key="23" value="hide.true.integer.attribute"/>
+          <parameter key="24" value="procDef.true.integer.attribute"/>
+          <parameter key="25" value="-.true.integer.attribute"/>
+          <parameter key="26" value="/.true.integer.attribute"/>
+          <parameter key="27" value="computeFunction:of:.true.integer.attribute"/>
+          <parameter key="28" value="student.true.numeric.id"/>
+          <parameter key="29" value="timestamp.true.numeric.label"/>
         </list>
         <parameter key="read_not_matching_values_as_missings" value="true"/>
         <parameter key="datamanagement" value="double_array"/>
@@ -81,15 +89,7 @@
         <parameter key="min" value="0.0"/>
         <parameter key="max" value="0.0"/>
       </operator>
-      <operator activated="true" class="fp_growth" compatibility="7.4.000" expanded="true" height="82" name="FP-Growth" width="90" x="313" y="34">
-        <parameter key="find_min_number_of_itemsets" value="false"/>
-        <parameter key="min_number_of_itemsets" value="100"/>
-        <parameter key="max_number_of_retries" value="15"/>
-        <parameter key="min_support" value="0.9"/>
-        <parameter key="max_items" value="2"/>
-        <parameter key="keep_example_set" value="false"/>
-      </operator>
-      <operator activated="true" class="generalized_sequential_patterns" compatibility="7.4.000" expanded="true" height="82" name="GSP" width="90" x="447" y="34">
+      <operator activated="true" class="generalized_sequential_patterns" compatibility="7.4.000" expanded="true" height="82" name="GSP" width="90" x="313" y="34">
         <parameter key="customer_id" value="student"/>
         <parameter key="time_attribute" value="timestamp"/>
         <parameter key="min_support" value="0.9"/>
@@ -98,7 +98,7 @@
         <parameter key="min_gap" value="0.0"/>
         <parameter key="positive_value" value="true"/>
       </operator>
-      <operator activated="true" class="write_csv" compatibility="7.4.000" expanded="true" height="82" name="Write CSV" width="90" x="648" y="187">
+      <operator activated="true" class="write_csv" compatibility="7.4.000" expanded="true" height="82" name="Write CSV" width="90" x="514" y="187">
         <parameter key="csv_file" value="/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/RapidMiner-output/gsp-data.csv"/>
         <parameter key="column_separator" value=","/>
         <parameter key="write_attribute_names" value="true"/>
@@ -107,14 +107,13 @@
         <parameter key="append_to_file" value="false"/>
         <parameter key="encoding" value="SYSTEM"/>
       </operator>
-      <operator activated="true" class="multiply" compatibility="7.4.000" expanded="true" height="103" name="Multiply" width="90" x="648" y="34"/>
-      <operator activated="true" class="write_as_text" compatibility="7.4.000" expanded="true" height="82" name="Write as Text" width="90" x="782" y="187">
+      <operator activated="true" class="multiply" compatibility="7.4.000" expanded="true" height="103" name="Multiply" width="90" x="514" y="34"/>
+      <operator activated="true" class="write_as_text" compatibility="7.4.000" expanded="true" height="82" name="Write as Text" width="90" x="648" y="187">
         <parameter key="result_file" value="/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/RapidMiner-output/gsp-rules-cluster0.res"/>
         <parameter key="encoding" value="SYSTEM"/>
       </operator>
       <connect from_op="Read CSV" from_port="output" to_op="Numerical to Binominal" to_port="example set input"/>
-      <connect from_op="Numerical to Binominal" from_port="example set output" to_op="FP-Growth" to_port="example set"/>
-      <connect from_op="FP-Growth" from_port="example set" to_op="GSP" to_port="example set"/>
+      <connect from_op="Numerical to Binominal" from_port="example set output" to_op="GSP" to_port="example set"/>
       <connect from_op="GSP" from_port="example set" to_op="Write CSV" to_port="input"/>
       <connect from_op="GSP" from_port="patterns" to_op="Multiply" to_port="input"/>
       <connect from_op="Multiply" from_port="output 1" to_port="result 1"/>

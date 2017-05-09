@@ -29,7 +29,7 @@ def get_centroids(remove_cluster_names, trigram_data):
     return centroid_snapshots
 
 def write_output(centroids):
-    output_file = '/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/ml-output/centroid-output.txt'
+    output_file = 'machine_learning/ml-output/centroid-output.txt'
     output = open(output_file, 'w') 
     to_write = ''
     for c in centroids:

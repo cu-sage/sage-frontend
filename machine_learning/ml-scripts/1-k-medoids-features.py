@@ -12,7 +12,7 @@ app = Flask(__name__)
 def ngram(data, n):
     vectorizer = CountVectorizer(token_pattern=u'(?u)\\b\\w+\\b',
             ngram_range=(1,n), min_df=0)
-    # tokenize and count occurrences of each bigram in each document
+    # tokenize and count occurrences of each n-gram in each document
     ngram_ct = vectorizer.fit_transform(data) # sparse csr_matrix
     return ngram_ct
 
@@ -98,9 +98,11 @@ def main():
             data_one_line = clean_data_line(data)
             all_data.append(data_one_line)
 
+    # BIGRAM
+    #data_rep = ngram(all_data, 2)
     # TRIGRAM
-    trigram_rep = ngram(all_data, 3)
-    write_output(trigram_rep, 'trigram', labels)
+    data_rep = ngram(all_data, 3)
+    write_output(data_rep, 'trigram', labels)
 
 
 if __name__ == '__main__':

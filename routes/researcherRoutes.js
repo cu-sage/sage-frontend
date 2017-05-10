@@ -222,6 +222,9 @@ router.post('/stop', function(req, res) {
 
 //router.get('/machine_learning/RapidMiner-output/gsp-rules-cluster0.res', function(req, res) {
 router.get('/gsprules', function(req, res) {
+    if (fs.existsSync('machine_learning/RapidMiner-output/gsp-rules-cluster0.res') == false) {
+        return null;
+    }
     fs.readFile('machine_learning/RapidMiner-output/gsp-rules-cluster0.res', (err, data) => {
         if (err) throw err;
         res.send(data);

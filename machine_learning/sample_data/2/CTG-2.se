@@ -1,0 +1,4 @@
+<<Object Stage>>
+		<<Object Cursor>>
+				whenGreenFlag
+				show

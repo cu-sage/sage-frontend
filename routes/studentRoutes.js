@@ -376,6 +376,6 @@ let getScore = (resultsObject) => {
         score += resultsObject[key]
     }
     return score;
-
 };
+
 module.exports = router;

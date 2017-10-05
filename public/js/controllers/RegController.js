@@ -2,10 +2,14 @@ angular.module('mainApp').
     controller('RegController', function($scope, $auth, $location) {
 
         $scope.signup = function() {
-            if ($scope.signInAs) {
+            if ($scope.signInAs == 'student') {
                 $scope.role = 'student';
-            } else {
+            } else if ($scope.signInAs == 'researcher') {
+                $scope.role = 'researcher';
+            } else if ($scope.signInAs == 'instructor') {
                 $scope.role = 'instructor';
+            } else { // role was not defined by user
+                $scope.role = 'student'; // set to student by default
             }
             var user = {
                 email: $scope.email,

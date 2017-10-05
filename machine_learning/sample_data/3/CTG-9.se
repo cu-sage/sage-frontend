@@ -1,0 +1,11 @@
+<<Object Stage>>
+		<<Object Cursor>>
+				whenGreenFlag
+				show
+				timerReset
+				doIf
+						&
+						>
+						mouseX
+						<
+						mouseX

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.4.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.4.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="7.4.000" expanded="true" height="68" name="Read CSV" width="90" x="45" y="34">
+        <parameter key="csv_file" value="/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/ml-output/output-k-medioids-features-with-labels-trigram.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="false"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="date_format" value=""/>
+        <parameter key="first_row_as_names" value="false"/>
+        <list key="annotations">
+          <parameter key="0" value="Name"/>
+        </list>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="0.true.integer.attribute"/>
+          <parameter key="1" value="1.true.integer.attribute"/>
+          <parameter key="2" value="2.true.integer.attribute"/>
+          <parameter key="3" value="3.true.integer.attribute"/>
+          <parameter key="4" value="4.true.integer.attribute"/>
+          <parameter key="5" value="5.true.integer.attribute"/>
+          <parameter key="6" value="6.true.integer.attribute"/>
+          <parameter key="7" value="7.true.integer.attribute"/>
+          <parameter key="8" value="8.true.integer.attribute"/>
+          <parameter key="9" value="9.true.integer.attribute"/>
+          <parameter key="10" value="10.true.integer.attribute"/>
+          <parameter key="11" value="11.true.integer.attribute"/>
+          <parameter key="12" value="12.true.integer.attribute"/>
+          <parameter key="13" value="13.true.integer.attribute"/>
+          <parameter key="14" value="14.true.integer.attribute"/>
+          <parameter key="15" value="15.true.integer.attribute"/>
+          <parameter key="16" value="16.true.integer.attribute"/>
+          <parameter key="17" value="17.true.integer.attribute"/>
+          <parameter key="18" value="18.true.integer.attribute"/>
+          <parameter key="19" value="19.true.integer.attribute"/>
+          <parameter key="20" value="20.true.integer.attribute"/>
+          <parameter key="21" value="21.true.integer.attribute"/>
+          <parameter key="22" value="22.true.integer.attribute"/>
+          <parameter key="23" value="23.true.integer.attribute"/>
+          <parameter key="24" value="24.true.integer.attribute"/>
+          <parameter key="25" value="25.true.integer.attribute"/>
+          <parameter key="26" value="26.true.integer.attribute"/>
+          <parameter key="27" value="27.true.integer.attribute"/>
+          <parameter key="28" value="28.true.integer.attribute"/>
+          <parameter key="29" value="29.true.integer.attribute"/>
+          <parameter key="30" value="30.true.integer.attribute"/>
+          <parameter key="31" value="31.true.integer.attribute"/>
+          <parameter key="32" value="32.true.integer.attribute"/>
+          <parameter key="33" value="33.true.integer.attribute"/>
+          <parameter key="34" value="34.true.integer.attribute"/>
+          <parameter key="35" value="35.true.integer.attribute"/>
+          <parameter key="36" value="36.true.integer.attribute"/>
+          <parameter key="37" value="37.true.integer.attribute"/>
+          <parameter key="38" value="38.true.integer.attribute"/>
+          <parameter key="39" value="39.true.integer.attribute"/>
+          <parameter key="40" value="40.true.integer.attribute"/>
+          <parameter key="41" value="41.true.integer.attribute"/>
+          <parameter key="42" value="42.true.integer.attribute"/>
+          <parameter key="43" value="43.true.integer.attribute"/>
+          <parameter key="44" value="44.true.integer.attribute"/>
+          <parameter key="45" value="45.true.integer.attribute"/>
+          <parameter key="46" value="46.true.integer.attribute"/>
+          <parameter key="47" value="47.true.integer.attribute"/>
+          <parameter key="48" value="48.true.integer.attribute"/>
+          <parameter key="49" value="49.true.integer.attribute"/>
+          <parameter key="50" value="50.true.integer.attribute"/>
+          <parameter key="51" value="51.true.integer.attribute"/>
+          <parameter key="52" value="52.true.integer.attribute"/>
+          <parameter key="53" value="53.true.integer.attribute"/>
+          <parameter key="54" value="54.true.integer.attribute"/>
+          <parameter key="55" value="55.true.integer.attribute"/>
+          <parameter key="56" value="56.true.integer.attribute"/>
+          <parameter key="57" value="57.true.integer.attribute"/>
+          <parameter key="58" value="58.true.integer.attribute"/>
+          <parameter key="59" value="59.true.integer.attribute"/>
+          <parameter key="60" value="60.true.integer.attribute"/>
+          <parameter key="61" value="61.true.integer.attribute"/>
+          <parameter key="62" value="62.true.integer.attribute"/>
+          <parameter key="63" value="63.true.integer.attribute"/>
+          <parameter key="64" value="64.true.integer.attribute"/>
+          <parameter key="65" value="65.true.integer.attribute"/>
+          <parameter key="66" value="66.true.integer.attribute"/>
+          <parameter key="67" value="67.true.integer.attribute"/>
+          <parameter key="68" value="68.true.integer.attribute"/>
+          <parameter key="69" value="69.true.integer.attribute"/>
+          <parameter key="70" value="70.true.integer.attribute"/>
+          <parameter key="71" value="71.true.integer.attribute"/>
+          <parameter key="72" value="72.true.integer.attribute"/>
+          <parameter key="73" value="73.true.integer.attribute"/>
+          <parameter key="74" value="74.true.integer.attribute"/>
+          <parameter key="75" value="75.true.integer.attribute"/>
+          <parameter key="76" value="76.true.integer.attribute"/>
+          <parameter key="77" value="77.true.integer.attribute"/>
+          <parameter key="78" value="78.true.integer.attribute"/>
+          <parameter key="79" value="79.true.integer.attribute"/>
+          <parameter key="80" value="80.true.integer.attribute"/>
+          <parameter key="81" value="81.true.integer.attribute"/>
+          <parameter key="82" value="82.true.integer.attribute"/>
+          <parameter key="83" value="83.true.integer.attribute"/>
+          <parameter key="84" value="84.true.integer.attribute"/>
+          <parameter key="85" value="85.true.integer.attribute"/>
+          <parameter key="86" value="86.true.integer.attribute"/>
+          <parameter key="87" value="87.true.integer.attribute"/>
+          <parameter key="88" value="88.true.integer.attribute"/>
+          <parameter key="89" value="89.true.integer.attribute"/>
+          <parameter key="90" value="90.true.integer.attribute"/>
+          <parameter key="91" value="91.true.integer.attribute"/>
+          <parameter key="92" value="92.true.integer.attribute"/>
+          <parameter key="93" value="93.true.integer.attribute"/>
+          <parameter key="94" value="94.true.integer.attribute"/>
+          <parameter key="95" value="95.true.integer.attribute"/>
+          <parameter key="96" value="96.true.integer.attribute"/>
+          <parameter key="97" value="97.true.integer.attribute"/>
+          <parameter key="98" value="98.true.integer.attribute"/>
+          <parameter key="99" value="99.true.integer.attribute"/>
+          <parameter key="100" value="100.true.integer.attribute"/>
+          <parameter key="101" value="101.true.integer.attribute"/>
+          <parameter key="102" value="102.true.integer.attribute"/>
+          <parameter key="103" value="103.true.integer.attribute"/>
+          <parameter key="104" value="104.true.integer.attribute"/>
+          <parameter key="105" value="105.true.integer.attribute"/>
+          <parameter key="106" value="106.true.integer.attribute"/>
+          <parameter key="107" value="107.true.integer.attribute"/>
+          <parameter key="108" value="108.true.integer.attribute"/>
+          <parameter key="109" value="109.true.integer.attribute"/>
+          <parameter key="110" value="110.true.integer.attribute"/>
+          <parameter key="111" value="111.true.integer.attribute"/>
+          <parameter key="112" value="112.true.integer.attribute"/>
+          <parameter key="113" value="113.true.integer.attribute"/>
+          <parameter key="114" value="114.true.integer.attribute"/>
+          <parameter key="115" value="115.true.integer.attribute"/>
+          <parameter key="116" value="116.true.integer.attribute"/>
+          <parameter key="117" value="117.true.integer.attribute"/>
+          <parameter key="118" value="118.true.integer.attribute"/>
+          <parameter key="119" value="119.true.integer.attribute"/>
+          <parameter key="120" value="120.true.integer.attribute"/>
+          <parameter key="121" value="121.true.integer.attribute"/>
+          <parameter key="122" value="122.true.integer.attribute"/>
+          <parameter key="123" value="123.true.integer.attribute"/>
+          <parameter key="124" value="124.true.integer.attribute"/>
+          <parameter key="125" value="125.true.integer.attribute"/>
+          <parameter key="126" value="126.true.integer.attribute"/>
+          <parameter key="127" value="127.true.integer.attribute"/>
+          <parameter key="128" value="128.true.integer.attribute"/>
+          <parameter key="129" value="129.true.integer.attribute"/>
+          <parameter key="130" value="130.true.integer.attribute"/>
+          <parameter key="131" value="131.true.integer.attribute"/>
+          <parameter key="132" value="132.true.integer.attribute"/>
+          <parameter key="133" value="133.true.integer.attribute"/>
+          <parameter key="134" value="134.true.integer.attribute"/>
+          <parameter key="135" value="135.true.integer.attribute"/>
+          <parameter key="136" value="136.true.integer.attribute"/>
+          <parameter key="137" value="137.true.integer.attribute"/>
+          <parameter key="138" value="138.true.integer.attribute"/>
+          <parameter key="139" value="139.true.integer.attribute"/>
+          <parameter key="140" value="filename.true.text.label"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+        <parameter key="data_management" value="auto"/>
+      </operator>
+      <operator activated="true" class="k_medoids" compatibility="7.4.000" expanded="true" height="82" name="Clustering" width="90" x="179" y="34">
+        <parameter key="add_cluster_attribute" value="true"/>
+        <parameter key="add_as_label" value="false"/>
+        <parameter key="remove_unlabeled" value="false"/>
+        <parameter key="k" value="4"/>
+        <parameter key="max_runs" value="100"/>
+        <parameter key="max_optimization_steps" value="100"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <parameter key="measure_types" value="NumericalMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="CosineSimilarity"/>
+        <parameter key="divergence" value="GeneralizedIDivergence"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+      </operator>
+      <operator activated="true" class="write_csv" compatibility="7.4.000" expanded="true" height="82" name="Write CSV" width="90" x="447" y="238">
+        <parameter key="csv_file" value="/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/RapidMiner-output/clustered-set-cosine-4clusters.csv"/>
+        <parameter key="column_separator" value=","/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="true"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
+      </operator>
+      <operator activated="true" class="extract_prototypes" compatibility="7.4.000" expanded="true" height="82" name="Extract Cluster Prototypes" width="90" x="313" y="34"/>
+      <operator activated="true" class="write_csv" compatibility="7.4.000" expanded="true" height="82" name="Write CSV (2)" width="90" x="447" y="136">
+        <parameter key="csv_file" value="/Users/AliSawyer/Documents/SeniorSpring/SAGE-project/sage-frontend/machine_learning/RapidMiner-output/centroids-cosine-4clusters.csv"/>
+        <parameter key="column_separator" value=","/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="true"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
+      </operator>
+      <connect from_op="Read CSV" from_port="output" to_op="Clustering" to_port="example set"/>
+      <connect from_op="Clustering" from_port="cluster model" to_op="Extract Cluster Prototypes" to_port="model"/>
+      <connect from_op="Clustering" from_port="clustered set" to_op="Write CSV" to_port="input"/>
+      <connect from_op="Write CSV" from_port="through" to_port="result 2"/>
+      <connect from_op="Extract Cluster Prototypes" from_port="example set" to_op="Write CSV (2)" to_port="input"/>
+      <connect from_op="Extract Cluster Prototypes" from_port="model" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+    </process>
+  </operator>
+</process>

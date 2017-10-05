@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var stats = require("./routes/stats");
 var studentRoutes = require("./routes/studentRoutes.js");
+var researcherRoutes = require("./routes/researcherRoutes.js");
 var authRouter = require('./routes/auth');
 var multer = require('multer');
 var AWS = require('aws-sdk');
@@ -31,9 +32,16 @@ app.use(bodyParser.json());
 app.use('/stats', stats);
 
 app.use('/student', studentRoutes);
+app.use('/researcher', researcherRoutes);
 
 app.get('/instructor/', function(req, res) {
     res.sendFile("instructor_index.html", {
+        root: path.join(__dirname, '/public/views')
+    });
+});
+
+app.get('/researcher/', function(req, res) {
+    res.sendFile("researcher_index.html", {
         root: path.join(__dirname, '/public/views')
     });
 });
@@ -93,6 +101,7 @@ app.post('/uploadVideo', jsonParser, function(req, res) {
         res.json({error_code:0, err_desc:null});
     });
 });
+
 
 app.listen(3000, function() {
     console.log('Example app listening on port 3000!');

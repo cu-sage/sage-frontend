@@ -344,3 +344,4 @@ router.post("/instructors/:id/LP/:LPid/addCourse/:cid", function(req, res) {
         });
 });
 
+module.exports = router;

@@ -1,7 +1,8 @@
 var instructorApp = angular.module('instructorApp', [
     'ngRoute',
     'ngFileUpload',
-    'satellizer'
+    'satellizer',
+    'treeControl'
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'

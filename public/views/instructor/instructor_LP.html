@@ -1,20 +1,31 @@
-<h2 class="sub-header">Learning Path : {{LP.name}}</h2>
-<h3>{{LP.description}} </h3>
+<h2 class="sub-header">Mission : {{LP.LPName}}</h2>
+<h4>{{LP.desc}} </h4>
+<h5>Backstory : {{LP.features}}</h5>
+<form novalidate class="simple-form" name="QuestOrderform">
 <div>
-<p>Courses in the learning path:</p>
+<p>Quests in the Mission:</p>
     <ul>
         <li ng-repeat="each_course in LPcourses" >
             <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.courseID}}"><h4>{{each_course.courseName}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
+            Quest Learning Order :
+            <select  ng-model="orderSt[each_course.courseID]"> <!-- ng-change="updateOrder('{{each_course.courseID}}')" -->
+                <option ng-repeat="x in order" ng-value="{{x}}">{{x}}</option>
+                 <!-- ng-selected="{{x == each_course.order}}" -->
+            </select>
             <p>Description : {{each_course.desc}}</p>
             
         </li>
     </ul>
 </div>
 
+    <button ng-click="updateOrder()" value="Update Order" >Update Order</button>
+    
+
+</form>
 <div>
-<p>Add Courses in the learning path:</p>
+<p>Add from following Quests in the Mission:</p>
     <ul>
         <li ng-repeat="each_course in coursesBy" >
             <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
@@ -24,5 +35,5 @@
         </li>
     </ul>
 </div>
-
+<pre>user = {{orderSt}}</pre>
 </div>

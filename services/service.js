@@ -147,19 +147,42 @@ var addCoursetoLP = function(order , courseID, LPid, callback) {
         callback(
                 {status: 404, message: {error: 'LP doesnt exist.'}});
             
-
-        
-            
-        
     });
 };
+
+
+
+var updateCourseOrderInLP = function(courses , LPid, callback) {
+    LPModel.findOne({_id: { $in: [ LPid ] }}, function(err, existingLP) {
+        if (existingLP) {
+
+        LPModel.update({_id: { $in: [ LPid ] }},{ $set: { courses: courses } },function(err, msg) {
+            if(!err){
+                console.log(msg);
+                callback({status: 200, message: {"message" : "Course order successfully updated."}});
+            }
+            else 
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+        return;
+            
+        }
+        callback(
+                {status: 404, message: {error: 'LP doesnt exist.'}});
+            
+    });
+};
+
+
 
 module.exports = {
     // isAuthenticated: isAuthenticated,
     newcourse: newcourse,
     newassignment:newassignment,
     addCoursetoLP:addCoursetoLP,
-    newLP:newLP
+    newLP:newLP,
+    updateCourseOrderInLP:updateCourseOrderInLP
     
 };
 

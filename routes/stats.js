@@ -10,6 +10,7 @@ var learningPathModel = require('../models/learningPathModel.js');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var service = require('../services/service');
+var curriculaItemModel = require('../models/curriculaItemModel.js');
 
 router.get("/students/:id", function(req, res) {
     authService.getUser(req, function(user) {
@@ -342,6 +343,38 @@ router.post("/instructors/:id/LP/:LPid/addCourse/:cid", function(req, res) {
                 res.status(404).send({message: json.message});
             }
         });
+});
+
+router.post("/instructors/:id/LP/:LPid/updateCourseOrder", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    var LPid = req.params.LPid;
+    service.updateCourseOrderInLP(req.body.courses, LPid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            } 
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+
+router.get("/instructors/:id/curricula_items", function(req, res) {
+    
+    
+    curriculaItemModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
 });
 
 module.exports = router;

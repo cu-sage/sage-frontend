@@ -2,17 +2,35 @@
 
    <div class="c1">
     <div class="head1">
-      <h2>Create LP</h2>
+      <h2>Create Mission</h2>
     </div>
-    <input type="text" name="LPname" ng-model="LP.name"  placeholder="LP Name" ng-required="true"/><br />
-    <input type="text" ng-model="LP.desc"  placeholder="LP Description" /><br />
-    <input type="text" ng-model="LP.age"  placeholder="Age Group (10-12)" /><br />
-    <input type="text" ng-model="LP.subject"  placeholder="Subjects " /><br />
-    <textarea type="text" ng-model="LP.feat"  placeholder="Other features (separated by comma):" /><br />
-    
+    <input type="text" name="LPname" ng-model="LP.name"  placeholder="Mission Name" ng-required="true"/><br />
+    <input type="text" ng-model="LP.desc"  placeholder="Mission Description" /><br />
+    <!-- <input type="text" ng-model="LP.age"  placeholder="Age Group (10-12)" /><br /> -->
+    <!-- <input type="text" ng-model="LP.subject"  placeholder="Subjects " /><br /> -->
+    <textarea type="text" ng-model="LP.feat"  placeholder="Backstory for the Mission" /><br />
+
+<!--     <div treecontrol class="tree-classic"
+   tree-model="dataForTheTree"
+   options="treeOptions"
+   on-selection="showSelected(node)"
+   selected-node="node1">
+   employee: {{node.name}} age {{node.age}}
+</div> -->
+<p>Please select the Focus of this mission from below:</p>
+<div style="background-color: #848484; margin: auto; width: 80%;">
+<treecontrol class="tree-dark"
+   tree-model="dataForTheTree"
+   options="treeOptions"
+   on-selection="showSelected(node, selected, selectedNodes)"
+   selected-node="selectedNodes">
+   {{node.name}}
+</treecontrol><br />
+</div>
+
     <button ng-click="reset()" value="Reset" >Reset</button>
     <button ng-click="submitForm()" value="Save" >Save</button>
     
   </div>
-  </form>
-  <pre>user = {{LP}}</pre>
+</form>
+<pre>user = {{LP}}</pre>

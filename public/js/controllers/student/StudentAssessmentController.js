@@ -4,6 +4,9 @@ angular.module('studentApp')
         $scope.path = path[1];
         $scope.sid = path[path.length-1];
         $scope.assignmentID = path[path.indexOf('assessment')+1];
+
+        // poll a GET request to node, send every second
+        // save to result
         var results = [
                     {
                         "description": "Block type sensing should be present",

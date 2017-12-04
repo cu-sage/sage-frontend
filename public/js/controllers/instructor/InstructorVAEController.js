@@ -13,8 +13,8 @@ angular.module('instructorApp')
         // $scope.isActiveHw = function (hw_id) {
         //     return hw_id == $routeParams.hid;
         // };
-
-        document.getElementById("vae").innerHTML='<object type="text/html" data="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html" style="width:100%; height: 100%;"></object>'
+            //C:\Users\yuval\Documents\School\Fall2017\SAGELab\sage-editor\app\editor
+        document.getElementById("vae").innerHTML='<object type="text/html" data="http://localhost:3001/app/editor/" style="width:100%; height: 100%;"></object>'
 
         $http.get("/stats/instructors/" + $routeParams.sid + "/courses/" + $routeParams.cid)
             .then(function(response) {

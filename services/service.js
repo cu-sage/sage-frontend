@@ -84,13 +84,14 @@ var newLP = function(LPname, desc, instructorid, features,ctConcepts, callback) 
 };
 
 //newassignment
-var newassignment = function(order, instructorid, courseid, callback) {
+var newassignment = function(values, instructorid, courseid, callback) {
     courseModel.findOne({_id: { $in: [ courseid ] }}, function(err, existingCourse) {
         if (existingCourse) {
 
             var aid = mongoose.Types.ObjectId();
             var newtest = {
-                "assignmentOrder":order,
+                "assignmentName": values.name,
+                "assignmentOrder":values.order,
                 "assigmentID":aid
 
             };
@@ -150,7 +151,50 @@ var addCoursetoLP = function(order , courseID, LPid, callback) {
     });
 };
 
+var removeAssignment = function(course_id, newAssignments, callback) {
+    //console.log("in remove assignment" + assignment_id);
+    courseModel.findOne({_id: { $in: [ course_id ] }}, function(err, existingLP) {
+        if (existingLP) {
+            //console.log(course_id+" going for update "+assignment_id);
+        //courseModel.update({_id: { $in: [ course_id ] }}, { $pull: {'assignments': {'assignments.assigmentID': assignment_id}}}, function(err, msg) {
+            courseModel.update({_id: { $in: [ course_id ] }},{ $set: { assignments: newAssignments } }, function(err, msg) {
+            if(!err){
+                console.log(msg);
+                callback({status: 200, message: {"message" : "Assignment successfully removed."}});
+            }
+            else 
+                callback({status:404 , message : {error : "Not saved into db"}});
 
+        });
+        return;
+            
+        }
+        callback(
+                {status: 404, message: {error: 'Course doesnt exist.'}});
+            
+    });
+};
+
+var updateCourse = function(coursename, desc , Courseid, callback) {
+    courseModel.findOne({_id: { $in: [ Courseid ] }}, function(err, existingLP) {
+        if (existingLP) {
+        courseModel.update({_id: { $in: [ Courseid ] }},{ $set: { courseName: coursename, desc: desc } },function(err, msg) {
+            if(!err){
+                console.log(msg);
+                callback({status: 200, message: {"message" : "Course order successfully updated."}});
+            }
+            else 
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+        return;
+            
+        }
+        callback(
+                {status: 404, message: {error: 'Course doesnt exist.'}});
+            
+    });
+};
 
 var updateCourseOrderInLP = function(courses , LPid, callback) {
     LPModel.findOne({_id: { $in: [ LPid ] }}, function(err, existingLP) {
@@ -182,6 +226,8 @@ module.exports = {
     newassignment:newassignment,
     addCoursetoLP:addCoursetoLP,
     newLP:newLP,
+    updateCourse:updateCourse,
+    removeAssignment: removeAssignment,
     updateCourseOrderInLP:updateCourseOrderInLP
     
 };

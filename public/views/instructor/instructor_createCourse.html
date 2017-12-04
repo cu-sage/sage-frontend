@@ -1,16 +1,33 @@
 <form novalidate class="simple-form" name="courseform" id="courseform">
   <div class="c1">
     <div class="head1">
-      <h2>Create Course</h2>
+      <h2>Create Quest</h2>
     </div>
-    <input type="text" name="coursename" placeholder="Course Name" ng-model="course.name" ng-required="true" /><br />
-    <input  type="text" name="desc" ng-model="course.desc"  placeholder="Course Description" /><br />
-    <input type="text" ng-model="course.age"  placeholder="Age Group (10-12)" /><br />
-    <input type="text" ng-model="course.subject"  placeholder="Subjects " /><br />
-    <textarea type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />
+    <input type="text" name="coursename" placeholder="Quest Name" ng-model="course.name" ng-required="true" /><br />
+    <textarea type="text" name="desc" id="desc" ng-model="course.desc"  placeholder="Quest Story" /><br />
+    <!--<input type="text" ng-model="course.age"  placeholder="Age Group (10-12)" /><br />-->
+
+    <p>Please select the Focus of this quest from below:</p>
+    <div style="background-color: #848484; margin: auto; width: 80%;">
+    <treecontrol class="tree-dark"
+        tree-model="dataForTheTree"
+        options="treeOptions"
+        on-selection="showSelected(node, selected, selectedNodes)"
+        selected-node="selectedNodes">
+        {{node.name}}
+    </treecontrol><br />
+    </div></br>
+
+   <!-- <div style="background-color: #848484; margin: auto; width: 80%;">-->
+   
+    Please upload an image for Badge of Completion
+    <input type="file" ng-model="course.badge" name="badgefile" id="fileToUpload"><br />
+    <textarea style="align: center" type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />
     
     <button ng-click="reset()" value="Reset" >Reset</button>
     <button ng-click="submitForm()" value="Save" >Save</button>
+
+    </div>
     
   </div>
 </form>

@@ -113,8 +113,6 @@ angular.module('instructorApp')
                         }
                     
             );
-
-            
         
         }   
         

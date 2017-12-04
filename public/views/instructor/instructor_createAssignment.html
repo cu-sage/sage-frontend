@@ -1,9 +1,16 @@
 <form novalidate class="simple-form" name="assignmentform" >
 <div class="c1">
     <div class="head1">
-      <h2>Assignment Creation</h2>
+      <h2>Game Creation</h2>
     </div>
-    <input type="text" name="order" placeholder="Assignment Order No" ng-model="assgn.order" ng-required="true" /><br />
+    Game Name:<input type="text" name="name" placeholder="My Game" ng-model="assgn.name" ng-required="true" /><br />
+    Game Order Number:<select ng-model="assgn.order" > 
+             <option>1</option>
+             <option>2</option>
+             <option>3</option>
+        </select>
+        </br>
+        <!--<input type="text" name="order" placeholder="Assignment Order No" ng-model="assgn.order" ng-required="true" /><br />-->
    
     
     <button ng-click="reset()" value="Reset" >Reset</button>

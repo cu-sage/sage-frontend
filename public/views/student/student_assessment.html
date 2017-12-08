@@ -1,4 +1,4 @@
-<style>
+<style xmlns="http://www.w3.org/1999/html">
     p {
         text-align: center;
         font-size: 10px;
@@ -90,13 +90,13 @@
 </div>
 <!--<div class="col-xs-2">-->
 <div class="col-xs-3 ng-scope"><span class="pull-right">
-    <ul class="nav nav-sidebar"><div><img ng-src="https://thatisevil.files.wordpress.com/2016/01/oh2gv7-_400x400.png" style='border:3px solid #000000' height="210" width="210"<!--height="290" width="230"--></div></ul>
+    <ul class="nav nav-sidebar"><div><img ng-src="https://thatisevil.files.wordpress.com/2016/01/oh2gv7-_400x400.png" style='border:3px solid #000000' height="230" width="230" <!--height="210" width="210"--></div></ul>
 <!--    <div class="talk-bubble tri-right left-top">
         <p>Did You Solve My Riddle?</p>
     </div>-->
     <div uib-collapse="isCollapsed">
-        <div class="alert alert-success" style="color:#fff;background-color:#428bca">Did You Solve My Riddle?</div>
-    </div>
+<div class="alert alert-success" style="color:#fff;background-color:#428bca">Did You Solve My Riddle?</div>
+</div>
     <div class="container">
         <div class="skills html">90%</div>
     </div>
@@ -126,43 +126,16 @@
     </table>
     </div>
     <p></p>
-      <div>Time left = <span id="timer"></span></div>
+<div id="timer"></div>
+         <div><span id="timer"></span></div>
 
-    <div uib-collapse="isCollapsed"><span class="pull-bottom">
-           <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-
-            // Get todays date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now an the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Display the result in the element with id="demo"
-            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
-
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
-        <div class="alert alert-success" style="color:#fff;background-color:#428bca">Time Remaining<span id="demo"></span>
-        </div>
-    <table class="table table-striped table-hover" style="border-radius: 10px" >
-    </table>
+<!--       <div uib-collapse="isCollapsed"><span class="pull-bottom">
+           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer"><span id='timer'>Time Remaining</span>
+           </div>-->
+<div id="timer"></div>
+                        <div><span id="timer"></span></div>
+       <table class="table table-striped table-hover" style="border-radius: 10px" >
+       </table>
 
         </div>
 </div>

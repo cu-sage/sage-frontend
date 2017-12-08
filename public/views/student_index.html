@@ -14,6 +14,8 @@
 
         <link href="/node_modules/highcharts-ng/dist/highcharts-ng.css" rel="stylesheet">
 
+        <!--On off button -->
+        <link href="jquery.btnswitch.css" rel="stylesheet">
     </head>
     <body ng-app="studentApp">
         <div class="container-fluid">
@@ -60,6 +62,12 @@
                                 Hide / Show
                             </a>
                         </li>
+                        <div id="demo1">Time Left: </div>
+                        <div uib-collapse="isCollapsed"><span class="pull-bottom">
+           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer"><span id='timer'>Time Remaining</span>
+           </div>
+                <!--        <div id="timer">Time Remaining: </div>
+                        <div><span id="timer">Time Left: </span></div>-->
                     </ul>
 
                 </div>
@@ -70,6 +78,38 @@
 
             </div>
         </div>
+        
+        <!-- timer -->
+        <script>
+            document.getElementById('timer').innerHTML = 10 + ":" + 00;
+            startTimer();
+            function startTimer() {
+                var presentTime = document.getElementById('timer').innerHTML;
+                var timeArray = presentTime.split(/[:]+/);
+                var m = timeArray[0];
+                var s = checkSecond((timeArray[1] - 1));
+                if(s==59){m=m-1}
+                //if(m<0){alert('timer completed')}
+
+                document.getElementById('timer').innerHTML =
+                    m + ":" + s;
+                setTimeout(startTimer, 1000);
+            }
+            function checkSecond(sec) {
+                if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+                if (sec < 0) {sec = "59"};
+                return sec;
+            }
+        </script>
+
+        <!-- On off jquery-->
+        <script src="//code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+        <script src="jquery.btnswitch.js"></script>
+        <script>
+            $('#onOff').btnSwitch({
+                Theme: 'Light'
+            });
+        </script>
     </body>
 
 

@@ -1,28 +1,82 @@
+<style>
+    p {
+        text-align: center;
+        font-size: 15px;
+    }
+    .container {
+    position: relative;
+    width: 100%;
+}
+
+    .skills {
+        text-align: right;
+        padding-right: 20px;
+        line-height: 40px;
+        color: white;
+    }
+    .html {width: 90%; background-color: #4CAF50;}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008CBA;
+}
+.container:hover .overlay {
+    opacity: 1;
+}
+.text {
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+</style>
 <div class="starter-template ng-scope">
 <div style="position: relative; height: 100%" class="col-xs-9">
 
     <object style="position: absolute;" width="100%" height="100%">
-
         <param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf?sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
         <!-- <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY"> -->
-
     </object>
 </div>
-<div class="col-xs-3">
+<div class="col-xs-2">
+    <div uib-collapse="isCollapsed">
+        <div class="alert alert-success"><strong>Your Progress</strong></div>
+    </div>
+
+    <p></p>
+    <div class="container">
+        <div class="skills html">90%</div>
+    </div>
 
     <div uib-collapse="isCollapsed">
-        <div class="alert alert-success"><strong>Current Objectives</strong></div>
+        <div class="alert alert-success"><strong>Sage Orb Found</strong></div>
     </div>
-    <div class="progress">
+    <!--<div class="progress" style="border:solid">
         <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
             {{level}}
         </div>
-    </div>
-	<table class="table table-striped">
+    </div>-->
+    <div class = "container">
+	<table class="table table-striped table-hover" style="border-radius: 10px" >
         <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
-            <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-            <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-            <td>{{result.description}}</td>
+            <td ng-if="result.pass==true" title={{result.description}}><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+            <td title={{result.description}} ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
             <td>
                 <div ng-repeat="action in result.actions">
                     <p ng-if="action.type=='action_say'">
@@ -32,7 +86,57 @@
             </td>
         </tr>
     </table>
-	
+    </div>
+    <div uib-collapse="isCollapsed">
+        <div class="alert alert-success"><strong>Time Remaining</strong></div>
+    </div>
+    <table class="table table-striped table-hover" style="border-radius: 10px" >
+        <td><span id="demo"></span></td>
+    </table>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get todays date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now an the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+<!--    <div class="indicatorContainer_45swab">
+        <div class="text_fbuwl2">2 of 4</div>
+        <span class="indicatorContainer_45swab">
+            <div class="indicator_6x4yds-o_O-dimensions_1teqf2l-o_O-colors_ykw2m5-o_O-active_1866buj-o_O-indicator_1cqj18x" data-test-id="exercise-progress-0-correct">
+            </div>
+            <div class="indicator_6x4yds-o_O-dimensions_j1577k-o_O-colors_ykw2m5-o_O-empty_19xiwy5-o_O-indicator_1cqj18x-o_O-current_1xzzxu1" data-test-id="exercise-progress-1-incomplete-current">
+            </div>
+            <div class="indicator_6x4yds-o_O-dimensions_1teqf2l-o_O-colors_ykw2m5-o_O-empty_19xiwy5-o_O-indicator_1cqj18x" data-test-id="exercise-progress-2-incomplete">
+            </div>
+            <div class="indicator_6x4yds-o_O-dimensions_1teqf2l-o_O-colors_ykw2m5-o_O-empty_19xiwy5-o_O-last_o9m1pj-o_O-indicator_1cqj18x" data-test-id="exercise-progress-3-incomplete">
+
+        </div>
+        </span>
+    </div>-->
 </div>
 
 </div>

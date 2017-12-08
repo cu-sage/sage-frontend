@@ -1,22 +1,56 @@
 <style>
     p {
         text-align: center;
-        font-size: 15px;
+        font-size: 10px;
     }
     .container {
     position: relative;
     width: 100%;
+        max-width:210px; /* or whatever width you want. */
+        display: inline-block;
 }
-
     .skills {
         text-align: right;
         padding-right: 20px;
-        line-height: 40px;
+        line-height: 20px;
         color: white;
     }
     .html {width: 90%; background-color: #4CAF50;}
+    .talk-bubble {
+        margin: 40px;
+        display: inline-block;
+        position: relative;
+        width: 200px;
+        height: auto;
+        background-color: lightyellow;
+    }
+    /* Right triangle placed top left flush. */
+    .tri-right.border.left-top:before {
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -40px;
+        right: auto;
+        top: -8px;
+        bottom: auto;
+        border: 32px solid;
+        border-color: #666 transparent transparent transparent;
+    }
+    .tri-right.left-top:after{
+        content: ' ';
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: -20px;
+        right: auto;
+        top: 0px;
+        bottom: auto;
+        border: 22px solid;
+        border-color: lightyellow transparent transparent transparent;
+    }
 
-.image {
+    .image {
     display: block;
     width: 100%;
     height: auto;
@@ -54,26 +88,30 @@
         <!-- <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY"> -->
     </object>
 </div>
-<div class="col-xs-2">
+<!--<div class="col-xs-2">-->
+<div class="col-xs-3 ng-scope"><span class="pull-right">
+    <ul class="nav nav-sidebar"><div><img ng-src="https://thatisevil.files.wordpress.com/2016/01/oh2gv7-_400x400.png" style='border:3px solid #000000' height="210" width="210"<!--height="290" width="230"--></div></ul>
+<!--    <div class="talk-bubble tri-right left-top">
+        <p>Did You Solve My Riddle?</p>
+    </div>-->
     <div uib-collapse="isCollapsed">
-        <div class="alert alert-success"><strong>Your Progress</strong></div>
+        <div class="alert alert-success" style="color:#fff;background-color:#428bca">Did You Solve My Riddle?</div>
     </div>
-
-    <p></p>
     <div class="container">
         <div class="skills html">90%</div>
     </div>
 
+    <p></p>
     <div uib-collapse="isCollapsed">
-        <div class="alert alert-success"><strong>Sage Orb Found</strong></div>
+        <div class="alert alert-success" style="color:#fff;background-color:#428bca">Sage Orbs Found</div>
     </div>
     <!--<div class="progress" style="border:solid">
         <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
             {{level}}
         </div>
     </div>-->
-    <div class = "container">
-	<table class="table table-striped table-hover" style="border-radius: 10px" >
+    <div class = "container" style="column-count:2;-moz-column-count:2;-webkit-column-count:2" width="340">
+	<table  class="table table-striped table-hover" style="border-radius: 10px" >
         <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
             <td ng-if="result.pass==true" title={{result.description}}><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
             <td title={{result.description}} ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
@@ -87,13 +125,11 @@
         </tr>
     </table>
     </div>
-    <div uib-collapse="isCollapsed">
-        <div class="alert alert-success"><strong>Time Remaining</strong></div>
-    </div>
-    <table class="table table-striped table-hover" style="border-radius: 10px" >
-        <td><span id="demo"></span></td>
-    </table>
-    <script>
+    <p></p>
+      <div>Time left = <span id="timer"></span></div>
+
+    <div uib-collapse="isCollapsed"><span class="pull-bottom">
+           <script>
         // Set the date we're counting down to
         var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
 
@@ -123,22 +159,14 @@
             }
         }, 1000);
     </script>
-<!--    <div class="indicatorContainer_45swab">
-        <div class="text_fbuwl2">2 of 4</div>
-        <span class="indicatorContainer_45swab">
-            <div class="indicator_6x4yds-o_O-dimensions_1teqf2l-o_O-colors_ykw2m5-o_O-active_1866buj-o_O-indicator_1cqj18x" data-test-id="exercise-progress-0-correct">
-            </div>
-            <div class="indicator_6x4yds-o_O-dimensions_j1577k-o_O-colors_ykw2m5-o_O-empty_19xiwy5-o_O-indicator_1cqj18x-o_O-current_1xzzxu1" data-test-id="exercise-progress-1-incomplete-current">
-            </div>
-            <div class="indicator_6x4yds-o_O-dimensions_1teqf2l-o_O-colors_ykw2m5-o_O-empty_19xiwy5-o_O-indicator_1cqj18x" data-test-id="exercise-progress-2-incomplete">
-            </div>
-            <div class="indicator_6x4yds-o_O-dimensions_1teqf2l-o_O-colors_ykw2m5-o_O-empty_19xiwy5-o_O-last_o9m1pj-o_O-indicator_1cqj18x" data-test-id="exercise-progress-3-incomplete">
+        <div class="alert alert-success" style="color:#fff;background-color:#428bca">Time Remaining<span id="demo"></span>
+        </div>
+    <table class="table table-striped table-hover" style="border-radius: 10px" >
+    </table>
 
         </div>
-        </span>
-    </div>-->
 </div>
-
+</span>
 </div>
 
 

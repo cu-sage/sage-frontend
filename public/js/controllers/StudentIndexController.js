@@ -9,5 +9,5 @@ angular.module('studentApp')
             return viewLocation === $location.path().split('/')[1];
         };
 
-        $scope.student_url = "https://upload.wikimedia.org/wikipedia/commons/9/97/Student_icon.png";
+        $scope.student_url = "https://i.pinimg.com/236x/75/23/c6/7523c6fd002dd3f05e1c819cbc187f67--kung-fu-panda--fun-loving.jpg";
     }]);

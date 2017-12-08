@@ -15,7 +15,7 @@
         <link href="/node_modules/highcharts-ng/dist/highcharts-ng.css" rel="stylesheet">
 
         <!--On off button -->
-        <link href="jquery.btnswitch.css" rel="stylesheet">
+        <link href="/public/css/jquery.btnswitch.css" rel="stylesheet" type="text/css">
     </head>
     <body ng-app="studentApp">
         <div class="container-fluid">
@@ -62,23 +62,22 @@
                                 Hide / Show
                             </a>
                         </li>
-                        <div id="demo1">Time Left: </div>
+                        <div id="onOff"><span id="onOff"></span></div>
+                        <div id="demo1"></div>
                         <div uib-collapse="isCollapsed"><span class="pull-bottom">
+                            <label class="switch" name="Timer">
+  <input type="checkbox" checked>
+  <span class="slider round"></span>
+</label>
            <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer"><span id='timer'>Time Remaining</span>
            </div>
-                <!--        <div id="timer">Time Remaining: </div>
-                        <div><span id="timer">Time Left: </span></div>-->
                     </ul>
-
                 </div>
-
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
                     <div ng-view></div>
                 </div>
-
             </div>
         </div>
-        
         <!-- timer -->
         <script>
             document.getElementById('timer').innerHTML = 10 + ":" + 00;

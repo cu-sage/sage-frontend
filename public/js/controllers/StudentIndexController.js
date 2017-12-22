@@ -9,5 +9,5 @@ angular.module('studentApp')
             return viewLocation === $location.path().split('/')[1];
         };
 
-        $scope.student_url = "https://i.pinimg.com/236x/75/23/c6/7523c6fd002dd3f05e1c819cbc187f67--kung-fu-panda--fun-loving.jpg";
+        $scope.student_url = "https://www.susqu.edu/assets/images/news/2014-15/january-2015/columbia-wide-news.jpg";
     }]);

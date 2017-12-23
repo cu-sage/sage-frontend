@@ -29,17 +29,25 @@ angular.module('studentApp')
                     } else {
 
                         fullResults = response.data;
+
                         results = fullResults.assess.assessmentResult
-                        //$log.info(results)
 
+                        if(Object.keys(results).length!=0) {
+                            //$log.info(results)
+                            for (x in results) {
+                                if (results[x].actions!=null){
+                                    $log.info($scope.speech=results[x].actions.command)
+                                }
+                            }
 
-                        $scope.results = results;
-                        $scope.progress = "33";
-                        $scope.level = "Basic";
-                        $log.info($scope.results)
+                            $scope.results = results;
+                            $scope.progress = "33";
+                            $scope.level = "Basic";
+                            $log.info($scope.results)
+                        }
                     }
                 });
-            $timeout(polldata,1000)
+            $timeout(polldata,2000)
         }
 
         $timeout(polldata,1000)

@@ -61,47 +61,54 @@
                                 Hide / Show
                             </a>
                         </li>
-                        <div uib-collapse="isCollapsed"><span class="pull-bottom">
-<!--<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle Vertically</button>
-	<div uib-collapse="isCollapsed">Time Remaining:
-		   <div  class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining:
-                                   <span id='timer'>Time Remaining: </span>
-	</div>-->
-
-                                           <script>
-            document.getElementById('timer').innerHTML = 10 + ":" + 00;
-            startTimer();
-            function startTimer() {
-                var presentTime = document.getElementById('timer').innerHTML;
-                var timeArray = presentTime.split(/[:]+/);
-                var m = timeArray[0];
-                var s = checkSecond((timeArray[1] - 1));
-                if(s==59){m=m-1}
-                //if(m<0){alert('timer completed')}
-
-                document.getElementById('timer').innerHTML =
-                    m + ":" + s;
-                setTimeout(startTimer, 1000);
-            }
-            function checkSecond(sec) {
-                if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-                if (sec < 0) {sec = "59"};
-                return sec;
-            }
-        </script>
-	</div>
 <!--           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining
                <span id='timer'>Time Remaining</span>
            </div>-->
                     </ul>
+                    <br>
+                    <div>
+                        <button type="button" class="btn btn-default" ng-click="isButtonCollapsed = !isButtonCollapsed" align ="right">
+                            Timer On/Off
+                        </button>
+                    </div>
+                    <br>
+                    <div>
+
+                        <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
+                            <div>
+                                Time Remaining: <div   id="timer">
+                                                               <span id='timer'>Time Remaining: </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            document.getElementById('timer').innerHTML = 10 + ":" + 00;
+                            startTimer();
+                            function startTimer() {
+                                var presentTime = document.getElementById('timer').innerHTML;
+                                var timeArray = presentTime.split(/[:]+/);
+                                var m = timeArray[0];
+                                var s = checkSecond((timeArray[1] - 1));
+                                if(s==59){m=m-1}
+                                //if(m<0){alert('timer completed')}
+
+                                document.getElementById('timer').innerHTML =
+                                    m + ":" + s;
+                                setTimeout(startTimer, 1000);
+                            }
+                            function checkSecond(sec) {
+                                if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+                                if (sec < 0) {sec = "59"};
+                                return sec;
+                            }
+                        </script>
+	                </div>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
                     <div ng-view>
 
             </div>
         </div>
-
-
     </body>
 
     <!-- angular -->

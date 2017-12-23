@@ -441,4 +441,101 @@ router.get("/instructors/:id/curricula_items", function(req, res) {
 
 });
 
+router.get("/instructors/:id/missions", function(req, res) {
+    
+    
+    learningPathModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+
+router.get("/instructors/:id/quests", function(req, res) {
+    
+    
+    courseModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+router.get("/instructors/:id/games", function(req, res) {
+    
+    
+    assignmentModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+router.get("/instructors/:id/quests/:Mid", function(req, res) {
+    
+    let missionId = req.params.Mid;
+    
+    learningPathModel.findById(missionId).lean().exec()
+    .then(function(mission) {
+        var courses = mission['courses'];
+
+        var courseIds = [];
+
+        for(let i in courses) {
+            courseIds.push(mongoose.Types.ObjectId(courses[i]['CourseID']));
+        }
+        console.log(courseIds)
+
+        return courseModel.find({ '_id' : { $in : courseIds} }).lean().exec();
+        
+    })
+    .then(function(quests) {
+        console.log(quests)
+        res.status(200).send(quests);
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+
+    
+});
+
+
+router.get("/instructors/:id/games/:Qid", function(req, res) {
+    
+    let questId = req.params.Qid;
+    
+    courseModel.findById(questId).lean().exec()
+    .then(function(quest) {
+        var assignments = quest['assignments'];
+
+        var assignmentIds = [];
+
+        for(let i in assignments) {
+            assignmentIds.push(mongoose.Types.ObjectId(assignments[i]['assigmentID']));
+        }
+        //console.log(assignmentIds)
+
+        return assignmentModel.find({ '_id' : { $in : assignmentIds} }).lean().exec();
+        
+    })
+    .then(function(games) {
+        console.log(games)
+        res.status(200).send(games);
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+
+    
+});
+
+
 module.exports = router;

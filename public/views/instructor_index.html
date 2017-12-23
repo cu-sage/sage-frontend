@@ -76,7 +76,12 @@
                 </a>
             </li>
 
-
+            <li ng-class="{ active: isActive('librarires') }">
+                <a ng-href="#/librarires/{{sid}}">
+                    <i class="glyphicon glyphicon-edit pull-right"></i>
+                    Libraries
+                </a>
+            </li>
 
             <li ng-click="showHide()">
                 <a>
@@ -121,6 +126,10 @@
 <script src="/public/js/controllers/instructor/InstructorAssignmentCreationController.js"></script>
 <script src="/public/js/controllers/instructor/InstructorDesignController.js"></script>
 <script src="/public/js/controllers/instructor/InstructorVAEController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorLibController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorMissionsController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorQuestsController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorGamesController.js"></script>
 
 
 <script src="/public/js/controllers/instructor/InstructorLPCreationController.js"></script>

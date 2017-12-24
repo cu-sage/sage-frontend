@@ -157,7 +157,6 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
 });
 
-
 router.get ('/course/:cid/leaderboard', function (req, res) {
     let {cid} = req.params;
     let studentScoreHash = {};
@@ -370,6 +369,13 @@ let fetchProgressObjectsForParticularAssignmentID = (assignmentID, studentIDs) =
     return fetch(externalURLs.NODE_SERVER + 'progress/assignment/' + assignmentID + '?studentIDs=' + studentIDs.join(','));
 
 };
+
+let fetchAssessmentResult = (assignmentID, studentIDs) => {
+
+    return fetch(externalURLs.NODE_SERVER + 'assess/game/123/objective/58d845736e4ddb3ce20ed1b3');
+
+};
+
 let getScore = (resultsObject) => {
     let score = 0;
     for (key in resultsObject) {

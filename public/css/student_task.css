@@ -6,6 +6,12 @@
   background-color: #d6dadc;
   border-radius: 50%;
 }
+#footer {
+  position: fixed;
+/*    height: 250px;*/
+  bottom: 0;
+  width: 100%;
+}
 .radial-progress .circle .mask,
 .radial-progress .circle .fill,
 .radial-progress .circle .shadow {

@@ -69,6 +69,22 @@ instructorApp
                 templateUrl: '/public/views/instructor/instructor_VAE.html',
                 controller: 'InstructorVAEController'
             })
+            .when('/librarires/:sid', {
+                templateUrl: '/public/views/instructor/instructor_lib.html',
+                controller: 'InstructorLibController'
+            })
+            .when('/librarires/:sid/missions', {
+                templateUrl: '/public/views/instructor/instructor_missions.html',
+                controller: 'InstructorMissionsController'
+            })
+            .when('/librarires/:sid/quests', {
+                templateUrl: '/public/views/instructor/instructor_quest.html',
+                controller: 'InstructorQuestsController'
+            })
+            .when('/librarires/:sid/games', {
+                templateUrl: '/public/views/instructor/instructor_games.html',
+                controller: 'InstructorGamesController'
+            })
             .when('/', {
                 templateUrl: "/public/views/error.html"
             });

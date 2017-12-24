@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Dashboard</title>
+        <title>Sages!</title>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -13,6 +13,7 @@
         <link href="/public/css/student_task.css" rel="stylesheet">
 
         <link href="/node_modules/highcharts-ng/dist/highcharts-ng.css" rel="stylesheet">
+
 
     </head>
     <body ng-app="studentApp">
@@ -60,8 +61,10 @@
                                 Hide / Show
                             </a>
                         </li>
+<!--           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining
+               <span id='timer'>Time Remaining</span>
+           </div>-->
                     </ul>
-
                     <ul>Quests enrolled:
                             <li ng-repeat="course in coursesEnrolled"
                             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
@@ -73,25 +76,51 @@
                               </ul>
                            </li>
                     </ul>
-                      <!--<treecontrol class="tree-dark"
-                       tree-model="dataForTheTree"
-                       options="treeOptions"
-                       on-selection="showSelected(node, selected, selectedNodes)"
-                       selected-node="selectedNodes">
-                       {{node.name}}
-                    </treecontrol><br />-->
+                    <br>
+                    <div>
+                        <button type="button" class="btn btn-default" ng-click="isButtonCollapsed = !isButtonCollapsed" align ="right">
+                            Timer On/Off
+                        </button>
+                    </div>
+                    <br>
+                    <div>
 
+                        <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
+                            <div>
+                                Time Remaining: <div   id="timer">
+                                                               <span id='timer'>Time Remaining: </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            document.getElementById('timer').innerHTML = 10 + ":" + 00;
+                            startTimer();
+                            function startTimer() {
+                                var presentTime = document.getElementById('timer').innerHTML;
+                                var timeArray = presentTime.split(/[:]+/);
+                                var m = timeArray[0];
+                                var s = checkSecond((timeArray[1] - 1));
+                                if(s==59){m=m-1}
+                                //if(m<0){alert('timer completed')}
+
+                                document.getElementById('timer').innerHTML =
+                                    m + ":" + s;
+                                setTimeout(startTimer, 1000);
+                            }
+                            function checkSecond(sec) {
+                                if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+                                if (sec < 0) {sec = "59"};
+                                return sec;
+                            }
+                        </script>
+	                </div>
                 </div>
-
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
-                    <div ng-view></div>
-                </div>
+                    <div ng-view>
 
             </div>
         </div>
     </body>
-
-
 
     <!-- angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>

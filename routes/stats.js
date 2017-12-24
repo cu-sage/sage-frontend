@@ -156,7 +156,7 @@ router.get("/instructors/:id/LP/:LPid", function(req, res) {
     var allcourses;
     learningPathModel.find({_id:LPid}).lean().exec()
     .then((response, error) => {
-        
+
         allcourses=response[0].courses;
         //console.log(allcourses[0]);
         //console.log(allcourses.length);
@@ -217,7 +217,7 @@ router.get("/instructors/:id/courses/:cid", function(req, res) {
         });
 
         res.status(200).send(returnResponse);
-    });    
+    });
 });
 
 router.get("/researchers/:id", function(req, res) {
@@ -305,7 +305,7 @@ router.post("/instructors/createCourse/:id", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -324,7 +324,7 @@ router.post("/instructors/createLP/:id", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -343,7 +343,7 @@ router.post("/instructors/:id/course/:cid/createAssignment", function(req, res) 
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -362,7 +362,7 @@ router.post("/instructors/:id/LP/:LPid/addCourse/:cid", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -381,7 +381,7 @@ router.post("/instructors/Course/:cid/assignment/:aid", function(req,res){
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -399,7 +399,7 @@ router.post("/instructors/updateCourse/:cid", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -418,7 +418,28 @@ router.post("/instructors/:id/LP/:LPid/updateCourseOrder", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+router.post("/instructors/course/:cid/updateAssignmentOrder", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    //var InstrId = req.params.id;
+    //var LPid = req.params.LPid;
+    var courseid = req.params.cid;
+    console.log("going into update assignment stat");
+    service.updateAssignmentOrderInQuest(req.body.assignments, courseid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -430,8 +451,8 @@ router.post("/instructors/:id/LP/:LPid/updateCourseOrder", function(req, res) {
 
 
 router.get("/instructors/:id/curricula_items", function(req, res) {
-    
-    
+
+
     curriculaItemModel.find({}).lean().exec()
     .then(function(response, error) {
         console.log(response);

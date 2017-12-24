@@ -24,20 +24,20 @@ angular.module('instructorApp')
         }*/
 
         $scope.updateOrder=function(){
-            var courses = [];
-            for(each_course in $scope.orderSt){
-                courses.push({
-                    "CourseID" : each_course,
-                    "CourseOrder" : parseInt($scope.orderSt[each_course])
+            var assignments = [];
+            for(each_assignment in $scope.orderSt){
+                assignments.push({
+                    "assigmentID" : each_assignment,
+                    "assignmentOrder" : parseInt($scope.orderSt[each_assignment])
                 });
             }
-            console.log(courses)
+            console.log(assignments)
             $route.reload();
 
             $http({
             method: 'POST',
-            url: "/stats/instructors/"+$scope.instrid+"/LP/"+$scope.LPid+"/updateCourseOrder",
-            data: {"courses" : courses},
+            url: "/stats/instructors/course/"+$scope.course.courseID+"/updateAssignmentOrder",
+            data: {"assignments" : assignments},
             }).then(function(response) {
                         console.log(response.status);
 
@@ -46,13 +46,13 @@ angular.module('instructorApp')
                         //console.log(path);
                         $route.reload();
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
-                                                       
+
                      }
-                    
+
             );
          }
 
-        
+
         $scope.updateCourse = function() {
             console.log("in update course function " + $routeParams.cid, $scope.info)
             $http({
@@ -67,9 +67,9 @@ angular.module('instructorApp')
                         //console.log(path);
                         $route.reload();
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
-                                                       
+
                      }
-                    
+
             );
         };
 
@@ -95,9 +95,9 @@ angular.module('instructorApp')
                         //console.log(path);
                         $route.reload();
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
-                                                       
+
                      }
-                    
+
             );
         };
 
@@ -111,7 +111,7 @@ angular.module('instructorApp')
                 $scope.statustext = response.statustext;
                 $scope.course=response.data[0];
                 console.log($scope.course)
-               
+
                 $scope.assign = response.data[0].assignments;
 
                     //var temp = $scope.LP.courses;
@@ -132,7 +132,7 @@ angular.module('instructorApp')
                 //console.log($scope.assign);
                 $scope.sid = $routeParams.sid;
                 $scope.cid = $routeParams.cid;
-                
+
             });
 
         // get game objective of games
@@ -141,13 +141,13 @@ angular.module('instructorApp')
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;
                 $scope.course=response.data[0];
-               
+
                 $scope.assign = response.data[0].assignments;
                 //console.log($scope.assign);
                 $scope.sid = $routeParams.sid;
                 $scope.cid = $routeParams.cid;
-                
+
             });
 */
-        
+
     }]);

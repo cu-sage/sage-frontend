@@ -1,12 +1,12 @@
 <div class="starter-template ng-scope">
-    <h3> List of Quests  </h3>
+    <h3> List of Missions  </h3>
     <ul>
         <li
             ng-repeat="lp in learningPathsEnrolled"
             ng-click='changeView("/learningPath/"+ lp.pathID +"/"+ sid)'
             > <span class="bullets-course-page"> {{lp.pathName}} </span>  </li>
     </ul>
-    <h3> List of Courses </h3>
+    <h3> List of Quests </h3>
     <ul>
             <li ng-repeat="course in coursesEnrolled"
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
@@ -15,9 +15,9 @@
 
     <div class="search-area col-xs-12">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search..">
+          <!--<input type="text" class="form-control" placeholder="Search..">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Search</button>
+            <button class="btn btn-default" type="button">Search</button>-->
             <button class="btn btn-default" type="button">Reset</button>
           </span>
         </div>

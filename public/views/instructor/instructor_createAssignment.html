@@ -9,7 +9,19 @@
              <option>2</option>
              <option>3</option>
         </select>
-        </br>
+        </br></br>
+     Game Type: <input type="text" name="name" placeholder="Game Type" ng-model="assgn.type" ng-required="true" /><br />
+
+    <p>Add from following Assessments in this Game:</p>
+    <ul>
+        <li ng-repeat="each_course in coursesBy" >
+            <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
+                <!-- <span class="sr-only"></span> -->
+            </a>
+                       
+        </li>
+    </ul>
+
         <!--<input type="text" name="order" placeholder="Assignment Order No" ng-model="assgn.order" ng-required="true" /><br />-->
    
     

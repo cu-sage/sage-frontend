@@ -1,7 +1,7 @@
 <div class="starter-template ng-scope">
 	<div class="col-xs-offset-10">
-		<input type="button" 
-		ng-if="enrollButtonToShow" 
+		<input type="button"
+		ng-if="enrollButtonToShow"
 		ng-click = "onClickEnrollButton()"
 		class="btn btn-success" value="Enroll" >
 	</div>
@@ -13,18 +13,18 @@
     <h3> Statistics </h3>
 		<div ng-if="!enrollButtonToShow">
 			<div  class="progress">
-		        <div 
+		        <div
 		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">
 		            {{numberOfAssignmentsDone}}%
 		        </div>
-		        
+
 		    </div>
 		    <highchart id="chart1" config="chartConfig"></highchart>
-			
-		</div>  
-	    
-	    
-	    
+
+		</div>
+
+
+
 	    <div class="sub-heading">
 
 	    	The is where all the statistics for the student for this particular course will come.
@@ -35,19 +35,29 @@
 		<li ng-repeat = "resource in course.resources">
 			<a href="{{resource.link}}" target="_blank"> {{resource.resourceName}} </a>
 		</li>
-	
+
 	</ul>
 	<h3>Games</h3>
+
 	<ul>
-		<li 
-			
+		<li
+
+		 	ng-repeat = "assignment in myCourse.assignments">
+			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName || assignment.assignmentID || assignment.assigmentID}}</span>
+		</li>
+
+	</ul>
+
+	<ul>
+		<li
+
 		 	ng-repeat = "assignment in course.assignments">
 			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName}}</span>
 		</li>
-	
+
 	</ul>
 	<h3> Leaderboard </h3>
-	The following students are leading in this course. 
+	The following students are leading in this course.
 	<table class="table table-striped">
 		<thead>
 	      <tr>
@@ -59,10 +69,10 @@
 	    	<tr ng-repeat = "singleStudent in leaderboard">
 	    		<td> {{singleStudent.fullname}} </td>
 	    		<td> {{singleStudent.points}} </td>
-	    	
+
 	    	</tr>
 	    </tbody>
-				
+
 	</table>
 
 </div>

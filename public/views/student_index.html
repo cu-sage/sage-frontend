@@ -26,7 +26,7 @@
                         <h5 class="text-center">Student</h5>
                     </ul>
                     <ul class="nav nav-sidebar">
-                        
+
                         <li ng-class="{ active: isActive('home') }">
                             <a ng-href="#/home/{{sid}}">
                                 <i class="glyphicon glyphicon-home pull-right"></i>
@@ -37,7 +37,7 @@
                         <li ng-class="{ active: isActive('courses') }">
                             <a ng-href="#/courses/{{sid}}">
                                 <i class="glyphicon glyphicon-book pull-right"></i>
-                                Courses
+                                Missions
                             </a>
                         </li>
 
@@ -47,7 +47,7 @@
                                 Account
                             </a>
                         </li>
-                        
+
                         <li ng-class="{ active: isActive('help') }" ng-hide="true">
                             <a ng-href="#/help">
                                 <i class="glyphicon glyphicon-flag pull-right"></i>
@@ -61,6 +61,25 @@
                             </a>
                         </li>
                     </ul>
+
+                    <ul>Quests enrolled:
+                            <li ng-repeat="course in coursesEnrolled"
+                            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+                            > <span class="bullets-course-page"> {{course.courseName}} </span>
+                              <ul>
+                                  <li ng-repeat="assignment in course.assignments">
+                                    {{assignment.assignmentName || assignment.assignmentID || assignment.assigmentID}}
+                                  </li>
+                              </ul>
+                           </li>
+                    </ul>
+                      <!--<treecontrol class="tree-dark"
+                       tree-model="dataForTheTree"
+                       options="treeOptions"
+                       on-selection="showSelected(node, selected, selectedNodes)"
+                       selected-node="selectedNodes">
+                       {{node.name}}
+                    </treecontrol><br />-->
 
                 </div>
 
@@ -92,7 +111,7 @@
     <script src="/public/js/controllers/student/StudentSingleCourseController.js"></script>
     <script src="/public/js/controllers/student/StudentAssessmentController.js"></script>
     <script src="/public/js/controllers/student/StudentLearningPathController.js"></script>
-    
+
     <script src="/public/js/controllers/StudentIndexController.js"></script>
     <script src="/public/js/controllers/StudentOverviewController.js"></script>
     <script src="/public/js/controllers/StudentTasksController.js"></script>
@@ -102,7 +121,7 @@
     <script src="/public/js/lib/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="/public/js/lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
     <script src="/node_modules/ng-error/ng-error.js"></script>
-    
+
 
     <!-- Student Task CSS -->
     <link href="/public/css/student_task.css" rel="stylesheet">

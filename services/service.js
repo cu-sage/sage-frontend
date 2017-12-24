@@ -31,8 +31,8 @@ var newcourse = function(coursename, desc, instructorid, features,ctConcepts, ca
             features:features,
             ctConcepts:ctConcepts
         });
-            
-     
+
+
         //console.log("In service");
         //console.log(coursename);
         newcourse1.save(function(err,course_inserted) {
@@ -40,12 +40,12 @@ var newcourse = function(coursename, desc, instructorid, features,ctConcepts, ca
         		console.log(course_inserted);
         		callback({status: 200, message: course_inserted});
         	}
-        	else 
+        	else
         		callback({status:404 , message : {error : "Not saved into db"}});
 
         });
-            
-        
+
+
     });
 };
 
@@ -65,8 +65,8 @@ var newLP = function(LPname, desc, instructorid, features,ctConcepts, callback) 
             features:features,
             ctConcepts:ctConcepts
         });
-            
-     
+
+
         //console.log("In service");
         //console.log(coursename);
         newLP1.save(function(err,LP_inserted) {
@@ -74,12 +74,12 @@ var newLP = function(LPname, desc, instructorid, features,ctConcepts, callback) 
                 console.log(LP_inserted);
                 callback({status: 200, message: LP_inserted});
             }
-            else 
+            else
                 callback({status:404 , message : {error : "Not saved into db"}});
 
         });
-            
-        
+
+
     });
 };
 
@@ -95,28 +95,28 @@ var newassignment = function(values, instructorid, courseid, callback) {
                 "assigmentID":aid
 
             };
-            
-     
+
+
 
         courseModel.update({_id: { $in: [ courseid ] }},{ $push: { assignments: newtest } },function(err,test_inserted) {
             if(!err){
                 console.log(test_inserted);
                 callback({status: 200, message: {inserted:test_inserted,testid:aid}});
             }
-            else 
+            else
                 callback({status:404 , message : {error : "Not saved into db"}});
 
         });
         return;
-            
+
         }
         callback(
                 {status: 404, message: {error: 'Course doesnt exist.'}});
-            
 
-        
-            
-        
+
+
+
+
     });
 };
 
@@ -130,24 +130,24 @@ var addCoursetoLP = function(order , courseID, LPid, callback) {
                 "CourseID":courseID
 
             };
-            
-     
+
+
 
         LPModel.update({_id: { $in: [ LPid ] }},{ $push: { courses: newCourse } },function(err,test_inserted) {
             if(!err){
                 console.log(test_inserted);
                 callback({status: 200, message: {inserted:test_inserted,testid:courseID}});
             }
-            else 
+            else
                 callback({status:404 , message : {error : "Not saved into db"}});
 
         });
         return;
-            
+
         }
         callback(
                 {status: 404, message: {error: 'LP doesnt exist.'}});
-            
+
     });
 };
 
@@ -162,16 +162,16 @@ var removeAssignment = function(course_id, newAssignments, callback) {
                 console.log(msg);
                 callback({status: 200, message: {"message" : "Assignment successfully removed."}});
             }
-            else 
+            else
                 callback({status:404 , message : {error : "Not saved into db"}});
 
         });
         return;
-            
+
         }
         callback(
                 {status: 404, message: {error: 'Course doesnt exist.'}});
-            
+
     });
 };
 
@@ -183,16 +183,16 @@ var updateCourse = function(coursename, desc , Courseid, callback) {
                 console.log(msg);
                 callback({status: 200, message: {"message" : "Course order successfully updated."}});
             }
-            else 
+            else
                 callback({status:404 , message : {error : "Not saved into db"}});
 
         });
         return;
-            
+
         }
         callback(
                 {status: 404, message: {error: 'Course doesnt exist.'}});
-            
+
     });
 };
 
@@ -205,16 +205,38 @@ var updateCourseOrderInLP = function(courses , LPid, callback) {
                 console.log(msg);
                 callback({status: 200, message: {"message" : "Course order successfully updated."}});
             }
-            else 
+            else
                 callback({status:404 , message : {error : "Not saved into db"}});
 
         });
         return;
-            
+
         }
         callback(
                 {status: 404, message: {error: 'LP doesnt exist.'}});
-            
+
+    });
+};
+
+var updateAssignmentOrderInQuest = function(assignments , courseid, callback) {
+    courseModel.findOne({_id: { $in: [ courseid ] }}, function(err, existingLP) {
+        if (existingLP) {
+          console.log("found course to update");
+        courseModel.update({_id: { $in: [ courseid ] }},{ $set: { assignments: assignments } },function(err, msg) {
+            if(!err){
+                console.log(msg);
+                callback({status: 200, message: {"message" : "assignment order successfully updated."}});
+            }
+            else
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+        return;
+
+        }
+        callback(
+                {status: 404, message: {error: 'LP doesnt exist.'}});
+
     });
 };
 
@@ -228,7 +250,7 @@ module.exports = {
     newLP:newLP,
     updateCourse:updateCourse,
     removeAssignment: removeAssignment,
+    updateAssignmentOrderInQuest: updateAssignmentOrderInQuest,
     updateCourseOrderInLP:updateCourseOrderInLP
-    
-};
 
+};

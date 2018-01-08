@@ -1,5 +1,5 @@
 angular.module('studentApp')
-    .controller('StudentIndexController', ['$rootScope', '$scope', '$http', "$location", function($rootScope, $scope, $http, $location) {
+    .controller('StudentIndexController', ['$rootScope', '$scope', '$http', "$location", "$timeout", function($rootScope, $scope, $http, $location, $timeout) {
         // console.log("testing_index");
         var path = $location.path().split('/');
         $scope.path = path[1];
@@ -27,7 +27,7 @@ angular.module('studentApp')
         //$scope.student_url = "https://upload.wikimedia.org/wikipedia/commons/9/97/Student_icon.png";
 
         $http.get("coursesEnrolled/student/" + $scope.sid)
-        .then(function(response) {
+            .then(function(response) {
 
                 if (response.status == '403') {
                     $window.location.href = '/public/views/error.html';
@@ -36,24 +36,65 @@ angular.module('studentApp')
                     $scope.coursesEnrolled = response.data;
                     $scope.dataForTheTree = response.data;
                     console.log($scope.coursesEnrolled);
-                  /*  $scope.coursesInfo = [];
-                    for(var course in $scope.coursesEnrolled){
-                      console.log("HERE is the course", $scope.coursesEnrolled);
-                      $http.get("/stats/student/" + $scope.sid + "/LPinfo/" + course.courseID )
-                          .then(function(response) {
-                              $scope.LP=response.data[0];
-                              $scope.coursesInfo.append([$scope.LP]);
-                              //var temp = $scope.LP.courses;
+                    /*  $scope.coursesInfo = [];
+                     for(var course in $scope.coursesEnrolled){
+                     console.log("HERE is the course", $scope.coursesEnrolled);
+                     $http.get("/stats/student/" + $scope.sid + "/LPinfo/" + course.courseID )
+                     .then(function(response) {
+                     $scope.LP=response.data[0];
+                     $scope.coursesInfo.append([$scope.LP]);
+                     //var temp = $scope.LP.courses;
 
-                          }
-                      );
-                    }
-                    console.log("DID IT DO IT?", $scope.coursesInfo);*/
+                     }
+                     );
+                     }
+                     console.log("DID IT DO IT?", $scope.coursesInfo);*/
 
 
                 }
-        });
+            });
 
 
         $scope.student_url = "https://www.susqu.edu/assets/images/news/2014-15/january-2015/columbia-wide-news.jpg";
+
+        // Timer Functions
+        $scope.timer = 600;
+        $scope.timer_display = secondsToHms($scope.timer);
+        $scope.timer_running = false;
+
+        var timeoutFn;
+
+        $scope.startTimer = function() {
+            $scope.timer_running = true;
+            timeoutFn = $timeout(function () {
+                $scope.timer--;
+                $scope.timer_display = secondsToHms($scope.timer);
+                $scope.timer > 0 ? $scope.startTimer() : $scope.endTimer();
+            }, 1000);
+        };
+
+        $scope.stopTimer = function() {
+            $scope.timer_running = false;
+            $timeout.cancel(timeoutFn);
+        };
+
+        $scope.endTimer = function() {
+            // End of Timer
+            $scope.stopTimer();
+        }
+
+        // Auto Start
+        // $scope.startTimer();
+
+        function secondsToHms(d) {
+            d = Number(d);
+            var h = Math.floor(d / 3600);
+            var m = Math.floor(d % 3600 / 60);
+            var s = Math.floor(d % 3600 % 60);
+
+            var hStr = h > 0 ? h + ":" : "";
+            var mStr = (m > 9 ? m : "0" + m) + ":";
+            var sStr = s > 9 ? s : "0" + s;
+            return hStr + mStr + sStr;
+        };
     }]);

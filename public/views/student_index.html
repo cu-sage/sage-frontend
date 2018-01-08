@@ -1,170 +1,150 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>SAGE</title>
+<head>
+    <meta charset="utf-8">
+    <title>SAGE</title>
 
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Animate.CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        <!-- Custom styles for index -->
-        <link href="/public/css/index.css" rel="stylesheet">
-        <!-- Student Task CSS -->
-        <link href="/public/css/student_task.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Animate.CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- Custom styles for index -->
+    <link href="/public/css/index.css" rel="stylesheet">
+    <!-- Student Task CSS -->
+    <link href="/public/css/student_task.css" rel="stylesheet">
 
-        <link href="/node_modules/highcharts-ng/dist/highcharts-ng.css" rel="stylesheet">
+    <link href="/node_modules/highcharts-ng/dist/highcharts-ng.css" rel="stylesheet">
 
 
-    </head>
-    <body ng-app="studentApp">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-3 col-md-2 sidebar" ng-controller="StudentIndexController">
-                    <ul class="nav nav-sidebar">
-                        <img ng-src="{{student_url}}" class="img-responsive" alt="Image not found" onerror="this.src='/public/images/empty_avatar.png';">
-                        <br>
-                        <h4 class="text-center">{{student}}</h4>
-                        <h5 class="text-center">Student</h5>
+</head>
+<body ng-app="studentApp">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar" ng-controller="StudentIndexController">
+            <ul class="nav nav-sidebar">
+                <img ng-src="{{student_url}}" class="img-responsive" alt="Image not found" onerror="this.src='/public/images/empty_avatar.png';">
+                <br>
+                <h4 class="text-center">{{student}}</h4>
+                <h5 class="text-center">Student</h5>
+            </ul>
+            <ul class="nav nav-sidebar">
+
+                <li ng-class="{ active: isActive('home') }">
+                    <a ng-href="#/home/{{sid}}">
+                        <i class="glyphicon glyphicon-home pull-right"></i>
+                        Home
+                    </a>
+                </li>
+
+                <li ng-class="{ active: isActive('courses') }">
+                    <a ng-href="#/courses/{{sid}}">
+                        <i class="glyphicon glyphicon-book pull-right"></i>
+                        Missions
+                    </a>
+                </li>
+
+                <li ng-class="{ active: isActive('account') }">
+                    <a ng-href="#/account/{{sid}}">
+                        <i class="glyphicon glyphicon-user pull-right"></i>
+                        Account
+                    </a>
+                </li>
+
+                <li ng-class="{ active: isActive('help') }" ng-hide="true">
+                    <a ng-href="#/help">
+                        <i class="glyphicon glyphicon-flag pull-right"></i>
+                        Help
+                    </a>
+                </li>
+                <li ng-click="showHide()">
+                    <a>
+                        <i class="glyphicon glyphicon-flag pull-right"></i>
+                        Hide / Show
+                    </a>
+                </li>
+                <!--           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining
+                               <span id='timer'>Time Remaining</span>
+                           </div>-->
+            </ul>
+            <ul>Quests enrolled:
+                <li ng-repeat="course in coursesEnrolled"
+                    ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+                > <span class="bullets-course-page"> {{course.courseName}} </span>
+                    <ul>
+                        <li ng-repeat="assignment in course.assignments">
+                            {{assignment.assignmentName || assignment.assignmentID || assignment.assigmentID}}
+                        </li>
                     </ul>
-                    <ul class="nav nav-sidebar">
+                </li>
+            </ul>
+            <br>
+            <div>
+                <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">
+                    {{timer_running ? 'Stop Timer' : 'Start Timer'}}
+                </button>
+            </div>
+            <br>
+            <div>
 
-                        <li ng-class="{ active: isActive('home') }">
-                            <a ng-href="#/home/{{sid}}">
-                                <i class="glyphicon glyphicon-home pull-right"></i>
-                                Home
-                            </a>
-                        </li>
-
-                        <li ng-class="{ active: isActive('courses') }">
-                            <a ng-href="#/courses/{{sid}}">
-                                <i class="glyphicon glyphicon-book pull-right"></i>
-                                Missions
-                            </a>
-                        </li>
-
-                        <li ng-class="{ active: isActive('account') }">
-                            <a ng-href="#/account/{{sid}}">
-                                <i class="glyphicon glyphicon-user pull-right"></i>
-                                Account
-                            </a>
-                        </li>
-
-                        <li ng-class="{ active: isActive('help') }" ng-hide="true">
-                            <a ng-href="#/help">
-                                <i class="glyphicon glyphicon-flag pull-right"></i>
-                                Help
-                            </a>
-                        </li>
-                        <li ng-click="showHide()">
-                            <a>
-                                <i class="glyphicon glyphicon-flag pull-right"></i>
-                                Hide / Show
-                            </a>
-                        </li>
-<!--           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining
-               <span id='timer'>Time Remaining</span>
-           </div>-->
-                    </ul>
-                    <ul>Quests enrolled:
-                            <li ng-repeat="course in coursesEnrolled"
-                            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-                            > <span class="bullets-course-page"> {{course.courseName}} </span>
-                              <ul>
-                                  <li ng-repeat="assignment in course.assignments">
-                                    {{assignment.assignmentName || assignment.assignmentID || assignment.assigmentID}}
-                                  </li>
-                              </ul>
-                           </li>
-                    </ul>
-                    <br>
+                <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
                     <div>
-                        <button type="button" class="btn btn-default" ng-click="isButtonCollapsed = !isButtonCollapsed" align ="right">
-                            Timer On/Off
-                        </button>
-                    </div>
-                    <br>
-                    <div>
-
-                        <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
-                            <div>
-                                Time Remaining: <div   id="timer">
-                                                               <span id='timer'>Time Remaining: </span>
-                                </div>
-                            </div>
+                        Time Remaining:
+                        <div id="timer">
+                            <span>{{timer_display}}</span>
                         </div>
-                        <script>
-                            document.getElementById('timer').innerHTML = 10 + ":" + 00;
-                            startTimer();
-                            function startTimer() {
-                                var presentTime = document.getElementById('timer').innerHTML;
-                                var timeArray = presentTime.split(/[:]+/);
-                                var m = timeArray[0];
-                                var s = checkSecond((timeArray[1] - 1));
-                                if(s==59){m=m-1}
-                                //if(m<0){alert('timer completed')}
-
-                                document.getElementById('timer').innerHTML =
-                                    m + ":" + s;
-                                setTimeout(startTimer, 1000);
-                            }
-                            function checkSecond(sec) {
-                                if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-                                if (sec < 0) {sec = "59"};
-                                return sec;
-                            }
-                        </script>
-	                </div>
+                    </div>
                 </div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
-                    <div ng-view>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
+            <div ng-view>
 
             </div>
         </div>
-    </body>
+</body>
 
-    <!-- angular -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
-    <script src="/public/js/lib/satellizer.min.js"></script>
+<!-- angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+<script src="/public/js/lib/satellizer.min.js"></script>
 
-    <!-- chart.js -->
-    <!--<script src="http://code.highcharts.com/highcharts.src.js"></script>-->
-    <script src="https://code.highcharts.com/stock/highstock.src.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://rawgithub.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
-    <!--<script type="text/javascript" src = "/node_modules/highcharts-ng/dist/highcharts-ng.js"></script> -->
+<!-- chart.js -->
+<!--<script src="http://code.highcharts.com/highcharts.src.js"></script>-->
+<script src="https://code.highcharts.com/stock/highstock.src.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://rawgithub.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
+<!--<script type="text/javascript" src = "/node_modules/highcharts-ng/dist/highcharts-ng.js"></script> -->
 
-    <script src="/public/js/student_app.js"></script>
-    <script src="/public/js/controllers/student/StudentHomeController.js"></script>
-    <script src="/public/js/controllers/student/StudentCoursesController.js"></script>
-    <script src="/public/js/controllers/student/StudentSingleCourseController.js"></script>
-    <script src="/public/js/controllers/student/StudentAssessmentController.js"></script>
-    <script src="/public/js/controllers/student/StudentLearningPathController.js"></script>
+<script src="/public/js/student_app.js"></script>
+<script src="/public/js/controllers/student/StudentHomeController.js"></script>
+<script src="/public/js/controllers/student/StudentCoursesController.js"></script>
+<script src="/public/js/controllers/student/StudentSingleCourseController.js"></script>
+<script src="/public/js/controllers/student/StudentAssessmentController.js"></script>
+<script src="/public/js/controllers/student/StudentLearningPathController.js"></script>
 
-    <script src="/public/js/controllers/StudentIndexController.js"></script>
-    <script src="/public/js/controllers/StudentOverviewController.js"></script>
-    <script src="/public/js/controllers/StudentTasksController.js"></script>
-    <script src="/public/js/controllers/StudentAccountController.js"></script>
+<script src="/public/js/controllers/StudentIndexController.js"></script>
+<script src="/public/js/controllers/StudentOverviewController.js"></script>
+<script src="/public/js/controllers/StudentTasksController.js"></script>
+<script src="/public/js/controllers/StudentAccountController.js"></script>
 
-    <!--Upload lib-->
-    <script src="/public/js/lib/ng-file-upload/ng-file-upload.min.js"></script>
-    <script src="/public/js/lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
-    <script src="/node_modules/ng-error/ng-error.js"></script>
-
-
-    <!-- Student Task CSS -->
-    <link href="/public/css/student_task.css" rel="stylesheet">
-    <!-- <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
-    <!-- Video -->
-    <link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
-    <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
-    <script src="/node_modules/vjs-video/dist/vjs-video.min.js"></script>
+<!--Upload lib-->
+<script src="/public/js/lib/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="/public/js/lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script src="/node_modules/ng-error/ng-error.js"></script>
 
 
-    <link href="/public/css/student/student_home.css" rel="stylesheet">
-    <link href="/public/css/student/student_courses.css" rel="stylesheet">
-    <link href="/public/css/student/student_single_course.css" rel="stylesheet">
+<!-- Student Task CSS -->
+<link href="/public/css/student_task.css" rel="stylesheet">
+<!-- <script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+<!-- Video -->
+<link href="http://vjs.zencdn.net/5.12.6/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/5.12.6/video.js"></script>
+<script src="/node_modules/vjs-video/dist/vjs-video.min.js"></script>
+
+
+<link href="/public/css/student/student_home.css" rel="stylesheet">
+<link href="/public/css/student/student_courses.css" rel="stylesheet">
+<link href="/public/css/student/student_single_course.css" rel="stylesheet">
 
 
 </html>

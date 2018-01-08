@@ -20,11 +20,11 @@
         font-size: 14px;
     }
     .container {
-    position: relative;
-    width: 100%;
+        position: relative;
+        width: 100%;
         max-width:210px; /* or whatever width you want. */
         display: inline-block;
-}
+    }
     .skills {
         text-align: right;
         padding-right: 20px;
@@ -88,34 +88,34 @@
         content: '';
     }
     .image {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #008CBA;
-}
-.container:hover .overlay {
-    opacity: 1;
-}
-.text {
-    color: white;
-    font-size: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-}
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #008CBA;
+    }
+    .container:hover .overlay {
+        opacity: 1;
+    }
+    .text {
+        color: white;
+        font-size: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
 </style>
 
 <div class="starter-template ng-scope">
@@ -139,11 +139,11 @@
         <div uib-collapse="isCollapsed">
             <div class="alert alert-success" style="color:#fff;background-color:#428bca">Sage Orbs Found</div>
 
-        <!--<div class="progress" style="border:solid">
-            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
-                {{level}}
-            </div>
-        </div>-->
+            <!--<div class="progress" style="border:solid">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+                    {{level}}
+                </div>
+            </div>-->
             <div class = "container" style="column-count:2;-moz-column-count:2;-webkit-column-count:2" width="300" >
             <table  class="table table-striped table-hover" style="border-radius: 10px" align = "right"  >
                 <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
@@ -160,32 +160,24 @@
             </table>
             </div>
         </div>
-        <script>
-                document.getElementById('timer').innerHTML = 10 + ":" + 00;
-                document.write("Hi")
-                startTimer();
-                    function startTimer() {
-                        var presentTime = document.getElementById('timer').innerHTML;
-                        var timeArray = presentTime.split(/[:]+/);
-                        var m = timeArray[0];
-                        var s = checkSecond((timeArray[1] - 1));
-                        if(s==59){m=m-1}
-                        //if(m<0){alert('timer completed')}
+            <br>
+            <br>
+            <div>
+                <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">
+                    {{timer_running ? 'Stop Timer' : 'Start Timer'}}
+                </button>
+            </div>
+            <br>
+            <div>
 
-                        document.getElementById('timer').innerHTML =
-                            m + ":" + s;
-                        setTimeout(startTimer, 1000);
-                    }
-                function checkSecond(sec) {
-                    if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-                    if (sec < 0) {sec = "59"};
-                    return sec;
-                }
-            </script>
-            <div id="timer">    </div>
-            <div><span id="timer"></span>
-                <table class="table table-striped table-hover" style="border-radius: 10px" >
-                </table>
+                <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
+                    <div>
+                        Time Remaining:
+                        <div id="timer">
+                            <span>{{timer_display}}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
     </div>
 </div>

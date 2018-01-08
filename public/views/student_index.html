@@ -77,7 +77,23 @@
                 </li>
             </ul>
             <br>
+            <div>
+                <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">
+                    {{timer_running ? 'Stop Timer' : 'Start Timer'}}
+                </button>
+            </div>
+            <br>
+            <div>
 
+                <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
+                    <div>
+                        Time Remaining:
+                        <div id="timer">
+                            <span>{{timer_display}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
             <div ng-view>

@@ -1,4 +1,37 @@
 <style xmlns="http://www.w3.org/1999/html">
+    .tutor_container {
+        width: 250px;
+        height: 350px;
+        overflow: auto;
+        padding: 1em;
+        background: #FFF;
+        margin: auto;
+    }
+    .table_container {
+        width: 250px;
+        height: 300px;
+        overflow: auto;
+        padding: 1em;
+        background: #FFF;
+        margin: auto;
+    }
+
+    .table_cube {
+        float: left;
+        text-align: center;
+        line-height: 50px;
+        width: 50px; height: 50px;
+    }
+
+    .cube:nth-of-type(2n) {
+        background: #DDF;
+    }
+    .bottom_aligner {
+        display: inline-block;
+        height: 100%;
+        vertical-align: bottom;
+        width: 0px;
+    }
     .horizontal-collapse {
         height: 70px;
     }
@@ -128,6 +161,7 @@
         </object>
     </div>
     <div class="col-xs-2 ng-scope"><span class="pull-right">
+        <div class="tutor_container">
             <div><img ng-src="https://i.pinimg.com/736x/df/e0/d2/dfe0d20f784d0e52a71ac4eb5f72bc4a--ivy-league-the-lion.jpg"
                       style='border:3px solid #000000' height="200" width="200" align="right" >
             </div>
@@ -135,6 +169,8 @@
             <div class="tip" align = "middle">
                 {{speech}}
             </div>
+        </div>
+
             <br>
         <div uib-collapse="isCollapsed">
             <div class="alert alert-success" style="color:#fff;background-color:#428bca">Sage Orbs Found</div>
@@ -144,8 +180,8 @@
                     {{level}}
                 </div>
             </div>-->
-            <div class = "container" style="column-count:2;-moz-column-count:2;-webkit-column-count:2" width="300" >
-            <table  class="table table-striped table-hover" style="border-radius: 10px" align = "right"  >
+            <div class = "table_container" style="column-count:2;-moz-column-count:2;-webkit-column-count:2" width="300"  >
+            <table  class="table table-striped table-hover" style="border-radius: 10px" align = "right" height="300" >
                 <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
                     <td ng-if="result.pass==true" title={{result.actions.command}}><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                     <td title={{result.actions.command}} ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
@@ -162,6 +198,12 @@
         </div>
             <br>
             <br>
+<!--        <div class="table_container">
+            <div class="table_cube">do</div>
+            <div class="table_cube">ray</div>
+        </div>-->
+<!--        <div  class="bottom_aligner"></div>-->
+        <div>
             <div>
                 <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">
                     {{timer_running ? 'Stop Timer' : 'Start Timer'}}
@@ -179,6 +221,7 @@
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 

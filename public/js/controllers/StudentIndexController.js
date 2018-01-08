@@ -57,44 +57,4 @@ angular.module('studentApp')
 
         $scope.student_url = "https://www.susqu.edu/assets/images/news/2014-15/january-2015/columbia-wide-news.jpg";
 
-        // Timer Functions
-        $scope.timer = 600;
-        $scope.timer_display = secondsToHms($scope.timer);
-        $scope.timer_running = false;
-
-        var timeoutFn;
-
-        $scope.startTimer = function() {
-            $scope.timer_running = true;
-            timeoutFn = $timeout(function () {
-                $scope.timer--;
-                $scope.timer_display = secondsToHms($scope.timer);
-                $scope.timer > 0 ? $scope.startTimer() : $scope.endTimer();
-            }, 1000);
-        };
-
-        $scope.stopTimer = function() {
-            $scope.timer_running = false;
-            $timeout.cancel(timeoutFn);
-        };
-
-        $scope.endTimer = function() {
-            // End of Timer
-            $scope.stopTimer();
-        }
-
-        // Auto Start
-        // $scope.startTimer();
-
-        function secondsToHms(d) {
-            d = Number(d);
-            var h = Math.floor(d / 3600);
-            var m = Math.floor(d % 3600 / 60);
-            var s = Math.floor(d % 3600 % 60);
-
-            var hStr = h > 0 ? h + ":" : "";
-            var mStr = (m > 9 ? m : "0" + m) + ":";
-            var sStr = s > 9 ? s : "0" + s;
-            return hStr + mStr + sStr;
-        };
     }]);

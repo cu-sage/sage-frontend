@@ -21,7 +21,7 @@ angular.module('studentApp')
             // poll a GET request to node, send every second
             $log.info("Printing assessment " + $scope)
 
-            $http({method: 'GET', url: 'http://http://dev.cu-sage.org:8081/assess/game/123/objective/58d845736e4ddb3ce20ed1b3'})
+            $http({method: 'GET', url: 'http://dev.cu-sage.org:8081/assess/game/123/objective/58d845736e4ddb3ce20ed1b3'})
                 .then(function (response) {
                     if (response.status == '403') {
                         $log.info("Inside GET")

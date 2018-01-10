@@ -92,4 +92,7 @@ angular.module('studentApp')
             var sStr = s > 9 ? s : "0" + s;
             return hStr + mStr + sStr;
         };
+
+        // Orbs columns
+        $scope.orb_col = 3; // 1,2,3,4, or 6
     });

@@ -1,5 +1,5 @@
 <h2 class="sub-header">Quest: {{course.courseName}}</h2>
-<h3 class="sub-header">Create a Quest!</h3>
+<h3 class="sub-header">Create a Quest</h3>
 <div>
     Name:</br><input type="text" name="coursename" placeholder="{{course.courseName}}" ng-model="info[0]" ng-required="true" /><br />Description:</br>
     <textarea type="text" name="desc" id="desc" ng-model="info[1]"  placeholder="{{course.desc}}" /><br />
@@ -7,7 +7,7 @@
 
 <button ng-click="updateCourse()">Update Quest Details</button>
 
-<h3 class="sub-header">Play these games to complete your Quest!</h3>
+<h3 class="sub-header">Games in this Quest</h3>
 <div class="panel panel-default">
     <table style="width:50%">
         <tr ng-repeat="each in assign" >

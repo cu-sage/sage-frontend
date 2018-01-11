@@ -103,7 +103,7 @@ Code.runButtonClicked = function() {
     console.log(points);
     //console.log($xml);
     //var updateUrl = 'http://localhost:8081/assignments/583c9865aa877721348f427e/update_xml';
-    var updateUrl = "http://localhost:8081/objectives/58d845736e4ddb3ce20ed1b3";
+    var updateUrl = "http://dev.cu-sage.org:8081/objectives/58d845736e4ddb3ce20ed1b3";
     $.post(updateUrl, {
       xmlfile: xmlText,
       point_total: points

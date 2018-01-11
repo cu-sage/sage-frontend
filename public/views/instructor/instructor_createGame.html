@@ -12,21 +12,20 @@
         </br></br>
      Game Type: <input type="text" name="name" placeholder="Game Type" ng-model="assgn.type" ng-required="true" /><br />
 
-    <p>Add from following Assessments in this Game:</p>
+    <p>Associate Game Objectives:</p>
     <ul>
         <li ng-repeat="each_course in coursesBy" >
             <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
-                <!-- <span class="sr-only"></span> -->
+                 <span class="sr-only"></span>
             </a>
-                       
         </li>
     </ul>
 
-        <!--<input type="text" name="order" placeholder="Assignment Order No" ng-model="assgn.order" ng-required="true" /><br />-->
+        <input type="text" name="order" placeholder="Game Order No" ng-model="assgn.order" ng-required="true" /><br />
    
     
     <button ng-click="reset()" value="Reset" >Reset</button>
-    <button ng-click="design()" value="Design Assessment" >Design Assessment</button>
+    <button ng-click="design()" value="Design Objectives" >Design Game Objectives</button>
     <button ng-click="submitForm()" value="Save" >Save</button>
     
   </div>

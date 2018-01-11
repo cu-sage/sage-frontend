@@ -1,4 +1,5 @@
 <h2 class="sub-header">Quest: {{course.courseName}}</h2>
+<h3 class="sub-header">Create a Quest!</h3>
 <div>
     Name:</br><input type="text" name="coursename" placeholder="{{course.courseName}}" ng-model="info[0]" ng-required="true" /><br />Description:</br>
     <textarea type="text" name="desc" id="desc" ng-model="info[1]"  placeholder="{{course.desc}}" /><br />
@@ -6,8 +7,23 @@
 
 <button ng-click="updateCourse()">Update Quest Details</button>
 
-<h3 class="sub-header">Games</h3>
+<h3 class="sub-header">Play these games to complete your Quest!</h3>
 <div class="panel panel-default">
+    <table style="width:50%">
+        <tr ng-repeat="each in assign" >
+            <td><a href="" class="close-thik" ng-click="removeAssignment(assign ,each.assigmentID);">&#10006</a>&nbsp
+                <select ng-model="orderSt[each.assigmentID]">
+                    <option ng-repeat="x in orderSt" ng-value="{{x}}">{{x}}</option>
+                </select>
+            </td>
+            <!--a href="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html"-->
+            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"> Game {{each.assignmentName}}
+
+                <span class="sr-only"></span>
+            </a></td>
+            <td><div ng-repeat="as in assessments">Assessments here</br></div></td>
+        </tr>
+    </table>
     <table style="width:50%">
         <tr ng-repeat="each in assign" >
         <td><a href="" class="close-thik" ng-click="removeAssignment(assign ,each.assigmentID);">&#10006</a>&nbsp
@@ -23,6 +39,8 @@
             <td><div ng-repeat="as in assessments">Assessments here</br></div></td>
         </tr>
     </table>
+
+    <button ng-click="updateCourse()">Create new Game</button>
 
     <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><h4>Create new Game</h4></a>
 

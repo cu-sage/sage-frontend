@@ -51,7 +51,7 @@ instructorApp
             })
             .when('/coursePage/:sid/createcourse', {
                 templateUrl: '/public/views/instructor/instructor_createCourse.html',
-                controller: 'InstructorCourseCreationController'
+                controller: 'InstructorQuestCreationController'
             })
             .when('/coursePage/:sid/course/:cid/createAssignment', {
                 templateUrl: '/public/views/instructor/instructor_createGame.html',

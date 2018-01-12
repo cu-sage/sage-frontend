@@ -1,5 +1,5 @@
 angular.module('instructorApp')
-    .controller('InstructorCourseCreationController', ['$scope', '$window', '$http', "$routeParams", "$location", function($scope, $window, $http, $routeParams, $location) {
+    .controller('InstructorQuestCreationController', ['$scope', '$window', '$http', "$routeParams", "$location", function($scope, $window, $http, $routeParams, $location) {
 
     	//$scope.course={};
 

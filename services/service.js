@@ -4,7 +4,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 var config = require('./config');
 var bcrypt = require('bcryptjs');
-var courseModel = require('../models/courseModel');
+var questModel = require('../models/questModel');
 var LPModel = require('../models/learningPathModel');
 var mongoose = require('mongoose');
 
@@ -15,30 +15,27 @@ var mongoose = require('mongoose');
 //     });
 // });
 
-var newcourse = function(coursename, desc, instructorid, features,ctConcepts, callback) {
-    courseModel.findOne({courseName: coursename}, function(err, existingCourse) {
-        if (existingCourse) {
+var newquest = function(questname, desc, instructorid, features,ctConcepts, callback) {
+    questModel.findOne({questName: questname}, function(err, existingQuest) {
+        if (existingQuest) {
             callback(
-                {status: 409, message: {courseName: 'CourseName is already taken.'}});
+                {status: 409, message: {questName: 'Quest Name is already taken.'}});
             return;
         }
 
-        var newcourse1 = new courseModel({
-            courseName: coursename,
+        var newquest1 = new questModel({
+            questName: questname,
             desc: desc,
             instructorID: instructorid,
-            assignments: [],
+            games: [],
             features:features,
             ctConcepts:ctConcepts
         });
 
-
-        //console.log("In service");
-        //console.log(coursename);
-        newcourse1.save(function(err,course_inserted) {
+        newquest1.save(function(err,quest_inserted) {
         	if(!err){
-        		console.log(course_inserted);
-        		callback({status: 200, message: course_inserted});
+        		console.log(quest_inserted);
+        		callback({status: 200, message: quest_inserted});
         	}
         	else
         		callback({status:404 , message : {error : "Not saved into db"}});
@@ -84,21 +81,19 @@ var newLP = function(LPname, desc, instructorid, features,ctConcepts, callback) 
 };
 
 //newassignment
-var newassignment = function(values, instructorid, courseid, callback) {
-    courseModel.findOne({_id: { $in: [ courseid ] }}, function(err, existingCourse) {
-        if (existingCourse) {
+var newassignment = function(values, instructorid, questid, callback) {
+    questModel.findOne({_id: { $in: [ questid ] }}, function(err, existingQuest) {
+        if (existingQuest) {
 
             var aid = mongoose.Types.ObjectId();
             var newtest = {
-                "assignmentName": values.name,
-                "assignmentOrder":values.order,
-                "assigmentID":aid
+                "gameName": values.name,
+                "gameOrder":values.order,
+                "gameID":aid
 
             };
 
-
-
-        courseModel.update({_id: { $in: [ courseid ] }},{ $push: { assignments: newtest } },function(err,test_inserted) {
+        questModel.update({_id: { $in: [ questid ] }},{ $push: { games: newtest } },function(err,test_inserted) {
             if(!err){
                 console.log(test_inserted);
                 callback({status: 200, message: {inserted:test_inserted,testid:aid}});
@@ -111,12 +106,7 @@ var newassignment = function(values, instructorid, courseid, callback) {
 
         }
         callback(
-                {status: 404, message: {error: 'Course doesnt exist.'}});
-
-
-
-
-
+                {status: 404, message: {error: 'Quest doesnt exist.'}});
     });
 };
 
@@ -151,48 +141,45 @@ var addCoursetoLP = function(order , courseID, LPid, callback) {
     });
 };
 
-var removeAssignment = function(course_id, newAssignments, callback) {
+var removeAssignment = function(quest_id, newAssignments, callback) {
     //console.log("in remove assignment" + assignment_id);
-    courseModel.findOne({_id: { $in: [ course_id ] }}, function(err, existingLP) {
+    questModel.findOne({_id: { $in: [ quest_id ] }}, function(err, existingLP) {
         if (existingLP) {
-            //console.log(course_id+" going for update "+assignment_id);
-        //courseModel.update({_id: { $in: [ course_id ] }}, { $pull: {'assignments': {'assignments.assigmentID': assignment_id}}}, function(err, msg) {
-            courseModel.update({_id: { $in: [ course_id ] }},{ $set: { assignments: newAssignments } }, function(err, msg) {
+            //console.log(quest_id+" going for update "+assignment_id);
+        //courseModel.update({_id: { $in: [ quest_id ] }}, { $pull: {'assignments': {'assignments.assigmentID': assignment_id}}}, function(err, msg) {
+            questModel.update({_id: { $in: [ quest_id ] }},{ $set: { games: newAssignments } }, function(err, msg) {
             if(!err){
                 console.log(msg);
-                callback({status: 200, message: {"message" : "Assignment successfully removed."}});
+                callback({status: 200, message: {"message" : "Game successfully removed."}});
             }
             else
                 callback({status:404 , message : {error : "Not saved into db"}});
-
         });
         return;
 
         }
         callback(
-                {status: 404, message: {error: 'Course doesnt exist.'}});
+                {status: 404, message: {error: 'Quest does not exist.'}});
 
     });
 };
 
-var updateCourse = function(coursename, desc , Courseid, callback) {
-    courseModel.findOne({_id: { $in: [ Courseid ] }}, function(err, existingLP) {
+var updateQuest = function(questname, desc , Questid, callback) {
+    questModel.findOne({_id: { $in: [ Questid ] }}, function(err, existingLP) {
         if (existingLP) {
-        courseModel.update({_id: { $in: [ Courseid ] }},{ $set: { courseName: coursename, desc: desc } },function(err, msg) {
+        questModel.update({_id: { $in: [ Questid ] }},{ $set: { questName: questname, desc: desc } },function(err, msg) {
             if(!err){
                 console.log(msg);
-                callback({status: 200, message: {"message" : "Course order successfully updated."}});
+                callback({status: 200, message: {"message" : "Quest order successfully updated."}});
             }
             else
                 callback({status:404 , message : {error : "Not saved into db"}});
-
         });
         return;
 
         }
         callback(
-                {status: 404, message: {error: 'Course doesnt exist.'}});
-
+                {status: 404, message: {error: 'Quest doesnt exist.'}});
     });
 };
 
@@ -214,41 +201,35 @@ var updateCourseOrderInLP = function(courses , LPid, callback) {
         }
         callback(
                 {status: 404, message: {error: 'LP doesnt exist.'}});
-
     });
 };
 
-var updateAssignmentOrderInQuest = function(assignments , courseid, callback) {
-    courseModel.findOne({_id: { $in: [ courseid ] }}, function(err, existingLP) {
+var updateAssignmentOrderInQuest = function(games , questid, callback) {
+    questModel.findOne({_id: { $in: [ questid ] }}, function(err, existingLP) {
         if (existingLP) {
           console.log("found course to update");
-        courseModel.update({_id: { $in: [ courseid ] }},{ $set: { assignments: assignments } },function(err, msg) {
+        questModel.update({_id: { $in: [ questid ] }},{ $set: { gamess: games } },function(err, msg) {
             if(!err){
                 console.log(msg);
                 callback({status: 200, message: {"message" : "assignment order successfully updated."}});
             }
             else
                 callback({status:404 , message : {error : "Not saved into db"}});
-
         });
         return;
-
         }
         callback(
                 {status: 404, message: {error: 'LP doesnt exist.'}});
-
     });
 };
 
-
-
 module.exports = {
     // isAuthenticated: isAuthenticated,
-    newcourse: newcourse,
+    newcourse: newquest,
     newassignment:newassignment,
     addCoursetoLP:addCoursetoLP,
     newLP:newLP,
-    updateCourse:updateCourse,
+    updateQuest: updateQuest,
     removeAssignment: removeAssignment,
     updateAssignmentOrderInQuest: updateAssignmentOrderInQuest,
     updateCourseOrderInLP:updateCourseOrderInLP

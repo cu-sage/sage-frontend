@@ -46,7 +46,7 @@ angular.module('studentApp')
                         });
 
                         seriesArray.push({
-                            name: singleAssignment.assignmentName,
+                            name: singleAssignment.gameName,
                             data: data,
                             pointPlacement: 'on'
 

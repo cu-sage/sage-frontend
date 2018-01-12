@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 
-var courseModel = mongoose.model('Course', new mongoose.Schema({
-	courseName : String,
+var questModel = mongoose.model('Course', new mongoose.Schema({
+	questName : String,
     desc : String,
     instructorID : mongoose.Schema.Types.ObjectId,
-    assignments : [],
+    games : [],
     features : [String],
     ctConcepts: []
 
 }));
 
-module.exports = courseModel;
+module.exports = questModel;

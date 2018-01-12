@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
-var assignmentModel = mongoose.model('Assignment', new mongoose.Schema({
-    assignmentName: String,
-    assignmentOrder: Number,
+var gameModel = mongoose.model('Game', new mongoose.Schema({
+    gameName: String,
+    gameOrder: Number,
     assessments: []
 }));
 
-module.exports = assignmentModel;
+module.exports = gameModel;

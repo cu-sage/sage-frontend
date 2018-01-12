@@ -8,8 +8,8 @@ angular.module('instructorApp')
         $scope.info = []
         $scope.assessments = [1,2,3,4,5];
 
-
-        /*console.log($scope);
+        //console.log($scope);
+        /*
         $scope.temp = $scope.LP.courses.sort(function(a, b){
             aOrder = parseInt(a.CourseOrder);
             bOrder = parseInt(b.CourseOrder);
@@ -28,7 +28,7 @@ angular.module('instructorApp')
             for(each_assignment in $scope.orderSt){
                 assignments.push({
                     "assigmentID" : each_assignment,
-                    "assignmentOrder" : parseInt($scope.orderSt[each_assignment])
+                    "gameOrder" : parseInt($scope.orderSt[each_assignment])
                 });
             }
             console.log(assignments)
@@ -46,14 +46,12 @@ angular.module('instructorApp')
                         //console.log(path);
                         $route.reload();
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
-
                      }
-
             );
          }
 
-        $scope.updateCourse = function() {
-            console.log("in update course function " + $routeParams.cid, $scope.info)
+        $scope.updateQuest = function() {
+            console.log("in update quest function " + $routeParams.cid, $scope.info)
             $http({
                 method: 'POST',
                 url: "/stats/instructors/updateCourse/"+$routeParams.cid,
@@ -66,9 +64,7 @@ angular.module('instructorApp')
                     //console.log(path);
                     $route.reload();
                     ///coursePage/{{sid}}/LP/{{LP.LPID}}
-
                 }
-
             );
         };
 
@@ -96,7 +92,6 @@ angular.module('instructorApp')
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
 
                      }
-
             );
         };
 
@@ -115,8 +110,8 @@ angular.module('instructorApp')
 
                     //var temp = $scope.LP.courses;
                 $scope.temp = $scope.assign.sort(function(a, b){
-                        aOrder = parseInt(a.assignmentOrder);
-                        bOrder = parseInt(b.assignmentOrder);
+                        aOrder = parseInt(a.gameOrder);
+                        bOrder = parseInt(b.gameOrder);
                         if(aOrder < bOrder) return -1;
                         if(aOrder > bOrder) return 1;
                         return 0;
@@ -125,7 +120,7 @@ angular.module('instructorApp')
                  var iterator = $scope.temp.entries();
                     for(let e of iterator) {
                                 //console.log(e)
-                    $scope.orderSt[String(e[1].assigmentID)] = String(e[1].assignmentOrder);
+                    $scope.orderSt[String(e[1].assigmentID)] = String(e[1].gameOrder);
                 }
 
                 //console.log($scope.assign);

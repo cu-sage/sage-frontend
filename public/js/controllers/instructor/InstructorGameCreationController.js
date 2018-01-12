@@ -1,5 +1,5 @@
 angular.module('instructorApp')
-    .controller('InstructorAssignmentCreationController', ['$scope', '$window', '$http', "$routeParams", "$location" ,
+    .controller('InstructorGameCreationController', ['$scope', '$window', '$http', "$routeParams", "$location" ,
     function($scope, $window, $http, $routeParams, $location) {
 
     	//$scope.quest={};
@@ -19,7 +19,7 @@ angular.module('instructorApp')
         };
 
         console.log(newc);
-
+        console.log($scope)
         $http({
             method: 'POST',
             url: "/stats/instructors/"+$routeParams.sid+"/quest/"+$routeParams.cid+"/createGame/",

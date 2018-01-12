@@ -84,7 +84,6 @@ angular.module('instructorApp')
 
         console.log("in cntrlr");
         console.log($location.path());
-        console.log($scope)
     	$http({
 		    method: 'POST',
 		    url: "/stats/instructors/createquest/"+$routeParams.sid,

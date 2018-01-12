@@ -52,23 +52,22 @@ angular.module('instructorApp')
             );
          }
 
-
         $scope.updateCourse = function() {
             console.log("in update course function " + $routeParams.cid, $scope.info)
             $http({
-            method: 'POST',
-            url: "/stats/instructors/updateCourse/"+$routeParams.cid,
-            data: {'coursename':$scope.info[0],'desc' : $scope.info[1]},
+                method: 'POST',
+                url: "/stats/instructors/updateCourse/"+$routeParams.cid,
+                data: {'coursename':$scope.course.courseName,'desc' : $scope.course.desc},
             }).then(function(response) {
-                        console.log(response.status);
+                    console.log(response.status);
 
-                        console.log(response.data);
-                        //var path = "/coursePage/"+$scope.instrid+"/LP/"+$scope.LPid;
-                        //console.log(path);
-                        $route.reload();
-                        ///coursePage/{{sid}}/LP/{{LP.LPID}}
+                    console.log(response.data);
+                    //var path = "/coursePage/"+$scope.instrid+"/LP/"+$scope.LPid;
+                    //console.log(path);
+                    $route.reload();
+                    ///coursePage/{{sid}}/LP/{{LP.LPID}}
 
-                     }
+                }
 
             );
         };

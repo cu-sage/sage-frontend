@@ -1,6 +1,5 @@
 <h2 class="sub-header">Courses Page</h2>
 <h3>Missions  : </h3>
-<a href="#/coursePage/{{sid}}/createLP"><h6>&nbsp;Create new Mission</h6></a>
 
 <h4>Missions Created: </h4>
 <div>
@@ -13,15 +12,14 @@
             
         </li>
     </ul>
-    
+    <a href="#/coursePage/{{sid}}/createLP"><h6>&nbsp;Create new Mission</h6></a>
+
 </div>
 <hr>
 
-<h3>Quests : </h3>
+<h3>Quests</h3>
 
-<a href="#/coursePage/{{sid}}/createcourse"><h6>&nbsp;Create new Quest</h6></a>
-
-<h4>Quests Created :</h4>
+<h4>Existing Quests</h4>
 <div>
     <ul>
         <li ng-repeat="course in coursesBy" >
@@ -31,5 +29,8 @@
             <p>Description : {{course.desc}}</p>
         </li>
     </ul>
-    
+
+
+    <a href="#/coursePage/{{sid}}/createcourse"><h6>&nbsp;Create new Quest</h6></a>
+
 </div>

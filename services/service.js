@@ -118,10 +118,7 @@ var addCoursetoLP = function(order , courseID, LPid, callback) {
             var newCourse = {
                 "CourseOrder":order,
                 "CourseID":courseID
-
             };
-
-
 
         LPModel.update({_id: { $in: [ LPid ] }},{ $push: { courses: newCourse } },function(err,test_inserted) {
             if(!err){
@@ -146,7 +143,7 @@ var removeAssignment = function(quest_id, newAssignments, callback) {
     questModel.findOne({_id: { $in: [ quest_id ] }}, function(err, existingLP) {
         if (existingLP) {
             //console.log(quest_id+" going for update "+assignment_id);
-        //courseModel.update({_id: { $in: [ quest_id ] }}, { $pull: {'assignments': {'assignments.assigmentID': assignment_id}}}, function(err, msg) {
+        //courseModel.update({_id: { $in: [ quest_id ] }}, { $pull: {'assignments': {'assignments.gameID': assignment_id}}}, function(err, msg) {
             questModel.update({_id: { $in: [ quest_id ] }},{ $set: { games: newAssignments } }, function(err, msg) {
             if(!err){
                 console.log(msg);
@@ -207,7 +204,7 @@ var updateCourseOrderInLP = function(courses , LPid, callback) {
 var updateAssignmentOrderInQuest = function(games , questid, callback) {
     questModel.findOne({_id: { $in: [ questid ] }}, function(err, existingLP) {
         if (existingLP) {
-          console.log("found course to update");
+          console.log("found quest to update");
         questModel.update({_id: { $in: [ questid ] }},{ $set: { gamess: games } },function(err, msg) {
             if(!err){
                 console.log(msg);
@@ -225,7 +222,7 @@ var updateAssignmentOrderInQuest = function(games , questid, callback) {
 
 module.exports = {
     // isAuthenticated: isAuthenticated,
-    newcourse: newquest,
+    newquest: newquest,
     newassignment:newassignment,
     addCoursetoLP:addCoursetoLP,
     newLP:newLP,

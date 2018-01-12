@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var userModel = require('../models/userModel');
-var courseModel = require('../models/questModel');
-var assignmentModel = require('../models/assignmentModel.js');
+var questModel = require('../models/questModel');
+var gameModel = require('../models/gameModel.js');
 var enrollmentCourseModel = require('../models/enrollmentCourseModel.js');
 
 router.get("/", function(req, res) {
@@ -12,19 +12,20 @@ router.get("/", function(req, res) {
     });
 });
 
-router.get('/courses_home/:id', function(req, res) {
+router.get('/quests_home/:id', function(req, res) {
 
     let id = req.params.sid;
     console.log("Check router")
 
-    courseModel.find({instructorID:id}).lean().limit(2).exec()
+    questModel.find({instructorID:id}).lean().limit(2).exec()
     .then(function(response, error) {
         //TODO - handle error.
 
-        let returnResponse = response.map ((singleCourse) => {
-            singleCourse.courseID = singleCourse._id;
-            return singleCourse;
+        let returnResponse = response.map ((singleQuest) => {
+            singleQuest.questID = singleQuest._id;
+            return singleQuest;
         });
+
 
         res.status(200).send(returnResponse);
     });
@@ -38,7 +39,7 @@ module.exports = router;
 //     let id = req.params.sid;
 
 //     let allCoursesCreatedIDs = [];
-//     courseModel.find({instructorID:id}).lean().limit(2).exec()
+//     questModel.find({instructorID:id}).lean().limit(2).exec()
 //     .then((response, error) => {
 
 //         response.map((singleCourse) => {
@@ -46,7 +47,7 @@ module.exports = router;
 
 //         });
 
-//         return courseModel.find({'_id': {'$in' : allCoursesCreatedIDs}}).lean().exec();
+//         return questModel.find({'_id': {'$in' : allCoursesCreatedIDs}}).lean().exec();
 
 //     }).then((response, error) => {
 

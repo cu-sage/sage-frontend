@@ -167,7 +167,7 @@ angular.module('studentApp')
                 });
             }*/
             $scope.drawCharts = function(id){
-                console.log("clicked on course "+id);
+                console.log("clicked on quest "+id);
                 $scope.barData = [];
                 for (i = 0; i < $scope.student.number_of_courses; i++) {
                     if ($scope.student.courses[i].id === id) {

@@ -21,11 +21,11 @@ instructorApp
                 templateUrl: '/public/views/instructor_upload.html',
                 controller: 'InstructorUploadController'
             })
-            .when('/overview/:sid/courses/:cid', {
+            .when('/overview/:sid/quests/:cid', {
                 templateUrl: '/public/views/instructor_overview.html',
                 controller: 'InstructorOverviewController'
             })
-            .when('/overview/:sid/courses/:cid/hw/:hid', {
+            .when('/overview/:sid/quests/:cid/hw/:hid', {
                 templateUrl: '/public/views/instructor_overview.html',
                 controller: 'InstructorOverviewController'
             })
@@ -33,31 +33,31 @@ instructorApp
                 templateUrl: '/public/views/instructor/instructor_home1.html',
                 controller: 'InstructorHome1Controller'
             })
-            .when('/coursePage/:sid', {
-                templateUrl: '/public/views/instructor/instructor_coursePage.html',
-                controller: 'InstructorCourseController'
+            .when('/questPage/:sid', {
+                templateUrl: '/public/views/instructor/instructor_questPage.html',
+                controller: 'InstructorQuestController'
             })
-            .when('/coursePage/:sid/LP/:LPid', {
+            .when('/questPage/:sid/LP/:LPid', {
                 templateUrl: '/public/views/instructor/instructor_LP.html',
                 controller: 'InstructorLPController'
             })
-            .when('/coursePage/:sid/eachcourse/:cid', {
-                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
-                controller: 'InstructorEachCourseController'
+            .when('/questPage/:sid/eachquest/:cid', {
+                templateUrl: '/public/views/instructor/instructor_eachquest.html',
+                controller: 'InstructorEachQuestController'
             })
-            .when('/coursePage/:sid/eachcourse/:cid/hw/:hid', {
-                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
-                controller: 'InstructorEachCourseController'
+            .when('/questPage/:sid/eachquest/:cid/hw/:hid', {
+                templateUrl: '/public/views/instructor/instructor_eachquest.html',
+                controller: 'InstructorEachQuestController'
             })
-            .when('/coursePage/:sid/createcourse', {
-                templateUrl: '/public/views/instructor/instructor_createCourse.html',
+            .when('/questPage/:sid/createquest', {
+                templateUrl: '/public/views/instructor/instructor_createQuest.html',
                 controller: 'InstructorQuestCreationController'
             })
-            .when('/coursePage/:sid/course/:cid/createAssignment', {
+            .when('/questPage/:sid/quest/:cid/createGame', {
                 templateUrl: '/public/views/instructor/instructor_createGame.html',
-                controller: 'InstructorAssignmentCreationController'
+                controller: 'InstructorGameCreationController'
             })
-            .when('/coursePage/:sid/course/:cid/createAssignment/:aid/design', {
+            .when('/questPage/:sid/quest/:cid/createGame/:aid/design', {
                 templateUrl: '/public/views/instructor/instructor_scratchdesign.html',
                 controller: 'InstructorDesignController'
             })
@@ -65,11 +65,11 @@ instructorApp
                 templateUrl: '/public/views/instructor/instructor_createLP.html',
                 controller: 'InstructorLPCreationController'
             })
-            .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/Game', {
+            .when('/questPage/:sid/quest/:cid/Game/:ano/id/:aid/Game', {
                 templateUrl: '/public/views/instructor/instructor.html',
                 controller: 'InstructorGameController'
             })
-            .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/VAE', {
+            .when('/questPage/:sid/quest/:cid/Game/:ano/id/:aid/VAE', {
                 templateUrl: '/public/views/instructor/instructor_VAE.html',
                 controller: 'InstructorVAEController'
             })

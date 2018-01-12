@@ -1,13 +1,13 @@
 angular.module('instructorApp')
     .controller('InstructorQuestCreationController', ['$scope', '$window', '$http', "$routeParams", "$location", function($scope, $window, $http, $routeParams, $location) {
 
-    	//$scope.course={};
+    	//$scope.quest={};
 
 
 
     	$scope.reset=function(){
-    		$scope.course={};
-    		//$scope.course.desc="";
+    		$scope.quest={};
+    		//$scope.quest.desc="";
     	};
 
     	var featureslist=[]
@@ -16,8 +16,8 @@ angular.module('instructorApp')
          $scope.temp = [];
 
     	// $scope.newc={
-    	// 	coursename: $scope.course.name,
-    	// 	body : $scope.course.desc,
+    	// 	coursename: $scope.quest.name,
+    	// 	body : $scope.quest.desc,
     	// 	features:featureslist,
     	// 	ctconcepts:[]
     	// };
@@ -73,8 +73,8 @@ angular.module('instructorApp')
     	$scope.submitForm=function(){
     	
     		newc={
-    		coursename: $scope.course.name,
-    		desc : $scope.course.desc,
+    		coursename: $scope.quest.name,
+    		desc : $scope.quest.desc,
     		features:[],
     		ctconcepts:[]
     	};
@@ -84,11 +84,11 @@ angular.module('instructorApp')
 
         console.log("in cntrlr");
         console.log($location.path());
-
+        console.log($scope)
     	$http({
 		    method: 'POST',
-		    url: "/stats/instructors/createCourse/"+$routeParams.sid,
-		    data: {'coursename':$scope.course.name,'desc' : $scope.course.desc,'features':featureslist,'ctconcepts':ctconceptslist},
+		    url: "/stats/instructors/createquest/"+$routeParams.sid,
+		    data: {'questname':$scope.quest.name,'desc' : $scope.quest.desc,'features':featureslist,'ctconcepts':ctconceptslist},
 		    }).then(function(response) {
 		                console.log(response.status);
 
@@ -96,11 +96,11 @@ angular.module('instructorApp')
                         if (response.status=200){
                             var c1id=response.data.message._id;
                             var i1id=$routeParams.sid;
-                            var path = "/coursePage/"+i1id+"/course/"+c1id+"/createAssignment";
+                            var path = "/questPage/"+i1id+"/quest/"+c1id+"/createGame";
                             console.log(path);
                             $location.path(path);
                             //"#/coursePage/{{sid}}/LP/{{LP.LPID}}"
-                            //"#/coursePage/{{sid}}/course/{{cid}}/createAssignment"
+                            //"#/coursePage/{{sid}}/quest/{{cid}}/createAssignment"
                         }
 		                       
                      }

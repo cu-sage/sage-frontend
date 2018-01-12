@@ -21,8 +21,8 @@ angular.module('instructorApp')
                 console.log("testing_VAE");
                 // $scope.statuscode = response.status;
                 // $scope.statustext = response.statustext;
-                $scope.course=response.data[0];
-                console.log($scope.course)
+                $scope.quest=response.data[0];
+                console.log($scope.quest)
                
                 //$scope.assign = response.data[0].assignments;
                 //console.log($scope.assign);

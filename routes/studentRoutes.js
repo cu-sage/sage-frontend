@@ -2,12 +2,11 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var userModel = require('../models/userModel');
-var courseModel = require('../models/questModel');
-var assignmentModel = require('../models/assignmentModel.js');
+var questModel = require('../models/questModel');
+var gameModel = require('../models/gameModel.js');
 var enrollmentCourseModel = require('../models/enrollmentCourseModel.js');
 var externalURLs = require ('../config/externalURLs.js');
 var fetch =  require ('node-fetch');
-
 
 
 function prepareHashedEnrollments (object) {
@@ -15,18 +14,15 @@ function prepareHashedEnrollments (object) {
     let hashedEnrollments = {};
     object.map ((singleEnrollment) => {
         if ( hashedEnrollments.hasOwnProperty(singleEnrollment.studentID) ) {
-            hashedEnrollments[singleEnrollment.studentID][singleEnrollment.courseID] = 5
+            hashedEnrollments[singleEnrollment.studentID][singleEnrollment.questID] = 5
         } else {
             hashedEnrollments[singleEnrollment.studentID] = {}
-            hashedEnrollments[singleEnrollment.studentID][singleEnrollment.courseID] = 5
+            hashedEnrollments[singleEnrollment.studentID][singleEnrollment.questID] = 5
         }
     });
 
     return hashedEnrollments;
-
-
 }
-
 
 function preparePayloadForRecommenderEngine (hashedEnrollments, studentID) {
     return  {
@@ -70,17 +66,18 @@ router.get('/recommendedCourses/student/:sid', function(req, res) {
     })
     .then((json) => {
 
-        return courseModel.find({
+        return questModel.find({
             "_id" : {
                 '$in' : json.body
             }
         }).lean().exec();
         
     })
-    .then((courses) => {
-        let returnResponse = courses.map ((singleCourse) => {
-            singleCourse.courseID = singleCourse._id;
-            return singleCourse;
+    .then((quests) => {
+
+        let returnResponse = quests.map ((singleQuest) => {
+            singleQuest.questID = singleQuest._id;
+            return singleQuest;
         });
 
         res.status(200).send(returnResponse)
@@ -92,13 +89,13 @@ router.get('/recentCourses/student/:sid', function(req, res) {
 
     //getting random courses for now - NEEDS TO BE IMPLEMENTED
 
-    courseModel.find().lean().exec()
+    questModel.find().lean().exec()
     .then(function(response, error) {
         //TODO - handle error.
 
-        let returnResponse = response.map ((singleCourse) => {
-            singleCourse.courseID = singleCourse._id;
-            return singleCourse;
+        let returnResponse = response.map ((singleQuest) => {
+            singleQuest.questID = singleQuest._id;
+            return singleQuest;
         });
 
         res.status(200).send(returnResponse);
@@ -137,7 +134,7 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
         });
 
-        return courseModel.find({'_id': {'$in' : allCoursesEnrolledIDs}}).lean().exec();
+        return questModel.find({'_id': {'$in' : allCoursesEnrolledIDs}}).lean().exec();
 
     }).then((response, error) => {
 
@@ -157,7 +154,7 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
 });
 
-router.get ('/course/:cid/leaderboard', function (req, res) {
+router.get ('/quest/:cid/leaderboard', function (req, res) {
     let {cid} = req.params;
     let studentScoreHash = {};
 
@@ -245,24 +242,24 @@ router.get ('/course/:cid/leaderboard', function (req, res) {
 });
 
 
-router.get ('/course/:cid/student/:sid', function (req, res) {
+router.get ('/quest/:cid/student/:sid', function (req, res) {
 
     let cid = req.params.cid;
     let sid = req.params.sid;
 
     //TODO put the progress of the sid in the object - Enrollment done. Do assignment progress now.
-    let course = {};
+    let quest = {};
     let assignmentsHash = {};
     let allAssigmentIDs = [];
 
-    courseModel.findOne({'_id' : cid}).lean().exec()
+    questModel.findOne({'_id' : cid}).lean().exec()
     .then((response, error) => {
         //res.send(response);
-        course = response;
-        course.courseID = course._id;
-        if (course) {
+        quest = response;
+        quest.questID = quest._id;
+        if (quest) {
 
-            allAssigmentIDs = course.assignments.map((singleAssignment) => {
+            allAssigmentIDs = quest.assignments.map((singleAssignment) => {
                 assignmentsHash[singleAssignment.assignmentID] = singleAssignment;
                 return singleAssignment.assignmentID;
             });
@@ -282,18 +279,18 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
 
         });
         
-        course.assignments = []
+        quest.assignments = []
 
         for (key in assignmentsHash) {
-            course.assignments.push(assignmentsHash[key])
+            quest.assignments.push(assignmentsHash[key])
         }
 
         return enrollmentCourseModel.findOne({"studentID" : sid , "courseID" : cid}).lean().exec()
 
     }).then((response, error) => {
-        course.isEnrolled = (response) ? true : false;
+        quest.isEnrolled = (response) ? true : false;
 
-        if (course.isEnrolled) {
+        if (quest.isEnrolled) {
 
             let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssigmentIDs.join(',');
             console.log(callingURL);
@@ -326,7 +323,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
             }
             
 
-            course.assignments.map ((singleAssignment) => {
+            quest.assignments.map ((singleAssignment) => {
                 singleAssignment.results = {};
                 singleAssignment.results = nodeJSONHash[singleAssignment.assignmentID] &&  nodeJSONHash[singleAssignment.assignmentID].results;
             });
@@ -334,7 +331,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         }
 
         
-        res.send(course);
+        res.send(quest);
     })
     .catch ((error) => {
         console.log(error);
@@ -344,7 +341,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
 });
 
 let getCourseObject = (cid) => {
-        return courseModel.findOne ({_id : cid});
+        return questModel.findOne ({_id : cid});
 };
 
 let getAllEnrollments = (cid) => {

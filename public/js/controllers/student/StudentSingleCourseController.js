@@ -9,7 +9,7 @@ angular.module('studentApp')
         var sid = path[3];
         var courseID = path[2];
 
-        $scope.course = {
+        $scope.quest = {
             courseName: '',
             desc : '',
             resources : [],
@@ -25,7 +25,7 @@ angular.module('studentApp')
                     $window.location.href = '/public/views/error.html';
                 } else {
                     for( var x=0; x<response.data.length; x++){
-                      console.log("here is de course", response.data[x]);
+                      console.log("here is de quest", response.data[x]);
                       console.log(response.data[x].courseID," ids ",courseID);
                       if( response.data[x].courseID == courseID){
                         $scope.myCourse = response.data[x];
@@ -106,13 +106,13 @@ angular.module('studentApp')
                         $window.location.href = '/public/views/error.html';
                 } else {
                     console.log("this is put data in scope: "+response.data)
-                        $scope.course = response.data;
+                        $scope.quest = response.data;
 
                         $scope.enrollButtonToShow = !response.data.isEnrolled;
 
                         $scope.numberOfAssignmentsDone = getNumberOfAssignmentsDonePercentage (response.data);
                         //static
-                        $scope.course.resources = [
+                        $scope.quest.resources = [
                             {'resourceID': 1, 'resourceName': 'Resource 1', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
                             {'resourceID': 2, 'resourceName': 'Resource 2', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
                             {'resourceID': 3, 'resourceName': 'Resource 3', link:"https://www.youtube.com/watch?v=Mv9NEXX1VHc"},
@@ -125,9 +125,9 @@ angular.module('studentApp')
 
 
 
-      //  $http.get("course/"+courseID+"/student/"+sid).then(putDataInScope);
+      //  $http.get("quest/"+courseID+"/student/"+sid).then(putDataInScope);
 
-        $http.get('course/'+courseID+'/leaderboard')
+        $http.get('quest/'+courseID+'/leaderboard')
         .then(function(response) {
 
             if (response.status == 200) {
@@ -142,7 +142,7 @@ angular.module('studentApp')
             $http.post("enroll/" + courseID + '/student/' + sid)
             .then(function (response) {
 
-                return $http.get("course/"+courseID+"/student/"+sid);
+                return $http.get("quest/"+courseID+"/student/"+sid);
 
             }).then(putDataInScope)
 

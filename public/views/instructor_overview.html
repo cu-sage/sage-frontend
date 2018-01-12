@@ -1,8 +1,8 @@
 <h2 class="sub-header">Overview</h2>
 <div>
     <ul class="pagination">
-        <li ng-repeat="courses in instructor" ng-class="{ active: isActiveCourse( {{courses.id}} ) }">
-            <a href="#/overview/{{sid}}/courses/{{courses.id}}">{{courses.name}}
+        <li ng-repeat="quests in instructor" ng-class="{ active: isActiveQuest( {{quests.id}} ) }">
+            <a href="#/overview/{{sid}}/quests/{{courses.id}}">{{quests.name}}
                 <span class="sr-only"></span>
             </a>
         </li>
@@ -13,7 +13,7 @@
 <div class="panel panel-default">
     <ul class="nav nav-tabs nav-justified">
         <li ng-repeat="id in hw" ng-class="{ active: isActiveHw( {{id}} ) }">
-            <a href="#/overview/{{sid}}/courses/{{cid}}/hw/{{id}}">{{id}}
+            <a href="#/overview/{{sid}}/quests/{{cid}}/hw/{{id}}">{{id}}
                 <span class="sr-only"></span>
             </a>
         </li>

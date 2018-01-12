@@ -18,7 +18,7 @@ angular.module('instructorApp')
         // console.log($routeParams.sid);
         // $scope.isHideTable = true;
 
-        // $scope.isActiveCourse = function (course_id) {
+        // $scope.isActiveQuest = function (course_id) {
         //     return course_id == $routeParams.cid;
         // };
 

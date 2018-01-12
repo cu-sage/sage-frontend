@@ -15,7 +15,7 @@ var s3 = new AWS.S3();
 var mongoose = require('mongoose');
 let dbConfig = require ('./config/dbConfig.js');
 
-var Course = require('./models/questModel.js');
+var Quest = require('./models/questModel.js');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.DB);

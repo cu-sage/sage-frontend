@@ -5,16 +5,16 @@
 <div>
 <p>Quests in the Mission:</p>
     <ul>
-        <li ng-repeat="each_course in LPcourses" >
-            <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.courseID}}"><h4>{{each_course.courseName}}</h4>
+        <li ng-repeat="each_quest in LPcourses" >
+            <a href="#/questPage/{{sid}}/questcourse/{{each_quest.questID}}"><h4>{{each_quest.coursequest}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
             Quest Learning Order :
-            <select  ng-model="orderSt[each_course.courseID]"> <!-- ng-change="updateOrder('{{each_course.courseID}}')" -->
+            <select  ng-model="orderSt[each_quest.questID]"> <!-- ng-change="updateOrder('{{each_quest.courseID}}')" -->
                 <option ng-repeat="x in order" ng-value="{{x}}">{{x}}</option>
-                 <!-- ng-selected="{{x == each_course.order}}" -->
+                 <!-- ng-selected="{{x == each_quest.order}}" -->
             </select>
-            <p>Description : {{each_course.desc}}</p>
+            <p>Description : {{each_quest.desc}}</p>
             
         </li>
     </ul>

@@ -1,11 +1,11 @@
 angular.module('instructorApp')
-    .controller('InstructorCourseController', ['$scope', '$window', '$http', "$routeParams",
+    .controller('InstructorQuestController', ['$scope', '$window', '$http', "$routeParams",
     function($scope, $window, $http, $routeParams) {
-        console.log("testing_course");
+        console.log("testing_quest");
         // console.log($routeParams.sid);
         // $scope.isHideTable = true;
 
-        // $scope.isActiveCourse = function (course_id) {
+        // $scope.isActiveQuest = function (course_id) {
         //     return course_id == $routeParams.cid;
         // };
 
@@ -24,9 +24,9 @@ angular.module('instructorApp')
                     
             );
 
-        $http.get("/stats/instructors/coursesby/" + $routeParams.sid)
+        $http.get("/stats/instructors/questsby/" + $routeParams.sid)
             .then(function(response) {
-                console.log("testing_coursesby");
+                console.log("testing_questsby");
                 $scope.coursesBy=response.data;
                         }
                     

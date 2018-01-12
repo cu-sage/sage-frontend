@@ -27,7 +27,7 @@ angular.module('instructorApp')
             var assignments = [];
             for(each_assignment in $scope.orderSt){
                 assignments.push({
-                    "assigmentID" : each_assignment,
+                    "gameID" : each_assignment,
                     "gameOrder" : parseInt($scope.orderSt[each_assignment])
                 });
             }
@@ -36,7 +36,7 @@ angular.module('instructorApp')
 
             $http({
             method: 'POST',
-            url: "/stats/instructors/course/"+$scope.course.courseID+"/updateAssignmentOrder",
+            url: "/stats/instructors/quest/"+$scope.quest.courseID+"/updateAssignmentOrder",
             data: {"assignments" : assignments},
             }).then(function(response) {
                         console.log(response.status);
@@ -54,8 +54,8 @@ angular.module('instructorApp')
             console.log("in update quest function " + $routeParams.cid, $scope.info)
             $http({
                 method: 'POST',
-                url: "/stats/instructors/updateCourse/"+$routeParams.cid,
-                data: {'coursename':$scope.course.courseName,'desc' : $scope.course.desc},
+                url: "/stats/instructors/updateQuest/"+$routeParams.cid,
+                data: {'questname':$scope.quest.questName,'desc' : $scope.quest.desc},
             }).then(function(response) {
                     console.log(response.status);
 
@@ -72,7 +72,7 @@ angular.module('instructorApp')
             console.log("here "+assignment_id);
             var index = -1;
             for(var i in assign){
-                if(assign[i].assigmentID == assignment_id){
+                if(assign[i].gameID == assignment_id){
                     index = i;
                     break;
                 }
@@ -80,8 +80,8 @@ angular.module('instructorApp')
             assign.splice(index, 1);
             $http({
             method: 'POST',
-            url: "/stats/instructors/Course/"+$routeParams.cid+"/assignment/"+assignment_id,
-            data: {"assignments" : assign},
+            url: "/stats/instructors/Quest/"+$routeParams.cid+"/game/"+assignment_id,
+            data: {"games" : assign},
             }).then(function(response) {
                         console.log(response.status);
 
@@ -99,12 +99,12 @@ angular.module('instructorApp')
             return hw_id == $routeParams.hid;
         };
 
-        $http.get("/stats/instructors/" + $routeParams.sid + "/courses/" + $routeParams.cid)
+        $http.get("/stats/instructors/" + $routeParams.sid + "/quests/" + $routeParams.cid)
             .then(function(response) {
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;
-                $scope.course=response.data[0];
-                console.log($scope.course)
+                $scope.quest=response.data[0];
+                console.log($scope.quest)
 
                 $scope.assign = response.data[0].assignments;
 
@@ -120,7 +120,7 @@ angular.module('instructorApp')
                  var iterator = $scope.temp.entries();
                     for(let e of iterator) {
                                 //console.log(e)
-                    $scope.orderSt[String(e[1].assigmentID)] = String(e[1].gameOrder);
+                    $scope.orderSt[String(e[1].gameID)] = String(e[1].gameOrder);
                 }
 
                 //console.log($scope.assign);
@@ -134,7 +134,7 @@ angular.module('instructorApp')
             .then(function(response) {
                 $scope.statuscode = response.status;
                 $scope.statustext = response.statustext;
-                $scope.course=response.data[0];
+                $scope.quest=response.data[0];
 
                 $scope.assign = response.data[0].assignments;
                 //console.log($scope.assign);

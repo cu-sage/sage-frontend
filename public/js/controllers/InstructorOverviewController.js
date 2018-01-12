@@ -5,8 +5,8 @@ angular.module('instructorApp')
         // console.log($routeParams.sid);
         $scope.isHideTable = true;
 
-        $scope.isActiveCourse = function (course_id) {
-            return course_id == $routeParams.cid;
+        $scope.isActiveQuest = function (quest_id) {
+            return quest_id == $routeParams.cid;
         };
 
         $scope.isActiveHw = function (hw_id) {
@@ -21,7 +21,7 @@ angular.module('instructorApp')
                 $scope.sid = $routeParams.sid;
                 if ($routeParams.cid != undefined && $scope.instructor != undefined) {
                     $scope.cid = $routeParams.cid;
-                    // console.log("course");
+                    // console.log("quest");
                     var courses = $scope.instructor;
                     for (var i = 0; i < courses.length; i++) {
                         // console.log(courses[i]);
@@ -35,7 +35,7 @@ angular.module('instructorApp')
 
         if ($routeParams.cid != undefined && $routeParams.hid != undefined) {
             $scope.isHideTable = false;
-            $http.get("/stats/instructors/" + $routeParams.sid + "/courses/" + $routeParams.cid + "/hw/" + $routeParams.hid)
+            $http.get("/stats/instructors/" + $routeParams.sid + "/quests/" + $routeParams.cid + "/hw/" + $routeParams.hid)
                 .then(function (response) {
                     $scope.statuscode = response.status;
                     $scope.statustext = response.statustext;

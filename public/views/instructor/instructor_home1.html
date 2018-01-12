@@ -2,12 +2,12 @@
 <h3>Most recent quests created: </h3>
 <div>
     <ul>
-        <li ng-repeat="course in courses" >
-            <a href="#/overview/{{sid}}/courses/{{course.courseID}}"><h4>{{course.courseName}}</h4>
+        <li ng-repeat="quest in quests" >
+            <a href="#/overview/{{sid}}/quests/{{quest.questID}}"><h4>{{quest.questName}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
-            <p>Description : {{course.desc}}</p>
-            <!--<p>Students Enrolled : {{course.studentsenrolled}}</p> -->
+            <p>Description : {{quest.desc}}</p>
+            <!--<p>Students Enrolled : {{quest.studentsenrolled}}</p> -->
         </li>
     </ul>
 </div>

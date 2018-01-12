@@ -37,9 +37,9 @@ angular.module('studentApp')
                     $scope.dataForTheTree = response.data;
                     console.log($scope.coursesEnrolled);
                     /*  $scope.coursesInfo = [];
-                     for(var course in $scope.coursesEnrolled){
-                     console.log("HERE is the course", $scope.coursesEnrolled);
-                     $http.get("/stats/student/" + $scope.sid + "/LPinfo/" + course.courseID )
+                     for(var quest in $scope.coursesEnrolled){
+                     console.log("HERE is the quest", $scope.coursesEnrolled);
+                     $http.get("/stats/student/" + $scope.sid + "/LPinfo/" + quest.courseID )
                      .then(function(response) {
                      $scope.LP=response.data[0];
                      $scope.coursesInfo.append([$scope.LP]);

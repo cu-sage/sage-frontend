@@ -1,0 +1,28 @@
+<form novalidate class="simple-form" name="courseform">
+<h2>Course Creation</h2>
+<br /><br />
+<fieldset>
+    <input type="text" name="questname" ng-model="quest.name"  placeholder="Quest Name" ng-required="true"/><br /><br />
+    
+    <input type="text" ng-model="quest.desc"  placeholder="Quest Story" /><br /><br /><br />
+
+    <!-- Computational Thinking Concepts: <br /><br />
+    <label><input type="checkbox" ng-model="quest.preference" value="Abstraction" />Abstraction</label>
+    <label><input type="checkbox" ng-model="quest.preference" value="Parallelism" />Parallelism</label><br />
+    <label><input type="checkbox" ng-model="quest.preference" value="Logical Thinking" />Logical Thinking</label>
+    <label><input type="checkbox" ng-model="quest.preference" value="Synchronization" />Synchronization</label><br />
+    <label><input type="checkbox" ng-model="quest.preference" value="Flow Control" />Flow Control </label>
+    <label><input type="checkbox" ng-model="quest.preference" value="User Interactivity" />User Interactivity</label><br />
+    <label><input type="checkbox" ng-model="quest.preference" value="Data Representation" />Data Representation</label><br />
+    <br /><br /><br /><br /> -->
+    <input type="text" ng-model="quest.age"  placeholder="Age Group (10-12)" /><br />
+    <input type="text" ng-model="quest.subject"  placeholder="Subjects " /><br />
+    <input type="text" ng-model="quest.feat"  placeholder="Other features (separated by comma):" /><br />
+    </fieldset>
+    <br /><br /><br />
+    <input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="submitForm()" value="Save" />
+  </form>
+  <pre>user = {{quest}}</pre>
+  
+

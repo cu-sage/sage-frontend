@@ -2,13 +2,13 @@ angular.module('instructorApp')
     .controller('InstructorAssignmentCreationController', ['$scope', '$window', '$http', "$routeParams", "$location" ,
     function($scope, $window, $http, $routeParams, $location) {
 
-    	//$scope.course={};
+    	//$scope.quest={};
 
 
 
     	$scope.reset=function(){
     		$scope.assignment={};
-    		//$scope.course.desc="";
+    		//$scope.quest.desc="";
     	};
 
         $scope.design=function(){
@@ -22,7 +22,7 @@ angular.module('instructorApp')
 
         $http({
             method: 'POST',
-            url: "/stats/instructors/"+$routeParams.sid+"/course/"+$routeParams.cid+"/createAssignment/",
+            url: "/stats/instructors/"+$routeParams.sid+"/quest/"+$routeParams.cid+"/createGame/",
             data: newc,
             }).then(function(response) {
                         //console.log(response.status);
@@ -31,7 +31,7 @@ angular.module('instructorApp')
                         console.log($scope.aid);
                         var i1id=$routeParams.sid;
                         var c1id=$routeParams.cid;
-                        var path = "/coursePage/"+i1id+"/course/"+c1id+"/createAssignment/"+$scope.aid+"/design";
+                        var path = "/questPage/"+i1id+"/quest/"+c1id+"/createGame/"+$scope.aid+"/design";
                         console.log(path);
                         $location.path(path);
 
@@ -39,7 +39,7 @@ angular.module('instructorApp')
                     
             );
                    
-            //$scope.course.desc="";
+            //$scope.quest.desc="";
         };
 
     	    	
@@ -55,7 +55,7 @@ angular.module('instructorApp')
 
     	$http({
 		    method: 'POST',
-		    url: "/stats/instructors/"+$routeParams.sid+"/course/"+$routeParams.cid+"/createAssignment/",
+		    url: "/stats/instructors/"+$routeParams.sid+"/quest/"+$routeParams.cid+"/createGame/",
 		    data: newc,
 		    }).then(function(response) {
                         //console.log(response.status);
@@ -64,11 +64,6 @@ angular.module('instructorApp')
                         console.log($scope.aid);
 
 		                        }
-                    
             );
     	 };
-
-
-
-
         }]);

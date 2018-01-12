@@ -3,8 +3,8 @@
         <h3> Recommended Courses </h3>
         <div ng-repeat="course in recommendedCourses" >
             <div 
-            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-            class="course-box"> <h3>{{course.courseName}} </h3> </div>
+            ng-click='changeView("/courses/"+ quest.courseID +"/"+ sid)'
+            class="course-box"> <h3>{{quest.courseName}} </h3> </div>
         </div>
         <div class="clearfix"> </div>
 
@@ -12,8 +12,8 @@
         <h3> Recent Courses </h3>
         <div ng-repeat="course in recentCourses" >
             <div
-            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-            class="course-box"> <h3> {{course.courseName}} </h3> </div>
+            ng-click='changeView("/courses/"+ quest.courseID +"/"+ sid)'
+            class="course-box"> <h3> {{quest.courseName}} </h3> </div>
         </div>
         <div class="clearfix"> </div>
         

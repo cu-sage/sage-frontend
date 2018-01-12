@@ -1,4 +1,4 @@
-<h2 class="sub-header">{{course.courseName}}</h2>
+<h2 class="sub-header">{{quest.courseName}}</h2>
 <h3 class="sub-header">Quest Details</h3>
 <div class="panel panel-default">
     Name:</br><input type="text" name="coursename" ng-model="course.courseName" ng-required="true" /><br />Description:</br>
@@ -12,17 +12,17 @@
 <div class="panel panel-default">
     <table style="width:50%">
         <tr ng-repeat="each in assign" >
-            <td><a href="" class="close-thik" ng-click="removeAssignment(assign ,each.assigmentID);">&#10006</a>&nbsp
+            <td><a href="" class="close-thik" ng-click="removeAssignment(assign ,each.gameID);">&#10006</a>&nbsp
                 <select ng-model="orderSt[each.assigmentID]">
                     <option ng-repeat="x in orderSt" ng-value="{{x}}">{{x}}</option>
                 </select>
             </td>
-            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.gameOrder}}/id/{{each.assigmentID}}/design">
+            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.gameOrder}}/id/{{each.gameID}}/design">
                 Game {{each.gameName}}
 
                 <span class="sr-only"></span>
             </a></td>
-            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.gameOrder}}/id/{{each.assigmentID}}/VAE">
+            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.gameOrder}}/id/{{each.gameID}}/VAE">
                 Game {{each.gameName}}
 
                 <span class="sr-only"></span>

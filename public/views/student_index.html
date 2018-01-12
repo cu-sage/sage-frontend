@@ -67,12 +67,12 @@
                            </div>-->
             </ul>
 <!--            <ul>Quests enrolled:
-                <li ng-repeat="course in coursesEnrolled"
-                    ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-                > <span class="bullets-course-page"> {{course.courseName}} </span>
+                <li ng-repeat="quest in coursesEnrolled"
+                    ng-click='changeView("/courses/"+ quest.courseID +"/"+ sid)'
+                > <span class="bullets-quest-page"> {{quest.courseName}} </span>
                     <ul>
-                        <li ng-repeat="assignment in course.assignments">
-                            {{assignment.gameName || assignment.assignmentID || assignment.assigmentID}}
+                        <li ng-repeat="assignment in quest.assignments">
+                            {{assignment.gameName || assignment.assignmentID || assignment.gameID}}
                         </li>
                     </ul>
                 </li>

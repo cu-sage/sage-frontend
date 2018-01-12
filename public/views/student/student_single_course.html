@@ -43,7 +43,7 @@
 		<li
 
 		 	ng-repeat = "assignment in myCourse.assignments">
-			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.gameName || assignment.assignmentID || assignment.assigmentID}}</span>
+			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.gameName || assignment.assignmentID || assignment.gameID}}</span>
 		</li>
 
 	</ul>
@@ -52,7 +52,7 @@
 <!--		<li
 
 		 	ng-repeat = "assignment in myCourse.assignments">
-			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.gameName}}</span>
+			<span class = 'assignment-name-single-quest' ng-click='changeView("/courses/"+ quest.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.gameName}}</span>
 		</li>-->
 
 	</ul>

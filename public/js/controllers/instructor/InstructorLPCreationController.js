@@ -64,14 +64,14 @@ angular.module('instructorApp')
         $scope.reset=function(){
             $scope.LP={};
 
-            //$scope.course.desc="";
+            //$scope.quest.desc="";
         };
 
         //var featureslist=[]
 
         // $scope.newc={
-        //  coursename: $scope.course.name,
-        //  body : $scope.course.desc,
+        //  coursename: $scope.quest.name,
+        //  body : $scope.quest.desc,
         //  features:featureslist,
         //  ctconcepts:[]
         // };
@@ -121,7 +121,7 @@ angular.module('instructorApp')
                             console.log(path);
                             $location.path(path);
                             //"#/coursePage/{{sid}}/LP/{{LP.LPID}}"
-                            //"#/coursePage/{{sid}}/course/{{cid}}/createAssignment"
+                            //"#/coursePage/{{sid}}/quest/{{cid}}/createAssignment"
                         }
                                
                      }

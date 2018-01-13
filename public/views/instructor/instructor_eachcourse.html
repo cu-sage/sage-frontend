@@ -1,7 +1,10 @@
-<h2 class="sub-header">Quest: {{course.courseName}}</h2>
-<h3 class="sub-header">Create a Quest</h3>
-<div>
-    Name:</br><input type="text" name="coursename" ng-model="course.courseName" ng-required="true" /><br />Description:</br>
+<   class="c1">
+    <div class="head1">
+        <h2>Quest Creation</h2>
+    </div>
+<br>
+    <!--<h2 class="sub-header">Quest: {{course.courseName}}</h2>-->
+    Name<br><input type="text" name="coursename" ng-model="course.courseName" ng-required="true" /></br><br></br>Description<br>
     <textarea type="text" name="desc" id="desc" ng-model="course.desc" /><br />
 </div>
 
@@ -33,4 +36,5 @@
     <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><h4>Create new Game</h4></a>
 
 <!--<button ng-click="updateOrder()" value="Update Order" >Update Order</button>-->
+</div>
 </div>

@@ -42,15 +42,15 @@ instructorApp
                 controller: 'InstructorLPController'
             })
             .when('/coursePage/:sid/eachcourse/:cid', {
-                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
+                templateUrl: '/public/views/instructor/instructor_questManagement.html',
                 controller: 'InstructorEachCourseController'
             })
             .when('/coursePage/:sid/eachcourse/:cid/hw/:hid', {
-                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
+                templateUrl: '/public/views/instructor/instructor_questManagement.html',
                 controller: 'InstructorEachCourseController'
             })
             .when('/coursePage/:sid/createcourse', {
-                templateUrl: '/public/views/instructor/instructor_createCourse.html',
+                templateUrl: '/public/views/instructor/instructor_createQuest.html',
                 controller: 'InstructorCourseCreationController'
             })
             .when('/coursePage/:sid/course/:cid/createAssignment', {

@@ -8,7 +8,6 @@ angular.module('instructorApp')
         $scope.info = []
         $scope.assessments = [1,2,3,4,5];
 
-
         /*console.log($scope);
         $scope.temp = $scope.LP.courses.sort(function(a, b){
             aOrder = parseInt(a.CourseOrder);
@@ -46,9 +45,7 @@ angular.module('instructorApp')
                         //console.log(path);
                         $route.reload();
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
-
                      }
-
             );
          }
 

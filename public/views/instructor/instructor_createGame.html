@@ -3,16 +3,17 @@
     <div class="head1">
       <h2>Game Creation</h2>
     </div>
-    Game Name:<input type="text" name="name" placeholder="My Game" ng-model="assgn.name" ng-required="true" /><br />
-    Game Order Number:<select ng-model="assgn.order" > 
+    <input type="text" name="name" placeholder="Game Name" ng-model="assgn.name" ng-required="true" /><br />
+    Game Order Number <select ng-model="assgn.order" >
              <option>1</option>
              <option>2</option>
              <option>3</option>
+             <option>4</option>
         </select>
         </br></br>
-     Game Type: <input type="text" name="name" placeholder="Game Type" ng-model="assgn.type" ng-required="true" /><br />
+    <input type="text" name="name" placeholder="Game Type" ng-model="assgn.type" ng-required="true" /><br />
 
-    <p>Associate Game Objectives:</p>
+    <p>Associate Game Objectives</p>
     <ul>
         <li ng-repeat="each_course in coursesBy" >
             <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
@@ -24,9 +25,9 @@
         <input type="text" name="order" placeholder="Game Order No" ng-model="assgn.order" ng-required="true" /><br />
    
     
-    <button ng-click="reset()" value="Reset" >Reset</button>
-    <button ng-click="design()" value="Design Game" >Design Game</button>
-    <button ng-click="design()" value="Design Objectives" >Design Objective</button>
+    <!--<button ng-click="reset()" value="Reset" >Reset</button>-->
+    <button ng-click="designGame()" value="Design Game" >Design Game</button>
+    <button ng-click="design()" value="Design Objective" >Design Objective</button>
     <button ng-click="submitForm()" value="Save" >Save</button>
     
   </div>

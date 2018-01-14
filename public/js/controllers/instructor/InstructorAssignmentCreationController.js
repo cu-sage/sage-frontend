@@ -1,23 +1,18 @@
 angular.module('instructorApp')
     .controller('InstructorAssignmentCreationController', ['$scope', '$window', '$http', "$routeParams", "$location" ,
     function($scope, $window, $http, $routeParams, $location) {
-
     	//$scope.course={};
-
-
 
     	$scope.reset=function(){
     		$scope.assignment={};
     		//$scope.course.desc="";
     	};
 
-        $scope.design=function(){
+        $scope.designGame=function(){
             $scope.assignment={};
             newc={
             order: $scope.assgn.order,
-            
         };
-
         console.log(newc);
 
         $http({
@@ -34,15 +29,11 @@ angular.module('instructorApp')
                         var path = "/coursePage/"+i1id+"/course/"+c1id+"/createAssignment/"+$scope.aid+"/design";
                         console.log(path);
                         $location.path(path);
-
                                 }
-                    
             );
-                   
             //$scope.course.desc="";
         };
 
-    	    	
     	$scope.submitForm=function(){
     	
     		newc={

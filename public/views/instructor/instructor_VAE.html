@@ -1,14 +1,17 @@
 <h2 class="sub-header">{{course.courseName}}</h2>
 <div>
-    <h4>Game{{ano}}</h4>
+    <h4>Game {{aid}}</h4>
+    <h5>Objective Linked: {{linkedObjective || 'None'}}</h5>
 </div>
 
-
-<a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><h4>Create new Game</h4></a>
+<a ng-click="createObjective()"><h4>Create new Objective</h4></a> or choose from existing Objectives:
 <!--<object style="position: absolute; left:-40px" width="99%" height="100%">
     <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
 </object>-->
+<ul>
+    <li ng-repeat="objective in objectives"><a ng-click="loadObjective(objective)">{{objective}}</a> (<a ng-click="linkObjective(objective)">Link to Game</a>)</li>
+</ul>
 <h3 class="sub-header">Objective Editor</h3>
-<div>
-    <object type="text/html" data="http://dev.cu-sage.org/public/objective-editor/app/editor/index.html" style="width:100%; height: 100%;"></object>
+<div id="vae">
+    <!-- <object type="text/html" data="/public/objective-editor/app/editor/index.html" style="width:100%; height: 100%;"></object> -->
 </div>

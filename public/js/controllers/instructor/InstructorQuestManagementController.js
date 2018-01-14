@@ -1,5 +1,5 @@
 angular.module('instructorApp')
-    .controller('InstructorEachCourseController', ['$scope', '$window', '$http', "$routeParams", "$location" , "$route",
+    .controller('InstructorQuestManagementController', ['$scope', '$window', '$http', "$routeParams", "$location" , "$route",
     function($scope, $window, $http, $routeParams, $location, $route) {
         // console.log("testing");
         // console.log($routeParams.sid);

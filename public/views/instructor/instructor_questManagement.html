@@ -7,7 +7,7 @@
     Quest Description<br>
     <textarea type="text" name="desc" id="desc" ng-model="course.desc" /><br />
 
-<button ng-click="updateCourse()">Update Quest Details</button>
+<button ng-click="updateQuest()">Update Quest</button>
 
 <h3 class="sub-header">Games and Objectives in this Quest</h3>
 <div class="panel panel-default">
@@ -23,16 +23,20 @@
 
                 <span class="sr-only"></span>
             </a></td>
-            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"> Game {{each.assignmentName}}
+            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"> Objective {{each.assignmentName}}
 
                 <span class="sr-only"></span>
             </a></td>
         </tr>
     </table>
+    <button ng-href="http://google.com">Create New Game</button>
 
-    <button ng-click="updateCourse()">Create new Game</button>
+    <button ng-href="http://dev.cu-sage.org/public/views/instructor/instructor_createGame.html">Create New Game</button>
+    <button ng-click="createGame()">Create New Game</button>
+<!--
 
     <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><h4>Create new Game</h4></a>
+-->
 
 <!--<button ng-click="updateOrder()" value="Update Order" >Update Order</button>-->
 </div>

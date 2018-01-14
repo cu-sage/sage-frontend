@@ -49,8 +49,16 @@ angular.module('instructorApp')
             );
          }
 
-        $scope.updateCourse = function() {
-            console.log("in update course function " + $routeParams.cid, $scope.info)
+        $scope.createGame = function() {
+            console.log("in createGame function " + $routeParams.cid, $scope.info)
+            $location.path('http://google.com');
+        };
+
+    );
+        };
+
+        $scope.updateQuest = function() {
+            console.log("in updateQuest function " + $routeParams.cid, $scope.info)
             $http({
                 method: 'POST',
                 url: "/stats/instructors/updateCourse/"+$routeParams.cid,
@@ -63,9 +71,7 @@ angular.module('instructorApp')
                     //console.log(path);
                     $route.reload();
                     ///coursePage/{{sid}}/LP/{{LP.LPID}}
-
                 }
-
             );
         };
 

@@ -1,5 +1,5 @@
 angular.module('instructorApp')
-    .controller('InstructorAssignmentCreationController', ['$scope', '$window', '$http', "$routeParams", "$location" ,
+    .controller('InstructorGameCreationController', ['$scope', '$window', '$http', "$routeParams", "$location" ,
     function($scope, $window, $http, $routeParams, $location) {
     	//$scope.course={};
 
@@ -53,13 +53,7 @@ angular.module('instructorApp')
 		                //console.log(response.data.message);
 		                $scope.aid=(response.data.message.testid);
                         console.log($scope.aid);
-
 		                        }
-                    
             );
     	 };
-
-
-
-
         }]);

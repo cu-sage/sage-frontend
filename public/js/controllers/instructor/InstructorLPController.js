@@ -48,8 +48,6 @@ angular.module('instructorApp')
                         //console.log(e)
                         $scope.orderSt[String(e[1].CourseID)] = String(e[1].CourseOrder);
                     }
-
-
                     // for(var i = 0; i < temp.length; i++) {
                     //     console.log(temp[i]);
                     //     $scope.orderSt[String(temp[i].CourseID)] = String(temp[i].CourseOrder);
@@ -86,7 +84,6 @@ angular.module('instructorApp')
                             }
                         }
                     }
-
                     //console.log(tempArray)
                     $scope.LPcourses = tempArray;
                     if(noOfCourses != undefined && noOfCourses > 0) {
@@ -98,22 +95,15 @@ angular.module('instructorApp')
                     // //$scope.orderSt = $scope.order[1];
                     // $scope.trial = ['0','3','2'];
                     // console.log($scope);
-
-
-
                 }
-                        
-
                 );
 
             $http.get("/stats/instructors/coursesby/" + $routeParams.sid)
             .then(function(response) {
-                console.log("testing_coursesby");
+                console.log("testing_coursesby in InstructorLPController");
                 $scope.coursesBy=response.data;
                         }
-                    
             );
-        
         }   
         
         $scope.addCourse=function(cid1){
@@ -166,13 +156,8 @@ angular.module('instructorApp')
                         //console.log(path);
                         $route.reload();
                         ///coursePage/{{sid}}/LP/{{LP.LPID}}
-                                                       
                      }
-                    
+
             );
          }
-
-        
-        
-
     }]);

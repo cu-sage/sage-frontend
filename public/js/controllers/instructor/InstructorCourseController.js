@@ -21,17 +21,13 @@ angular.module('instructorApp')
                 $scope.LPs=response.data;
                 console.log(response.data);
                         }
-                    
             );
 
         $http.get("/stats/instructors/coursesby/" + $routeParams.sid)
             .then(function(response) {
-                console.log("testing_coursesby");
+                console.log("testing_coursesby in  InstructorCourseController");
+                console.log($routeParams, response);
                 $scope.coursesBy=response.data;
                         }
-                    
             );
-
-        
-
     }]);

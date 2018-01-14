@@ -55,7 +55,7 @@ instructorApp
             })
             .when('/coursePage/:sid/course/:cid/createAssignment', {
                 templateUrl: '/public/views/instructor/instructor_createGame.html',
-                controller: 'InstructorAssignmentCreationController'
+                controller: 'InstructorGameCreationController'
             })
             .when('/coursePage/:sid/course/:cid/createAssignment/:aid/design', {
                 templateUrl: '/public/views/instructor/instructor_scratchdesign.html',

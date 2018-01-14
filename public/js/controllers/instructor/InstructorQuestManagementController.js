@@ -54,9 +54,6 @@ angular.module('instructorApp')
             $location.path('http://google.com');
         };
 
-    );
-        };
-
         $scope.updateQuest = function() {
             console.log("in updateQuest function " + $routeParams.cid, $scope.info)
             $http({
@@ -151,5 +148,4 @@ angular.module('instructorApp')
 
             });
 */
-
     }]);

@@ -1,9 +1,27 @@
 angular.module('studentApp')
-    .controller('StudentAssessmentController', function(Upload, $window, $location, $scope, $timeout, $http, $log) {
-        var path = $location.path().split('/');
-        $scope.path = path[1];
-        $scope.sid = path[path.length-1];
-        $scope.assignmentID = path[path.indexOf('assessment')+1];
+
+.directive('scratch', function() {
+    return {
+        restrict: 'E',
+        scope: {
+          movie: '@'
+        },
+        link: function(scope, element) {
+            var object = '<object style="position: absolute; left:-40px" width="99%" height="100%">' +
+              '<param name="movie" width="100%" height="100%" value="' + scope.movie + '" />' +
+            '</object>';
+            element.replaceWith(object);
+        }
+    };
+})
+    .controller('StudentAssessmentController', function(Upload, $window, $location, $scope, $timeout, $http, $log, $routeParams) {
+        $scope.gameID = $routeParams.aid;
+        $scope.studentID = $routeParams.sid;
+
+        $scope.movie = { 
+            name: 'movie',
+            url: 'http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=' + $scope.studentID + '&assignmentID=' + $scope.gameID + '&mode=PLAY'
+          };
 
         var results = null
 
@@ -16,12 +34,29 @@ angular.module('studentApp')
          }
 
          $timeout(countUp, 1000);*/
+        
+        var externalUrl = "http://dev.cu-sage.org:8081";
+         $log.info($scope.gameID);
+        // Get Objective from Game
+        $http.get(externalUrl + "/games/" + $scope.gameID)
+            .then(function(response) {
+                if (response.data.objectiveID) {
+                    $log.info(response);
+                    $scope.objectiveID = response.data.objectiveID;
+          
+                    $timeout(polldata,1000);
+                }
+                else {
+                    $log.info("Objective not found");
+                }
+        });
+
 
         var polldata = function() {
             // poll a GET request to node, send every second
             $log.info("Printing assessment " + $scope)
 
-            $http({method: 'GET', url: 'http://dev.cu-sage.org:8081/assess/game/123/objective/58d845736e4ddb3ce20ed1b3'})
+            $http({method: 'GET', url: externalUrl + '/assess/game/' + $scope.gameID + '/objective/' + $scope.objectiveID})
                 .then(function (response) {
                     if (response.status == '403') {
                         $log.info("Inside GET")
@@ -47,10 +82,8 @@ angular.module('studentApp')
                         }
                     }
                 });
-            $timeout(polldata,2000)
+            $timeout(polldata,2000);
         };
-
-        $timeout(polldata,1000);
 
         // Timer Functions
         $scope.timer = 600;

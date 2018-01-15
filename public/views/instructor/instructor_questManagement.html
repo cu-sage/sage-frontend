@@ -11,7 +11,7 @@
 
 <h3 class="sub-header">Games and Objectives in this Quest</h3>
 <div class="panel panel-default">
-    <table style="width:50%">
+    <table style="width:100%">
         <tr ng-repeat="each in assign" >
             <td><a href="" class="close-thik" ng-click="removeAssignment(assign ,each.assigmentID);">&#10006</a>&nbsp
                 <select ng-model="orderSt[each.assigmentID]">
@@ -19,17 +19,16 @@
                 </select>
             </td>
             <!--a href="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html"-->
-            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/design"> Game {{each.assignmentName}}
-
-                <span class="sr-only"></span>
-            </a></td>
-            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"> Objective {{each.assignmentName}}
-
-                <span class="sr-only"></span>
-            </a></td>
+            <td>{{each.assignmentName}}<span class="sr-only"></span><br><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/Game"><button>Update</button>
+                </a></td>
+<!--            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/design"><button>Update</button>
+            </a></td>-->
+            <td>{{each.assignmentName}}<br><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"><button>Update</button>
+            </a><span class="sr-only"></span>
+            </td>
         </tr>
     </table>
-    <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><button>Create New Game</button></a>
+    <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment/{{aid}}/design"><button>Create New Game</button></a>
 <!--
 
     <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><h4>Create new Game</h4></a>

@@ -35,11 +35,9 @@ angular.module('instructorApp')
         };
 
     	$scope.submitForm=function(){
-    	
     		newc={
             name: $scope.assgn.name,
     		order: $scope.assgn.order,
-    		
     	};
 
         console.log(newc);

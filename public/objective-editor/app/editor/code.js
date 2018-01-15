@@ -110,6 +110,7 @@ Code.runButtonClicked = function() {
       point_total: points
     }, function(data) {
       console.log(data);
+      alert("Objective saved!");
     });
 /*
     var fd = new FormData();
@@ -149,6 +150,31 @@ Code.runButtonClicked = function() {
     // http.send( JSON.stringify({ xml : xmlText, points_total : points}));
 
 };
+
+Code.saveObjective = function() {
+  var xmlDom = Blockly.Xml.workspaceToDom(Code.workspace);
+  //var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+  var xmlText = Blockly.Xml.domToText(xmlDom);
+  var xmlDoc = $.parseXML( xmlText );
+  var $xml = $( xmlDoc );
+
+  //calculate total points from each point_value block
+  var points = 0;
+  $xml.find( 'block[type="action_add_points"]').each(function(index, value){
+    points += $(value).find('field[name="point_value"]').text();
+
+  });
+  console.log(points);
+  
+  var updateUrl = "http://dev.cu-sage.org:8081/objectives/" + document.getElementById('aid').value;
+  $.post(updateUrl, {
+    xmlfile: xmlText,
+    point_total: points
+  }, function(data) {
+    console.log(data);
+    alert("Objective saved!");
+  });
+}
 
 /**
  * Extracts a parameter from the URL.

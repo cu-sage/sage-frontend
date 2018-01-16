@@ -3,33 +3,43 @@
         <h2>Quest Management</h2>
     </div>
     <!--<h2 class="sub-header">Quest: {{course.courseName}}</h2>-->
-    <br><input type="text" name="coursename" ng-model="course.courseName" ng-required="true" /></br><br></br>
-    Quest Description<br>
+    <input type="text" name="coursename" ng-model="course.courseName" ng-required="true" /><br />
+    Quest Description<br/>
     <textarea type="text" name="desc" id="desc" ng-model="course.desc" /><br />
 
-<button ng-click="updateQuest()">Update Quest</button>
-
+<button class="btn btn-lg" ng-click="updateQuest()">Update Quest</button>
+<hr/>
 <h3 class="sub-header">Games and Objectives in this Quest</h3>
 <div class="panel panel-default">
-    <table style="width:100%">
+    <table style="width:100%" class="table table-striped">
+        <tr>
+            <th>Order</th><th>Game Description</th><th>Design</th><th>Objective</th><th>Delete</th>
+        </tr>
         <tr ng-repeat="each in assign" >
-            <td><a href="" class="close-thik" ng-click="removeAssignment(assign ,each.assigmentID);">&#10006</a>&nbsp
+            <td>
                 <select ng-model="orderSt[each.assigmentID]">
                     <option ng-repeat="x in orderSt" ng-value="{{x}}">{{x}}</option>
                 </select>
             </td>
             <!--a href="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html"-->
-            <td>{{each.assignmentName}}<span class="sr-only"></span><br><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/Game"><button>Update</button>
-                </a></td>
+            <td>{{each.assignmentName}}</td>
+            <td>    
+                <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/Game"><button class="btn btn-sm">Update</button></a>
+            </td>
 <!--            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/design"><button>Update</button>
             </a></td>-->
-            <td>{{each.assignmentName}}<br><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"><button>Update</button>
-            </a><span class="sr-only"></span>
+            <td>
+                <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"><button class="btn btn-sm">Update</button></a>
+            </td>
+            <td>
+                <button class="btn" ng-click="removeAssignment(assign ,each.assigmentID);"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
             </td>
         </tr>
     </table>
-    <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><button>Create New Game</button></a>
-<!--
+    <div class="blank"></div>
+    <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><button class="btn btn-lg">Create New Game</button></a>
+    <div class="blank"></div>
+    <!--
 
     <a href="#/coursePage/{{sid}}/course/{{cid}}/createAssignment"><h4>Create new Game</h4></a>
 -->

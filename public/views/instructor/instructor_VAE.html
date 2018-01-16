@@ -4,15 +4,16 @@
     <h5>Objective Linked: {{linkedObjective || 'None'}}</h5>
 </div>
 
-<button ng-click="createObjective()">Create new Objective</button>
+<button class="btn" ng-click="createObjective()">Create new Objective</button>
 <br>
-Choose from existing Objectives:
+or Choose from existing Objectives:
 <!--<object style="position: absolute; left:-40px" width="99%" height="100%">
     <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
 </object>-->
-<ul>
-    <li ng-repeat="objective in objectives"><a ng-click="loadObjective(objective)">{{objective}}</a> (<a ng-click="linkObjective(objective)">Link to Game</a>)</li>
-</ul>
+<select ng-model="objectiveSelected" ng-change="loadObjective(objectiveSelected)">
+    <option ng-repeat="objective in objectives" ng-value="{{objective}}">{{objective}}</option>
+</select>
+<button class="btn btn-sm" ng-click="linkObjective(objectiveSelected)">Link to Game</button>
 <h3 class="sub-header">Objective Editor</h3>
 <div id="vae">
     <!-- <object type="text/html" data="/public/objective-editor/app/editor/index.html" style="width:100%; height: 100%;"></object> -->

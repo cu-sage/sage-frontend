@@ -28,6 +28,7 @@ angular.module('instructorApp')
 
                     // Load Objective 
                     $scope.loadObjective($scope.linkedObjective);
+                    $scope.objectiveSelected = $scope.linkedObjective;
                 }
                 else {
                     $log.info("Game not found");

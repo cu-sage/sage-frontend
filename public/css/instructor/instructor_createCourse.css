@@ -76,10 +76,7 @@ input#fileToUpload{
    color: #FAFAFA;  
 }
 button {
-  margin-top:15px;
-  margin-bottom:25px;
   background-color:#428bca;
-  padding: 12px 45px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
@@ -88,7 +85,6 @@ button {
   transition: .5s;
   display: inline-block;
   cursor: pointer;
-  width:30%;
   color:#fff;
 }
 button:hover, .button:hover {
@@ -137,6 +133,7 @@ label.error {
     -moz-border-radius:6px;
     border-radius:6px;
 }
-table, th, td {
-    border: 1px solid black;
+
+.blank {
+  height: 25px;
 }

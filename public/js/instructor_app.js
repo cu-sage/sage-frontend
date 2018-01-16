@@ -67,7 +67,7 @@ instructorApp
             })
             .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/Game', {
                 templateUrl: '/public/views/instructor/instructor_scratchdesign.html',
-                controller: 'InstructorGameController'
+                controller: 'InstructorGamesController'
             })
             .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/VAE', {
                 templateUrl: '/public/views/instructor/instructor_VAE.html',

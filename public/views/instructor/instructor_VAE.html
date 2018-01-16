@@ -11,7 +11,7 @@ or Choose from existing Objectives:
     <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
 </object>-->
 <select ng-model="objectiveSelected" ng-change="loadObjective(objectiveSelected)">
-    <option ng-repeat="objective in objectives" ng-value="{{objective}}">{{objective}}</option>
+    <option ng-repeat="objective in objectives" value="{{objective}}">{{objective}}</option>
 </select>
 <button class="btn btn-sm" ng-click="linkObjective(objectiveSelected)">Link to Game</button>
 <h3 class="sub-header">Objective Editor</h3>

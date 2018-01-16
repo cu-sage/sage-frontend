@@ -18,10 +18,7 @@ angular.module('studentApp')
         $scope.gameID = $routeParams.aid;
         $scope.studentID = $routeParams.sid;
 
-        $scope.movie = { 
-            name: 'movie',
-            url: 'http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=' + $scope.studentID + '&assignmentID=' + $scope.gameID + '&mode=PLAY'
-          };
+        $scope.dataLoaded = false;
 
         var results = null
 
@@ -43,7 +40,12 @@ angular.module('studentApp')
                 if (response.data.objectiveID) {
                     $log.info(response);
                     $scope.objectiveID = response.data.objectiveID;
-          
+
+                    $scope.movie = { 
+                        name: 'movie',
+                        url: 'http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=' + $scope.studentID + '&assignmentID=' + $scope.gameID + '&objectiveID=' + $scope.objectiveID + '&mode=PLAY'
+                      };
+                    $scope.dataLoaded = true;
                     $timeout(polldata,1000);
                 }
                 else {

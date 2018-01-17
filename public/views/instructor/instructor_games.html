@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+		<div class="head1">
+
 	<title>Games Library</title>
+		</div>
 </head>
 <body>
-
-	<div>
-		<h3>Games Library</h3>
+<div class="c1">
+	<div><img src="/public/images/logo.png" height="60">
 	</div>
-
+	<div class="head1">
+		<div>
+			<h2>Games Library</h2>
+		</div>
+	</div>
 	<div>
-		<ul>
-			<li ng-repeat="game in games">
+			<div ng-repeat="game in games">
 				{{game.assignmentName}}
-
-			</li>
-		</ul>
+			</div>
 	</div>
-
+</div>
 </body>
 </html>

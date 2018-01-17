@@ -1,4 +1,12 @@
-<div class="starter-template ng-scope">
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <h1>Games</h1>
+    </div>
+
+    <div class="starter-template ng-scope">
+<!--
     <div class="col-md-12">
         <h3> Recommended Courses </h3>
         <div ng-repeat="course in recommendedCourses" >
@@ -7,15 +15,31 @@
             class="course-box"> <h3>{{course.courseName}} </h3> </div>
         </div>
         <div class="clearfix"> </div>
+-->
 
+        <div class="container" style="width:100%">
+            <div class="row">
+                <div ng-repeat="course in recentCourses" class="col-lg-4">
+                    <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+                        <div class="panel-heading text-center" style="min-height: 40px">
+                            <a href="#/courses/{{course.courseID}}/{{sid}}"><h3> {{course.courseName}} </h3> </a>
+                        </div>
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-road" aria-hidden="true" style="font-size: 3em"></span>
+                            <p style="margin: 10px">{{LP.desc}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <h3> Recent Courses </h3>
+<!--        <h3> Recent Courses </h3>
         <div ng-repeat="course in recentCourses" >
             <div
             ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
             class="course-box"> <h3> {{course.courseName}} </h3> </div>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"> </div>-->
         
         <h3> Metrics Overview </h3>
         <div>Some metrics will be displayed here.</div>

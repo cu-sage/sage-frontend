@@ -5,17 +5,17 @@
 </head>
 <body>
 
-	<div>
-		<h3>Mission Library</h3>
+<div class="c1">
+	<div><img src="/public/images/logo.png" height="60">
 	</div>
-
-	<div>
-		<ul>
-			<li ng-repeat="mission in missions">
-				<a href="#/">{{mission.LPName}}</a>
-			</li>
-		</ul>
+	<div class="head1">
+		<div>
+			<h2>Mission Library</h2>
+		</div>
 	</div>
-
+	<div ng-repeat="mission in missions">
+		<a href="#/">{{mission.LPName}}</a>
+	</div>
+</div>
 </body>
 </html>

@@ -1,3 +1,19 @@
+.c1 {
+	max-width:1000px;
+	margin:0 auto;
+	text-align:center;
+	-webkit-border-radius:6px;
+	-moz-border-radius:6px;
+	border-radius:6px;
+	background-color:#FAFAFA;
+}
+.head1 {
+	-webkit-border-radius:6px 6px 0px 0px;
+	-moz-border-radius:6px 6px 0px 0px;
+	border-radius:6px 6px 0px 0px;
+	background-color:#428bca;
+	color:#FAFAFA;
+}
 .sub-heading {
 
 	margin-left: 20px;

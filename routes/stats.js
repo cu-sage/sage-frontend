@@ -540,7 +540,7 @@ router.get("/instructors/:id/games/:Qid", function(req, res) {
         var assignmentIds = [];
 
         for(let i in assignments) {
-            assignmentIds.push(mongoose.Types.ObjectId(assignments[i]['assigmentID']));
+            assignmentIds.push(mongoose.Types.ObjectId(assignments[i]['assignmentID']));
         }
         //console.log(assignmentIds)
 

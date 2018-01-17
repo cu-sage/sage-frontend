@@ -40,17 +40,17 @@ angular.module('studentApp')
                 if (response.data.objectiveID) {
                     $log.info(response);
                     $scope.objectiveID = response.data.objectiveID;
-
-                    $scope.movie = { 
-                        name: 'movie',
-                        url: 'http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=' + $scope.studentID + '&assignmentID=' + $scope.gameID + '&objectiveID=' + $scope.objectiveID + '&mode=PLAY'
-                      };
-                    $scope.dataLoaded = true;
-                    $timeout(polldata,1000);
                 }
                 else {
                     $log.info("Objective not found");
                 }
+
+                $scope.movie = { 
+                    name: 'movie',
+                    url: 'http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=' + $scope.studentID + '&assignmentID=' + $scope.gameID + '&objectiveID=' + $scope.objectiveID + '&mode=PLAY'
+                  };
+                $scope.dataLoaded = true;
+                $timeout(polldata,1000);
         });
 
 

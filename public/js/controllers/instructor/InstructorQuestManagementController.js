@@ -27,7 +27,7 @@ angular.module('instructorApp')
             var assignments = [];
             for(each_assignment in $scope.orderSt){
                 assignments.push({
-                    "assigmentID" : each_assignment,
+                    "assignmentID" : each_assignment,
                     "assignmentOrder" : parseInt($scope.orderSt[each_assignment])
                 });
             }
@@ -79,7 +79,7 @@ angular.module('instructorApp')
             console.log("here "+assignment_id);
             var index = -1;
             for(var i in assign){
-                if(assign[i].assigmentID == assignment_id){
+                if(assign[i].assignmentID == assignment_id){
                     index = i;
                     break;
                 }
@@ -128,7 +128,7 @@ angular.module('instructorApp')
                  var iterator = $scope.temp.entries();
                     for(let e of iterator) {
                                 //console.log(e)
-                    $scope.orderSt[String(e[1].assigmentID)] = String(e[1].assignmentOrder);
+                    $scope.orderSt[String(e[1].assignmentID)] = String(e[1].assignmentOrder);
                 }
 
                 //console.log($scope.assign);

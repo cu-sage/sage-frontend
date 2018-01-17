@@ -17,22 +17,22 @@
         </tr>
         <tr ng-repeat="each in assign" >
             <td>
-                <select ng-model="orderSt[each.assigmentID]">
+                <select ng-model="orderSt[each.assignmentID]">
                     <option ng-repeat="x in orderSt" ng-value="{{x}}">{{x}}</option>
                 </select>
             </td>
             <!--a href="file:///C:/Academia/SAGE/sage-editor-hookup_to_server/app/editor/index.html"-->
             <td>{{each.assignmentName}}</td>
             <td>    
-                <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/Game"><button class="btn btn-sm">Update</button></a>
+                <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assignmentID}}/Game"><button class="btn btn-sm">Update</button></a>
             </td>
-<!--            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/design"><button>Update</button>
+<!--            <td><a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assignmentID}}/design"><button>Update</button>
             </a></td>-->
             <td>
-                <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assigmentID}}/VAE"><button class="btn btn-sm">Update</button></a>
+                <a href="#/coursePage/{{sid}}/course/{{cid}}/Assignment/{{each.assignmentOrder}}/id/{{each.assignmentID}}/VAE"><button class="btn btn-sm">Update</button></a>
             </td>
             <td>
-                <button class="btn" ng-click="removeAssignment(assign ,each.assigmentID);"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                <button class="btn" ng-click="removeAssignment(assign ,each.assignmentID);"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
             </td>
         </tr>
     </table>

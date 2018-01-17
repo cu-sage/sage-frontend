@@ -92,7 +92,7 @@ var newassignment = function(values, instructorid, courseid, callback) {
             var newtest = {
                 "assignmentName": values.name,
                 "assignmentOrder":values.order,
-                "assigmentID":aid
+                "assignmentID":aid
 
             };
 
@@ -156,7 +156,7 @@ var removeAssignment = function(course_id, newAssignments, callback) {
     courseModel.findOne({_id: { $in: [ course_id ] }}, function(err, existingLP) {
         if (existingLP) {
             //console.log(course_id+" going for update "+assignment_id);
-        //courseModel.update({_id: { $in: [ course_id ] }}, { $pull: {'assignments': {'assignments.assigmentID': assignment_id}}}, function(err, msg) {
+        //courseModel.update({_id: { $in: [ course_id ] }}, { $pull: {'assignments': {'assignments.assignmentID': assignment_id}}}, function(err, msg) {
             courseModel.update({_id: { $in: [ course_id ] }},{ $set: { assignments: newAssignments } }, function(err, msg) {
             if(!err){
                 console.log(msg);

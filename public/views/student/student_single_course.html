@@ -34,7 +34,6 @@
 
 	    <div class="sub-heading">
 
-	    	This is where all the statistics for the student for this particular course will come.
 	    </div>
 	<h3>Resources</h3>
 
@@ -43,9 +42,7 @@
 		</div>
 
 	<h3>Games</h3>
-
 		<div
-
 		 	ng-repeat = "assignment in myCourse.assignments">
 			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName || assignment.assignmentID}}</span>
 		</div>
@@ -58,7 +55,7 @@
 
 	</ul>
 	<h3> Leaderboard </h3>
-	The following students are leading in this course.
+
 	<table class="table table-striped">
 		<thead>
 	      <tr>

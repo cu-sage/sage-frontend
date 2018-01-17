@@ -25,7 +25,7 @@ angular.module('studentApp')
                     $window.location.href = '/public/views/error.html';
                 } else {
                     for( var x=0; x<response.data.length; x++){
-                      console.log("here is de course", response.data[x]);
+                      console.log("Load game", response.data[x]);
                       console.log(response.data[x].courseID," ids ",courseID);
                       if( response.data[x].courseID == courseID){
                         $scope.myCourse = response.data[x];

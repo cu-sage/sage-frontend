@@ -6,7 +6,7 @@ angular.module('instructorApp')
             movie: '@'
             },
             link: function(scope, element) {
-                var object = '<object style="position: absolute" width="99%" height="100%">' +
+                var object = '<object style="position: absolute" width="99%" height="800px">' +
                 '<param name="movie" width="100%" height="100%" value="' + scope.movie + '" />' +
                 '</object>';
                 element.replaceWith(object);

@@ -129,5 +129,5 @@ angular.module('studentApp')
         };
 
         // Orbs columns
-        $scope.orb_col = 3; // 1,2,3,4, or 6
+        $scope.orb_col = 4; // 1,2,3,4, or 6
     });

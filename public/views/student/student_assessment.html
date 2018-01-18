@@ -9,7 +9,6 @@
     }
     .table_container {
         width: 250px;
-        min-height: 250px;
         padding: 1em;
         background: #FFF;
         margin: auto;
@@ -177,7 +176,7 @@
             <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
         </object> -->
     </div>
-    <div class="col-xs-2 ng-scope"><span class="pull-right">
+    <div class="col-xs-2 ng-scope" style="padding:0; left:-50">
         <div class="tutor_container">
             <div><img ng-src="https://i.pinimg.com/736x/df/e0/d2/dfe0d20f784d0e52a71ac4eb5f72bc4a--ivy-league-the-lion.jpg"
                       style='border:3px solid #000000' height="200" width="200" align="right" >
@@ -215,13 +214,12 @@
             <div class="table_cube">ray</div>
         </div>-->
 <!--        <div  class="bottom_aligner"></div>-->
-        <div>
+        <div style="position:fixed; bottom:0">
             <div>
                 <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">
                     {{timer_running ? 'Stop Timer' : 'Start Timer'}}
                 </button>
             </div>
-            <br>
             <div>
 
                 <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">

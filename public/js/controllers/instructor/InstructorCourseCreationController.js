@@ -12,13 +12,63 @@ angular.module('instructorApp')
 
     	var featureslist=[]
 
+         $scope.orderSt = {};
+         $scope.temp = [];
+
     	// $scope.newc={
     	// 	coursename: $scope.course.name,
     	// 	body : $scope.course.desc,
     	// 	features:featureslist,
     	// 	ctconcepts:[]
     	// };
+         $scope.concepts=[];
+        // $scope.concepts = {
+        //         "concepts" : [
+        //             {
+        //                 "name" : "A",
+        //                 "topics" : ["a","b"]
+        //             },
+        //             {
+        //                 "name" : "B",
+        //                 "topics" : ["c","d"]
+        //             }
+        //         ]
+        //     }
+        $scope.treeOptions = {
+            nodeChildren: "children",
+            dirSelectable: true,
+            injectClasses: {
+                ul: "a1",
+                li: "a2",
+                liSelected: "a7",
+                iExpanded: "a3",
+                iCollapsed: "a4",
+                iLeaf: "a5",
+                label: "a6",
+                labelSelected: "a8"
+            }
+        };
 
+        $scope.showSelected = function(sel, flag, nodes) {
+             $scope.selectedNode = sel;
+             console.log(nodes);
+             if(flag) {
+                 $scope.concepts.push(sel);
+             } else {
+                 index = $scope.concepts.indexOf(sel);
+                 if(index > -1) {
+                     $scope.concepts.splice(index, 1)
+                 }
+             }
+             console.log($scope.concepts);
+         };
+
+        $http.get("/stats/instructors/"+$routeParams.sid + "/curricula_items")
+                 .then(function(response) {
+                     console.log(response);
+                     $scope.dataForTheTree = response.data;
+                     }    
+                 );
     	
     	$scope.submitForm=function(){
     	

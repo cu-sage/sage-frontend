@@ -1,7 +1,8 @@
 var instructorApp = angular.module('instructorApp', [
     'ngRoute',
     'ngFileUpload',
-    'satellizer'
+    'satellizer',
+    'treeControl'
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
@@ -41,20 +42,20 @@ instructorApp
                 controller: 'InstructorLPController'
             })
             .when('/coursePage/:sid/eachcourse/:cid', {
-                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
-                controller: 'InstructorEachCourseController'
+                templateUrl: '/public/views/instructor/instructor_questManagement.html',
+                controller: 'InstructorQuestManagementController'
             })
             .when('/coursePage/:sid/eachcourse/:cid/hw/:hid', {
-                templateUrl: '/public/views/instructor/instructor_eachcourse.html',
-                controller: 'InstructorEachCourseController'
+                templateUrl: '/public/views/instructor/instructor_questManagement.html',
+                controller: 'InstructorQuestManagementController'
             })
             .when('/coursePage/:sid/createcourse', {
-                templateUrl: '/public/views/instructor/instructor_createCourse.html',
+                templateUrl: '/public/views/instructor/instructor_createQuest.html',
                 controller: 'InstructorCourseCreationController'
             })
             .when('/coursePage/:sid/course/:cid/createAssignment', {
-                templateUrl: '/public/views/instructor/instructor_createAssignment.html',
-                controller: 'InstructorAssignmentCreationController'
+                templateUrl: '/public/views/instructor/instructor_createGame.html',
+                controller: 'InstructorGameCreationController'
             })
             .when('/coursePage/:sid/course/:cid/createAssignment/:aid/design', {
                 templateUrl: '/public/views/instructor/instructor_scratchdesign.html',
@@ -64,9 +65,29 @@ instructorApp
                 templateUrl: '/public/views/instructor/instructor_createLP.html',
                 controller: 'InstructorLPCreationController'
             })
+            .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/Game', {
+                templateUrl: '/public/views/instructor/instructor_scratchdesign.html',
+                controller: 'InstructorGamesController'
+            })
             .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/VAE', {
                 templateUrl: '/public/views/instructor/instructor_VAE.html',
                 controller: 'InstructorVAEController'
+            })
+            .when('/librarires/:sid', {
+                templateUrl: '/public/views/instructor/instructor_lib.html',
+                controller: 'InstructorLibController'
+            })
+            .when('/librarires/:sid/missions', {
+                templateUrl: '/public/views/instructor/instructor_missions.html',
+                controller: 'InstructorMissionsController'
+            })
+            .when('/librarires/:sid/quests', {
+                templateUrl: '/public/views/instructor/instructor_quest.html',
+                controller: 'InstructorQuestsController'
+            })
+            .when('/librarires/:sid/games', {
+                templateUrl: '/public/views/instructor/instructor_games.html',
+                controller: 'InstructorGamesController'
             })
             .when('/', {
                 templateUrl: "/public/views/error.html"

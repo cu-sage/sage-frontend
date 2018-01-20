@@ -7,7 +7,7 @@ var mainApp = angular.module('mainApp', [
 ]);
 
 mainApp.config(function($routeProvider, $authProvider) {
-    // special varible $routeProvider
+    // special variable $routeProvider
     $routeProvider
         .when('/', {
             templateUrl: '/public/views/login.html',

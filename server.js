@@ -6,6 +6,7 @@ var jsonParser = bodyParser.json();
 var stats = require("./routes/stats");
 var studentRoutes = require("./routes/studentRoutes.js");
 var researcherRoutes = require("./routes/researcherRoutes.js");
+var instructorRoutes = require("./routes/instructorRoutes.js");
 var authRouter = require('./routes/auth');
 var multer = require('multer');
 var AWS = require('aws-sdk');
@@ -33,6 +34,7 @@ app.use('/stats', stats);
 
 app.use('/student', studentRoutes);
 app.use('/researcher', researcherRoutes);
+app.use('/instructor', instructorRoutes);
 
 app.get('/instructor/', function(req, res) {
     res.sendFile("instructor_index.html", {

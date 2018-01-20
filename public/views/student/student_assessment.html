@@ -1,41 +1,238 @@
-<div class="starter-template ng-scope">
-<div style="position: relative; height: 100%" class="col-xs-9">
+<style xmlns="http://www.w3.org/1999/html">
+    .tutor_container {
+        width: 250px;
+        height: 350px;
+        overflow: auto;
+        padding: 1em;
+        background: #FFF;
+        margin: auto;
+    }
+    .table_container {
+        width: 250px;
+        padding: 1em;
+        background: #FFF;
+        margin: auto;
+    }
 
-    <object style="position: absolute;" width="100%" height="100%">
+    .table_cube {
+        float: left;
+        text-align: center;
+        line-height: 50px;
+        width: 50px; height: 50px;
+    }
 
-        <param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf">
-        <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
+    .cube:nth-of-type(2n) {
+        background: #DDF;
+    }
+    .bottom_aligner {
+        display: inline-block;
+        height: 100%;
+        vertical-align: bottom;
+        width: 0px;
+    }
+    .horizontal-collapse {
+        height: 70px;
+    }
+    .navbar-collapse.in {
+        overflow-y: hidden;
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+    .switch input {
+        display:none;
+    }
 
-    </object>
-</div>
-<div class="col-xs-3">
+    p {
+        text-align: top;
+        font-size: 14px;
+    }
+    .container {
+        position: relative;
+        width: 100%;
+        max-width:210px; /* or whatever width you want. */
+        display: inline-block;
+    }
+    .skills {
+        text-align: right;
+        padding-right: 20px;
+        line-height: 20px;
+        color: white;
+    }
+    .html {width: 90%; background-color: #4CAF50;}
+    .talk-bubble {
+        margin: 40px;
+        display: inline-block;
+        position: relative;
+        width: 200px;
+        height: auto;
+        background-color: lightyellow;
+    }
 
-    <div uib-collapse="isCollapsed">
-        <div class="alert alert-success"><strong>Success! </strong></div>
+    .arrow-up {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+
+        border-bottom: 5px solid black;
+    }
+
+    .tip {
+        background: #eee;
+        border: 2px solid #ccc;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+        position: relative;
+        min-height: 10px;
+        min-width: 100px;
+        top: 20px;
+        margin-left: 20px;
+        margin-top: 190px;
+        margin-bottom: 50px;
+    }
+
+    .tip:before {
+        position: absolute;
+        display: inline-block;
+        border-top: 7px solid transparent;
+        border-right: 7px solid #eee;
+        border-bottom: 7px solid transparent;
+        border-right-color: rgba(0, 0, 0, 0.2);
+        left: -8px;
+        top: 20px;
+        content: '';
+    }
+
+    .tip:after {
+        position: absolute;
+        display: inline-block;
+        border-top: 6px solid transparent;
+        border-right: 6px solid #eee;
+        border-bottom: 6px solid transparent;
+        left: -6px;
+        top: 21px;
+        content: '';
+    }
+    .image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: #008CBA;
+    }
+    .container:hover .overlay {
+        opacity: 1;
+    }
+    .text {
+        color: white;
+        font-size: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+    }
+
+    .orb-pass {
+        color: lightgreen;
+    }
+
+    .orb-fail {
+        color: lightgrey;
+    }
+    
+    .orb-fail:hover {
+        color: red;
+    }
+</style>
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
     </div>
-    <div class="progress">
-        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
-            {{level}}
+    <div class="head1">
+        <h2></h2>
+    </div>
+</div>
+<div class="starter-template ng-scope">
+    <div style="position: relative; height: 800px;" class="col-xs-10">
+        <scratch movie="{{ movie.url }}" ng-if="dataLoaded"/>
+        <!-- <object style="position: absolute; left:-40px" width="99%" height="100%">
+            <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
+            <param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf?sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
+            <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
+        </object> -->
+    </div>
+    <div class="col-xs-2 ng-scope" style="padding:0; left:-50">
+        <div class="tutor_container">
+            <div><img ng-src="https://i.pinimg.com/736x/df/e0/d2/dfe0d20f784d0e52a71ac4eb5f72bc4a--ivy-league-the-lion.jpg"
+                      style='border:3px solid #000000' height="200" width="200" align="right" >
+            </div>
+
+            <div class="tip" align = "middle">
+                {{speech}}
+            </div>
+        </div>
+
+            <br>
+        <div uib-collapse="isCollapsed">
+            <div class="alert alert-success" style="color:#fff;background-color:#428bca">Sage Orbs Found</div>
+
+            <!--<div class="progress" style="border:solid">
+                <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+                    {{level}}
+                </div>
+            </div>-->
+
+            <div class="table_container">
+                <div class="row">
+                    <div ng-repeat="result in results" class="col-xs-{{12 / orb_col}}">
+                        <div title={{result.actions.command}} style="text-align: center; height: 4em">
+                            <span style="font-size:3em" class="glyphicon" ng-class="result.pass ? 'glyphicon-ok-circle orb-pass' : 'glyphicon-remove-circle orb-fail'"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <br>
+            <br>
+<!--        <div class="table_container">
+            <div class="table_cube">do</div>
+            <div class="table_cube">ray</div>
+        </div>-->
+<!--        <div  class="bottom_aligner"></div>-->
+        <div style="position:fixed; bottom:0">
+            <div>
+                <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">
+                    {{timer_running ? 'Stop Timer' : 'Start Timer'}}
+                </button>
+            </div>
+            <div>
+
+                <div class="alert alert-success footer" style="color:#fff;background-color:#428bca" uib-collapse="isButtonCollapsed">
+                    <div>
+                        Time Remaining:
+                        <div id="timer">
+                            <span>{{timer_display}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-	<table class="table table-striped">
-        <tr ng-repeat="result in results" ng-class="(result.pass==true) ? 'success': 'danger'">
-            <td ng-if="result.pass==true"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-            <td ng-if="result.pass!=true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-            <td>{{result.description}}</td>
-            <td>
-                <div ng-repeat="action in result.actions">
-                    <p ng-if="action.type=='action_say'">
-                        {{action.command}}
-                    </p>
-                </div>
-            </td>
-        </tr>
-    </table>
-	
 </div>
-
-</div>
-
 
 

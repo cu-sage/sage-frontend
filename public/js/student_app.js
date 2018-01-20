@@ -49,7 +49,7 @@ studentApp
     })
     .run(function($rootScope, $window, $auth, $location) {
         $rootScope.isHidden = false;
-
+        console.log($rootScope, $window, $auth, $location)
         $rootScope.changeView = function (path) {
             $location.path(path);
         }

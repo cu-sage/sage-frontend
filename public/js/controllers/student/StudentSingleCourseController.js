@@ -1,6 +1,6 @@
 angular.module('studentApp')
     .controller('StudentSingleCourseController',['$window', '$location','$scope', '$http', function($window, $location, $scope, $http) {
-        
+
 
         var path = $location.path().split('/');
         $scope.courseID = path[2];
@@ -17,6 +17,22 @@ angular.module('studentApp')
         };
         $scope.enrollButtonToShow = true;
         $scope.leaderboard = []
+
+        $http.get("coursesEnrolled/student/" + sid)
+        .then(function(response) {
+
+                if (response.status == '403') {
+                    $window.location.href = '/public/views/error.html';
+                } else {
+                    for( var x=0; x<response.data.length; x++){
+                      console.log("Load game", response.data[x]);
+                      console.log(response.data[x].courseID," ids ",courseID);
+                      if( response.data[x].courseID == courseID){
+                        $scope.myCourse = response.data[x];
+                      }
+                    }
+                }
+        });
 
         function prepareChartConfig (response) {
             let categories = ['Abstraction','Parallelization','Logic','Synchronization','FlowControl','UserInteractivity','DataRepresentation'];
@@ -85,10 +101,11 @@ angular.module('studentApp')
 
 
         function putDataInScope (response) {
-
+            console.log("trying to put data in scope")
             if (response.status == '403') {
                         $window.location.href = '/public/views/error.html';
                 } else {
+                    console.log("this is put data in scope: "+response.data)
                         $scope.course = response.data;
 
                         $scope.enrollButtonToShow = !response.data.isEnrolled;
@@ -105,9 +122,10 @@ angular.module('studentApp')
                         $scope.chartConfig = prepareChartConfig (response.data.assignments);
                     }
             }
-        
 
-        $http.get("course/"+courseID+"/student/"+sid).then(putDataInScope);
+
+
+      //  $http.get("course/"+courseID+"/student/"+sid).then(putDataInScope);
 
         $http.get('course/'+courseID+'/leaderboard')
         .then(function(response) {
@@ -124,7 +142,7 @@ angular.module('studentApp')
             $http.post("enroll/" + courseID + '/student/' + sid)
             .then(function (response) {
 
-                return $http.get("course/"+courseID+"/student/"+sid); 
+                return $http.get("course/"+courseID+"/student/"+sid);
 
             }).then(putDataInScope)
 
@@ -132,11 +150,11 @@ angular.module('studentApp')
 
                 console.log('error');
             })
-            
+
         }
 
-        
-        
+
+
 
 
 
@@ -154,6 +172,3 @@ function getNumberOfAssignmentsDonePercentage (data) {
 
     return Math.round(numberOfAssignmentsDone/data.assignments.length*100);
 }
-
-
-

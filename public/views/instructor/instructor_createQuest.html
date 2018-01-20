@@ -1,0 +1,55 @@
+<form novalidate class="simple-form" name="courseform" id="courseform">
+  <div class="c1">
+      <div><img src="/public/images/logo.png" height="60">
+      </div>
+    <div class="head1">
+      <h2>Quest Creation</h2>
+    </div>
+    <input type="text" name="coursename" placeholder="Quest Name" ng-model="course.name" ng-required="true" /><br />
+    <textarea type="text" name="desc" id="desc" ng-model="course.desc"  placeholder="Quest Story" /><br />
+    <!--<input type="text" ng-model="course.age"  placeholder="Age Group (10-12)" /><br />-->
+
+    <p>Please select the Focus of this quest from below:</p>
+    <div style="background-color: #848484; margin: auto; width: 80%;">
+    <treecontrol class="tree-dark"
+        tree-model="dataForTheTree"
+        options="treeOptions"
+        on-selection="showSelected(node, selected, selectedNodes)"
+        selected-node="selectedNodes">
+        {{node.name}}
+    </treecontrol><br />
+    </div></br>
+
+   <!-- <div style="background-color: #848484; margin: auto; width: 80%;">-->
+   
+    Please upload an image for Badge of Completion
+    <!--<input type="file" ng-model="course.badge" name="badgefile" id="fileToUpload"><br />-->
+    <div  class="row" ng-show="up.file">
+                    <div>
+                        <img class="thumbnail" style="max-width: 320px" ngf-thumbnail="up.file"/>
+                    </div>
+                </div>
+                <div class="row" ng-hide="up.file">
+                    <i class="fa fa-picture-o fa-6" aria-hidden="true"></i>
+                </div>
+                    <input
+                            type="file"
+                            ngf-select
+                            ng-model="up.file"
+                            name="file"
+                            ngf-pattern="'image/*'"
+                            accept="image/*"
+                            ngf-max-size="20MB"
+                            ngf-resize="{width: 600}"
+                    />
+                <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                <i ng-show="up.upload_form.file.$error.maxSize">File too large
+                    {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                <p>{{up.progress}}</p>
+    <!--<textarea style="align: center" type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />-->
+    
+    <!--<button ng-click="reset()" value="Reset" >Reset</button>-->
+    <button ng-click="submitForm()" value="Save" >Save</button>
+    </div>
+  </div>
+</form>

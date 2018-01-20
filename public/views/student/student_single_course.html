@@ -1,53 +1,61 @@
+<div class="c1">
+	<div><img src="/public/images/logo.png" height="60">
+	</div>
+	<div class="head1">
+		<h2>Quest Info</h2>
+	</div>
+
 <div class="starter-template ng-scope">
 	<div class="col-xs-offset-10">
-		<input type="button" 
-		ng-if="enrollButtonToShow" 
+		<input type="button"
+		ng-if="enrollButtonToShow"
 		ng-click = "onClickEnrollButton()"
 		class="btn btn-success" value="Enroll" >
 	</div>
-    <h2>{{course.courseName}}</h2>
+    <h2>{{myCourse.courseName}}</h2>
     	<div class="sub-heading">
-    		{{course.desc}}
+    		{{myCourse.desc}}
     	</div>
 
     <h3> Statistics </h3>
 		<div ng-if="!enrollButtonToShow">
 			<div  class="progress">
-		        <div 
+		        <div>
 		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">
 		            {{numberOfAssignmentsDone}}%
 		        </div>
-		        
+
 		    </div>
 		    <highchart id="chart1" config="chartConfig"></highchart>
-			
-		</div>  
-	    
-	    
-	    
+
+		</div>
+
+
+
 	    <div class="sub-heading">
 
-	    	The is where all the statistics for the student for this particular course will come.
 	    </div>
 	<h3>Resources</h3>
 
-	<ul>
-		<li ng-repeat = "resource in course.resources">
+		<div ng-repeat = "resource in myCourse.resources">
 			<a href="{{resource.link}}" target="_blank"> {{resource.resourceName}} </a>
-		</li>
-	
-	</ul>
-	<h3>Assignments</h3>
+		</div>
+
+	<h3>Games</h3>
+		<div
+		 	ng-repeat = "assignment in myCourse.assignments">
+			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName || assignment.assignmentID}}</span>
+		</div>
 	<ul>
-		<li 
-			
-		 	ng-repeat = "assignment in course.assignments">
+<!--		<li
+
+		 	ng-repeat = "assignment in myCourse.assignments">
 			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName}}</span>
-		</li>
-	
+		</li>-->
+
 	</ul>
 	<h3> Leaderboard </h3>
-	The following students are leading in this course. 
+
 	<table class="table table-striped">
 		<thead>
 	      <tr>
@@ -59,10 +67,10 @@
 	    	<tr ng-repeat = "singleStudent in leaderboard">
 	    		<td> {{singleStudent.fullname}} </td>
 	    		<td> {{singleStudent.points}} </td>
-	    	
+
 	    	</tr>
 	    </tbody>
-				
+
 	</table>
 
 </div>

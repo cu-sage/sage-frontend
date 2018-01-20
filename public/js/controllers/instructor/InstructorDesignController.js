@@ -6,7 +6,7 @@ angular.module('instructorApp')
     	$scope.iid=$routeParams.sid;
         $scope.aid=$routeParams.aid;
 
-        document.getElementById("scratch").innerHTML='<object style="position: absolute;" width="100%" height="100%"><param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf"><param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}"></object>'
+        document.getElementById("scratch").innerHTML='<object style="position: absolute;" width="100%" height="100%"><param name="movie" width="100%" height="100%" value="http://52.168.29.242:3000/public/sampleSWF/scratch.swf"><param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}"></object>'
 
         $http.get("/stats/instructors/" + $routeParams.sid + "/courses/" + $routeParams.cid)
             .then(function(response) {

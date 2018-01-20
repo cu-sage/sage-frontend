@@ -1,35 +1,58 @@
-<h2 class="sub-header">Courses Page</h2>
-<h3>Learning Paths  : </h3>
-<a href="#/coursePage/{{sid}}/createLP"><h6>&nbsp;Create new LP</h6></a>
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <h2>Mission Management</h2>
+    </div>
+<h3>Missions</h3>
 
-<h4>Learning Paths Created: </h4>
-<div>
-    <ul>
-        <li ng-repeat="LP in LPs" >
-            <a href="#/coursePage/{{sid}}/LP/{{LP.LPID}}"><h4>{{LP.LPName}}</h4>
-                <!-- <span class="sr-only"></span> -->
-            </a>
-            <p>Description : {{LP.desc}}</p>
-            
-        </li>
-    </ul>
-    
+<div class="container" style="width:100%">
+    <div class="row">
+        <div ng-repeat="LP in LPs" class="col-lg-3">
+            <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+                <div class="panel-heading text-center" style="min-height: 40px">
+                    <a href="#/coursePage/{{sid}}/LP/{{LP.LPID}}">{{LP.LPName || 'Mission Name'}}</a>
+                </div>
+                <div class="panel-body text-center">
+                    <span class="glyphicon glyphicon-road" aria-hidden="true" style="font-size: 3em"></span>
+                    <p style="margin: 10px">{{LP.desc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+        <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+            <div class="panel-body text-center" style="margin-top: 40px">
+                <a href="#/coursePage/{{sid}}/createLP"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 3em"></span>
+                <p style="margin: 10px">Create New Mission</p></a>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
 <hr>
 
-<h3>Courses : </h3>
-<a href="#/coursePage/{{sid}}/createcourse"><h6>&nbsp;Create new course</h6></a>
+<h3>Quests</h3>
 
-<h4>Courses Created :</h4>
-<div>
-    <ul>
-        <li ng-repeat="course in coursesBy" >
-            <a href="#/coursePage/{{sid}}/eachcourse/{{course.courseID}}"><h4>{{course.courseName}}</h4>
-                <!-- <span class="sr-only"></span> -->
-            </a>
-            <p>Description : {{course.desc}}</p>
-            
-        </li>
-    </ul>
-    
+<div class="container" style="width:100%">
+    <div class="row">
+        <div ng-repeat="course in coursesBy" class="col-lg-3">
+            <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+                <div class="panel-heading text-center" style="min-height: 40px">
+                    <a href="#/coursePage/{{sid}}/eachcourse/{{course.courseID}}">{{course.courseName || 'Course Name'}}</a>
+                </div>
+                <div class="panel-body text-center">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true" style="font-size: 3em"></span>
+                    <p style="margin: 10px">{{course.desc}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+        <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+            <div class="panel-body text-center" style="margin-top: 40px">
+                <a href="#/coursePage/{{sid}}/createcourse"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size: 3em"></span>
+                <p style="margin: 10px">Create New Quest</p></a>
+            </div>
+        </div>
+        </div>
+    </div>
 </div>

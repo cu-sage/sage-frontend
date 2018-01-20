@@ -10,6 +10,34 @@ var learningPathModel = require('../models/learningPathModel.js');
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var service = require('../services/service');
+var curriculaItemModel = require('../models/curriculaItemModel.js');
+
+
+router.get("/students/coursesEnrolled/:sid", function(req, res) {
+    authService.getUser(req, function(user) {
+        var userId = user._id;
+        var fullname = user.fullname;
+        // console.log(userId);
+        if (userId != -1) {
+            userModel.findById(userId, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                // console.log('user: ' + user);
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-student.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized1.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized2.'});
+        }
+    });
+});
 
 router.get("/students/:id", function(req, res) {
     authService.getUser(req, function(user) {
@@ -128,7 +156,7 @@ router.get("/instructors/:id/LP/:LPid", function(req, res) {
     var allcourses;
     learningPathModel.find({_id:LPid}).lean().exec()
     .then((response, error) => {
-        
+
         allcourses=response[0].courses;
         //console.log(allcourses[0]);
         //console.log(allcourses.length);
@@ -189,7 +217,7 @@ router.get("/instructors/:id/courses/:cid", function(req, res) {
         });
 
         res.status(200).send(returnResponse);
-    });    
+    });
 });
 
 router.get("/researchers/:id", function(req, res) {
@@ -277,7 +305,7 @@ router.post("/instructors/createCourse/:id", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -296,7 +324,7 @@ router.post("/instructors/createLP/:id", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -311,11 +339,11 @@ router.post("/instructors/:id/course/:cid/createAssignment", function(req, res) 
     console.log(req.body);
     var InstrId = req.params.id;
     var courseid = req.params.cid;
-    service.newassignment(req.body.order, InstrId ,courseid,
+    service.newassignment(req.body, InstrId ,courseid,
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -334,7 +362,7 @@ router.post("/instructors/:id/LP/:LPid/addCourse/:cid", function(req, res) {
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});
-            } 
+            }
             else if (json.status === 200) {
                 res.status(200).send({message: json.message});
             }
@@ -344,3 +372,191 @@ router.post("/instructors/:id/LP/:LPid/addCourse/:cid", function(req, res) {
         });
 });
 
+router.post("/instructors/Course/:cid/assignment/:aid", function(req,res){
+    console.log(req.body);
+    var Courseid = req.params.cid;
+    var Assignmentid = req.params.aid;
+    var assignments = req.body.assignments;
+    service.removeAssignment(Courseid, assignments,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+router.post("/instructors/updateCourse/:cid", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    var Courseid = req.params.cid;
+    service.updateCourse(req.body.coursename, req.body.desc , Courseid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+router.post("/instructors/:id/LP/:LPid/updateCourseOrder", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    var LPid = req.params.LPid;
+    service.updateCourseOrderInLP(req.body.courses, LPid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+router.post("/instructors/course/:cid/updateAssignmentOrder", function(req, res) {
+    //console.log("In stats routes");
+    console.log(req.body);
+    //var InstrId = req.params.id;
+    //var LPid = req.params.LPid;
+    var courseid = req.params.cid;
+    console.log("going into update assignment stat");
+    service.updateAssignmentOrderInQuest(req.body.assignments, courseid,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+
+router.get("/instructors/:id/curricula_items", function(req, res) {
+
+
+    curriculaItemModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+router.get("/instructors/:id/missions", function(req, res) {
+
+
+    learningPathModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+
+router.get("/instructors/:id/quests", function(req, res) {
+
+
+    courseModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+router.get("/instructors/:id/games", function(req, res) {
+
+
+    assignmentModel.find({}).lean().exec()
+    .then(function(response, error) {
+        console.log(response);
+        res.status(200).send(response);
+
+    });
+
+});
+
+router.get("/instructors/:id/quests/:Mid", function(req, res) {
+
+    let missionId = req.params.Mid;
+
+    learningPathModel.findById(missionId).lean().exec()
+    .then(function(mission) {
+        var courses = mission['courses'];
+
+        var courseIds = [];
+
+        for(let i in courses) {
+            courseIds.push(mongoose.Types.ObjectId(courses[i]['CourseID']));
+        }
+        console.log(courseIds)
+
+        return courseModel.find({ '_id' : { $in : courseIds} }).lean().exec();
+
+    })
+    .then(function(quests) {
+        console.log(quests)
+        res.status(200).send(quests);
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+
+
+});
+
+
+router.get("/instructors/:id/games/:Qid", function(req, res) {
+
+    let questId = req.params.Qid;
+
+    courseModel.findById(questId).lean().exec()
+    .then(function(quest) {
+        var assignments = quest['assignments'];
+
+        var assignmentIds = [];
+
+        for(let i in assignments) {
+            assignmentIds.push(mongoose.Types.ObjectId(assignments[i]['assignmentID']));
+        }
+        //console.log(assignmentIds)
+
+        return assignmentModel.find({ '_id' : { $in : assignmentIds} }).lean().exec();
+
+    })
+    .then(function(games) {
+        console.log(games)
+        res.status(200).send(games);
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+
+
+});
+
+
+module.exports = router;

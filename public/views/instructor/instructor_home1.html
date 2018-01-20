@@ -1,13 +1,17 @@
-<h2 class="sub-header">Home</h2>
-<h3>Most recent courses created: </h3>
-<div>
-    <ul>
-        <li ng-repeat="course in courses" >
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <h2>Welcome Back</h2>
+    </div>
+
+
+        <div ng-repeat="course in courses" >
             <a href="#/overview/{{sid}}/courses/{{course.courseID}}"><h4>{{course.courseName}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
             <p>Description : {{course.desc}}</p>
             <!--<p>Students Enrolled : {{course.studentsenrolled}}</p> -->
-        </li>
-    </ul>
+        </div>
+
 </div>

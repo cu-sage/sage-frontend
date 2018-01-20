@@ -157,7 +157,6 @@ router.get ('/coursesEnrolled/student/:sid', function (req, res) {
 
 });
 
-
 router.get ('/course/:cid/leaderboard', function (req, res) {
     let {cid} = req.params;
     let studentScoreHash = {};
@@ -167,16 +166,16 @@ router.get ('/course/:cid/leaderboard', function (req, res) {
         let courseObject = allData[0];
         let enrollments = allData[1];
         let allStudentIDs = getAllStudentIDsFromEnrollment (enrollments);
-        let allAssigmentIDs = getAllAssignmentIdsFromCourseObject (courseObject);
+        let allAssignmentIDs = getAllAssignmentIdsFromCourseObject (courseObject);
         
-        return {allAssigmentIDs, allStudentIDs};
+        return {allAssignmentIDs, allStudentIDs};
 
 
     })
     .then ((response) => {
-        let {allStudentIDs, allAssigmentIDs} = response;
+        let {allStudentIDs, allAssignmentIDs} = response;
 
-        let fetches = allAssigmentIDs.map ((singleAssignmentID) => {
+        let fetches = allAssignmentIDs.map ((singleAssignmentID) => {
 
             return fetchProgressObjectsForParticularAssignmentID(singleAssignmentID, allStudentIDs);
         });
@@ -254,7 +253,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
     //TODO put the progress of the sid in the object - Enrollment done. Do assignment progress now.
     let course = {};
     let assignmentsHash = {};
-    let allAssigmentIDs = [];
+    let allAssignmentIDs = [];
 
     courseModel.findOne({'_id' : cid}).lean().exec()
     .then((response, error) => {
@@ -263,12 +262,12 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
         course.courseID = course._id;
         if (course) {
 
-            allAssigmentIDs = course.assignments.map((singleAssignment) => {
+            allAssignmentIDs = course.assignments.map((singleAssignment) => {
                 assignmentsHash[singleAssignment.assignmentID] = singleAssignment;
                 return singleAssignment.assignmentID;
             });
 
-            return assignmentModel.find({'_id': {'$in' : allAssigmentIDs}}).lean().exec();
+            return assignmentModel.find({'_id': {'$in' : allAssignmentIDs}}).lean().exec();
 
         } else { 
 
@@ -296,7 +295,7 @@ router.get ('/course/:cid/student/:sid', function (req, res) {
 
         if (course.isEnrolled) {
 
-            let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssigmentIDs.join(',');
+            let callingURL = externalURLs.NODE_SERVER + 'progress/student/' + sid + '?assignmentIDs=' + allAssignmentIDs.join(',');
             console.log(callingURL);
             return fetch(callingURL , {
                 headers : {
@@ -359,8 +358,8 @@ let getAllStudentIDsFromEnrollment = (enrollments) => {
 
 };
 let getAllAssignmentIdsFromCourseObject = (courseObject) => {
-    let allAssigments = courseObject.assignments; 
-    return allAssigments.map ((singleAssignment) => {
+    let allassignments = courseObject.assignments; 
+    return allassignments.map ((singleAssignment) => {
         return singleAssignment.assignmentID;
     });
 };
@@ -370,6 +369,13 @@ let fetchProgressObjectsForParticularAssignmentID = (assignmentID, studentIDs) =
     return fetch(externalURLs.NODE_SERVER + 'progress/assignment/' + assignmentID + '?studentIDs=' + studentIDs.join(','));
 
 };
+
+let fetchAssessmentResult = (assignmentID, studentIDs) => {
+
+    return fetch(externalURLs.NODE_SERVER + 'assess/game/123/objective/58d845736e4ddb3ce20ed1b3');
+
+};
+
 let getScore = (resultsObject) => {
     let score = 0;
     for (key in resultsObject) {

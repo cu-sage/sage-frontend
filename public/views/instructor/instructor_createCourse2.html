@@ -1,10 +1,16 @@
-<form novalidate class="simple-form" name="courseform">
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <h2>Welcome Back</h2>
+    </div>
+    <form novalidate class="simple-form" name="courseform">
 <h2>Course Creation</h2>
 <br /><br />
 <fieldset>
-    <input type="text" name="coursename" ng-model="course.name"  placeholder="Course Name" ng-required="true"/><br /><br />
+    <input type="text" name="coursename" ng-model="course.name"  placeholder="Quest Name" ng-required="true"/><br /><br />
     
-    <input type="text" ng-model="course.desc"  placeholder="Course Description" /><br /><br /><br />
+    <input type="text" ng-model="course.desc"  placeholder="Quest Story" /><br /><br /><br />
 
     <!-- Computational Thinking Concepts: <br /><br />
     <label><input type="checkbox" ng-model="course.preference" value="Abstraction" />Abstraction</label>

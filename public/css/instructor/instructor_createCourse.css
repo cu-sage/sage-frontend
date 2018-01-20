@@ -1,5 +1,5 @@
 .c1 {
-  max-width:600px;
+  max-width:1000px;
   margin:0 auto;
   text-align:center;
   -webkit-border-radius:6px;
@@ -33,6 +33,9 @@ textarea {
   height:100px;
   margin-bottom:10px;
 }
+textarea#desc {
+  height: 70px;
+}
 input:first-of-type
 {
   margin-top:35px;
@@ -56,6 +59,10 @@ input, textarea {
   width: 80%;
   max-width: 600px;
 }
+input#fileToUpload{
+  margin-left: 60px;
+  margin-bottom: 0px;
+}
 ::-webkit-input-placeholder {
    color: #FAFAFA;
 }
@@ -69,10 +76,7 @@ input, textarea {
    color: #FAFAFA;  
 }
 button {
-  margin-top:15px;
-  margin-bottom:25px;
   background-color:#428bca;
-  padding: 12px 45px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
@@ -81,7 +85,6 @@ button {
   transition: .5s;
   display: inline-block;
   cursor: pointer;
-  width:30%;
   color:#fff;
 }
 button:hover, .button:hover {
@@ -129,4 +132,8 @@ label.error {
     -webkit-border-radius:6px;
     -moz-border-radius:6px;
     border-radius:6px;
+}
+
+.blank {
+  height: 25px;
 }

@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
+    <link rel="icon" href="/public/images/columbia_favicon.png">
 
     <!-- Animate.CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <title>Dashboard</title>
+    <title>SAGE</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -26,7 +26,8 @@
 <body ng-app="instructorApp">
 <div class="row">
     <div class="col-sm-3 col-md-2 sidebar" ng-controller="InstructorIndexController">
-        <ul class="nav nav-sidebar">
+        <ul class="nav nav-sidebar text-center">
+            <img src="/public/images/studentavatar.jpg" height="200" width="200">
             <h4 class="text-center">{{instructor}}</h4>
             <h5 class="text-center">Instructor</h5>
         </ul>
@@ -71,12 +72,17 @@
 
             <li ng-class="{ active: isActive('coursePage') }">
                 <a ng-href="#/coursePage/{{sid}}">
-                    <i class="glyphicon glyphicon-home pull-right"></i>
-                    Courses/Learning Paths
+                    <i class="glyphicon glyphicon-edit pull-right"></i>
+                    Mission Management
                 </a>
             </li>
 
-
+            <li ng-class="{ active: isActive('librarires') }">
+                <a ng-href="#/librarires/{{sid}}">
+                    <i class="glyphicon glyphicon-edit pull-right"></i>
+                    Libraries
+                </a>
+            </li>
 
             <li ng-click="showHide()">
                 <a>
@@ -116,11 +122,15 @@
 <script src="/public/js/controllers/instructor/InstructorHome1Controller.js"></script>
 <script src="/public/js/controllers/instructor/InstructorCourseController.js"></script>
 <script src="/public/js/controllers/instructor/InstructorLPController.js"></script>
-<script src="/public/js/controllers/instructor/InstructorEachCourseController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorQuestManagementController.js"></script>
 <script src="/public/js/controllers/instructor/InstructorCourseCreationController.js"></script>
-<script src="/public/js/controllers/instructor/InstructorAssignmentCreationController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorGameCreationController.js"></script>
 <script src="/public/js/controllers/instructor/InstructorDesignController.js"></script>
 <script src="/public/js/controllers/instructor/InstructorVAEController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorLibController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorMissionsController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorQuestsController.js"></script>
+<script src="/public/js/controllers/instructor/InstructorGamesController.js"></script>
 
 
 <script src="/public/js/controllers/instructor/InstructorLPCreationController.js"></script>
@@ -137,6 +147,14 @@
 <script src="/node_modules/ng-error/ng-error.js"></script>
 
 <link href="/public/css/instructor/instructor_createCourse.css" rel="stylesheet">
+
+
+
+<script type="text/javascript" src="/public/js/lib/angular-tree-control.js"></script>
+<!-- link for CSS when using the tree as a Dom element -->
+<link rel="stylesheet" type="text/css" href="/public/css/lib/tree-control.css">
+<!-- link for CSS when using the tree as an attribute -->
+<link rel="stylesheet" type="text/css" href="/public/css/lib/tree-control-attribute.css">
 
 
 </body>

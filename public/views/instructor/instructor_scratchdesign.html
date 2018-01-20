@@ -1,17 +1,22 @@
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <h2>Game Design</h2>
+    </div>
 
+    <p>Instructor Id : {{iid}}</p>
+    <p>Game Id : {{aid}}</p>
 
-<h2 class="sub-header">{{course.courseName}}</h2>
-<div>
-    <h4>Assignment Editor</h4>
 </div>
+    <h2 class="sub-header">{{course.courseName}}</h2>
 
-<h3 class="sub-header">Scratch Editor</h3>
-<div id = "scratch">
+    <scratch movie="{{ movie.url }}"/>
 
-        
-</div>
-Scratch Object Implemented here
+    <!-- <object style="position: absolute; left:40px" width="90%" height="100%">
+        <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
+                <param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf?sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
+        <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY"> -->
+    </object> -->
 
-<p>Instructor Id : {{iid}}</p>
-<p>Assignment Id : {{aid}}</p>
 

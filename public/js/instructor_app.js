@@ -2,7 +2,8 @@ var instructorApp = angular.module('instructorApp', [
     'ngRoute',
     'ngFileUpload',
     'satellizer',
-    'treeControl'
+    'treeControl',
+    'ngMaterial',
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
@@ -28,6 +29,10 @@ instructorApp
             .when('/overview/:sid/courses/:cid/hw/:hid', {
                 templateUrl: '/public/views/instructor_overview.html',
                 controller: 'InstructorOverviewController'
+            })
+            .when('/classes/:sid', {
+                templateUrl: '/public/views/instructor_class.html',
+                controller: 'InstructorClassController'
             })
             .when('/home1/:sid', {
                 templateUrl: '/public/views/instructor/instructor_home1.html',

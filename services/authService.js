@@ -89,6 +89,7 @@ var reg = function(email, password, fullname, role, callback) {
 };
 
 var login = function(email, password, callback) {
+    // TODO: We should not return distinct messages for user and password.  We need a generic message.
     userModel.findOne({email: email}, '+password', function(err, user) {
         if (!user) {
             callback(
@@ -96,38 +97,21 @@ var login = function(email, password, callback) {
             return;
         }
 
-        if (password != user.password) {
-            callback({
+        bcrypt.compare(password, user.password, function(err, isMatch) {
+            if (!isMatch) {
+                callback({
                     status: 401,
                     message: {password: 'The password is not correct.'}
-            });
-            return;
-        } else {
+                });
+                return;
+            }
 
             user = user.toObject();
             delete user.password;
 
             var token = createToken(user);
             callback({status: 200, token: token, user: user});
-
-
-        }
-
-        // bcrypt.compare(password, user.password, function(err, isMatch) {
-        //     if (!isMatch) {
-        //         callback({
-        //             status: 401,
-        //             message: {password: 'The password is not correct.'}
-        //         });
-        //         return;
-        //     }
-
-        //     user = user.toObject();
-        //     delete user.password;
-
-        //     var token = createToken(user);
-        //     callback({status: 200, token: token, user: user});
-        // });
+        });
     });
 };
 

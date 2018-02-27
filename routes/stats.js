@@ -297,6 +297,70 @@ router.get("/instructors/:id/courses/:cid/hw/:hid", function(req, res) {
 
 });
 
+// Class model routes
+router.get("/instructors/classes/:id", function(req, res) {
+    authService.getUser(req, function(user) {
+        var instructorId = user._id;
+        var fullname = user.fullname;
+        if (instructorId != -1) {
+            classModel.findById(Id, function (err, user) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                if (user.fullname == req.params.id) {
+                    var postId = req.params.id;
+                    var data = require('../staticData/' + req.params.id + '-instructor.json');
+                    res.send(JSON.stringify(data));
+                } else {
+                    res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+                }
+            });
+        } else {
+            res.status(403).send({'status': 'failed', 'message': 'Not authorized.'});
+        }
+    });
+
+});
+
+router.post("/instructors/classes/:id", function(req, res) {
+    console.log("In stats routes create class");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    service.newclass(req.body.name, req.body.description, req.body.roster, req.body.missions, InstrId,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
+// end
+
+router.post("/instructors/createCourse/:id", function(req, res) {
+    console.log("In stats routes");
+    console.log(req.body);
+    var InstrId = req.params.id;
+    service.newcourse(req.body.coursename, req.body.desc, InstrId ,req.body.features , req.body.ctconcepts,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
 router.post("/instructors/createCourse/:id", function(req, res) {
     console.log("In stats routes");
     console.log(req.body);

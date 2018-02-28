@@ -133,13 +133,13 @@ angular.module('studentApp')
 
 
         //help button function
-        $scope.helpBtnListener = function(){
-            $scope
-        }
+        //$scope.helpBtnListener = function(){
+            //$scope
+        //}
 
-        $scope.nextStep = function(){
-           $scope.content = 'Hello world';
-        }
+        //$scope.nextStep = function(){
+        //   $scope.content = 'Hello world';
+        //}
 
 
     });

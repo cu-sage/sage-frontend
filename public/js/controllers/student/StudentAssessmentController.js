@@ -130,4 +130,16 @@ angular.module('studentApp')
 
         // Orbs columns
         $scope.orb_col = 4; // 1,2,3,4, or 6
+
+
+        //help button function
+        $scope.helpBtnListener = function(){
+            $scope
+        }
+
+        $scope.nextStep = function(){
+           $scope.content = 'Hello world';
+        }
+
+
     });

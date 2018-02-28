@@ -209,11 +209,25 @@
         </div>
             <br>
             <br>
+
 <!--        <div class="table_container">
             <div class="table_cube">do</div>
             <div class="table_cube">ray</div>
         </div>-->
 <!--        <div  class="bottom_aligner"></div>-->
+
+        <div style="float:right; position: fixed; top: 0;">
+            <button type="button" class="btn btn-default navbar-btn">Help</button>
+            <button type="button" class="btn btn-default navbar-btn nextBtn" ng-click="nextStep()">Next</button>
+            <div class="help_container" style="z-index: 5; background-color: lightblue; width:400%; height:500px">
+                <div id="descriptionTitle" style="margin-left:70px; font-size: 25px;">Description</div>
+                <div id="descriptionContent" ng-init="content='nothing'">{{content}}</div>
+                <div id="imageTitle" style="margin-left:70px; margin-top:20px;font-size: 25px;">Image</div>
+                <div id="imageContent">
+                    <img src="http://wiki.mbalib.com/w/images/thumb/f/f9/Columbia_University_logo.jpg/240px-Columbia_University_logo.jpg" width="240" height="192" alt=""> 
+                </div>
+            </div>
+        </div>
         <div style="position:fixed; bottom:0">
             <div>
                 <button type="button" class="btn btn-default" ng-click="timer_running ? stopTimer() : startTimer()" align ="right">

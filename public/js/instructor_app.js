@@ -4,7 +4,7 @@ var instructorApp = angular.module('instructorApp', [
     'satellizer',
     'treeControl',
     'ngMaterial',
-    'mgo-angular-wizard',
+    'ngMessages',
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'

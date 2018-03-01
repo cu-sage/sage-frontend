@@ -1,39 +1,91 @@
-angular.module('instructorApp')
-    .controller('InstructorClassController', ['$scope', '$window', '$http', "$routeParams", "$mdDialog",
-    function($scope, $window, $http, $routeParams, $mdDialog) {
-        $scope.currentNavItem = 'page1';
-        
-        $scope.createClassPrompt = function(ev) {
-            // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm()
-                .title('Create Class')
-                .textContent('Create a new class or copy an existing class.')
-                .ariaLabel('Create Class')
-                .targetEvent(ev)
-                .ok('New')
-                .cancel('Copy');
+angular.module("instructorApp").controller("InstructorClassController", [
+  "$scope",
+  "$window",
+  "$http",
+  "$routeParams",
+  "$mdDialog",
+  function($scope, $window, $http, $routeParams, $mdDialog) {
+    $scope.currentNavItem = "Roster";
+    $scope.model = {
+      selectedClass: ""
+    };
 
-            $mdDialog.show(confirm).then(function() {
-                $scope.createNewClass();
-            }, function() {
-                $scope.status = 'You decided to keep your debt.';
-            });
-          };
+    $scope.classSelect = function(env) {
+      if ($scope.model.selectedClass === "addClass") {
+        createClassModal(env);
+      } else {
+        alert("Class Select not yet implemented");
+      }
+    };
 
-          $scope.createNewClass = function(ev) {
-            $mdDialog.show({
-              //controller: DialogController,
-              templateUrl: '/public/views/instructor/instructor_createClass.html',
-              parent: angular.element(document.body),
-              targetEvent: ev,
-              clickOutsideToClose:true,
-              fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-            })
-            .then(function(answer) {
-              $scope.status = 'You said the information was "' + answer + '".';
-            }, function() {
-              $scope.status = 'You cancelled the dialog.';
-            });
-          };
+    function createClassModal(ev) {
+      // Appending dialog to document.body to cover sidenav
+      var confirm = $mdDialog
+        .confirm()
+        .title("Create Class")
+        .textContent("Create a new class or copy an existing class.")
+        .ariaLabel("Create Class")
+        .targetEvent(ev)
+        .ok("New")
+        .cancel("Copy");
 
-    }]);
+      $mdDialog.show(confirm).then(
+        function() {
+          createNewClass(ev);
+        },
+        function() {
+          copyClass();
+        }
+      );
+    }
+
+    function createNewClass(ev) {
+      $mdDialog
+        .show({
+          controller: InstructorCreateClassController,
+          templateUrl: "/public/views/instructor/instructor_createClass.html",
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true,
+          fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+        .then(
+          function() { /*hide called*/ },
+          function() { /*cancel called*/ }
+        );
+    }
+
+    function copyClass() {
+      alert("Copy Class has not yet been implemented!");
+    }
+
+    function InstructorCreateClassController($scope, $mdDialog) {
+      $scope.title = "Fill in the class name";
+      $scope.class = {
+        name: "",
+        description: ""
+      };
+
+      $scope.cancel = function() {
+        $mdDialog.hide();
+      };
+
+      $scope.createClass = function() {
+        debugger;
+        $http({
+          method: "POST",
+          url: "/stats/instructors/classes/" + $routeParams.sid,
+          data: {
+            name: $scope.class.name,
+            description: $scope.class.description,
+            roster: [],
+            missions: []
+          }
+        }).then(function(response) {
+          console.log(response.status);
+          $mdDialog.hide();
+        });
+      };
+    }
+  }
+]);

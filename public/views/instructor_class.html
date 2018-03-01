@@ -1,27 +1,32 @@
 <div class="classes">
 
+    <md-select 
+        ng-model="model.selectedClass" 
+        style="z-index: 10000; margin-top: 18px;"
+        class="float-right"
+        placeholder="Select Class"
+        ng-change="classSelect()">
+        <md-option value="addClass">Add Class</md-option>
+    </md-select>
+
     <md-content class="nav-bar">
-        <md-button 
-            style="z-index: 10000;"
-            class="md-raised md-primary md-scale float-right"
-            ng-click="createClassPrompt($event)">Add Class</md-button>
         
         <md-nav-bar
-        md-selected-nav-item="currentNavItem"
-        nav-bar-aria-label="navigation links">
-            <md-nav-item md-nav-click="goto('page1')" name="page1">
+            md-selected-nav-item="currentNavItem"
+            nav-bar-aria-label="navigation links">
+            <md-nav-item md-nav-click="goto('Roster')" name="Roster">
                 Roster
             </md-nav-item>
-            <md-nav-item md-nav-click="goto('page2')" name="page2">
+            <md-nav-item md-nav-click="goto('Assignments')" name="Assignments">
                 Assignments
             </md-nav-item>
-            <md-nav-item md-nav-click="goto('page3')" name="page3">
-                Statistics
+            <md-nav-item md-nav-click="goto('Metrics')" name="Metrics">
+                Metrics
             </md-nav-item>
         </md-nav-bar>
 
         <div class="ext-content">
-        External content for `<span>{{currentNavItem}}</span>`.
+        <span>{{currentNavItem}}</span>
         </div>
     </md-content>
 </div>

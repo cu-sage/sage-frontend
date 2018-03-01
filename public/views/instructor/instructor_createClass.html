@@ -1,4 +1,5 @@
-<md-dialog aria-label="Create New Class" ng-controller="InstructorCreateClassController">
+<md-dialog aria-label="Create New Class">
+<form name="createClassForm" ng-submit="createClass()">
     <md-toolbar>
     <div class="md-toolbar-tools">
         <h2>{{title}}</h2>
@@ -12,19 +13,31 @@
     <md-dialog-content>
         <div class="md-dialog-content">
             <md-input-container class="md-block">
-                <label>Name</label>
-                <input ng-model="class.name">
+                <label>Name *</label>
+                <input ng-model="class.name" required>
+                <div ng-messages="projectForm.clientName.$error">
+                    <div ng-message="required">Name is required.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Description</label>
+                <textarea ng-model="class.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                <div ng-messages="projectForm.description.$error">
+                    <div ng-message="md-maxlength">The description must be less than 150 characters long.</div>
+                </div>
             </md-input-container>
         </div>
     </md-dialog-content>
 
   <md-dialog-actions layout="row">
     <span flex></span>
-    <md-button ng-click="answer('not useful')">
-     Finish
-    </md-button>
-    <md-button ng-click="answer('useful')">
+    <md-button ng-click="cancel()">
       Cancel
     </md-button>
+    <md-button type="submit">
+     Finish
+    </md-button>
   </md-dialog-actions>
+  </md-dialog>
+</form>
 </md-dialog>

@@ -6,6 +6,8 @@ var config = require('./config');
 var bcrypt = require('bcryptjs');
 var courseModel = require('../models/courseModel');
 var LPModel = require('../models/learningPathModel');
+var classModel = require('../models/classModel');
+
 var mongoose = require('mongoose');
 
 
@@ -14,6 +16,36 @@ var mongoose = require('mongoose');
 //         $scope.myWelcome = response.data;
 //     });
 // });
+
+var newclass = function(className, descrip, rost, miss, instructorid, callback) {
+    classModel.findOne({name: className}, function(err, existingClass) {
+        if (existingClass) {
+            callback(
+                {status: 409, message: {courseName: 'CourseName is already taken.'}});
+            return;
+        }
+
+        var newClass = new classModel({
+            name: className,
+            description: descrip,
+            roster: rost,
+            missions: miss,
+            instructorId: instructorid
+        });
+
+        newClass.save(function(err,class_inserted) {
+            if(!err){
+                console.log(class_inserted);
+                callback({status: 200, message: class_inserted});
+            }
+            else
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+
+
+    });
+};
 
 var newcourse = function(coursename, desc, instructorid, features,ctConcepts, callback) {
     courseModel.findOne({courseName: coursename}, function(err, existingCourse) {
@@ -245,6 +277,7 @@ var updateAssignmentOrderInQuest = function(assignments , courseid, callback) {
 module.exports = {
     // isAuthenticated: isAuthenticated,
     newcourse: newcourse,
+    newclass: newclass,
     newassignment:newassignment,
     addCoursetoLP:addCoursetoLP,
     newLP:newLP,

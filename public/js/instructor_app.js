@@ -4,13 +4,14 @@ var instructorApp = angular.module('instructorApp', [
     'satellizer',
     'treeControl',
     'ngMaterial',
+    'mgo-angular-wizard',
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
 ]);
 
 instructorApp
-    .config(function($routeProvider, $authProvider) {
+    .config(function($routeProvider, $authProvider, $mdThemingProvider) {
         $routeProvider
             .when('/overview/:sid', {
                 templateUrl: '/public/views/instructor/instructor_home1.html',

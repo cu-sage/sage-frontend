@@ -137,3 +137,15 @@ label.error {
 .blank {
   height: 25px;
 }
+
+.classes .nav-bar {
+  background: white;
+}
+
+.classes .nav-bar .ext-content {
+  margin: 20px;
+}
+
+.float-right {
+  float: right;
+}

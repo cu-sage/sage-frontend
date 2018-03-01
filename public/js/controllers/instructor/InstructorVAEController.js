@@ -16,7 +16,7 @@ angular.module('instructorApp')
         //     return hw_id == $routeParams.hid;
         // };
             //C:\Users\yuval\Documents\School\Fall2017\SAGELab\sage-editor\app\editor
-        //document.getElementById("vae").innerHTML='<object type="text/html" data="C:\\Users\\laisj\\Downloads\\SAGE\\sage-editor\\app\\editor\\index.html" style="width:100%; height: 100%;"></object>'
+        document.getElementById("vae").innerHTML='<object type="text/html" data="../sage-editor-hookup_to_server/app/editor/index.html"></object>'
         
         // Get Assignment/Game Object
         $http.get(externalUrl + "/games/" + $scope.aid)
@@ -68,7 +68,7 @@ angular.module('instructorApp')
                     // store XML in sessionStorage to be opened by VAE
                     sessionStorage.loadOnceBlocks = fullResults.objectiveXML;
 
-                    document.getElementById("vae").innerHTML='<object type="text/html" data="/public/objective-editor/app/editor/index.html?aid=' + objId + '" style="width:100%; height: 100%;"></object>';
+                    .innerHTML='<object type="text/html" data="/public/objective-editor/app/editor/index.html?aid=' + objId + '" style="width:100%; height: 100%;"></object>';
                 }
             });
         };

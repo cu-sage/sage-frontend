@@ -1,0 +1,30 @@
+<md-dialog aria-label="Create New Class" ng-controller="InstructorCreateClassController">
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>{{title}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+    </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <md-input-container class="md-block">
+                <label>Name</label>
+                <input ng-model="class.name">
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+
+  <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="answer('not useful')">
+     Finish
+    </md-button>
+    <md-button ng-click="answer('useful')">
+      Cancel
+    </md-button>
+  </md-dialog-actions>
+</md-dialog>

@@ -96,22 +96,24 @@ var login = function(email, password, callback) {
             return;
         }
 
-        if (password != user.password) {
-            callback({
+        bcrypt.compare(password, user.password, function(err, res) {
+            if (err) {
+                console.log(err);
+                callback({status: 500, message: {email: 'An unknown error occurred.'}});
+            }
+            if (res) {
+                user = user.toObject();
+                delete user.password;
+
+                var token = createToken(user);
+                callback({status: 200, token: token, user: user});
+            } else {
+                callback({
                     status: 401,
                     message: {password: 'The password is not correct.'}
-            });
-            return;
-        } else {
-
-            user = user.toObject();
-            delete user.password;
-
-            var token = createToken(user);
-            callback({status: 200, token: token, user: user});
-
-
-        }
+                });
+            }
+        });
 
         // bcrypt.compare(password, user.password, function(err, isMatch) {
         //     if (!isMatch) {

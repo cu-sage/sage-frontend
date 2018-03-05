@@ -297,6 +297,24 @@ router.get("/instructors/:id/courses/:cid/hw/:hid", function(req, res) {
 
 });
 
+router.post("/instructors/games/:id/createInstr/create", function(req, res) {
+    console.log("In stats routes create instruction");
+    //console.log(req.body);
+    var gameId = req.params.id;
+    service.newinstruction(req.body.instname, req.body.content, req.body.img, req.body.role, gameId,
+        function(json) {
+            if (json.status === 409) {
+                res.status(409).send({message: json.message});
+            }
+            else if (json.status === 200) {
+                res.status(200).send({message: json.message});
+            }
+            else {
+                res.status(404).send({message: json.message});
+            }
+        });
+});
+
 router.post("/instructors/createCourse/:id", function(req, res) {
     console.log("In stats routes");
     console.log(req.body);

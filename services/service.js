@@ -83,6 +83,44 @@ var newLP = function(LPname, desc, instructorid, features,ctConcepts, callback) 
     });
 };
 
+var newinstruction = function(instname, content, img, role, gameId, callback) {
+    instructionModel.findOne({name: instname}, function(err, existingInstruction) {
+        if (existingInstruction) {
+            callback(
+                {status: 409, message: {courseName: 'instName is already taken.'}});
+            return;
+        }
+
+        var newInstruction = new instructionModel({
+            name: String,
+            content: [{
+                heading: String,
+                other: [{
+                    description: String,
+                    image: String}]
+                        }],
+            img: String,
+            role: String,
+            gameId: String 
+        });
+
+
+        //console.log("In service");
+        //console.log(coursename);
+        newInstruction.save(function(err,instruction_inserted) {
+            if(!err){
+                console.log(instruction_inserted);
+                callback({status: 200, message: instruction_inserted});
+            }
+            else
+                callback({status:404 , message : {error : "Not saved into db"}});
+
+        });
+
+
+    });
+};
+
 //newassignment
 var newassignment = function(values, instructorid, courseid, callback) {
     courseModel.findOne({_id: { $in: [ courseid ] }}, function(err, existingCourse) {

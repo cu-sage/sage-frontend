@@ -334,6 +334,18 @@ router.get("/instructors/:id/classes", function(req, res) {
     });
 });
 
+router.get("/instructors/:id/classes/:cid", function(req, res) {
+    let instid = req.params.id;
+    let classid = req.params.cid;
+
+    classModel.findOne({'_id': classid}, function (err, response) {
+        if (err) return res.status(200).send("cid not found");
+    //.then(function(response, error) {
+         res.status(200).send(response);
+    //});
+});
+});
+
 /*router.get("/instructors/classes/:id", function(req, res) {
     authService.getUser(req, function(user) {
         var instructorId = user._id;

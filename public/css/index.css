@@ -102,3 +102,7 @@
   display: inline-block;
   border-radius: 50%;
 }
+
+md-tabs.md-no-animation md-tab-content {
+  transition: none;
+}

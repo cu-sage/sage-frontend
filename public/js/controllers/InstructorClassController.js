@@ -5,18 +5,17 @@ angular.module("instructorApp").controller("InstructorClassController", [
   "$routeParams",
   "$mdDialog",
   function($scope, $window, $http, $routeParams, $mdDialog) {
-    $scope.currentNavItem = "Roster";
     $scope.model = {
-      selectedClass: "",
+      selectedClassId: "",
       classes: null,
-      roster: null,
+      selectedClass: null,
     };
 
     $scope.classSelect = function(env) {
-      if ($scope.model.selectedClass === "addClass") {
+      if ($scope.model.selectedClassId === "addClass") {
         createClassModal(env);
       } else {
-        alert("Class Select not yet implemented");
+        selectClass($scope.model.selectedClassId);
       }
     };
 
@@ -24,14 +23,36 @@ angular.module("instructorApp").controller("InstructorClassController", [
 
     function getAllClasses()
     {
-      $scope.model.classes = [{id:1, name: 'Math'}, {id:2,name: 'English'}];
-      return;
-
-      $http.get("/stats/instructors/classes/" + $routeParams.sid)
+      $http.get("/stats/instructors/" + $routeParams.sid + '/classes')
         .then(function(response) {
+          var classes = [];
           for (var i = 0; i < response.data.length; i++) {
-
+            classes[i] = {
+              id: response.data[i][0].classId,
+              name: response.data[i][0].className,
+            };
           }
+
+          if (classes.length > 0) {
+            $scope.model.selectedClassId = classes[0].id;
+          }
+
+          $scope.model.classes = classes;
+        });
+    }
+
+    function selectClass(id)
+    {
+      $http.get("/stats/instructors/" + $routeParams.sid + '/classes/' + id)
+        .then(function(response) {
+          $scope.model.selectedClass = {
+            id: response.data._id,
+            instructorId: response.data.instructorId,
+            name: response.data.name,
+            description: response.data.description,
+            roster: response.data.roster,
+            missions: response.data.missions,
+          };
         });
     }
 

@@ -149,3 +149,11 @@ label.error {
 .float-right {
   float: right;
 }
+
+.classes-roster-empty,
+.classes-missions-empty,
+.classes-metrics {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+}

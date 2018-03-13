@@ -11,6 +11,7 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 var service = require('../services/service');
 var curriculaItemModel = require('../models/curriculaItemModel.js');
+var classModel = require('../models/classModel');
 
 
 router.get("/students/coursesEnrolled/:sid", function(req, res) {
@@ -298,7 +299,54 @@ router.get("/instructors/:id/courses/:cid/hw/:hid", function(req, res) {
 });
 
 // Class model routes
-router.get("/instructors/classes/:id", function(req, res) {
+router.get("/instructors/:id/classes", function(req, res) {
+    let instid = req.params.id;
+
+    classModel.find({}, {'instructorId': instid, 'name': ''}).lean().exec()
+    .then(function(response, error) {
+        //console.log("here ",response)
+        let returnResponse = response.map(function(singleClass) {
+            //console.log("singleClass ", singleClass)
+            var returnMe = []
+            var myClass = {
+                classId: 1,
+                className: "ss"
+            };
+            //console.log("only reason ", singleClass.instructorId)
+            if(instid == singleClass.instructorId){
+                myClass.classId = singleClass._id;
+                myClass.className = singleClass.name;
+                returnMe.push(myClass)
+            }
+            return returnMe;
+        });
+
+        me = []
+        for(var i in returnResponse){
+            //console.log("me",returnResponse[i])
+            if( !returnResponse[i] === undefined || !returnResponse[i].length == 0){
+                //console.log("what")
+                me.push(returnResponse[i]);
+            }
+        }
+
+        res.status(200).send(me);
+    });
+});
+
+router.get("/instructors/:id/classes/:cid", function(req, res) {
+    let instid = req.params.id;
+    let classid = req.params.cid;
+
+    classModel.findOne({'_id': classid}, function (err, response) {
+        if (err) return res.status(200).send("cid not found");
+    //.then(function(response, error) {
+         res.status(200).send(response);
+    //});
+});
+});
+
+/*router.get("/instructors/classes/:id", function(req, res) {
     authService.getUser(req, function(user) {
         var instructorId = user._id;
         var fullname = user.fullname;
@@ -321,7 +369,7 @@ router.get("/instructors/classes/:id", function(req, res) {
         }
     });
 
-});
+});*/
 
 router.post("/instructors/classes/:id", function(req, res) {
     console.log("In stats routes create class");

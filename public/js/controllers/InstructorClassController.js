@@ -7,7 +7,9 @@ angular.module("instructorApp").controller("InstructorClassController", [
   function($scope, $window, $http, $routeParams, $mdDialog) {
     $scope.currentNavItem = "Roster";
     $scope.model = {
-      selectedClass: ""
+      selectedClass: "",
+      classes: null,
+      roster: null,
     };
 
     $scope.classSelect = function(env) {
@@ -17,6 +19,21 @@ angular.module("instructorApp").controller("InstructorClassController", [
         alert("Class Select not yet implemented");
       }
     };
+
+    getAllClasses();
+
+    function getAllClasses()
+    {
+      $scope.model.classes = [{id:1, name: 'Math'}, {id:2,name: 'English'}];
+      return;
+
+      $http.get("/stats/instructors/classes/" + $routeParams.sid)
+        .then(function(response) {
+          for (var i = 0; i < response.data.length; i++) {
+
+          }
+        });
+    }
 
     function createClassModal(ev) {
       // Appending dialog to document.body to cover sidenav

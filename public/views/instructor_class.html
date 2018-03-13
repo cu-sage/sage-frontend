@@ -7,6 +7,9 @@
         placeholder="Select Class"
         ng-change="classSelect()">
         <md-option value="addClass">Add Class</md-option>
+        <md-option ng-repeat="class in model.classes" ng-value="class.id">
+            {{class.name}}
+          </md-option>
     </md-select>
 
     <md-content class="nav-bar">

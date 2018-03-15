@@ -1,94 +1,155 @@
 <form novalidate class="simple-form" name="assignmentform" >
-<div class="c1">
-    <div><img src="/public/images/logo.png" height="60">
-    </div>
-    <div class="head1">
-      <h2>Game Creation</h2>
-    </div>
-    <input type="text" name="name" placeholder="Game Name" ng-model="assgn.name" ng-required="true" /><br />
-    Game Order Number <select ng-model="assgn.order" >
-             <option>1</option>
-             <option>2</option>
-             <option>3</option>
-             <option>4</option>
-        </select>
-        </br></br>
-    <input type="text" name="name" placeholder="Game Type" ng-model="assgn.type" ng-required="true" /><br />
-
-    <p>Associate Game Objectives</p>
-    <ul>
-        <li ng-repeat="each_course in coursesBy" >
-            <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
-                 <span class="sr-only"></span>
-            </a>
-        </li>
-    </ul>
-
-        <input type="text" name="order" placeholder="Game Order No" ng-model="assgn.order" ng-required="true" /><br />
-    
-    </br></br>
-
-    <input type="text" name="name" placeholder="Instruction Name" ng-model="instr.name" ng-required="true" /></br>
-
-    <!--<div>
-      <button class="btn btn-default" ng-click="addContent()">Add More Steps</button>
-    </div>
-
-    <div class="form-group content">
-      <p id='step1'>Step1</p> 
-      <input type="text" class="heading" name="name" placeholder="heading" ng-required="true" style="margin-top:0px" />
-      <input type="text" name="name" class="description" placeholder="description" ng-required="true" />
-      <p>Image</p> 
-      <div><img src="/public/images/logo.png" class="stepImg img-rounded" height="100" width="100"></div>
-      <input type='file' ng-model-instant 
-       onchange="angular.element(this).scope().imageUpload(event)"
-       multiple style= "margin-left: 200px"/>
-      </br></br>
-    </div>-->
-    </br>
-    <div ng-repeat="step in steps">
-      <p class="bold">Step {{$index+1}}</p>
+  <div style="width: 50%;margin-left: auto;margin-right: auto;">
+    <md-content class="md-no-momentum">
       <div>
-        <input type="text" ng-model="step.heading" placeholder="heading" ng-required="true"/>
+        <img src="/public/images/logo.png" height="60">
       </div>
+      <!--<div class="head1">
+        <h2>Game Creation</h2>
+      </div>-->
 
-      <div>
-        <input type="text" name="name" placeholder="description" class="step.description" ng-required="true" />
-      </div>
+      <md-toolbar class="md-toolbar-tools">
+         <h2>Game Creation</h2>
+      </md-toolbar>
 
-      <div>
-        <p>Image</p>
-        <img src="/public/images/logo.png" np-model="step.img" id= "img{{$index+1}}" class="img-rounded" height="100" width="100">
-        <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple style= "margin-left: 200px"/>
-      </div>
-    </div>
+      <!--<input type="text" name="name" placeholder="Game Name" ng-model="assgn.name" ng-required="true" /><br />-->
 
-    <div>
-      <button class="btn btn-default" ng-click="addStep()">Add Step</button>
-    </div>
-    
-    </br>
-    <div class="form-group icon">
-      <p>Preview Icon</p> 
-      <img src="/public/images/logo.png" id="previewImg" class="img-rounded" height="100" width="100" >
-      <input type='file'ng-model-instant 
-       onchange="angular.element(this).scope().imageUpload(event)"
-       multiple style= "margin-left: 200px"/>
-    </div>
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Game Name</label>
+        <input ng-model="assgn.name" type="text" ng-required="true">
+      </md-input-container>
 
-    <div>
-      <label class="radio-inline"><input type="radio" style="width:20%; margin-top:0px" name="instrOrStud">Instructor</label>
-      <label class="radio-inline"><input type="radio" style="width:20%; margin-top:0px" name="instrOrStud">Student</label>
-    </div>
-    <div class="blank"></div>
+      <md-input-container class="md-icon-float md-block">
+        <label>Game Order Number</label>
+        <md-select ng-model="assgn.order">
+          <md-option ng-repeat="order in orders" value="{{order.n}}">
+            {{order.n}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <!--Game Order Number <select ng-model="assgn.order" >
+               <option>1</option>
+               <option>2</option>
+               <option>3</option>
+               <option>4</option>
+          </select>
+          </br></br>-->
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Game Type</label>
+        <input ng-model="assgn.type" type="text" ng-required="true">
+      </md-input-container>
+
+      <!--<input type="text" name="name" placeholder="Game Type" ng-model="assgn.type" ng-required="true" /><br />-->
+
+      <p>Associate Game Objectives</p>
+      <ul>
+          <li ng-repeat="each_course in coursesBy" >
+              <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
+                   <span class="sr-only"></span>
+              </a>
+          </li>
+      </ul>
+
+      <!--
+      <input type="text" name="order" placeholder="Game Order No" ng-model="assgn.order" ng-required="true" /><br />
+      
+      </br></br>-->
+
+
+      <md-input-container class="md-icon-float md-block">
+        <!-- Use floating label instead of placeholder -->
+        <label>Instruction Name</label>
+        <input ng-model="instr.name" type="text" ng-required="true">
+      </md-input-container>
+      
+      <!--<input type="text" name="name" placeholder="Instruction Name" ng-model="instr.name" ng-required="true" /></br>
+      </br>-->
+    </md-content>
+  </div>
+  
+  <div style="width: 50%;margin-left: auto;margin-right: auto; margin-top: 30px">
+    <md-button md-no-ink class="md-raised md-primary" ng-click="addStep()">More Step...</md-button>
+  </div>
+
+  <md-toolbar class="md-menu-toolbar" ng-repeat="step in steps" style="width: 50%;margin-left: auto;margin-right: auto; margin-top: 30px">
+      <md-content>
+        <h1 class="md-toolbar-tools">Step {{$index+1}}</h1>
+        <md-list>
+          <md-list-item class="md-3-line">
+            <div class="md-list-item-text">
+              <md-input-container class="md-block">
+                <label>Heading</label>
+                <input ng-model="step.heading" type="text" >
+              </md-input-container>
+
+              <md-input-container class="md-block">
+                <label>Description</label>
+                <input ng-model="step.description" type="text" >
+              </md-input-container>
+              <h1>
+                <img src="/public/images/logo.png" np-model="step.img" id= "img{{$index+1}}" class="img-rounded" height="100" width="100">
+                <input type='file' id="input-file-id{{$index+1}}" class="ng-hide" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple/>
+                </br>
+                <label for="input-file-id{{$index+1}}" class="md-button md-raised md-primary" style="margin-left: 0px">Choose Files</label>
+              </h1>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+  </md-toolbar>
+
+
+  <md-toolbar class="md-menu-toolbar" style="width: 50%;margin-left: auto;margin-right: auto; margin-top: 30px">
+      <md-content>
+        <h1 class="md-toolbar-tools">Preview Icon</h1>
+        <md-list>
+          <md-list-item class="md-3-line">
+            <div class="md-list-item-text">
+              <h1>
+                <img src="/public/images/logo.png" id="previewImg" class="img-rounded" height="100" width="100" >
+                <input type='file' id="input-file-preview" class="ng-hide" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple/>
+                </br>
+                <label for="input-file-preview" class="md-button md-raised md-primary" style="margin-left: 0px">Choose Files</label>
+              </h1>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
+  </md-toolbar>
+
+  <md-content style="width: 50%; margin-left: auto;margin-right: auto; margin-top: 30px">
+    <p style="margin-left: 15px">Role: <span class="radioValue">{{ role.group }}</span> </p>
+    <p style="margin-left: 15px">
+      <md-radio-group ng-model="role.group" >
+        <md-radio-button value="instructor" class="md-primary">Instructor</md-radio-button >
+
+        <md-radio-button value="student" class="md-primary"> Student </md-radio-button>
+
+      </md-radio-group>
+    </p>
+  </md-content>
+
+  <div style="width: 50%;margin-left: auto;margin-right: auto; margin-top: 30px">
+    <md-button md-no-ink class="md-raised md-primary" ng-click="designGame()">Design Game</md-button>
+    <md-button md-no-ink class="md-raised md-primary" ng-click="design()">Design Objective</md-button>
+    <md-button md-no-ink class="md-raised md-primary" ng-click="preview()">Preview Instruction</md-button>
+    <md-button md-no-ink class="md-raised md-primary" ng-click="submitForm()">Save</md-button>
+  </div>  
+
+
+
+  <!--  <div class="blank"></div>
     <div class="previewInstr" style="background-color: lightblue;"></div>
     <!--<button class="btn btn-lg" ng-click="reset()" value="Reset" >Reset</button>-->
-    <button class="btn btn-lg" ng-click="designGame()" value="Design Game" >Design Game</button>
+  <!--  <button class="btn btn-lg" ng-click="designGame()" value="Design Game" >Design Game</button>
     <button class="btn btn-lg" ng-click="design()" value="Design Objective" >Design Objective</button>
     <button class="btn btn-lg" ng-click="preview()" value="Preview Instruction">Preview Instruction</button>
     <button class="btn btn-lg" ng-click="submitForm()" value="Save" >Save</button>
     <div class="blank"></div>
-  </div>
+  </div>-->
 </form>
 
 

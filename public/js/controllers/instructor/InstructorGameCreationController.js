@@ -14,6 +14,11 @@ angular.module('instructorApp')
             img: '' 
         }];
 
+
+        $scope.orders = ('1 2 3 4').split(' ').map(function(order) {
+            return {n:order};
+        });
+
         $scope.addStep=function(){
             var newStep = {
                 heading: '',
@@ -25,7 +30,8 @@ angular.module('instructorApp')
 
         $scope.imageUpload = function(event){
             var files = event.target.files; 
-            $scope.stepID = event.target.parentNode.children[1].id;
+            console.log(event);
+            $scope.stepID = event.target.parentNode.children[0].id;
             console.log($scope.stepID);
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];

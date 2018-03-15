@@ -40,6 +40,7 @@ input:first-of-type
 {
   margin-top:35px;
 }
+/*
 input, textarea {
   font-size: 1em;
   padding: 15px 10px 10px;
@@ -59,6 +60,7 @@ input, textarea {
   width: 80%;
   max-width: 600px;
 }
+*/
 input#fileToUpload{
   margin-left: 60px;
   margin-bottom: 0px;

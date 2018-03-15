@@ -1,4 +1,5 @@
 var instructorApp = angular.module('instructorApp', [
+    'ngMaterial',
     'ngRoute',
     'ngFileUpload',
     'satellizer',

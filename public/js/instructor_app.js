@@ -93,10 +93,6 @@ instructorApp
                 templateUrl: '/public/views/instructor/instruction_creation.html',
                 controller: 'InstructionCreationController'
             })
-            .when('/createInstr/:sid/create',{
-                templateUrl: '/public/views/instructor/instructor_createInstr.html',
-                controller: 'InstructorCreateController'
-            })
             .when('/', {
                 templateUrl: "/public/views/error.html"
             });

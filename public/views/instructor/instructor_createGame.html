@@ -25,11 +25,67 @@
     </ul>
 
         <input type="text" name="order" placeholder="Game Order No" ng-model="assgn.order" ng-required="true" /><br />
-   
+    
+    </br></br>
+
+    <input type="text" name="name" placeholder="Instruction Name" ng-model="instr.name" ng-required="true" /></br>
+
+    <!--<div>
+      <button class="btn btn-default" ng-click="addContent()">Add More Steps</button>
+    </div>
+
+    <div class="form-group content">
+      <p id='step1'>Step1</p> 
+      <input type="text" class="heading" name="name" placeholder="heading" ng-required="true" style="margin-top:0px" />
+      <input type="text" name="name" class="description" placeholder="description" ng-required="true" />
+      <p>Image</p> 
+      <div><img src="/public/images/logo.png" class="stepImg img-rounded" height="100" width="100"></div>
+      <input type='file' ng-model-instant 
+       onchange="angular.element(this).scope().imageUpload(event)"
+       multiple style= "margin-left: 200px"/>
+      </br></br>
+    </div>-->
+    </br>
+    <div ng-repeat="step in steps">
+      <p class="bold">Step {{$index+1}}</p>
+      <div>
+        <input type="text" ng-model="step.heading" placeholder="heading" ng-required="true"/>
+      </div>
+
+      <div>
+        <input type="text" name="name" placeholder="description" class="step.description" ng-required="true" />
+      </div>
+
+      <div>
+        <p>Image</p>
+        <img src="/public/images/logo.png" np-model="step.img" id= "img{{$index+1}}" class="img-rounded" height="100" width="100">
+        <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple style= "margin-left: 200px"/>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-default" ng-click="addStep()">Add Step</button>
+    </div>
+    
+    </br>
+    <div class="form-group icon">
+      <p>Preview Icon</p> 
+      <img src="/public/images/logo.png" id="previewImg" class="img-rounded" height="100" width="100" >
+      <input type='file'ng-model-instant 
+       onchange="angular.element(this).scope().imageUpload(event)"
+       multiple style= "margin-left: 200px"/>
+    </div>
+
+    <div>
+      <label class="radio-inline"><input type="radio" style="width:20%; margin-top:0px" name="instrOrStud">Instructor</label>
+      <label class="radio-inline"><input type="radio" style="width:20%; margin-top:0px" name="instrOrStud">Student</label>
+    </div>
     <div class="blank"></div>
+    <div class="previewInstr" style="background-color: lightblue;"></div>
     <!--<button class="btn btn-lg" ng-click="reset()" value="Reset" >Reset</button>-->
     <button class="btn btn-lg" ng-click="designGame()" value="Design Game" >Design Game</button>
     <button class="btn btn-lg" ng-click="design()" value="Design Objective" >Design Objective</button>
+    <button class="btn btn-lg" ng-click="preview()" value="Preview Instruction">Preview Instruction</button>
     <button class="btn btn-lg" ng-click="submitForm()" value="Save" >Save</button>
     <div class="blank"></div>
   </div>

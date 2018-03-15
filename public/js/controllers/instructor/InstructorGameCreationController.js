@@ -8,6 +8,65 @@ angular.module('instructorApp')
     		//$scope.course.desc="";
     	};
 
+        $scope.steps = [{
+            heading: '',
+            description: '',
+            img: '' 
+        }];
+
+        $scope.addStep=function(){
+            var newStep = {
+                heading: '',
+                description: '',
+                img: '' 
+            }
+            $scope.steps.push(newStep);
+        };
+
+        $scope.imageUpload = function(event){
+            var files = event.target.files; 
+            $scope.stepID = event.target.parentNode.children[1].id;
+            console.log($scope.stepID);
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var reader = new FileReader();
+                reader.onload = $scope.imageIsLoaded; 
+                reader.readAsDataURL(file);
+             }
+        }
+
+        $scope.imageIsLoaded = function(e){
+            $scope.$apply(function() {
+                if($scope.stepID.indexOf("previewImg") !== -1){
+                    document.querySelector("#previewImg").src = e.target.result;
+                } else{
+                   var stepImgEle = document.querySelector("#"+ $scope.stepID);
+                   stepImgEle.src = e.target.result;
+                }
+            });
+        }
+
+        $scope.preview = function(){
+            $scope.currentStep = 0;
+            var targetElement = angular.element(document.querySelector(".previewInstr"));            
+            var afterElement = "<p>" + $scope.instr.name +"</p></br>";
+            var nextButton = "<button class='" +"btn btn-lg'" + "ng-click='" +"nextStep()'" +"value='" +"next'" +">Next</button>"
+            var heading = "<p>" + document.querySelectorAll(".heading")[$scope.currentStep].value + "</p>";
+            var description = "<p>" + document.querySelectorAll(".description")[$scope.currentStep].value + "</p>";
+            var img = "<img src='" +  document.querySelectorAll(".stepImg")[$scope.currentStep].src + "' class='" +"img-rounded'" + "height='100' width='100'>";
+            afterElement += nextButton;
+            afterElement += heading;
+            afterElement += description;
+            afterElement += img;
+            console.log(afterElement);
+            targetElement.html(afterElement);
+        }
+
+        $scope.nextStep = function(){
+            console.log($scope.currentStep);
+            $scope.currentStep++;
+        }
+
         $scope.designGame=function(){
             $scope.assignment={};
             newc={

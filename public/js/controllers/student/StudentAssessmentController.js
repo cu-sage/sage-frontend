@@ -56,7 +56,7 @@ angular.module('studentApp')
 
         var polldata = function() {
             // poll a GET request to node, send every second
-            $log.info("Printing assessment " + $scope)
+            // $log.info("Printing assessment " + $scope)
 
             $http({method: 'GET', url: externalUrl + '/assess/game/' + $scope.gameID + '/objective/' + $scope.objectiveID})
                 .then(function (response) {
@@ -76,7 +76,16 @@ angular.module('studentApp')
                                     $log.info($scope.speech=results[x].actions.command)
                                 }
                             }
-
+                            if(results.length > 0){
+                                results =  results.sort(function(a,b){
+                                    if(a.description > b.description){
+                                        return 1;
+                                    }else if(a.description < b.description){
+                                        return -1;
+                                    }
+                                    return 0
+                                })
+                            }
                             $scope.results = results;
                             $scope.progress = "33";
                             $scope.level = "Basic";

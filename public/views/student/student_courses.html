@@ -2,22 +2,62 @@
     <div><img src="/public/images/logo.png" height="60">
     </div>
     <div class="head1">
-        <h2>Quests</h2>
+        <h2>Missions</h2>
     </div>
 
 <div class="starter-template ng-scope">
-    <h3> List of Missions  </h3>
+    <h3>Missions</h3>
 
-        <div
-            ng-repeat="lp in learningPathsEnrolled"
-            ng-click='changeView("/learningPath/"+ lp.pathID +"/"+ sid)'
-            > <span class="bullets-course-page"> {{lp.pathName}} </span>  </div>
+        <!--<div
+            ng-repeat="m in missions"
+            ng-click='changeView("/learningPath/"+ m.missionID +"/"+ sid)'
+            > <span class="bullets-course-page"> {{m.missionName}} </span>  </div>-->
 
-    <h3> List of Quests </h3>
 
-            <div ng-repeat="course in coursesEnrolled"
-            ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
-            > <span class="bullets-course-page"> {{course.courseName}} </span> </div>
+    <div class="row">
+        <div ng-repeat="m in missions" class="col-lg-3">
+            <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+                <div class="panel-heading text-center" style="min-height: 40px">
+                    <a href="/student/#/learningPath/{{m.missionID}}/{{sid}}">{{m.missionName}}</a>
+                </div>
+                <div class="panel-body text-center">
+                    <span class="glyphicon glyphicon-road" aria-hidden="true" style="font-size: 3em"></span>
+                    <p style="margin: 10px">{{m.desc}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<hr>
+    <h3>Quests</h3>
+
+    <!--        <div ng-repeat="quest in quests"
+            ng-click='changeView("/courses/"+ quest.questsID +"/"+ sid)'
+            > <span class="bullets-course-page"> {{quest.questName}} </span> </div>-->
+
+
+
+
+    <div class="container" style="width:100%">
+    <div class="row">
+        <div ng-repeat="quest in quests" class="col-lg-3">
+            <div class="panel panel-default text-center" style="height: 180px; margin: 5px">
+                <div class="panel-heading text-center" style="min-height: 40px">
+                    <a href="/student/#/courses/{{quest.questID}}/{{sid}}">{{quest.questName}}</a>
+                </div>
+                <div class="panel-body text-center">
+                    <span class="glyphicon glyphicon-star-empty" aria-hidden="true" style="font-size: 3em"></span>
+                    <p style="margin-top: 5px" class="three-line-truncate">{{quest.questDesc}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
 
 
     <div class="search-area col-xs-12">

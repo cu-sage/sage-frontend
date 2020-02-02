@@ -24,6 +24,7 @@ angular.module('studentApp')
             }
         };
 
+
         //$scope.student_url = "https://upload.wikimedia.org/wikipedia/commons/9/97/Student_icon.png";
 
         $http.get("coursesEnrolled/student/" + $scope.sid)

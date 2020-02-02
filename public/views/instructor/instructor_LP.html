@@ -3,29 +3,30 @@
     </div>
     <div class="head1">
         <div>
-            <h3>Games Library</h3>
+            <h2>Games Library</h2>
         </div>
     </div>
-    <div>
-        <h2 class="sub-header">Mission : {{LP.LPName}}</h2>
-<h4>{{LP.desc}} </h4>
-<h5>Backstory : {{LP.features}}</h5>
+    <div class="sub-header">
+        <h2 >Mission: {{LP.LPName}}</h2>
+        <h4>{{LP.desc}} </h4>
+        <h5>Backstory: {{LP.features}}</h5>
+    </div>
 <form novalidate class="simple-form" name="QuestOrderform">
 <div>
-<p>Quests in the Mission:</p>
+<h2>Quests in the Mission:</h2>
     <ul>
-        <li ng-repeat="each_course in LPcourses" >
+        <span ng-repeat="each_course in LPcourses" >
             <a href="#/coursePage/{{sid}}/eachcourse/{{each_course.courseID}}"><h4>{{each_course.courseName}}</h4>
                 <!-- <span class="sr-only"></span> -->
             </a>
-            Quest Learning Order :
+            Quest Learning Order:
             <select  ng-model="orderSt[each_course.courseID]"> <!-- ng-change="updateOrder('{{each_course.courseID}}')" -->
                 <option ng-repeat="x in order" ng-value="{{x}}">{{x}}</option>
                  <!-- ng-selected="{{x == each_course.order}}" -->
             </select>
-            <p>Description : {{each_course.desc}}</p>
-            
-        </li>
+            <p>Description: {{each_course.desc}}</p>
+            <br/>
+        </span>
     </ul>
 </div>
 
@@ -34,15 +35,20 @@
 
 </form>
 <div>
-<p>Add from following Quests in the Mission:</p>
+<h2>Add from following Quests in the Mission:</h2>
     <ul>
-        <li ng-repeat="each_course in coursesBy" >
-            <a ng-click="addCourse(each_course.courseID)" ><h4>{{each_course.courseName}}</h4>
-                <!-- <span class="sr-only"></span> -->
-            </a>
-                       
-        </li>
+        <span ng-repeat="each_course in coursesBy" >
+            <!-- only display courses not currently in Mission to avoid display error  -->
+            <p ng-if="!questNames.includes(each_course.courseName)">
+                {{each_course.courseName}}
+                <span>
+                    <a ng-click="addCourse(each_course.courseID)">
+                        Add
+                    </a>
+                </span>
+            </p>    
+        </span>
     </ul>
 </div>
-<pre>user = {{orderSt}}</pre>
+<!-- <pre>user = {{orderSt}}</pre> -->
 </div>

@@ -1,10 +1,14 @@
 {
-  "name": "sage-dashboard",
+  "name": "sage-frontend",
   "version": "1.0.0",
-  "description": "dashboard for sage",
+  "description": "web application for sage",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "debug": "node --inspect=3000 server.js",
+    "test": "node --experimental-modules node_modules/mocha/bin/_mocha --opts mocha.opts --recursive \"./test\"",
+    "test:coverage": "nyc npm test",
+    "lint": "node node_modules/semistandard/bin/cmd.js"
   },
   "repository": {
     "type": "git",
@@ -17,22 +21,41 @@
   },
   "homepage": "https://github.com/chickenPopcorn/SAGE-Project#readme",
   "dependencies": {
+    "JSON": "^1.0.0",
     "angular": "^1.5.8",
     "angular-chart.js": "^1.1.1",
+    "angular-material-icons": "^0.7.1",
+    "angularjs-scroll-glue": "^2.2.0",
     "animate.css": "^3.5.2",
-    "aws-sdk": "^2.7.10",
+    "aws-sdk": "^2.210.0",
     "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
-    "chart.js": "^2.5.0",
-    "express": "^4.14.0",
+    "chart.js": "^2.7.2",
+    "express": "^4.16.3",
     "highcharts-ng": "^1.1.0",
     "jwt-simple": "^0.5.1",
-    "moment": "^2.17.1",
-    "mongoose": "^4.7.2",
+    "lodash": "^4.17.10",
+    "moment": "^2.21.0",
+    "mongoose": "^4.13.12",
     "multer": "~1.2.0",
     "multer-s3": "^2.5.0",
     "ng-error": "^1.0.2",
+    "node": "^11.12.0",
     "node-fetch": "^1.6.3",
+    "nodemailer": "^4.6.4",
+    "socket.io-client": "^2.1.1",
     "vjs-video": "^0.1.6"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "fs": "0.0.1-security",
+    "gulp": "^4.0.0",
+    "gulp-zip": "^4.1.0",
+    "minimist": "^1.2.0",
+    "mocha": "^5.0.4",
+    "path": "^0.12.7",
+    "semistandard": "^13.0.1",
+    "sinon": "^4.4.6",
+    "sinon-mongoose": "^2.0.2"
   }
 }

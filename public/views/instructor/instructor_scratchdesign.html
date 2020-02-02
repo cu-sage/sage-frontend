@@ -1,22 +1,383 @@
+<style>
+    .inputWrap {
+        border-radius:0.4rem;
+        margin-top: 0;
+        margin-left: 0;
+    }
+    li {
+        width: 80%;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    ul {
+        width: 500px;
+    }
+
+    .modal-body {
+        position: relative;
+        overflow-y: auto;
+        max-height: 400px;
+        padding: 15px;
+    }
+    h4{
+        margin-top: 3%;
+        color: steelblue;
+        margin-bottom: 3%;
+    }
+
+
+    /*!*input:first-of-type {*!//useless*/
+        /*margin-top: 35px !important;*/
+        /*margin-bottom:0;*/
+    /*}*/
+
+    /*margin-top:1px;*/
+    /*margin-bottom:1px;*/
+    label {
+        margin-top: 1%;
+        margin-bottom: 1%;
+        height:10%;
+        width: 200px;
+    }
+
+    tr {
+        height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+
+    }
+
+
+    /*.inputOutline {*/
+        /*border-radius: 0.4rem;*/
+    /*}*/
+
+</style>
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+
 <div class="c1">
+    <nav class="navbar">
+        <ul class="navbar-nav ml-auto navRight">
+                <div class = "navLi"  ng-click="preview()">  Instruction   </div>
+                <div class = "navLi"  ng-click="">&nbsp; &nbsp</div>
+                <!--<div class = "navLi"   ng-click="doMoveFeedbackModal()">  Choose Move Feedback Template  </div>-->
+                <!--<div class = "navLi"  ng-click="">&nbsp; &nbsp</div>-->
+                <div class = "navLi"   ng-click="showFocusModal()">  Select Focus and Objective   </div>
+                <div class = "navLi"  ng-click="">&nbsp; &nbsp</div>
+                <div class = "navLi"   ng-click="updateMoveFeedback()">  Update Move Feedback   </div>
+                <!--<div class = "navLi"  ng-click="">&nbsp; &nbsp</div>-->
+                <!--<div class = "navLi"   ng-click="showAssignmentFeedbackModal()">  Assignment Feedback   </div>-->
+                <div class = "navLi"  ng-click="">&nbsp; &nbsp</div>
+                <div class = "navLi"   ng-click="updateAssignmentFeedback()">  Update Assignment Feedback </div>
+        </ul>
+    </nav>
     <div><img src="/public/images/logo.png" height="60">
     </div>
     <div class="head1">
-        <h2>Game Design</h2>
+        <h2>Game Design Up</h2>
+    </div>
+    <div class="head2">
+        <a href="#/coursePage/{{aid}}/eachcourse/{{cid}}"><md-button md-no-ink class="md-raised md-primary">Back to Quest</md-button></a>
+        <!-- <button href="#/coursePage/{{sid}}/eachcourse/{{cid}}">Back to Quest</button> -->
     </div>
 
-    <p>Instructor Id : {{iid}}</p>
-    <p>Game Id : {{aid}}</p>
 
 </div>
+    <!--<div style="float: right; color: steelblue"  ng-click="doCommentModal()">Write Feedback</div>-->
     <h2 class="sub-header">{{course.courseName}}</h2>
 
-    <scratch movie="{{ movie.url }}"/>
+    <div id="game"></div>
+<div style="position: relative; height: 700px;" class="col-xs-11">
+    <scratch movie="{{ movie.url }}" />
+</div>
+    <!--<scratch movie="{{ movie.url }}"/>-->
+<!--<body ng-app="InstructorCommentController" ng-controller="myCtrl">-->
 
-    <!-- <object style="position: absolute; left:40px" width="90%" height="100%">
-        <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
-                <param name="movie" width="100%" height="100%" value="http://localhost:3000/public/sampleSWF/scratch.swf?sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY">
-        <param name=FlashVars value="sid={{sid}}&assignmentID={{assignmentID}}&mode=PLAY"> -->
-    </object> -->
+<div id="focusModal"  class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Select focus for CT <button style = "float: right" type="button" class="close" data-dismiss="modal" >&times;</button> </h4>
+            </div>
+            <div class="modal-body" >
+                <h4>Quest Level CT Concept</h4>
+                <br>
+                <table style = "width: 100%;">
+                    <tr class = "padding">
+                        <th class = "cc3">
+                            <span class="label label-primary" style = "font-size: small">Primary Level Focus</span>
+                        </th>
+                        <th class = "cc3">
+                            <span class="label label-info" style = "font-size: small">Middle Level Focus</span>
+                        </th>
+                        <th class = "cc3">
+                            <span class="label label-success" style = "font-size: small">Detailed Level Focus</span>
+                        </th>
+                    </tr>
+                    <tr class = "padding2">
+                        <th class = "cc3">
 
+                                <div class = "forcusTag" ng-repeat = "a in primaryLevel">
+                                    <span class="label label-primary smallTag">{{a}}</span>
+                                </div>
+
+                        </th>
+                        <th class = "cc3">
+
+                                <div class = "forcusTag" ng-repeat = "b in middleLevel">
+                                    <span class="label label-info smallTag">{{b}}</span>
+                                </div>
+
+                        </th>
+                        <th class = "cc3">
+                            <div class = "forcusTag" ng-repeat = "c in detailedLevel">
+                                <span class="label label-success smallTag" >{{c}}</span>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+
+                <hr>
+                <!--<h4>Select focus from below</h4>-->
+                <h4>Select Game Level CT Concept</h4>
+                <br>
+                <form novalidate name="LPform">
+                    <!--class="simple-form"-->
+                    <div class="" >
+                        <div class = "tableAttr">
+                            <div style = "width: 50%; margin-left:0px; margin-right: 20%;padding-left: 0; float: left; text-align: left;">
+                                <div style="margin: auto; width: 100%; color: steelblue; text-align: left;">
+                                    <treecontrol class="tree-classic"
+                                                 tree-model="dataForParentTree"
+                                                 options="treeOptions"
+                                                 on-selection="showSelected(node, selected, selectedNodes)"
+                                                 selected-node="selectedNodes">
+                                        {{node.name}}
+                                    </treecontrol><br>
+                                </div>
+                            </div>
+
+
+                            <!--<div class = "textDes"><strong> Instructor Id : </strong>{{iid}}</div>-->
+                            <!--<div class = "textDes"><strong> Game Id : </strong>{{aid}}</div>-->
+                            <!--<input id = "inputWrap2" type="text" ng-model="LP.desc"   />-->
+                        </div>
+
+                        <div class = "textWithTitle">
+                            <div style = "width: 50%; margin-left:0px; margin-right: 20%;padding-left: 0; float: left; text-align: left;">
+                                <div style="margin: auto; width: 100%; color: steelblue; text-align: left;">
+                                    <treecontrol class="tree-classic"
+                                                 tree-model="dataForTheTree"
+                                                 options="treeOptions"
+                                                 on-selection="showSelected(node, selected, selectedNodes)"
+                                                 selected-node="selectedNodes">
+                                                {{node.name}}
+                                    </treecontrol><br>
+                                </div>
+                            </div>
+
+                        <br>
+                            <button class = "randSButton glyphicon glyphicon-repeat" ng-click="reset()" value="Reset" > Reset </button>
+                            <button class="randSButton glyphicon glyphicon-floppy-saved" ng-click="submitCTConceptsForm()" value="Save" > Save </button>
+                        <!--</div>-->
+                        <div ng-if="error">
+                            <p style="color: red">Error: Game Must Have Unique Names</p>
+                        </div>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="commentModal"  class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Please Write Down Move Feedback<button type="button" class="close" data-dismiss="modal" ng-click = "clearAll()">&times;</button></h4>
+                <!--<button type="button" class="close" data-dismiss="modal" >&times;</button>-->
+            </div>
+            <div class="modal-body" >
+                <div>
+                    <div><small id="commentHelp" class="form-text text-muted">Those Feedback will be shared each time after students submit their assignment.</small></div>
+                </div>
+                <p><strong>Game Focus Area: </strong> <br>
+
+                </p>
+                <h4>Select existing templates or create move feedback:</h4>
+
+                <div class = "commentForm" cclass="radio-inline">
+                    <label><input class=" noMargin form-check-input" type="radio" ng-model='templateFlag' ng-value='"yes"' name="templateFlag" ng-click="chooseExisting(templateFlag)"> Choose Existing </label>
+                </div>
+                <div class = "commentForm" cclass="radio-inline">
+                    <label><input class="noMargin form-check-input" type="radio" ng-model='templateFlag' ng-value='"no"' name="templateFlag"ng-click = "chooseOwn(templateFlag)"> Create New  </label>
+                </div>
+                <div ng-show = "(!createTemplate)">
+                    <div ng-show = (showUpTemplateRadio) >
+                        <h4>Choose Template Type: </h4>
+
+                        <div class = "commentForm" cclass="radio-inline">
+
+                            <input  type="radio" ng-model='templateResult' ng-value='"correct"' name="templateResult" ng-click="changeTemplateType()"> Correct Response Template
+                        </div>
+                        <div class = "commentForm" cclass="radio-inline">
+                            <input  type="radio" ng-model='templateResult' ng-value='"incorrect"' name="templateResult" ng-click="changeTemplateType()"> Incorrect Response Template
+                        </div>
+                        <div class = "commentForm" cclass="radio-inline">
+                            <input  type="radio" ng-model='templateResult' ng-value='"neutral"' name="templateResult" ng-click="changeTemplateType()"> Neutral Response Template
+                        </div>
+                         <div class = "commentForm" cclass="radio-inline">
+                            <input  type="radio" ng-model='templateResult' ng-value='"close"' name="rdoResult" ng-click="changeTemplateType()"> Close Response Template
+                        </div>
+                    </div>
+                    <div ng-show = (showUpTemplate)>
+                        <div >
+                            <div class="form-group">
+                                <div>
+                                <h4 style ="padding-top: 10px; padding-bottom: 10px"for="templateFromDB">Templates</h4>
+                                </div>
+                                <select id="templateFromDB"  ng-model="templateEach"  class="form-control" ng-options="each.commentString for each in templates"  ng-change = "showTemplate()">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show = "(showUpTemplate && showTemplateComments)">
+                        <div class = "container" style = "width: 500px; margin-left: 0; padding-left: 0; margin-right:0; padding-right: 0" >
+                            <div size="58" type="text" ng-repeat="x in templateComments" >
+                                <div style="width:400px; display: inline-block" ng-if="(!mode[$index])">Comments from templates {{x.commentString}}</div>
+                                <div class=" glyphicon" style="float:right ; display: inline-block" ng-click="editDetails($index)">&#xe065;</div>
+                                <div ng-if = "(mode[$index])">
+                                        <input class = "inputWrap" size = "58" style ="padding-top: 0; padding-bottom: 0; margin-top: 0; margin-bottom: 0" ng-model="x.commentString"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form ng-show = "(createTemplate)">
+                    <h4>You can add up to 5 comments each time</h4>
+                    <form class="form-inline">
+
+                    <p><input class = "inputWrap" size="58" type="text" name="comment" ng-model="users.comment" placeholder= "move feedback press return or symbol to enter" ng-keypress="enterMoveFeedback($event)" >
+                        <span class="glyphicon" ng-click="pushInArray()">&#xe081; </span>
+                        <span class="glyphicon" ng-click="pushInArray2()"> &#xe084;</span>
+                        <span class="glyphicon" ng-click="pushInArray3()">&#xe083; </span>
+                    </p>
+
+                    <!--<p ng-repeat="x in userInfo" ng-if="$index < 5">Comment added so far: {{x.comment}}-->
+                        <div class = "container" style = "font-size: medium; color: steelblue; width: 515px; margin-left: 0; padding-left: 0; margin-right:0; padding-right: 0" >
+                            <!--<div style="width:400px; display: inline-block">Comments from templates {{x.comment}}</div>-->
+                        <!--ng-if="(!mode[$index])"-->
+                            <div ng-repeat="x in moveFeedbackInput" ng-if="$index < 5">Move Feedback added: {{x.comment}}
+                            <div class=" glyphicon" style="float:right ; display: inline-block" ng-click="removeComment($index)">&#xe083;</div>
+                            </div>
+                        </div>
+
+                    <div style="margin-bottom:20px;">
+                    <!-- <h4>Response Type:</h4> -->
+                        <h4>Show up when: </h4>
+                        <div class = "commentForm" cclass="radio-inline">
+                            <label><input class="form-check-input" type="radio" ng-model='moveResult' ng-value='"incorrect"' name="moveResult"> Incorrect Response</label>
+                        </div>
+                        <div class = "commentForm" cclass="radio-inline">
+                            <label><input class="form-check-input" type="radio" ng-model='moveResult' ng-value='"correct"' name="moveResult"> Correct Response</label>
+                        </div>
+                        <div class = "commentForm" cclass="radio-inline">
+                            <label><input class="form-check-input" type="radio" ng-model='moveResult' ng-value='"neutral"' name="moveResult"> Neutral Response</label>
+                        </div>
+                        <div class = "commentForm" cclass="radio-inline">
+                            <label><input class="form-check-input" type="radio" ng-model='moveResult' ng-value='"close"' name="moveResult"> Close Response</label>
+                        </div>
+                    </div>
+                    
+                    <!--<p><input  size="58" type="text" name="comment" ng-model="users.comment" placeholder="comment">-->
+                        <!--<span class="glyphicon" ng-click="pushInArray()">&#xe081; </span>-->
+                        <!--<span class="glyphicon" ng-click="pushInArray2()"> &#xe084;</span>-->
+                        <!--<span class="glyphicon" ng-click="pushInArray3()">&#xe083; </span>-->
+                    <!--</p>-->
+
+                    <!--<p ng-repeat="x in userInfo" ng-if="$index < 5">Comment added so far: {{x.comment}}-->
+                        <!--<div class = "container" style = "size: 58px; color: steelblue; width: 500px; margin-left: 0; padding-left: 0; margin-right:0; padding-right: 0; margin-top: 10px" >-->
+                            <!--&lt;!&ndash;<div style="width:400px; display: inline-block">Comments from templates {{x.comment}}</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;ng-if="(!mode[$index])"&ndash;&gt;-->
+                            <!--<div ng-repeat="x in moveFeedbackInput" ng-if="$index < 5">Comment added so far: {{x.comment}}-->
+                            <!--<div class=" glyphicon" style="float:right ; display: inline-block" ng-click="removeComment($index)">&#xe083;</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button  type="button" id = "removeButton" class="btn btn-default btn-primary" ng-show = "(showButton)" ng-click="previewComment()">{{buttonText}}</button>{{successfulMessage}}
+                <button type="button" class="btn btn-info" data-dismiss="modal" ng-click = "clearAll()">Close</button>
+                <!--<button  ng-show="(commentResult)" type="button" data-dismiss="modal" class="btn btn-default btn-success" ng-click="writeAnother()">Write Another Comment</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div id="AssFeedbackModal"  class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Write Assignment Feedback for the Game <button style = "float: right" type="button" class="close" data-dismiss="modal" >&times;</button> </h4>
+            </div>
+            <div class="modal-body" >
+                <div class = "feedbackForm" cclass="radio-inline">
+                    <!--change from templateResult to assginmentResult-->
+                    <input  type="radio" ng-model='assignmentResult' ng-value='"proficient"' name="assignmentResult" ng-click=""> Proficient Performance
+                </div>
+                <div class = "feedbackForm" cclass="radio-inline">
+                    <input  type="radio" ng-model='assignmentResult' ng-value='"basic"' name="assignmentResult" checked> Basic Performance
+                </div>
+                <div class = "feedbackForm" cclass="radio-inline">
+                    <input  type="radio" ng-model='assignmentResult' ng-value='"developing"' name="assignmentResult" ng-click=""> Developing Performance
+                </div>
+                <form>
+                    <h4>You can add up to 5 feedback for this game each time</h4>
+                    <form class="form-inline">
+                        <p><input class = "inputWrap" size="58" type="text" name="comment" ng-model="users.feedback" placeholder="feedback for this game press return or symbol to enter" ng-keypress="enterAssFeedback($event)">
+                            <span class="glyphicon" ng-click="addFeedback()"> &#xe084;</span>
+                            <span class="glyphicon" ng-click="deleteFeedback()">&#xe083; </span>
+                        </p>
+                        <div class = "container" style = "font-size: medium; color: steelblue; width: 495px; margin-left: 0; padding-left: 0; margin-right:0; padding-right: 0" >
+                            <div ng-repeat="x in assignmentFeedbackInput" ng-if="$index < 5">Feedback added: {{x.feedback}}
+                                <div class=" glyphicon" style="float:right ; display: inline-block" ng-click="removeFeedback($index)">&#xe083;</div>
+                            </div>
+                        </div>
+                    </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button  type="button" id = "removeButton" class="btn btn-default btn-primary" ng-show = "(showButton)" ng-click="previewComment()">{{buttonText}}</button>{{successfulMessage}}
+                <button type="button" class="btn btn-info" data-dismiss="modal" ng-click = "clearAll()">Close</button>
+                <!--<button  ng-show="(commentResult)" type="button" data-dismiss="modal" class="btn btn-default btn-success" ng-click="writeAnother()">Write Another Comment</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--</body>-->
+<div custom-draggable ng-hide="initHide" style=" background-color: rgb(230, 227, 227);  z-index: 1000; width: 650px;position: absolute;left: 100px; top: 150px;">
+    <md-card style="background-color: rgb(230, 227, 227);width: 630px;">
+        <md-card-content>
+            <md-stepper id="preview-step">        
+                  <md-step ng-repeat="step in steps">
+                      <md-step-body>
+                        <h2 class="md-title">{{step.heading}}</h2>
+                        <textarea style="background-color: rgb(230, 227, 227); resize: none; border:none;" disabled>{{step.description}} </textarea> 
+                        <img ng-src={{step.img}} id="previewImg" class="img-rounded" height="300" width="300" >
+                      </md-step-body>
+                      <md-step-actions>
+                          <md-button class="md-primary md-raised" ng-click="nextStep();" ng-show="{{$index}} != steps.length-1">Continue</md-button>
+                          <md-button class="md-primary md-raised" ng-click="previousStep();" ng-show="{{$index}} != 0">Back</md-button>
+                          <md-button class="md-primary md-raised" ng-click="closePreviewArea()">Close</md-button>
+                      </md-step-actions>
+                  </md-step>
+            </md-stepper>
+        </md-card-content>
+    </md-card>
+</div>
 

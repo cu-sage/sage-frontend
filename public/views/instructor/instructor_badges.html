@@ -1,0 +1,52 @@
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <div>
+            <h2>Badge Library</h2>
+        </div>
+    </div>
+
+    <div class="starter-template ng-scope">
+        <div class="container" style="width:100%">
+            <div class="row">
+                <div ng-repeat="badge in badges" class="col-lg-4">
+
+                <!--{{badge}}-->
+                    <div class="panel panel-default text-center" style="height: 160px; margin: 5px">
+                        <div style="margin: 10px">
+                            <img src={{badge.src}} height="42" width="42">
+                        </div>
+                        <div class="panel-body text-center">
+                        <!--<span class="glyphicon glyphicon-road" aria-hidden="true" style="font-size: 3em"></span>-->
+                        <p><b>{{badge.badgename}}</b></p>
+                            <small>
+                                <small style="margin: 10px">{{badge.description}}</small>
+                            </small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="grid-col-12 grid-col&#45;&#45;align-center">-->
+    <!--<div class="grid-row">-->
+
+        <!--<div class="grid-col-4 achievement-card color-scheme&#45;&#45;white-->
+             <!--achievement-card&#45;&#45;link-->
+            <!--padding-top&#45;&#45;3 padding-bottom&#45;&#45;3-->
+<!--">-->
+            <!--<span class="cc-achievement cc-achievement&#45;&#45;code-achievement"></span>-->
+
+            <!--<h5 class="margin-top&#45;&#45;1">Build &quot;Rock, Paper, Scissors&quot;</h5>-->
+            <!--<small>-->
+                <!--<small class="text&#45;&#45;ellipsis">Jun  7, 2015</small>-->
+
+            <!--</small>-->
+            <!--<a href="/courses/javascript-beginner-en-Bthev-mskY8" class="link&#45;&#45;target "></a>-->
+
+        <!--</div>-->

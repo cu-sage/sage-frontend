@@ -1,8 +1,10 @@
 var userModel = require('../models/userModel');
+var invitePendingModel = require('../models/invitePendingModel');
 var jwt = require('jwt-simple');
 var moment = require('moment');
 var config = require('./config');
 var bcrypt = require('bcryptjs');
+var service = require('../services/service');
 
 var createToken = function(user) {
     var payload = {
@@ -60,7 +62,7 @@ var getUser = function(req, callback) {
     });
 };
 
-var reg = function(email, password, fullname, role, callback) {
+var reg = function(email, password, fullname, role, eviteToken=null, callback) {
     userModel.findOne({email: email}, function(err, existingUser) {
         if (existingUser) {
             callback(
@@ -78,24 +80,71 @@ var reg = function(email, password, fullname, role, callback) {
         bcrypt.genSalt(10, function(err, salt) {
             bcrypt.hash(user.password, salt, function(err, hash) {
                 user.password = hash;
+                var token = null;
 
                 user.save(function() {
-                    var token = createToken(user);
-                    callback({status: 200, token: token});
+                    token = createToken(user);
                 });
+                
+                // console.log("This is the eviteToken: ", eviteToken);
+
+                if(eviteToken!=null){
+
+                    var promise1 = new Promise(function(resolve, reject) { 
+                        invitePendingModel.findOne({token: eviteToken}, function(err, existingEntry) {
+                        console.log("in find one invite pending");
+                        if (err) {
+                            callback(
+                                {status: 409, message:'Incorrect token'});
+                            return;
+                        }
+                        console.log("existing entry: ", existingEntry);
+
+                        service.updateClassRoster(existingEntry.classId, [existingEntry.email],
+                            function(json) {
+                                if (json.status === 409) {
+                                    console.log(json.message);
+                                }
+                                else if (json.status === 200) {
+                                    console.log("successfully added registered user to roster");
+                                }
+                                else {
+                                    console.log(json.message);
+                                }
+                            }
+                        );
+                        resolve("good");
+                   })
+                    }); // end promise
+
+                    promise1.then(function(value) {
+                        invitePendingModel.remove({token: eviteToken }, function(err, msg) {
+                        if(!err){
+                            //console.log(msg);
+
+                            callback({status: 200, message: {"message" : "Invite successfully removed."}});
+                        }
+                        else
+                            callback({status:404 , message : {error : "Invite could not be removed "+err}});
+
+                    });
+                    }); //end then
+                } else {
+                  callback({status: 200, token: token});
+                }
             });
         });
     });
 };
 
 var login = function(email, password, callback) {
+    // TODO: We should not return distinct messages for user and password.  We need a generic message.
     userModel.findOne({email: email}, '+password', function(err, user) {
         if (!user) {
             callback(
                 {status: 401, message: {email: 'This user does not exist.'}});
             return;
         }
-
         bcrypt.compare(password, user.password, function(err, res) {
             if (err) {
                 console.log(err);
@@ -135,6 +184,7 @@ var login = function(email, password, callback) {
 
 module.exports = {
     // isAuthenticated: isAuthenticated,
+    createToken: createToken,
     getUser: getUser,
     reg: reg,
     login: login

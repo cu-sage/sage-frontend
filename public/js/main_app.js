@@ -20,13 +20,14 @@ mainApp.config(function($routeProvider, $authProvider) {
         .when('/reg', {
             templateUrl: '/public/views/reg.html',
             controller: 'RegController'
-        });
-
+        })
+        
     $authProvider.loginUrl = '/auth/login';
     $authProvider.signupUrl = '/auth/reg';
 })
 .run(function($rootScope, $window, $auth) {
     if ($auth.isAuthenticated()) {
+        console.log($window.localStorage.currentUser);
         $rootScope.currentUser = JSON.parse($window.localStorage.currentUser);
     }
 });

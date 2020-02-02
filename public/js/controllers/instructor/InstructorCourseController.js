@@ -28,6 +28,5 @@ angular.module('instructorApp')
                 console.log("testing_coursesby in  InstructorCourseController");
                 console.log($routeParams, response);
                 $scope.coursesBy=response.data;
-                        }
-            );
+            });
     }]);

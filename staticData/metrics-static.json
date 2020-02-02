@@ -1,0 +1,62 @@
+{
+
+  "studentID": "5ab2ac69dae3cc15233c2805",
+  "studentName": "BJ",
+
+  "enrolled": [
+      {
+        "q_id": "5a585d67a2d4a83044b7fa7b",
+        "q_name": "One Foot After Another",
+        "games": [
+          {
+            "g_id": "5aaaf7fd06f9e035daa71064",
+            "g_name": "try hard",
+            "g_ct":[2,1,2,2,1,2,1],
+            "g_progress":{
+              "num_obj" : 5,
+              "num_opoi" : 20,
+              "num_obj_total" : 8,
+              "num_opoi_total" : 50
+            }
+          },
+          {
+            "g_id": "5aab2ee4f4c9043f288d1eb1",
+            "g_name": "start to walk",
+            "g_ct":[1,1,2,3,1,2,3],
+            "g_progress":{
+              "num_obj" : 5,
+              "num_opoi" : 30,
+              "num_obj_total" : 7,
+              "num_opoi_total" : 60
+            }
+          },
+          {
+            "g_id": "5aab31afe5957e3f8f250eb4",
+            "g_name": "running!",
+            "g_ct":[2,2,2,1,2,3,1],
+            "g_progress":{
+              "num_obj" : 2,
+              "num_opoi" : 10,
+              "num_obj_total" : 10,
+              "num_opoi_total" : 100
+            }
+          },
+          {
+            "g_id": "5abc5b7f2c3b99c9c027f0df",
+            "g_name": "gogo",
+            "g_ct":[1,3,0,2,1,0,3],
+            "g_progress":{
+              "num_obj" : 1,
+              "num_opoi" : 20,
+              "num_obj_total" : 4,
+              "num_opoi_total" : 60
+            }
+          }
+        ]
+    },
+
+    {
+
+    }
+  ]
+}

@@ -1,3 +1,33 @@
+<style>
+    hr{
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+    }
+
+    h3 {
+        color: steelblue;
+    }
+    button {
+        background: steelblue;
+        color: white;
+        height: 40px;
+        width: 78%;
+        float: left;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    p {
+        padding-left: 20%;
+        text-align: left;
+        color:steelblue;
+
+    }
+
+
+
+</style>
 <form novalidate class="simple-form" name="courseform" id="courseform">
   <div class="c1">
       <div><img src="/public/images/logo.png" height="60">
@@ -5,51 +35,238 @@
     <div class="head1">
       <h2>Quest Creation</h2>
     </div>
-    <input type="text" name="coursename" placeholder="Quest Name" ng-model="course.name" ng-required="true" /><br />
-    <textarea type="text" name="desc" id="desc" ng-model="course.desc"  placeholder="Quest Story" /><br />
-    <!--<input type="text" ng-model="course.age"  placeholder="Age Group (10-12)" /><br />-->
+    <div id = "inputInQuest" class = "tableAttr">
+         <div class = "textDes"><strong> Quest Name</strong></div>
+        <input class = "inputWrap" type="text" name="coursename" ng-model="course.name" ng-required="true" />
+        <div class = "textDes"><strong> Quest Story</strong></div>
+        <textarea class = "inputWrap" type="text" name="desc" id="desc" ng-model="course.desc"  placeholder=""></textarea>
 
-    <p>Please select the Focus of this quest from below:</p>
-    <div style="background-color: #848484; margin: auto; width: 80%;">
-    <treecontrol class="tree-dark"
-        tree-model="dataForTheTree"
-        options="treeOptions"
-        on-selection="showSelected(node, selected, selectedNodes)"
-        selected-node="selectedNodes">
-        {{node.name}}
-    </treecontrol><br />
-    </div></br>
+      <div class = "textDes"><strong>Please select the focus of this mission from below:</strong></div>
+      <div class = "treeDes" style="width: 100%; color: steelblue; text-align: left;">
+       <div style="margin: auto; width: 100%; color: steelblue; text-align: left;">
+        <treecontrol class="tree-classic"
+            tree-model="dataForTheTree"
+            options="treeOptions"
+            on-selection="showSelected(node, selected, selectedNodes)"
+            selected-node="selectedNodes">
+            {{node.name}}
+        </treecontrol>
+       </div>
+    </div>
+  </div>
 
-   <!-- <div style="background-color: #848484; margin: auto; width: 80%;">-->
+
+      <!--<div class = "navLi"   ng-click="showUpdateAssFeedbackModal()"> <div style = "font-size: 20px"> Assignment Feedback  </div> </div>-->
+      <!--<div class = "navLi"   ng-click="showUpdateMoveFeedbackModal()"> <div style = "font-size: 20px"> Move Feedback  </div> </div>-->
+
+      <!-- <div style="background-color: #848484; margin: auto; width: 80%;">-->
    
-    Please upload an image for Badge of Completion
-    <!--<input type="file" ng-model="course.badge" name="badgefile" id="fileToUpload"><br />-->
-    <div  class="row" ng-show="up.file">
-                    <div>
-                        <img class="thumbnail" style="max-width: 320px" ngf-thumbnail="up.file"/>
-                    </div>
-                </div>
-                <div class="row" ng-hide="up.file">
-                    <i class="fa fa-picture-o fa-6" aria-hidden="true"></i>
-                </div>
-                    <input
-                            type="file"
-                            ngf-select
-                            ng-model="up.file"
-                            name="file"
-                            ngf-pattern="'image/*'"
-                            accept="image/*"
-                            ngf-max-size="20MB"
-                            ngf-resize="{width: 600}"
-                    />
-                <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                <i ng-show="up.upload_form.file.$error.maxSize">File too large
-                    {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-                <p>{{up.progress}}</p>
+    <!--Please upload an image for Badge of Completion-->
+    <!--&lt;!&ndash;<input type="file" ng-model="course.badge" name="badgefile" id="fileToUpload"><br />&ndash;&gt;-->
+    <!--<div  class="row" ng-show="up.file">-->
+                    <!--<div>-->
+                        <!--<img class="thumbnail" style="max-width: 320px" ngf-thumbnail="up.file"/>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="row" ng-hide="up.file">-->
+                    <!--<i class="fa fa-picture-o fa-6" aria-hidden="true"></i>-->
+                <!--</div>-->
+                    <!--<input-->
+                            <!--type="file"-->
+                            <!--ngf-select-->
+                            <!--ng-model="up.file"-->
+                            <!--name="file"-->
+                            <!--ngf-pattern="'image/*'"-->
+                            <!--accept="image/*"-->
+                            <!--ngf-max-size="20MB"-->
+                            <!--ngf-resize="{width: 600}"-->
+                    <!--/>-->
+                <!--<i ng-show="up.upload_form.file.$error.required">*required</i><br>-->
+                <!--<i ng-show="up.upload_form.file.$error.maxSize">File too large-->
+                    <!--{{up.file.size / 1000000|number:1}}MB: max 20M</i>-->
+                <!--<p>{{up.progress}}</p>-->
     <!--<textarea style="align: center" type="text" ng-model="course.feat"  placeholder="Other features (separated by comma):" /><br />-->
-    
     <!--<button ng-click="reset()" value="Reset" >Reset</button>-->
-    <button ng-click="submitForm()" value="Save" >Save</button>
+      <br>
+      <div class = "buttonWrap">
+            <button class = "glyphicon glyphicon-floppy-saved" ng-click="submitForm()" value="Save" > Save </button>
+      </div>
     </div>
   </div>
 </form>
+<div>
+    <h2>&nbsp;</h2>
+</div>
+<hr>
+<form class = 'c1'>
+        <div id = "inputInBadge" >
+            <h3>Add a Quest Badge</h3 >
+            <div class = "tableAttr">
+                <div class = "textDes"><strong> Badge Name </strong></div>
+                <input type="text" name="badgename" placeholder="" ng-model="badge.name" ng-required="true" />
+                <div class = "textDes"><strong> Badge Description </strong></div>
+                <input type="text" name="badgedesc" placeholder="" ng-model="badge.desc" ng-required="true" />
+                <div class = "textDes"><strong> Badge Image URL </strong></div>
+                <input type="text" name="badgeimg" placeholder="" ng-model="badge.img" ng-required="true" />
+                <div class = "textDes"><strong> Badge Issuer </strong></div>
+                <input type="text" name="badgeissuer" placeholder="" ng-model="badge.issuer" ng-required="true" />
+
+            </div>
+            <br>
+            <div class="buttonWrap">
+                <button class = "glyphicon glyphicon-cloud-upload" ng-click="b_create()"> Upload</button>
+            </div>
+        </div>
+</form>
+<h2></h2>
+<hr>
+<div id = 'feedbackInQuest'>
+    <div class = "c1">
+        <!--<div id = 'feedbackInQuest'>-->
+        <h3>Add Feedback for Quest</h3 >
+        <div class = "tableAttr">
+            <div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>
+            <div class="textDes">
+                <div class = "formatter">
+                    <input class = "questFB" type="text" name="comment" ng-model="users.feedback" placeholder="Assignment feedback for this mission" ng-keypress="enterAssFeedback($event)">
+                    <span class="glyphicon formatSymbol" ng-click="addFeedback()"> &#xe084;</span>
+                    <div class = "questFBShow" ng-repeat="x in assignmentFeedbackInput" ng-if="$index < 5">Feedback added: {{x.feedback}}
+                        <div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeFeedback($index)">&#xe083;</div>
+                    </div>
+                    <br>
+                    <br>
+                    <div ><strong> Select Assignment Feedback Type </strong></div>
+                    <br>
+                    <div class = "feedbackForm" cclass="radio-inline">
+                        <input  type="radio" ng-model='assignmentResult' ng-value='"proficient"' name="assignmentResult" ng-click=""> Proficient Performance
+                    </div>
+                    <div class = "feedbackForm" cclass="radio-inline">
+                        <input  type="radio" ng-model='assignmentResult' ng-value='"basic"' name="assignmentResult" ng-click=""> Basic Performance
+                    </div>
+                    <div class = "feedbackForm" cclass="radio-inline">
+                        <input  type="radio" ng-model='assignmentResult' ng-value='"developing"' name="assignmentResult" ng-click="" checked> Developing Performance
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class = "buttonWrap">-->
+            <!--<button class="glyphicon glyphicon-floppy-saved" ng-click="submitMoveFeedback()" value="Save" > Save Assignment Feedback </button>-->
+        <!--</div>-->
+        <!--</div>-->
+
+    </div>
+
+    <hr>
+    <div class = "c1">
+        <!--<div id = 'moveFeedbackInQuest'>-->
+        <h3>Add Move Feedback for Quest</h3 >
+        <div class = "tableAttr">
+            <div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>
+            <div class="textDes">
+                <div class = "formatter">
+                    <input class = "questFB" type="text" name="comment" ng-model="users.comment" placeholder= "move feedback press return or symbol to enter" ng-keypress="enterMoveFeedback($event)">
+                    <span class="glyphicon formatSymbol" ng-click="pushInArray2()"> &#xe084;</span>
+                    <div class = "questFBShow" ng-repeat="x in moveFeedbackInput" ng-if="$index < 5"> Feedback added: {{x.comment}}
+                        <div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeComment($index)">&#xe083;</div>
+                    </div>
+                    <br>
+                    <br>
+                    <div ><strong> Select Move Feedback Form </strong></div>
+                    <br>
+                    <div class = "feedbackForm2" cclass="radio-inline">
+                        <input  type="radio" ng-model='moveResult' ng-value='"incorrect"' name="moveResult" ng-click="">Incorrect Response
+                    </div>
+                    <div class = "feedbackForm2" cclass="radio-inline">
+                        <input  type="radio" ng-model='moveResult' ng-value='"correct"' name="moveResult" ng-click="">Correct Response
+                    </div>
+                    <div class = "feedbackForm2" cclass="radio-inline">
+                        <input  type="radio" ng-model='moveResult' ng-value='"neutral"' name="moveResult" ng-click="" checked>Neutral Response
+                    </div>
+                    <div class = "feedbackForm2" cclass="radio-inline">
+                        <input  type="radio" ng-model='moveResult' ng-value='"close"' name="moveResult" ng-click="">Close Response
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "buttonWrap">
+            <button class="glyphicon glyphicon-floppy-saved" ng-click="submitAssignmentFeedback()" value="Save" > Save New Quest </button>
+        </div>
+        <!--</div>-->
+
+    </div>
+</div>
+<!--<div id = 'feedbackInQuest'>-->
+    <!--<div class = "c1">-->
+    <!--&lt;!&ndash;<div id = 'feedbackInQuest'>&ndash;&gt;-->
+        <!--<h3>Add Feedback for Quest</h3 >-->
+        <!--<div class = "tableAttr">-->
+            <!--<div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>-->
+            <!--<div class="textDes">-->
+                <!--<div class = "formatter">-->
+                    <!--<input class = "questFB" type="text" name="comment" ng-model="users.feedback" placeholder="Assignment feedback for this mission" ng-keypress="enterAssFeedback($event)">-->
+                    <!--<span class="glyphicon formatSymbol" ng-click="addFeedback()"> &#xe084;</span>-->
+                    <!--<div class = "questFBShow" ng-repeat="x in assignmentFeedbackInput" ng-if="$index < 5">Feedback added so far: {{x.feedback}}-->
+                        <!--<div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeFeedback($index)">&#xe083;</div>-->
+                    <!--</div>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<div ><strong> Select Assignment Feedback Type </strong></div>-->
+                    <!--<br>-->
+                    <!--<div class = "feedbackForm" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='assignmentResult' ng-value='"right"' name="rdoResult" ng-click=""> Proficient Performance-->
+                    <!--</div>-->
+                    <!--<div class = "feedbackForm" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='assignmentResult' ng-value='"wrong"' name="rdoResult" ng-click=""> Basic Performance-->
+                    <!--</div>-->
+                    <!--<div class = "feedbackForm" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='assignmentResult' ng-value='"neutral"' name="rdoResult" ng-click=""> Developing Performance-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class = "buttonWrap">-->
+            <!--<button class="glyphicon glyphicon-floppy-saved" ng-click="submitMoveFeedback()" value="Save" > Save Assignment Feedback </button>-->
+        <!--</div>-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--</div>-->
+
+    <!--<hr>-->
+    <!--<div class = "c1">-->
+        <!--&lt;!&ndash;<div id = 'moveFeedbackInQuest'>&ndash;&gt;-->
+        <!--<h3>Add Move Feedback for Quest</h3 >-->
+        <!--<div class = "tableAttr">-->
+            <!--<div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>-->
+            <!--<div class="textDes">-->
+                <!--<div class = "formatter">-->
+                    <!--<input class = "questFB" type="text" name="comment" ng-model="users.comment" placeholder= "move feedback press return or symbol to enter" ng-keypress="enterMoveFeedback($event)">-->
+                    <!--<span class="glyphicon formatSymbol" ng-click="pushInArray2()"> &#xe084;</span>-->
+                    <!--<div class = "questFBShow" ng-repeat="x in moveFeedbackInput" ng-if="$index < 5"> Feedback added: {{x.comment}}-->
+                        <!--<div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeComment($index)">&#xe083;</div>-->
+                    <!--</div>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<div ><strong> Select Move Feedback Form </strong></div>-->
+                    <!--<br>-->
+                    <!--<div class = "feedbackForm2" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='moveResult' ng-value='"wrong"' name="rdoResult" ng-click="">Incorrect Response-->
+                    <!--</div>-->
+                    <!--<div class = "feedbackForm2" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='moveResult' ng-value='"right"' name="rdoResult" ng-click="">Correct Response-->
+                    <!--</div>-->
+                    <!--<div class = "feedbackForm2" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='moveResult' ng-value='"neutral"' name="rdoResult" ng-click="">Neutral Response-->
+                    <!--</div>-->
+                    <!--<div class = "feedbackForm2" cclass="radio-inline">-->
+                        <!--<input  type="radio" ng-model='moveResult' ng-value='"close"' name="rdoResult" ng-click="">Close Response-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class = "buttonWrap">-->
+            <!--<button class="glyphicon glyphicon-floppy-saved" ng-click="submitAssFeedback()" value="Save" > Save Move Assignment Feedback </button>-->
+        <!--</div>-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--</div>-->
+<!--</div>-->

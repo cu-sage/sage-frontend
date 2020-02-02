@@ -1,0 +1,64 @@
+<md-dialog aria-label={{title}}>
+    <form name="createEditClassForm" ng-submit="submit()">
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Create New Class from an Existing Class</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+        </md-toolbar>
+    
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Name *</label>
+                    <input ng-model="class.name" required>
+                    <div ng-messages="projectForm.clientName.$error">
+                        <div ng-message="required">Name is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Description</label>
+                    <textarea ng-model="class.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                    <div ng-messages="projectForm.description.$error">
+                        <div ng-message="md-maxlength">The description must be less than 150 characters long.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-select 
+                        flex
+                        ng-model="class.copyClassId" 
+                        placeholder="Select Class"
+                        multiple="false">
+                    <md-option ng-repeat="c in class.classes" ng-value="c.id">
+                        {{c.name}}
+                    </md-option>
+                </md-select>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-checkbox ng-model="class.copyRosters" aria-label="Copy All Students">
+                        Copy All Students
+                    </md-checkbox>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-checkbox ng-model="class.copyMissions" aria-label="Copy All Missions">
+                        Copy All Missions
+                    </md-checkbox>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+    
+      <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+          Cancel
+        </md-button>
+        <md-button type="submit">
+         Finish
+        </md-button>
+      </md-dialog-actions>
+      </md-dialog>
+    </form>
+    </md-dialog>

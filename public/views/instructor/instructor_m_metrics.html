@@ -1,0 +1,301 @@
+<md-content flex>
+
+        <md-content flex>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <md-select 
+                        class="classes-select"
+                        flex
+                        ng-model="model.selectedClassId" 
+                        placeholder="Select Class"
+                        ng-change="classSelect()"
+                        multiple="false">
+                        <!-- <md-option value="addClass">Add Class</md-option> -->
+                        <md-option ng-repeat="class in model.classes" ng-value="class.id">
+                            {{class.name}}
+                        </md-option>
+                        <md-option value="addClass">Add Class</md-option>
+                    </md-select>
+                    <md-button class="md-raised" ng-click="addClassClicked()">
+                        Add Class
+                    </md-button>
+                    <md-button class="md-raised" aria-label="Edit Class" ng-disabled="!model.selectedClassId" ng-click="editClassClicked()">
+                       Edit Class
+                    </md-button>
+                    <md-button class="md-raised" aria-label="Delete Class" ng-disabled="!model.selectedClassId" ng-click="deleteClassClicked()">
+                       Delete Class
+                    </md-button>
+                </div>
+            </md-toolbar>
+        </md-content>
+    
+        <md-content class="nav-bar" flex>
+    
+            <md-tabs class="md-no-animation classes-tabs" flex>
+    
+                    <md-tab id="tabMetrics">
+                            <md-tab-label>Metrics</md-tab-label>
+                            <md-tab-body>
+                                <div class="classes-metrics">
+                                    
+            
+            
+                                    <div class="c1">
+                                        <div><img src="/public/images/logo.png" height="60">
+                                        </div>
+                                        <div class="head1">
+                                            <div>
+                                                <h2>Metrics</h2>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                        <div class="container" style="width:100%">
+                                            <div class="row">
+                                                <div class="panel panel-default text-center" >
+                                                    <div class="panel-heading text-center" >
+                                    <!-- 59f8c6fdc1bfb23c4ced8e20 -->
+                                    
+                                                        <a href="#/metrics/students/{{sid}}"><h4> Student CT Scores </h4> </a>
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="panel panel-default text-center" >
+                                                    <div class="panel-heading text-center" >
+                                    
+                                                        <a href="#/metrics/missions/{{sid}}"><h4> Class CT Scores </h4> </a>
+                                                    </div>
+                                                </div>
+                                    
+                                    
+                                            </div>
+                                    
+                                        </div>
+                                    
+                                        <!--<div class="container" style="width:100%" >-->
+                                        <!--<div class="row">-->
+                                        <!--<div ng-repeat="chart in charts">-->
+                                        <!--{{chart}}}-->
+                                        <!--<div class="spider-graph">-->
+                                        <!--<highchart id="chart" config="chart"></highchart>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                        <!--</div>-->
+                                    
+                                    </div>
+                                    
+                                    
+                                    <div class="spider-graph">
+                                        <highchart id="chart" config="chart"></highchart>
+                                        
+                                    </div>
+                                    
+                                    <br>
+                                    
+                                    <!--<div class="spider-graph">-->
+                                    <!--<highchart id="chart2" config="chart_s"></highchart>-->
+                                    <!--</div>-->
+                                    </div>
+            
+            
+            
+            
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+    
+                <md-tab id="tabRoster">
+                    <md-tab-label>
+                        Roster
+                    </md-tab-label>
+                    <md-tab-body flex>
+                        <md-content flex class="classes-roster">
+                            <md-toolbar>
+                                <div class="md-toolbar-tools classes-toolbar">
+                                    <md-button  ng-click="deleteRosterClicked()"
+                                    ng-disabled="!model.deleteRosterEnabled" class="md-raised">
+                                        Delete
+                                    </md-button>
+                                    <span flex></span>
+                                    <md-button class="md-raised" ng-click="addRosterClicked()">
+                                        Add
+                                    </md-button>
+                                    <md-button class="md-raised" ng-click="importRosterClicked()">
+                                        Import
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+                            <md-content flex>
+                                <md-card>
+                                    <mdt-table table-card="{title: 'Roster'}"
+                                        animate-sort-icon="true"
+                                        ng-if="model.selectedClass && model.selectedClass.roster.length > 0"
+                                        selectable-rows="true" selected-row-callback="rosterSelectionChanged(rows)"
+                                        mdt-row="{
+                                            data: model.selectedClass.roster,
+                                            'table-row-id-key': 'email',
+                                            'column-keys': [
+                                                'name',
+                                                'email',
+                                            ]
+                                            }"
+                                        sortable-columns="true" animate-sort-icon="true"
+                                        paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
+                                        <mdt-header-row>
+                                            <mdt-column>
+                                                <md-checkbox aria-label="Select All" />
+                                            </mdt-column>
+                                            <mdt-column>Student Name</mdt-column>
+                                            <mdt-column>Email</mdt-column>
+                                        </mdt-header-row>
+                                    </mdt-table>
+                                    <md-card-content ng-if="!model.selectedClass || model.selectedClass.roster.length == 0">
+                                        <div class="classes-roster-empty">
+                                            No roster has been assigned to this class.
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                            </md-content>
+                        </md-content>
+                    </md-tab-body>
+                </md-tab>
+                <md-tab id="tabMissions">
+                    <md-tab-label>
+                        Missions
+                    </md-tab-label>
+                    <md-tab-body>
+                        <div class="classes-missions">
+                            <md-toolbar>
+                                <div class="md-toolbar-tools classes-toolbar">
+                                    <md-button class="md-raised" ng-click="deleteMissionsClicked()"
+                                        ng-disabled="!model.deleteMissionsEnabled">
+                                        Delete
+                                    </md-button>
+                                    <span flex></span>
+                                    <md-button class="md-raised" ng-click="addMissionToClass()">
+                                        Add
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+                            <md-content flex>
+                                <md-card>
+                                    <mdt-table table-card="{title: 'Missions'}"
+                                        animate-sort-icon="true"
+                                        ng-if="model.selectedClass && model.selectedClass.missions.length > 0"
+                                        selectable-rows="true" selected-row-callback="missionSelectionChanged(rows)"
+                                        mdt-row="{
+                                            data: model.selectedClass.missions,
+                                            'table-row-id-key': 'id',
+                                            'column-keys': [
+                                                'name',
+                                                'description',
+                                            ]
+                                            }"
+                                        sortable-columns="true" animate-sort-icon="true"
+                                        paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
+                                        <mdt-header-row>
+                                            <mdt-column>Mission Name</mdt-column>
+                                            <mdt-column>Description</mdt-column>
+                                        </mdt-header-row>
+                                    </mdt-table>
+                                    <md-card-content  ng-if="!model.selectedClass || model.selectedClass.missions.length == 0">
+                                        <div class="classes-missions-empty">
+                                            No missions have been added to this class.
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                            </md-content>
+                        </div>
+                    </md-tab-body>
+                </md-tab>
+                
+                <md-tab id="tabFeedback">
+                  <md-tab-label>Move Feedback</md-tab-label>
+                  <mdt-table table-card="{title: 'Missions'}"
+                             animate-sort-icon="true"
+                             ng-if="model.selectedClass && model.selectedClass.missions.length > 0"
+                             selectable-rows="true" selected-row-callback="missionSelectionChanged(rows)"
+                             mdt-row="{
+                                          data: model.selectedClass.missions,
+                                          'table-row-id-key': 'id',
+                                          'column-keys': [
+                                              'name',
+                                              'description',
+                                          ]
+                                          }"
+                             sortable-columns="true" animate-sort-icon="true"
+                             paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}">
+                      <mdt-header-row>
+                          <mdt-column>Mission Name</mdt-column>
+                          <mdt-column>Description</mdt-column>
+                      </mdt-header-row>
+                  </mdt-table>
+                  <md-tab-body>
+                      <table id = "moveFeedbackClass" class = "container">
+                          <tr class = "row">
+                              <th class = "col box">
+                                  <h4 style = "color: steelblue; float: left;margin-left: 10%; margin-bottom: 0; padding-bottom:0;"> Write Move Feedback for Each Class</h4>
+                                  <h4></h4>
+                                  <div class="form-inline">
+                                      <div class = "formatter">
+                                          <p>
+                                              <input class = "inputOutline"  type="text" name="comment" ng-model="users.comment" placeholder= "Enter feedback here" ng-keypress="enterMoveFeedback($event)"  >
+                                              <span class="glyphicon formatSymbol" ng-click="pushInArray2()"> &#xe084;</span>
+                                          </p>
+                                              <div  ng-repeat="x in moveFeedbackInput" ng-if="$index < 5">Feedback added: {{x.comment}}
+                                                  <div class=" glyphicon formatSymbol"  ng-click="removeComment($index)">&#xe083;</div>
+                                              </div>
+  
+                                          <hr>
+                                          <div class = "typeWrap">
+                                              <h4>Response Type:</h4>
+                                          </div>
+                                          <div class = "feedbackFont">
+                                              <div class = "moveType" cclass="radio-inline">
+                                                  <label><input class="form-check-input " type="radio" ng-model="moveResult" ng-value='"fail"' name="moveResult"> Incorrect Response</label>
+                                              </div>
+                                              <div class = "moveType" cclass="radio-inline">
+                                                  <label ><input class="form-check-input" type="radio" ng-model='moveResult' ng-value='"pass"' name="moveResult"> Correct Response</label>
+                                              </div>
+                                              <div class = "moveType" cclass="radio-inline">
+                                                  <label><input class="form-check-input" type="radio" ng-model='moveResult' ng-value='"neutral"' name="moveResult"> Neutral Response</label>
+                                              </div>
+                                              <div class = "moveType" cclass="radio-inline">
+                                                  <label><input class="form-check-input" type="radio" ng-model="moveResult" ng-value='"close"' name="moveResult"> Potential Response</label>
+                                              </div>
+                                          </div>
+                                          <button class = "submitButton" ng-click="submitMoveFeedback()">Submit Move Feedback for the Class</button>
+                                      </div>
+                                  </div>
+                              </th>
+                              <th class = "col box" >
+                                  <!-- <div class="form-inline">
+                                    <div  ng-repeat="x in currentFeedback">{{x}}
+                                      
+  
+                                  </div>
+                                  </div> -->
+                                  <div class = "c1">
+                                    <div class = "historyTitle"><strong>Feedback Added</strong></div>
+                                    <table class = "historyFb">
+                                        <tr style = "margin:0 0 0 0; padding: 1% 1% 1% 1%;">
+                                            <th style = "width:25%;text-align: center">Type</th>
+                                            <th style = "width:75%;text-align: center">Response</th>
+                                            <!--<th style = "width:5%;text-align: center">Action</th>-->
+                                        </tr>
+                                        <tr class = "deleteLineEffect" ng-repeat = "x in currentFeedback" style = "margin:0 0 0 0; padding: 1% 1% 1% 1%; ">
+                                            <th  style = "width:25%;text-align: left; font-size: medium"><span style='font-size:medium;' ng-show = "x.type == 'pass'">&#128525{{x.type}}</span> <span style='font-size:medium;' ng-show = "x.type == 'fail'">&#128528{{x.type}}</span><span style='font-size:medium;' ng-show = "x.type == 'neutral'">&#128522{{x.type}}</span><span style='font-size:medium;' ng-show = "x.type == 'close'">&#128526{{x.type}}</span></th>
+                                            <th  style = "width:70%;text-align: center;font-size: medium">{{x.content.comment}}</th>
+                                            <th style = "width:5%;text-align: center;font-size: medium" ng-click = "deleteMoveFeedback($event,$index)"><span class="glyphicon glyphicon-trash deleteLineEffect" ></span></th>
+                                        </tr>
+                                    </table>
+            
+                              </th>
+                          </tr>
+                      </table>
+                  </md-tab-body>
+              </md-tab>
+            </md-tabs>
+        </md-content>
+    </md-content>
+          

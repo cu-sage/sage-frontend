@@ -1,0 +1,33 @@
+<md-dialog aria-label="Create Class">
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+        <h2>Create Class</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+    </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <md-content>
+                Create a new class or copy an existing class.
+            </md-content>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="copy()">
+        Copy
+    </md-button>
+    <md-button ng-click="new()">
+        New
+    </md-button>
+    <md-button ng-click="cancel()">
+        Cancel
+    </md-button>
+    </md-dialog-actions>
+    </md-dialog>
+</md-dialog>

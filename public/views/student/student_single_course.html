@@ -1,76 +1,144 @@
 <div class="c1">
-	<div><img src="/public/images/logo.png" height="60">
-	</div>
-	<div class="head1">
-		<h2>Quest Info</h2>
-	</div>
+  <div><img src="/public/images/logo.png" height="60" /></div>
+  <div class="head1">
+    <h2>Games</h2>
+  </div>
 
-<div class="starter-template ng-scope">
-	<div class="col-xs-offset-10">
-		<input type="button"
-		ng-if="enrollButtonToShow"
-		ng-click = "onClickEnrollButton()"
-		class="btn btn-success" value="Enroll" >
-	</div>
+  <div class="starter-template ng-scope">
+    <!-- <div class="col-xs-offset-10">
+			<input type="button"
+				   ng-if="enrollButtonToShow"
+				   ng-click = "onClickEnrollButton()"
+				   class="btn btn-success" value="Enroll" >
+		</div> -->
     <h2>{{myCourse.courseName}}</h2>
-    	<div class="sub-heading">
-    		{{myCourse.desc}}
-    	</div>
+    <div class="sub-heading">
+      {{myCourse.desc}}
+    </div>
 
-    <h3> Statistics </h3>
-		<div ng-if="!enrollButtonToShow">
-			<div  class="progress">
-		        <div>
-		        class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">
-		            {{numberOfAssignmentsDone}}%
-		        </div>
+    <!--<h3> Statistics </h3>-->
+    <!--<div ng-if="!enrollButtonToShow">-->
+    <!--<div  class="progress">-->
+    <!--<div>-->
+    <!--class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfAssignmentsDone}}%;">-->
+    <!--{{numberOfAssignmentsDone}}%-->
+    <!--</div>-->
 
-		    </div>
-		    <highchart id="chart1" config="chartConfig"></highchart>
+    <!--</div>-->
+    <!--<highchart id="chart1" config="chartConfig"></highchart>-->
 
-		</div>
+    <!--</div>-->
 
+    <!--<h3> Quest Progress </h3>-->
+    <!--<div ng-if="!enrollButtonToShow">-->
+    <!--&lt;!&ndash;<h4> Objective Progress </h4>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div  class="progress">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:{{obj_progress}}%;">&ndash;&gt;-->
+    <!--&lt;!&ndash;{{obj_progress}}%&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p> You have completed {{quest_progress.num_obj}} Quest Objectives out of {{quest_progress.num_obj_total}} Quest Objectives . </p>&ndash;&gt;-->
 
+    <!--&lt;!&ndash;<h4> VAL Progress </h4>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div  class="progress">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{val_progress}}%;">&ndash;&gt;-->
+    <!--&lt;!&ndash;{{val_progress}}%&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p> You have gained {{quest_progress.num_opoi}} points out of {{quest_progress.num_opoi_total}} points. </p>&ndash;&gt;-->
 
-	    <div class="sub-heading">
+    <!--&lt;!&ndash;&lt;!&ndash;<highchart id="chart1" config="chartConfig"></highchart>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<highchart id="chart1" config="chartConfig_test"></highchart>&ndash;&gt;-->
 
-	    </div>
-	<h3>Resources</h3>
+    <!--</div>-->
+
+    <div class="sub-heading"></div>
+    <!-- <h3>Resources</h3>
 
 		<div ng-repeat = "resource in myCourse.resources">
 			<a href="{{resource.link}}" target="_blank"> {{resource.resourceName}} </a>
-		</div>
+		</div> -->
 
-	<h3>Games</h3>
-		<div
-		 	ng-repeat = "assignment in myCourse.assignments">
-			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName || assignment.assignmentID}}</span>
-		</div>
-	<ul>
-<!--		<li
+    <h3>Games</h3>
+    <!--<div-->
+    <!--ng-repeat = "assignment in myCourse.assignments">-->
+    <!--<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName || assignment.assignmentID}}</span>-->
+    <!--</div>-->
 
-		 	ng-repeat = "assignment in myCourse.assignments">
-			<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName}}</span>
-		</li>-->
+    <div class="container" style="width:100%">
+      <div class="row" id="game-obj-display-parent">
+        <div ng-repeat="game in myCourse.assignments" id="game-obj-display" class="col-lg-4">
+          <div class="panel panel-default text-center" style="height: 200px; margin: 3px">
+            <div class="panel-heading text-center" style="min-height: 40px">
+              <span class="assignment-name-single-course"
+                ng-click='changeView("/courses/"+ myCourse.courseID +"/assessment/"+ game.assignmentID + "/"+sid, game.assignmentType)'>{{game.assignmentName || game.assignmentID}}</span>
+            </div>
 
-	</ul>
-	<h3> Leaderboard </h3>
+            <!-- <p>
+              You have completed {{game.game_progress.num_obj || 0}} of
+              {{game.game_progress.num_obj_total}} game objectives!
+            </p> -->
 
-	<table class="table table-striped">
-		<thead>
-	      <tr>
-	        <th>Name</th>
-	        <th>Points</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	    	<tr ng-repeat = "singleStudent in leaderboard">
-	    		<td> {{singleStudent.fullname}} </td>
-	    		<td> {{singleStudent.points}} </td>
+            <!-- <div class="progress">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuenow="{{game.obj_progress}}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width:{{game.obj_progress}}%"
+              >
+                {{game.obj_progress}} %
+              </div>
+            </div>
+            <p>
+              You have earned {{game.game_progress.num_opoi}} points of
+              {{game.game_progress.num_opoi_total}} game objective points!
+            </p>
+            <div class="progress">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuenow="{{game.val_progress}}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                style="width:{{game.val_progress}}%"
+              >
+                {{game.val_progress}} %
+              </div>
+            </div> -->
+            <!-- </div> -->
+            <!-- <div class="spider-graph" ng-if="game.chartConfig">
+							<highchart id="chart1" config="game.chartConfig"></highchart>
+            </div> -->
+          </div>
+        </div>
+      </div>
 
-	    	</tr>
-	    </tbody>
+      <!--<ul>-->
+      <!--&lt;!&ndash;		<li-->
 
-	</table>
+      <!--ng-repeat = "assignment in myCourse.assignments">-->
+      <!--<span class = 'assignment-name-single-course' ng-click='changeView("/courses/"+ course.courseID +"/assessment/"+ assignment.assignmentID + "/"+sid)'>{{assignment.assignmentName}}</span>-->
+      <!--</li>&ndash;&gt;-->
 
+      <!--</ul>-->
+      <h3>Leaderboard</h3>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="singleStudent in leaderboard">
+            <td>{{singleStudent.fullname}}</td>
+            <td>{{singleStudent.points}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -103,7 +103,10 @@ Code.runButtonClicked = function() {
     console.log(points);
     //console.log($xml);
     //var updateUrl = 'http://localhost:8081/assignments/583c9865aa877721348f427e/update_xml';
+
+    //use external URL for live, local for testing
     var updateUrl = "http://dev.cu-sage.org:8081/objectives/" + document.getElementById('aid').value;
+    // var updateURL = + "http://localhost:8081/objectives/" + document.getElementById('aid').value;
     //var updateUrl = "http://localhost:8081/objectives/58d845736e4ddb3ce20ed1b3";
     $.post(updateUrl, {
       xmlfile: xmlText,
@@ -164,12 +167,21 @@ Code.saveObjective = function() {
     points += $(value).find('field[name="point_value"]').text();
 
   });
-  console.log(points);
-  
+  // console.log(points);
+
+  //use external URL for live, local for testing
+  // var updateUrl = "http://localhost:8081/objectives/" + document.getElementById('aid').value;
   var updateUrl = "http://dev.cu-sage.org:8081/objectives/" + document.getElementById('aid').value;
+  // var updateUrl = "/objectives" + document.getElementById('aid').value;
+
+  //getting name 
+  var obj_name = document.getElementById('obj_name').value; 
+  console.log(updateUrl);
+  //var updateUrl = "/stats/instructors/" + document.getElementById('sid').value + "/course/" + document.getElementById('cid').value + "/Assignment/"+document.getElementById('aid').value
   $.post(updateUrl, {
     xmlfile: xmlText,
-    point_total: points
+    point_total: points, 
+    name: obj_name
   }, function(data) {
     console.log(data);
     alert("Objective saved!");
@@ -279,7 +291,8 @@ Code.loadBlocks = function(defaultXml) {
     // Language switching stores the blocks during the reload.
     delete window.sessionStorage.loadOnceBlocks;
     var xml = Blockly.Xml.textToDom(loadOnce);
-    Blockly.Xml.domToWorkspace(Code.workspace, xml);
+   // Blockly.Xml.domToWorkspace(Code.workspace, xml); deprecated call
+    Blockly.Xml.domToWorkspace(xml,Code.workspace);
   } else if (defaultXml) {
     // Load the editor with default starting blocks.
     var xml = Blockly.Xml.textToDom(defaultXml);

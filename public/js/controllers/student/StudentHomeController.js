@@ -1,4 +1,6 @@
 angular.module('studentApp')
+
+    // test comment
     .controller('StudentHomeController', function(Upload, $window, $location, $scope, $http) {
         var path = $location.path().split('/');
         $scope.path = path[1];
@@ -22,7 +24,7 @@ angular.module('studentApp')
                 }
         });
 
-        $http.get("recentCourses/student/" + sid)
+        $http.get("coursesEnrolled/student/" + sid)
         .then(function(response) {
 
                 if (response.status == '403') {

@@ -1,24 +1,120 @@
-<div class="c1">
+<style>
+    .uiContainer {
+
+        /*background: lightblue;*/
+        margin: auto;
+        width: 34%;
+        padding: 10px;
+
+    }
+    #head1 {
+        background: steelblue;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        color: white;
+    }
+    .outerContainer {
+        width:100%;
+        background-color:#F0F8FF;
+
+    }
+    .buttonClass {
+        width: 100%
+        background: steelblue;
+        border-radius:0.3em;
+        color: white;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+    #inputRadio {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top:0;
+        margin-bottom:0;
+        display: inline-block;
+
+    }
+    label {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-top:0;
+        margin-bottom:0;
+        color: steelblue;
+        height: 20px;
+    }
+    h2 {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    h3 {
+        color: steelblue;
+        text-transform: uppercase;
+    }
+    h5 {
+        color: steelblue;
+    }
+    .container {
+        padding-top: 0;
+        margin-top: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        width: 100%;
+        background-color:#F0F8FF;
+
+    }
+
+
+    p {
+        white-space: pre;
+    }
+
+
+</style>
+
+<div class="c1" style = "width:100%; padding:0; margin:0;">
     <div><img src="/public/images/logo.png" height="60">
     </div>
-    <div class="head1">
+    <div id="head1">
         <h2>Objective Design</h2>
-    </div><!--<h2 class="sub-header">{{course.courseName}}</h2>
--->
-    <h4>Game {{aid}}</h4>
-    <h5>Objective Linked: {{linkedObjective || 'None'}}</h5>
+    </div>
+    <div class = "container">
+    <div class = "uiContainer">
+               <h3>Game:  {{game}}</h3>
+                <!--<h5>Objective Linked: {{linkedObjective || 'None'}}</h5>-->
+                <label style = "float: left;"><input  id = "inputRadio" type="radio" ng-model='existOrNot' ng-value='"yes"' name="existOrCreate" ng-click="chooseExisting(existOrNot)"> Choose existing </label>
+                <label>          </label>
+                <label style = "float:right;"><input  id = "inputRadio"   type="radio" ng-model='existOrNot' ng-value='"no"' name="existOrCreate" ng-click = "createObjective(existOrNot)"> Create new objective </label>
 
-<button class="btn" ng-click="createObjective()">Create new Objective</button>
-<br><br>
-or Choose from existing Objectives:
-<!--<object style="position: absolute; left:-40px" width="99%" height="100%">
-    <param name="movie" width="100%" height="100%" value="http://dev.cu-sage.org/public/sampleSWF/scratch.swf?sid=sm4241&assignmentID=123&mode=PLAY">
-</object>-->
-<select ng-model="objectiveSelected" ng-change="loadObjective(objectiveSelected)">
-    <option ng-repeat="objective in objectives" value="{{objective}}">{{objective}}</option>
-</select>
-<button class="btn btn-sm" ng-click="linkObjective(objectiveSelected)">Link to Game</button>
+    </div>
+    </div>
+<!--<button class="btn btn-sm buttonClass" ng-click="createObjective()" ng-show = "(!showTemplate && showChoice)">Create new Objective</button>-->
+
+
+
+<!--<select ng-model="objectiveSelected" ng-change="loadObjective(objectiveSelected)">-->
+    <!--<option ng-repeat="objective in objectives" value="{{objective}}">{{objective}}</option>-->
+<!--</select>-->
+    <div class = "outerContainer">
+        <div  class = "uiContainer">
+            <!--ng-show = "(showTemplate && showChoice)"-->
+                <select style = "width:100%" ng-model="objectiveSelected" ng-change="loadObjective(objectiveSelected)">
+                        <option ng-repeat="objective in objectives" value="{{objective._id}}">
+                            <!-- TO DO: get rid of placeholder/only display placeholder if no name -->
+                            {{objective.objectiveName}} [Name]
+                            </option>
+                    </select>
+            <br>
+            <button style = "width:100%" class = "btn btn-sm buttonClass"  ng-click="linkObjective(objectiveSelected)"> Link existing objective to Game</button>
+        </div>
+    </div>
+    <!--<h5 ng-show = "(showChoice)">Objective Linked to: {{linkedObjective || 'None'}}</h5>-->
 </div>
+
+<hr>
 <br>
 <br>
 <div id="vae">

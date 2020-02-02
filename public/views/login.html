@@ -12,7 +12,7 @@
                 <div class="form-group has-feedback" ng-class="{ 'has-error': loginForm.email.$invalid && loginForm.email.$dirty }">
                     <input server-message class="form-control input-lg" type="text" name="email" ng-model="email" placeholder="Email" required autofocus>
                     <span class="ion-at form-control-feedback"></span>
-                    <div class="help-block" ng-if="loginForm.email.$dirty" ng-messages="loginForm.email.$error">
+                    <div class="help-block" ng-if="loginForm.email.$dirty && loginForm.email.$invalid" ng-messages="loginForm.email.$error">
                         <div ng-message="required">Please enter your email</div>
                         <div ng-message="server">{{errorMessage.email}}</div>
                     </div>
@@ -21,12 +21,12 @@
                 <div class="form-group has-feedback" ng-class="{ 'has-error': loginForm.password.$invalid && loginForm.password.$dirty }">
                     <input server-message class="form-control input-lg" type="password" name="password" ng-model="password" placeholder="Password" required>
                     <span class="ion-key form-control-feedback"></span>
-                    <div class="help-block" ng-if="loginForm.password.$dirty" ng-messages="loginForm.password.$error">
+                    <div class="help-block" ng-if="loginForm.password.$dirty && loginForm.password.$invalid" ng-messages="loginForm.password.$error">
                         <div ng-message="required">Please enter your password</div>
                         <div ng-message="server">{{errorMessage.password}}</div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-block btn-success" ng-disabled="loginForm.$invalid">Sign in</button>
+                <button type="submit" class="btn btn-block btn-success">Sign in</button>
                 <br/>
 
                 <p class="text-center text-muted">

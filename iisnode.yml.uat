@@ -1,0 +1,8 @@
+# The optional iisnode.yml file provides overrides of the iisnode configuration settings specified in web.config.
+
+# node_env - determines the environment (production, development, staging, ...) in which
+# child node processes run; if nonempty, is propagated to the child node processes as their NODE_ENV
+# environment variable; the default is the value of the IIS worker process'es NODE_ENV
+# environment variable
+
+node_env: test

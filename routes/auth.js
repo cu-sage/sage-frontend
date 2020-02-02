@@ -16,8 +16,9 @@ router.post('/login', jsonParser, function(req, res) {
 });
 
 router.post('/reg', jsonParser, function(req, res) {
-    // console.log(req.body);
-    authService.reg(req.body.email, req.body.password, req.body.fullname, req.body.role,
+    //console.log(req.body);
+    var eviteToken = req.body.eviteToken;
+    authService.reg(req.body.email, req.body.password, req.body.fullname, req.body.role, eviteToken,
         function(json) {
             if (json.status === 409) {
                 res.status(409).send({message: json.message});

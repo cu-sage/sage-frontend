@@ -1,0 +1,110 @@
+<div class="c1">
+    <div><img src="/public/images/logo.png" height="60">
+    </div>
+    <div class="head1">
+        <h2>Quests</h2>
+    </div>
+
+    <div class="starter-template ng-scope">
+        <!--
+        <div class="col-md-12">
+            <h3> Recommended Courses </h3>
+            <div ng-repeat="course in recommendedCourses" >
+                <div
+                ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+                class="course-box"> <h3>{{course.courseName}} </h3> </div>
+            </div>
+            <div class="clearfix"> </div>
+    -->
+
+        <div ng-repeat="quest in quests"
+        ng-click='changeView("/courses/"+ quest.questsID +"/"+ sid)'
+        > <span class="bullets-course-page"> {{quest.questName}} </span> </div>
+
+        <div class="search-area col-xs-12">
+            <div class="input-group">
+              <!--<input type="text" class="form-control" placeholder="Search..">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Search</button>-->
+                <button class="btn btn-default" type="button">Reset</button>
+              </span>
+            </div>
+        </div>
+
+       <!-- <div class="container" style="width:100%; height: 100%">
+            <div class="row">
+                <div ng-repeat="course in recentCourses" class="col-lg-4">
+                    <div class="panel panel-default text-center" style="height: 900px; margin: 3px">
+                        <div class="panel-heading text-center" style="min-height: 40px">
+                            <a href="#/courses/{{course.courseID}}/{{sid}}"><h3> {{course.courseName}} </h3> </a>
+                        </div>
+                        <div class="panel-body text-center">
+                            <span class="glyphicon glyphicon-road" aria-hidden="true" style="font-size: 3em"></span>
+                            <p style="margin: 10px">{{LP.desc}}</p>
+                        </div>
+                        <p> You have completed {{course.quest_progress.num_obj}} Quest Objectives out of {{course.quest_progress.num_obj_total}} Quest Objectives . </p>
+                        <div class="progress">-->
+                            <!--<div class="progress-bar" role="progressbar" aria-valuenow="70"-->
+                            <!--aria-valuemin="0" aria-valuemax="100" style="width:70%">-->
+                            <!--70%-->
+                            <!--</div>-->
+                            <!--<div class="progress-bar" role="progressbar" aria-valuenow={{course.obj_progress}}
+                                 aria-valuemin="0" aria-valuemax="100" style="width:{{course.obj_progress}}%">
+                                {{course.obj_progress}} %
+                            </div>
+                        </div>
+                        <p> You have gained {{course.quest_progress.num_opoi}} VAL points out of {{course.quest_progress.num_opoi_total}} VAL points. </p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow={{course.val_progress}}
+                                 aria-valuemin="0" aria-valuemax="100" style="width:{{course.val_progress}}%">
+                                {{course.val_progress}} %
+                            </div>
+                        </div>
+
+                        <div class="spider-graph">
+                            <highchart id="chart1" config="course.chartConfig"></highchart>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!--<div class = "row">-->
+            <!--<div class="panel panel-default text-center" style="height: 250px; margin: 5px">-->
+            <!--test-->
+            <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+
+        <!--        <h3> Recent Courses </h3>
+            <div ng-repeat="course in recentCourses" >
+                <div
+                ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
+                class="course-box"> <h3> {{course.courseName}} </h3> </div>
+            </div>
+            <div class="clearfix"> </div>-->
+
+        <!--<h3> Metrics Overview </h3>-->
+        <!--<div class="progress">-->
+        <!--<div class="progress-bar" role="progressbar" aria-valuenow="70"-->
+        <!--aria-valuemin="0" aria-valuemax="100" style="width:70%">-->
+        <!--70%-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <!--<hc-chart_default options="chartOptions_default"> Default Spider Graph </hc-chart_default>-->
+        <!--<hc-spiderweb-chart title="Default Spider Graph" data="spiderwebData">Placeholder for pie chart</hc-spiderweb-chart>-->
+
+
+        <!--<highchart id="chart_default" config="chartConfig_default"></highchart>-->
+
+        <!--<div><img src="/public/images/stats/progress_spider_stats.png" /></div>-->
+        <!--<div>   <img src="/public/images/stats/pect_stats.png" /></div>-->
+
+    </div>
+
+</div>
+
+
+

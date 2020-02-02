@@ -1,0 +1,148 @@
+<style>
+button {
+background: steelblue;
+color: white;
+height: 40px;
+width: 78%;
+float: left;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+#toolbar {
+    background: steelblue
+}
+#dialogSize {
+    width: 90%;
+    height:90%;
+}
+</style>
+<md-dialog id = "dialogSize">
+    <md-toolbar id ="toolbar">
+        <div class="md-toolbar-tools">
+            <h4 style = "color:black">Update Assignment Feedback</h4 >
+            <span flex></span>
+            <md-button class="md-icon-button"  ng-click="cancel()">
+                <ng-md-icon icon="clear"  size="30px"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class = "gradientBackground">
+        <md-dialog-content>
+        <table style = "width:100%;">
+            <tr>
+                <th class = "col box">
+                    <div class = "c1">
+                        <div id = 'updateAssFeedbackInheritance'>
+                            <div class = "tableAttr">
+                                <div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>
+                                <div class="textDes">
+                                    <div class = "formatter">
+                                        <input class = "questFB" type="text" name="comment" ng-model="users.feedback" placeholder="Enter one feedback and press enter" ng-keypress="enterAssFeedback($event)">
+                                        <span class="glyphicon formatSymbolXs" ng-click="addFeedback()"> &#xe084;</span>
+                                        <div class = "questFBShow" ng-repeat="x in assignmentFeedbackInput" ng-if="$index < 5">Feedback added: {{x.feedback}}
+                                            <div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeFeedback($index)">&#xe083;</div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <hr>
+                                    <div>Select Performance Type: </div>
+                                    <br>
+                                    <div class = "feedbackForm" >
+                                        <label>Proficient<input  type="radio" ng-model='assignmentResult' ng-value='"proficient"' name="assignmentResult" ng-click=""></label>
+                                    </div>
+                                    <div class = "feedbackForm" >
+                                        <label>Basic<input  type="radio" ng-model='assignmentResult' ng-value='"basic"' name="assignmentResult" ng-click=""></label>
+                                    </div>
+                                    <div class = "feedbackForm" >
+                                        <label>Developing<input  type="radio" ng-model='assignmentResult' ng-value='"developing"' name="assignmentResult" ng-click="" checked> </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "buttonWrap">
+                                <button class="glyphicon glyphicon-floppy-saved" ng-click="submitFeedback()" value="Save" >  Save </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </th>
+                <th class = "rightTable col box">
+                    <div class = "c1">
+                        <div class = "historyTitle"><strong> Feedback Added</strong></div>
+                        <!--<div class = "tableAttr">-->
+                            <!--<div class = "textDes"><strong> History Feedback </strong></div>-->
+                        <!--</div>-->
+                        <table class = "historyFb">
+                            <tr style = "margin:0 0 0 0; padding: 1% 1% 1% 1%;">
+                                <th style = "width:25%;text-align: center">Type</th>
+                                <th style = "width:75%;text-align: center">Response</th>
+                                <!--<th style = "width:5%;text-align: center">Action</th>-->
+                            </tr>
+                            <tr class = "deleteLineEffect" ng-repeat = "x in currentFeedbacks.feedbacks" style = "margin:0 0 0 0; padding: 1% 1% 1% 1%; ">
+                                <th  style = "width:25%;text-align: left; font-size: medium"><span style='font-size:medium;' ng-show = "x.type == 'proficient'">&#128525{{x.type}}</span> <span style='font-size:medium;' ng-show = "x.type == 'basic'">&#128528{{x.type}}</span><span style='font-size：medium;' ng-show = "x.type == 'developing'">&#128522{{x.type}}</span></th>
+                                <th  style = "width:70%;text-align: center;font-size: medium">{{x.content}}</th>
+                                <th style = "width:5%;text-align: center;font-size: medium" ng-click = "deleteSingleFeedback($event,$index)"><span class="glyphicon glyphicon-trash showEffect" ></span></th>
+                            </tr>
+                        </table>
+                    </div>
+                </th>
+                    <!--<tr class = "" ng-repeat = "x in currentFeedbacks">-->
+                        <!--<th>{{x.type}}</th>-->
+                        <!--<th>{{x.content}}</th>-->
+                    <!--</tr>-->
+
+
+            </tr>
+        </table>
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<th class = "col box">-->
+                    <!--<div class = "c1">-->
+                        <!--<div id = 'updateMoveFeedbackInQuest'>-->
+                            <!--<h5>Update Move Feedback for game</h5>-->
+                            <!--<div class = "tableAttr">-->
+                                <!--<div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>-->
+                                <!--<div class="textDes">-->
+                                    <!--<div class = "formatter">-->
+                                        <!--<input class = "questFB" type="text" name="comment" ng-model="users.feedback" placeholder="Assignment feedback for this mission" ng-keypress="enterAssFeedback($event)">-->
+                                        <!--<span class="glyphicon formatSymbolXs" ng-click="addFeedback()"> &#xe084;</span>-->
+                                        <!--<div class = "questFBShow" ng-repeat="x in userFeedback" ng-if="$index < 5">Feedback added so far: {{x.feedback}}-->
+                                            <!--<div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeFeedback($index)">&#xe083;</div>-->
+                                        <!--</div>-->
+                                        <!--<br>-->
+
+                                        <!--<div class="feedbackForm radio-inline">-->
+                                            <!--<input  type="radio" ng-model='moveResult' ng-value='"right"' name="rdoResult" ng-click=""> Incorrect Response-->
+                                        <!--</div>-->
+                                        <!--<div class="feedbackForm radio-inline">-->
+                                            <!--<input  type="radio" ng-model='moveResult' ng-value='"wrong"' name="rdoResult" ng-click=""> Correct Response-->
+                                        <!--</div>-->
+                                        <!--<div class="feedbackForm radio-inline">-->
+                                            <!--<input  type="radio" ng-model='moveResult' ng-value='"neutral"' name="rdoResult" ng-click=""> Neutral Response-->
+                                        <!--</div>-->
+                                        <!--<div class="feedbackForm radio-inline">-->
+                                            <!--<input  type="radio" ng-model='moveResult' ng-value='"neutral"' name="rdoResult" ng-click=""> Close Response-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class = "buttonWrap">-->
+                                <!--<button class="glyphicon glyphicon-floppy-saved" ng-click="submitFeedback()" value="Save" ><div style = "font-size: x-small"> Save Assignment Feedback </div></button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</th>-->
+                <!--<th class = "col box">-->
+                    <!--to be filled after retrieve the information from db-->
+                <!--</th>-->
+            <!--</tr>-->
+        <!--</table>-->
+
+
+    </md-dialog-content>
+    </div>
+</md-dialog>
+
+<!--<div class="modal-body" >-->
+    <!---->
+<!--</div>-->

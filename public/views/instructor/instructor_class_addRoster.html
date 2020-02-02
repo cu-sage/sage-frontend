@@ -1,0 +1,60 @@
+<md-dialog aria-label="Add Roster">
+    <form name="classAddRoster" ng-submit="submit()">
+        <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{title}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+        </md-toolbar>
+    
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div ng-if="roster.length === 0">No roster to add</div>
+                <md-content ng-if="roster.length > 0" >
+                    <md-card style="margin:0px">
+                        <md-input-container style="margin:15px;">
+                            <label>Search Students</label>
+                            <input type="text" ng-model="filterName">
+                        </md-input-container>
+            
+                        <div ng-hide="true">
+                            {{(filteredItems = (roster | filter: filterName))}}
+                        </div>
+                    </md-card>
+                    <mdt-table 
+                        animate-sort-icon="true"
+                        mdt-row="{
+                            data: filteredItems,
+                            'table-row-id-key': 'email',
+                            'column-keys': [
+                                'name',
+                                'email',
+                            ]
+                            }"
+                            selectable-rows="true" sortable-columns="true" animate-sort-icon="true"
+                            paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+                            selected-row-callback="selectedRowCallback(rows)">
+                        <mdt-header-row>
+                            <mdt-column>Student Name</mdt-column>
+                            <mdt-column>Email</mdt-column>
+                        </mdt-header-row>
+                    </mdt-table>
+                </md-content>
+            </div>
+        </md-dialog-content>
+    
+        <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()">
+            Cancel
+        </md-button>
+        <md-button type="submit">
+            Finish
+        </md-button>
+        </md-dialog-actions>
+        </md-dialog>
+    </form>
+    </md-dialog>

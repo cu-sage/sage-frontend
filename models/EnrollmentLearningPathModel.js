@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var EnrollmentLearningPathModel = mongoose.model('EnrollmentLearningPath', new mongoose.Schema({
+ EnrollmentLearningPathModel = mongoose.model('EnrollmentLearningPath', new mongoose.Schema({
     studentID: mongoose.Schema.Types.ObjectId,
     learningPathIDpwd: mongoose.Schema.Types.ObjectId
 

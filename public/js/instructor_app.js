@@ -1,15 +1,40 @@
 var instructorApp = angular.module('instructorApp', [
+    'ngMaterial',
+    'mdSteppers',
     'ngRoute',
     'ngFileUpload',
     'satellizer',
-    'treeControl'
+    'treeControl',
+    'ngMaterial',
+    'ngMessages',
+    'mdDataTable',
+    'highcharts-ng',
+    'ngFileUpload',
     //'controllers'
     //'serviceFactory',
     //'ui.bootstrap'
 ]);
 
 instructorApp
-    .config(function($routeProvider, $authProvider) {
+    .service('loadingService', ['$mdDialog', function ($mdDialog) {
+        this.start = function () {
+            $mdDialog.show({
+                template: '<md-dialog id="plz_wait" style="background-color:transparent;box-shadow:none">' +
+                            '<div layout="row" layout-sm="column" layout-align="center center" aria-label="wait">' +
+                                '<md-progress-circular md-mode="indeterminate" ></md-progress-circular>' +
+                            '</div>' +
+                         '</md-dialog>',
+                parent: angular.element(document.body),
+                clickOutsideToClose:false,
+                fullscreen: false
+            })
+        };
+
+        this.stop = function (){
+            $mdDialog.cancel();
+        }
+    }])
+    .config(function($routeProvider, $authProvider, $mdThemingProvider) {
         $routeProvider
             .when('/overview/:sid', {
                 templateUrl: '/public/views/instructor/instructor_home1.html',
@@ -28,6 +53,10 @@ instructorApp
             .when('/overview/:sid/courses/:cid/hw/:hid', {
                 templateUrl: '/public/views/instructor_overview.html',
                 controller: 'InstructorOverviewController'
+            })
+            .when('/classes/:sid', {
+                templateUrl: '/public/views/instructor_class.html',
+                controller: 'InstructorClassController'
             })
             .when('/home1/:sid', {
                 templateUrl: '/public/views/instructor/instructor_home1.html',
@@ -88,6 +117,30 @@ instructorApp
             .when('/librarires/:sid/games', {
                 templateUrl: '/public/views/instructor/instructor_games.html',
                 controller: 'InstructorGamesController'
+            })
+            .when('/librarires/:sid/badges',{
+                templateUrl:'/public/views/instructor/instructor_badges.html',
+                controller:'InstructorBadgesController'
+            })
+            .when('/createInstr/:sid',{
+                templateUrl: '/public/views/instructor/instruction_creation.html',
+                controller: 'InstructionCreationController'
+            })
+            .when('/coursePage/:sid/course/:cid/Assignment/:ano/id/:aid/Instruction',{
+                templateUrl: '/public/views/instructor/instructor_updateGame.html',
+                controller: 'InstructorInstructionsController'
+            })
+            .when('/metrics/:sid',{
+                templateUrl: '/public/views/instructor/instructor_metrics.html',
+                controller: 'InstructorMetricsController'
+            })
+            .when('/metrics/students/:sid',{
+                templateUrl: '/public/views/instructor/instructor_s_metrics.html',
+                controller: 'InstructorStudentsMetricsController'
+            })
+            .when('/metrics/missions/:sid',{
+                templateUrl: '/public/views/instructor/instructor_m_metrics.html',
+                controller: 'InstructorMissionsMetricsController'
             })
             .when('/', {
                 templateUrl: "/public/views/error.html"

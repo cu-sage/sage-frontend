@@ -6,8 +6,8 @@ var courseModel = mongoose.model('Course', new mongoose.Schema({
     instructorID : mongoose.Schema.Types.ObjectId,
     assignments : [],
     features : [String],
-    ctConcepts: []
-
+    ctConcepts: [],
+    assignmentFeedbacks : [],
+    moveFeedbacks: []
 }));
-
 module.exports = courseModel;

@@ -1,5 +1,9 @@
 angular.module('mainApp').
-    controller('RegController', function($scope, $auth, $location) {
+    controller('RegController', function($scope, $auth, $location, $routeParams) {
+
+        $scope.roleEnabled = !$routeParams.eviteToken;
+        if (!$scope.roleEnabled)
+            $scope.role = 'student';
 
         $scope.signup = function() {
             if ($scope.signInAs == 'student') {
@@ -17,6 +21,10 @@ angular.module('mainApp').
                 fullname: $scope.fullname,
                 role: $scope.role
             };
+
+            if (!!$routeParams.eviteToken) {
+                user.eviteToken = $routeParams.eviteToken;
+            }
 
             $auth.signup(user).then(function(response) {
                 $location.path('/login');

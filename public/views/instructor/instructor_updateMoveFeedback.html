@@ -1,0 +1,117 @@
+<style>
+    button {
+        background: steelblue;
+        color: white;
+        height: 40px;
+        width: 78%;
+        float: left;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    #toolbar {
+        background: steelblue
+    }
+    #dialogSize {
+        width: 90%;
+        height:90%;
+    }
+</style>
+
+<md-dialog id = "dialogSize">
+    <md-toolbar id ="toolbar">
+        <div class="md-toolbar-tools">
+            <h4 style = "color:black">Update Move Feedback for Game</h4 >
+            <span flex></span>
+            <md-button class="md-icon-button"  ng-click="cancel()">
+                <ng-md-icon icon="clear"  size="30px"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div class = "gradientBackground">
+    <md-dialog-content>
+        <table style = "width:100%;">
+            <tr>
+                <th class = "col box">
+                    <div class = "c1">
+                        <div id = 'updateMoveFeedbackInheritance'>
+                            <div class = "tableAttr">
+                                <div class = "textDes"><strong> Add Up To 5 Feedback </strong></div>
+                                <div class="textDes">
+                                    <div class = "formatter">
+                                        <input class = "questFB" type="text" name="comment" ng-model="users.comment" placeholder= "move feedback press return or symbol to enter" ng-keypress="enterMoveFeedback($event)">
+                                        <span class="glyphicon formatSymbolXs" ng-click="pushInArray2()"> &#xe084;</span>
+                                        <div class = "questFBShow" ng-repeat=" x in moveFeedbackInput" ng-if="$index < 5"> Feedback added: {{x.comment}}
+                                            <div class=" glyphicon formatSymbol" style="float:right ; display: inline-block" ng-click="removeComment($index)">&#xe083;</div>
+                                        </div>
+                                        <hr>
+
+                                        <div>Select Move Feedback Type:</div>
+                                        <br>
+                                        <div class="feedbackForm">
+                                            <input  type="radio" ng-model='moveResult' ng-value='"incorrect"' name="moveResult" ng-click="">Incorrect Response
+                                        </div>
+                                        <br>
+                                        <div class="feedbackForm">
+                                            <input  type="radio" ng-model='moveResult' ng-value='"correct"' name="moveResult" ng-click="">Correct Response
+                                        </div>
+                                        <br>
+                                        <div class="feedbackForm ">
+                                            <input  type="radio" ng-model='moveResult' ng-value='"neutral"' name="moveResult" checked>Neutral Response
+                                        </div>
+                                        <br>
+                                        <div class="feedbackForm ">
+                                            <input  type="radio" ng-model='moveResult' ng-value='"close"' name="moveResult" ng-click="">Close Response
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "buttonWrap">
+                                <button class="glyphicon glyphicon-floppy-saved" ng-click="submitFeedback()" value="Save">  Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </th>
+                <th  class = "col box">
+                    <div class = "c1">
+                        <div class = "historyTitle"><strong>Feedback Added</strong></div>
+                        <table class = "historyFb">
+                            <tr style = "margin:0 0 0 0; padding: 1% 1% 1% 1%;">
+                                <th style = "width:25%;text-align: center">Type</th>
+                                <th style = "width:75%;text-align: center">Response</th>
+                                <!--<th style = "width:5%;text-align: center">Action</th>-->
+                            </tr>
+                            <tr class = "deleteLineEffect" ng-repeat = "x in currentFeedbacks.feedbacks" style = "margin:0 0 0 0; padding: 1% 1% 1% 1%; ">
+                                <th  style = "width:25%;text-align: left; font-size: medium"><span style='font-size:medium;' ng-show = "x.type == 'correct'">&#128525{{x.type}}</span> <span style='font-size:medium;' ng-show = "x.type == 'incorrect'">&#128528{{x.type}}</span><span style='font-size：medium;' ng-show = "x.type == 'neutral'">&#128522{{x.type}}</span><span style='font-size：medium;' ng-show = "x.type == 'close'">&#128526{{x.type}}</span></th>
+                                <th  style = "width:70%;text-align: center;font-size: medium">{{x.content}}</th>
+                                <th style = "width:5%;text-align: center;font-size: medium" ng-click = "deleteSingleFeedback($event,$index)"><span class="glyphicon glyphicon-trash deleteLineEffect" ></span></th>
+                            </tr>
+                        </table>
+
+
+
+                    <!--<div class = "c1">-->
+                        <!--<div class = "historyFb">History Feedback</div>-->
+                        <!--<table>-->
+                            <!--<tr class = "row" ng-repeat = "x in currentFeedbacks">-->
+                                <!--<div class = "col3">{{x.type}}</div>-->
+                                <!--<div class = "col7">{{x.content}}</div>-->
+                            <!--</tr>-->
+                        <!--</table>-->
+                    <!--</div>-->
+
+
+                    <!--data from db: {{currentFeedbacks}}-->
+                </th>
+            </tr>
+        </table>
+
+
+        <!--<p>Test {{ currentFeedbacks }} </p>-->
+    </md-dialog-content>
+    </div>
+</md-dialog>
+
+<!--<div class="modal-body" >-->
+<!---->
+<!--</div>-->

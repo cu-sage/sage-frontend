@@ -1,72 +1,84 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>SAGE</title>
     <link rel="icon" href="/public/images/columbia_favicon.png">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Animate.CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- Angular Material style sheet -->
+    <link rel='stylesheet prefetch'
+        href='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.7/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.7/docs.css'>
     <!-- Custom styles for index -->
     <link href="/public/css/index.css" rel="stylesheet">
     <!-- Student Task CSS -->
     <link href="/public/css/student_task.css" rel="stylesheet">
 
     <link href="/node_modules/highcharts-ng/dist/highcharts-ng.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/material-steppers.min.css">
 
 
 </head>
+
 <body ng-app="studentApp">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar" ng-controller="StudentIndexController">
-            <ul class="nav nav-sidebar">
-                <img ng-src="{{student_url}}" class="img-responsive" alt="Image not found" onerror="this.src='/public/images/empty_avatar.png';">
-                <br>
-                <h4 class="text-center">{{student}}</h4>
-                <h5 class="text-center">Student</h5>
-            </ul>
-            <ul class="nav nav-sidebar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar" ng-controller="StudentIndexController">
+                <ul class="nav nav-sidebar">
+                    <img ng-src="{{student_url}}" class="img-responsive" alt="Image not found"
+                        onerror="this.src='/public/images/empty_avatar.png';">
+                    <br>
+                    <h4 class="text-center">{{student}}</h4>
+                    <h5 class="text-center">Student</h5>
+                </ul>
+                <ul class="nav nav-sidebar">
 
-                <li ng-class="{ active: isActive('home') }">
-                    <a ng-href="#/home/{{sid}}">
-                        <i class="glyphicon glyphicon-home pull-right"></i>
-                        Home
-                    </a>
-                </li>
 
-                <li ng-class="{ active: isActive('courses') }">
-                    <a ng-href="#/courses/{{sid}}">
-                        <i class="glyphicon glyphicon-book pull-right"></i>
-                        Missions
-                    </a>
-                </li>
+                    <li ng-class="{ active: isActive('metrics') }">
+                        <a ng-href="#/metrics/{{sid}}">
+                            <i class="glyphicon glyphicon-eye-open pull-right"></i>
+                            Metrics
+                        </a>
+                    </li>
 
-                <li ng-class="{ active: isActive('account') }">
-                    <a ng-href="#/account/{{sid}}">
-                        <i class="glyphicon glyphicon-user pull-right"></i>
-                        Account
+                    <!--<li ng-class="{ active: isActive('Quests') }">
+                    <a ng-href="#/quests/{{sid}}">
+                    <i class="glyphicon glyphicon-eye-open pull-right"></i>
+                    Quests
                     </a>
-                </li>
+                    </li>-->
 
-                <li ng-class="{ active: isActive('help') }" ng-hide="true">
-                    <a ng-href="#/help">
-                        <i class="glyphicon glyphicon-flag pull-right"></i>
-                        Help
-                    </a>
-                </li>
-                <li ng-click="showHide()">
-                    <a>
-                        <i class="glyphicon glyphicon-flag pull-right"></i>
-                        Hide / Show
-                    </a>
-                </li>
-                <!--           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining
+
+                    <li ng-class="{ active: isActive('home') || isActive('courses')}">
+                        <a ng-href="#/courses/{{sid}}">
+                            <i class="glyphicon glyphicon-book pull-right"></i>
+                            Missions
+                        </a>
+                    </li>
+
+                    <li ng-class="{ active: isActive('account') }">
+                        <a ng-href="#/account/{{sid}}">
+                            <i class="glyphicon glyphicon-user pull-right"></i>
+                            Account
+                        </a>
+                    </li>
+
+                    <li ng-class="{ active: isActive('help') }" ng-hide="true">
+                        <a ng-href="#/help">
+                            <i class="glyphicon glyphicon-flag pull-right"></i>
+                            Help
+                        </a>
+                    </li>
+                    <!--           <div class="alert alert-success" style="color:#fff;background-color:#428bca" id="timer">Time Remaining
                                <span id='timer'>Time Remaining</span>
                            </div>-->
-            </ul>
-<!--            <ul>Quests enrolled:
+                </ul>
+                <!--            <ul>Quests enrolled:
                 <li ng-repeat="course in coursesEnrolled"
                     ng-click='changeView("/courses/"+ course.courseID +"/"+ sid)'
                 > <span class="bullets-course-page"> {{course.courseName}} </span>
@@ -77,20 +89,37 @@
                     </ul>
                 </li>
             </ul>-->
-            <br>
-
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated" ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
-            <div ng-view>
+                <br>
 
             </div>
-        </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main animated"
+                ng-class="isHidden ? 'fadeOutLeft' : 'fadeInLeft' ">
+                <div ng-view>
+
+                </div>
+            </div>
 </body>
 
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
 <!-- angular -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
 <script src="/public/js/lib/satellizer.min.js"></script>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+<!-- material-steppers Library -->
+<script src="/public/js/material-steppers.min.js"></script>
 
 <!-- chart.js -->
 <!--<script src="http://code.highcharts.com/highcharts.src.js"></script>-->
@@ -99,8 +128,13 @@
 <script src="https://rawgithub.com/pablojim/highcharts-ng/master/src/highcharts-ng.js"></script>
 <!--<script type="text/javascript" src = "/node_modules/highcharts-ng/dist/highcharts-ng.js"></script> -->
 
+<!-- messagelist libs -->
+<script src="/public/js/lib/messagelist.js"></script>
+
 <script src="/public/js/student_app.js"></script>
 <script src="/public/js/controllers/student/StudentHomeController.js"></script>
+<script src="/public/js/controllers/student/StudentMetricsController.js"></script>
+<script src="/public/js/controllers/student/StudentQuestsController.js"></script>
 <script src="/public/js/controllers/student/StudentCoursesController.js"></script>
 <script src="/public/js/controllers/student/StudentSingleCourseController.js"></script>
 <script src="/public/js/controllers/student/StudentAssessmentController.js"></script>
@@ -115,6 +149,9 @@
 <script src="/public/js/lib/ng-file-upload/ng-file-upload.min.js"></script>
 <script src="/public/js/lib/ng-file-upload/ng-file-upload-shim.min.js"></script>
 <script src="/node_modules/ng-error/ng-error.js"></script>
+
+<!-- auto-scroll -->
+<script src="/node_modules/angularjs-scroll-glue/src/scrollglue.js"></script>
 
 
 <!-- Student Task CSS -->

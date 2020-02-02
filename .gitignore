@@ -9,8 +9,9 @@ node_modules
 # Optional npm cache directory
 .npm
 
-# Webstrom
+# IntelliJ
 .idea/
+sage-frontend.iml
 
 # Operating System
 .DS_Store
@@ -28,3 +29,11 @@ s1_ - Copy.zip
 s1_ - Copy/0.png
 s1_ - Copy/0.wav
 s1_ - Copy/1.png
+
+# Version.txt (BuildID and timestamp)
+version.txt
+
+# gulp package artifacts
+_package/*
+Package.zip
+.gradle/

@@ -1,0 +1,52 @@
+<md-dialog aria-label="Create New Class">
+<form name="classAddMission" ng-submit="submit()">
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+        <!--<h2>{{title}}</h2>-->
+        <h2>Add Feedback Template</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+    </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <md-content>
+                <div ng-if="feedbacks.length === 0">No feedbacks to add</div>
+                <mdt-table 
+                    animate-sort-icon="true"
+                    ng-if="feedbacks.length > 0"
+                    mdt-row="{
+                        data: feedbacks,
+                        'table-row-id-key': 'id',
+                        'column-keys': [
+                            'name',
+                            'description',
+                        ]
+                        }"
+                        selectable-rows="true" sortable-columns="true" animate-sort-icon="true"
+                        paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+                        selected-row-callback="selectedRowCallback(rows)">
+                    <mdt-header-row>
+                        <mdt-column>feedback Name</mdt-column>
+                        <mdt-column>Description</mdt-column>
+                    </mdt-header-row>
+                </mdt-table>
+            </md-content>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+    <span flex></span>
+    <md-button ng-click="cancel()">
+        Cancel
+    </md-button>
+    <md-button type="submit">
+        Finish
+    </md-button>
+    </md-dialog-actions>
+    </md-dialog>
+</form>
+</md-dialog>

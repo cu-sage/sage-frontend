@@ -1,9 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="google" value="notranslate">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <title>SAGE Testing</title>
+  <style>
+    td .tabmax {
+      height: 30px;
+      width: 30%;
+    }
+    #trashButton {
+      height: 100%;
+    }
+    .inputThree {
+      width: 100%;
+      border-radius: 0.3rem;
+      border: solid steelblue;
+    }
+    .paddingTD {
+      margin-left: 0;
+      width: 30%;
+      float:right
+      display: inline-block;
+    }
+    .tabmin {
+      width:0;
+    }
+    #vae td {
+      width: 33%
+    }
+    .tabmax {
+      height: 25px;
+      width: 40px;
+    }
+    #tabRow > td {
+      border: none;
+    }
+    #tab_xml {
+      padding:0 0 0 0;
+      border:none;
+    }
+
+  </style>
   <link rel="stylesheet" href="style.css">
   <script src="../../jquery-3.1.1.min.js"></script>
   <script src="../../blockly_compressed.js"></script>
@@ -12,33 +55,49 @@
   <script src="../../blocks/testing.js"></script>
   <script src="code.js"></script>
 </head>
-<body>
-  <table width="100%" height="100%">
-    <tr style="height: 50px; text-align: center;">
-        <br><td>Objective Id: <input id="aid" type="text" size="30">
-          <button onclick="Code.saveObjective();">Save</button></td>
-        <br><td>Project ID: <input id="pid" type="text"></td>
+
+<body style = "background-color: #F0F8FF;">
+<!--<div class = "container" style = "width: 400px; color: steelblue">-->
+  <table id = "vae" width="100%" height="100%">
+    <tr style="height: 50px; width: 100%; float:right; color: steelblue;background-color:#F0F8FF;">
+        <!--<br><td>Objective Id: <input id="aid" type="text" size="30">-->
+        <!--<br>Objective Name: <input id="obj_name" type="text" size="30">-->
+          <!--<button onclick="Code.saveObjective();">Save</button></td>-->
+        <!--<br><td>Project ID: <input id="pid" type="text"></td>-->
+      <br><td class = "paddingTD">Objective Id: <input class = "inputThree" id="aid" type="text" size="30"></td>
+      <td class = "paddingTD">Objective Name: <input class = "inputThree" id="obj_name" type="text" size="30"></td>
+      <br><td class = "paddingTD">Project ID: <input class = "inputThree" id="pid" type="text"></td>
     </tr>
+    <!--<button class="btn btn-sm btn-info" onclick="Code.saveObjective();">Savessss</button>-->
     <tr>
+
+
       <td colspan=2>
-        <table width="100%">
-          <tr id="tabRow" height="1em">
-            <td id="tab_blocks" class="tabon">...</td>
-            <td class="tabmin">&nbsp;</td>
-            <td id="tab_xml" class="taboff">XML</td>
-            <td class="tabmax">
-              <button id="trashButton" class="notext" title="...">
-                <img src='../../media/1x1.gif' class="trash icon21">
-              </button>
-              <button id="linkButton" class="notext" title="...">
-                <img src='../../media/1x1.gif' class="link icon21">
-              </button>
-              <button id="runButton" class="notext primary" title="...">
-                <a href="#" onclick="Code.runButtonClicked(); return false;"><img src='../../media/1x1.gif' class="run icon21"></a>
-              </button>
-            </td>
-          </tr>
-        </table>
+
+      <!--<button class="btn btn-sm btn-info " style = "float: right; background:steelblue; color: white" onclick="Code.saveObjective();"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>-->
+
+          <table width="100%" style = "color: steelblue;background-color:#F0F8FF;">
+            <tr id="tabRow" height="1em" style = "color:steelblue">
+              <td style = "width: 9%" id="tab_blocks" class="tabon">...</td>
+              <td id="tab_xml" class="taboff">XML</td>
+              <td class="tabmin">&nbsp;</td>
+              <td class="tabmax">
+                <button class="btn btn-sm btn-info " style = "font-size: small;float: right; background:steelblue; width: 65px;color: white; height: 100%; border-radius:0.7rem" onclick="Code.saveObjective();"><span class="glyphicon glyphicon-floppy-saved"></span> Save</button>
+
+                <button id="trashButton" class="notext" title="...">
+                  <img src='../../media/1x1.gif' class="trash icon21">
+                </button>
+
+                <button id="linkButton" class="notext" title="...">
+                  <img src='../../media/1x1.gif' style = "float: right;height: 100%; border-radius:0.7rem" class="link icon21">
+                </button>
+                <button id="runButton" style = "float: right; height: 100%; border-radius:0.7rem"  class="notext primary" title="...">
+                  <a href="#" onclick="Code.runButtonClicked(); return false;"><img src='../../media/1x1.gif' class="run icon21"></a>
+                </button>
+              </td>
+            </tr>
+          </table>
+
       </td>
     </tr>
     <tr>

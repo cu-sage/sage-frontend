@@ -4,6 +4,7 @@ angular.module('mainApp').controller('LoginController',
         $scope.emailLogin = function() {
             $auth.login({email: $scope.email, password: $scope.password}).
                 then(function(response) {
+                    console.log(response);
                     $window.localStorage.currentUser =
                         JSON.stringify(response.data.user);
                     $rootScope.currentUser =

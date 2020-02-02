@@ -33,7 +33,7 @@
     "chart.js": "^2.7.2",
     "express": "^4.16.3",
     "highcharts-ng": "^1.1.0",
-    "jwt-simple": "^0.5.1",
+    "jwt-simple": "^0.5.3",
     "lodash": "^4.17.10",
     "moment": "^2.21.0",
     "mongoose": "^4.13.12",

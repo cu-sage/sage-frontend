@@ -42,7 +42,7 @@
     "ng-error": "^1.0.2",
     "node": "^11.12.0",
     "node-fetch": "^1.6.3",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^6.4.16",
     "socket.io-client": "^2.1.1",
     "vjs-video": "^0.1.6"
   },

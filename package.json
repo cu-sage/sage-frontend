@@ -27,7 +27,7 @@
     "angular-material-icons": "^0.7.1",
     "angularjs-scroll-glue": "^2.2.0",
     "animate.css": "^3.5.2",
-    "aws-sdk": "^2.210.0",
+    "aws-sdk": "^2.814.0",
     "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
     "chart.js": "^2.7.2",

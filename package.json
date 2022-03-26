@@ -51,7 +51,7 @@
     "fs": "0.0.1-security",
     "gulp": "^4.0.0",
     "gulp-zip": "^4.1.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "mocha": "^5.0.4",
     "path": "^0.12.7",
     "semistandard": "^13.0.1",

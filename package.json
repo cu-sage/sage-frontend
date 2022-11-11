@@ -43,7 +43,7 @@
     "node": "^11.12.0",
     "node-fetch": "^1.6.3",
     "nodemailer": "^4.6.4",
-    "socket.io-client": "^2.1.1",
+    "socket.io-client": "^2.5.0",
     "vjs-video": "^0.1.6"
   },
   "devDependencies": {
